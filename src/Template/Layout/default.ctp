@@ -41,13 +41,18 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         /* Chosen is taken from https://github.com/harvesthq/chosen/releases/ */
         echo $this->Html->css('/plugins/chosen/chosen.min.css');
 
+        /* Jquery latest version taken from http://jquery.com */
+        echo $this->Html->script('jquery-min.js');
+        echo $this->Html->script('jquery-ui.min.js');
+        echo $this->Html->script('custom.js');
+
         /* Toastr is taken from https://github.com/CodeSeven/toastr */
         echo $this->Html->css('/plugins/toastr/build/toastr.min.css');
 
         /* Jquery latest version taken from http://jquery.com */
-        echo $this->Html->css('/plugins/blitz/jquery-ui.theme.min.css');
-        echo $this->Html->script('/plugins/jquery-3.1.1.min.js');
-        echo $this->Html->script('/plugins/blitz/jquery-ui.min.js');
+        //echo $this->Html->css('/plugins/blitz/jquery-ui.theme.min.css');
+       // echo $this->Html->script('/plugins/jquery-3.1.1.min.js');
+        //echo $this->Html->script('/plugins/blitz/jquery-ui.min.js');
 
         /* Bootstrap JS */
         echo $this->Html->script('/plugins/bootstrap/js/bootstrap.min.js');
@@ -59,7 +64,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         echo $this->Html->script('/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js');
 
         echo $this->Html->script('umscript.js');
-
 
     ?>
     <?= $this->Html->css('base.css') ?>

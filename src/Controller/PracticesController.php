@@ -76,12 +76,22 @@ class PracticesController extends AppController
         $this->paginate = [
             'contain' => ['Practices', 'Users']
         ];
-        $checkins = $this->paginate($this->Checkins);
+        //$checkins = $this->paginate($this->Checkins);
+        $checkins = $this->Checkins->find('all', [
+                            'contain' => ['Users'],
+                            'conditions' => ['practice_id' => $id]]);
+
+// In a controller or table method.
+//    'conditions' => ['Articles.created >' => new DateTime('-10 days')],
+//    'contain' => ['Authors', 'Comments'],
+ //   'limit' => 10
+//]);
+
 
         $this->set(compact('checkins'));
 
         $users = $this->Checkins->Users->find('list', ['limit' => 200]);
-        $this->set(compact('checkin', 'users'));
+        $this->set(compact('checkin','checkins', 'users'));
 
 
 

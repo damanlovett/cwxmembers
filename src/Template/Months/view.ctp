@@ -42,6 +42,7 @@
 <div>
 
     <div id="tabs"><!-- Nav tabs -->
+
   <ul>
     <li><a href="#tabs-1">Practices</a></li>
     <li><a href="#tabs-2">Signups</a></li>
@@ -82,8 +83,6 @@
         <?php endif; ?>
     </div>
 
-
-    </div>
     <div id="tabs-2" class="related">
         <h4><?= __('Related Signups') ?><?= $this->Paginator->counter('Number of Signups {{count}}');?>
         </h4>
@@ -138,11 +137,6 @@
         <?php endif; ?>
     </div>
 
-
-    </div>
-
-    </div>
-  </div>
 </div> <!-- End of Tab -->
 
 </div>

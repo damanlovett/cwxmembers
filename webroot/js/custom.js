@@ -3,7 +3,7 @@ $(function(){
 
 
     // Tabs
-    $( "#tabs" ).tabs();
+    $("#tabs").tabs();
 
 
 });

@@ -64,11 +64,13 @@
             <tr>
                 <th scope="col"><?= __('Player') ?></th>
                 <th scope="col"><?= __('Checkin') ?></th>
+                <th scope="col"><?= __('Checkin') ?></th>
             </tr>
             <?php foreach ($checkins as $checkins): ?>
             <tr>
                 <td><?= h($checkins->user->fullName); ?></td>
                 <td><?= h($checkins->created) ?></td>
+                <td><?= h($checkins->practice_id) ?></td>
             </tr>
             <?php endforeach; ?>
         </table>
