@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\Event\Event;
 /**
  * Shows Controller
  *
@@ -12,6 +12,14 @@ use App\Controller\AppController;
  */
 class ShowsController extends AppController
 {
+
+     public function beforeFilter(Event $event)
+         {
+             parent::beforeFilter($event);
+             $this->viewBuilder()->layout('default2'); // New in 3.1
+         }
+
+         //Don't forget to add use Cake\Event\Event;
 
     /**
      * Index method
@@ -52,7 +60,7 @@ class ShowsController extends AppController
                     ->contain(['Users','Roles', 'Roles2']);
 
 
-        $this->set(compact('callouts','inshows'));
+        $this->set(compact('callouts','inshows','signlists'));
 
 
     }

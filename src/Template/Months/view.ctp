@@ -39,23 +39,28 @@
     </table>
 
 
-<div>
 
-    <div id="tabs"><!-- Nav tabs -->
+<div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">&nbsp;</h3>
+                    <span class="pull-right">
+                        <!-- Tabs -->
+                        <ul class="nav panel-tabs">
+                            <li class="active"><a href="#tab1" data-toggle="tab">Practices</a></li>
+                            <li><a href="#tab2" data-toggle="tab">Signups</a></li>
+                            <li><a href="#tab3" data-toggle="tab">Shows</a></li>
+                        </ul>
+                    </span>
+                </div>
+              <hr />
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab1">
 
-  <ul>
-    <li><a href="#tabs-1">Practices</a></li>
-    <li><a href="#tabs-2">Signups</a></li>
-    <li><a href="#tabs-3">Shows</a></li>
-  </ul>
-
-  <!-- Tab panes -->
-
-    <div id="tabs-1" class="related">
-        <h4><?= __('Related Practices') ?></h4>
+                            <h4><?= __('Related Practices') ?></h4>
         <?php if (!empty($month->practices)): ?>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
+        <table class="basicTable" cellpadding="0" cellspacing="0">
+            <thead>
                 <th scope="col"><?= __('Id') ?></th>
                 <th scope="col"><?= __('Month Id') ?></th>
                 <th scope="col"><?= __('Schedule') ?></th>
@@ -63,7 +68,7 @@
                 <th scope="col"><?= __('Leader') ?></th>
                 <th scope="col"><?= __('Description') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
+            </thead>
             <?php foreach ($month->practices as $practices): ?>
             <tr>
                 <td><?= h($practices->id) ?></td>
@@ -81,32 +86,36 @@
             <?php endforeach; ?>
         </table>
         <?php endif; ?>
-    </div>
 
-    <div id="tabs-2" class="related">
-        <h4><?= __('Related Signups') ?><?= $this->Paginator->counter('Number of Signups {{count}}');?>
-        </h4>
-        <?php if (!empty($month->signups)): ?>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Month Id') ?></th>
+                        </div>
+                        <div class="tab-pane" id="tab2">
+
+        <?php if (!empty($signlist)): ?>
+        <table class="basicTable" cellpadding="0" cellspacing="0">
+                <?php $i = 0;?>
+
+            <thead>
+                <th scope="col"><?= __('') ?></th>
                 <th scope="col"><?= __('User Id') ?></th>
-            </tr>
-            <?php foreach ($month->signups as $signups): ?>
+                <th scope="col"><?= __('User Id') ?></th>
+            </thead>
+            <?php
+
+            foreach ($signlist as $signlist): ?>
+                <?php $i++;?>
             <tr>
-                <td><?= h($signups->id) ?></td>
-                <td><?= h($signups->month_id) ?></td>
-                <td><?= h($signups->Users['first_name']." ".$signups->Users['last_name']) ?></td>
+                <td><?= $i ?></td>
+                <td><?= h($signlist->user->first_name." ".$signlist->user->last_name) ?></td>
+                <td><?= h($signlist->count) ?></td>
             </tr>
             <?php endforeach; ?>
         </table>
         <?php endif; ?>
-    </div>
 
 
-<div id="tabs-3" class="related">
-        <h4><?= __('Related Shows') ?></h4>
+                        </div>
+                        <div class="tab-pane" id="tab3">
+
         <?php if (!empty($month->shows)): ?>
         <table cellpadding="0" cellspacing="0">
             <tr>
@@ -135,21 +144,11 @@
             <?php endforeach; ?>
         </table>
         <?php endif; ?>
-    </div>
-
-</div> <!-- End of Tab -->
-
-</div>
 
 
-
-
-
-
-
-
-
-
-
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 </div>

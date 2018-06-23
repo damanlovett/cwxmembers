@@ -20,15 +20,6 @@
 </nav>
 
 
-
-
-
-
-
-
-
-
-
 <div class="assignments form large-9 medium-8 columns content">
     <?= $this->Form->create($assignment) ?>
     <fieldset>
@@ -84,7 +75,7 @@
             <?php foreach ($signlist as $signlist): ?>
             <tr>
                 <td><?= h($signlist->show_id) ?></td>
-                <td><?= h($signlist->user['first_name']." ".$signups->user['last_name']) ?></td>
+                <td><?= h($signlist->user['display_name']) ?></td>
                 <td><?= h($signlist->count) ?></td>
             </tr>
             <?php endforeach; ?>

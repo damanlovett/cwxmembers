@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Months Controller
@@ -13,6 +14,10 @@ use App\Controller\AppController;
 class MonthsController extends AppController
 {
 
+    public function beforeFilter(Event $event) {
+parent::beforeFilter($event);
+$this->viewBuilder()->layout('default2'); // New in 3.1
+}
     /**
      * Index method
      *
@@ -35,28 +40,25 @@ class MonthsController extends AppController
     public function view($id = null)
     {
         $month = $this->Months->get($id, [
-            'contain' => ['Practices', 'Shows.dropdowns','Shows.months', 'Signups.users']        ]);
+            'contain' => ['Practices', 'Shows.dropdowns','Shows.months', 'Signups']        ]);
 
         $this->set('month', $month);
 
         $this->loadModel('Signups');
 
-$signlist = $this->Signups->find('all');
+$signlist = $this->Signups->findByMonth_id($id)->contain([
+    'Users' => function ($q) {
+       return $q
+            ->select(['first_name','last_name']);}
+]);
 $signlist->select([
               'id',
               'user_id',
               'count' => $signlist->func()->count('*')
             ])
-     ->where(['month_id' => $id])
      ->group('user_id');
 
-       // foreach ($Query as $row) {
-       //    debug($row);
-       // }
-        $signlist = $this->paginate($this->Signups);
-
-
-    $this->set(compact('signlist'));
+        $this->set('signlist', $signlist);
 
     }
 

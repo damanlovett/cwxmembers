@@ -17,6 +17,10 @@
         <li><?= $this->Html->link(__('New Checkin'), ['controller' => 'Checkins', 'action' => 'add']) ?> </li>
     </ul>
 </nav>
+
+
+
+
 <div class="practices view large-9 medium-8 columns content">
     <h3><?= h($practice->title) ?></h3>
     <table class="vertical-table">

@@ -1,0 +1,13 @@
+$signlist = $this->Signups->findByMonth_id($id)->contain([
+    'Users' => function ($q) {
+       return $q
+            ->select(['first_name','last_name']);}
+]);
+$signlist->select([
+              'id',
+              'user_id',
+              'count' => $signlist->func()->count('*')
+            ])
+     ->group('user_id');
+
+        $this->set('signlist', $signlist);

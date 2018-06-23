@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Assignments Controller
@@ -13,6 +14,11 @@ use App\Controller\AppController;
 class AssignmentsController extends AppController
 {
 
+
+    public function beforeFilter(Event $event) {
+parent::beforeFilter($event);
+$this->viewBuilder()->layout('default2'); // New in 3.1
+}
     /**
      * Index method
      *
@@ -49,7 +55,7 @@ class AssignmentsController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add($id=null)
+    public function add($id=null, $id2=null)
     {
         $id2 = $this->request->getQuery('month');
         $this->loadModel('Shows');
@@ -104,11 +110,12 @@ class AssignmentsController extends AppController
               'user_id',
               'Users.first_name',
               'Users.last_name',
+              'month_id',
               'count' => $signlist->func()->count('*')
             ])
-     ->where(['month_id' => $id2])
-     ->contain(['Users'])
-     ->group('user_id');
+        ->where(['month_id' => $id2])
+        ->contain(['Users','Months'])
+        ->group('user_id');
 
        // foreach ($Query as $row) {
        //    debug($row);

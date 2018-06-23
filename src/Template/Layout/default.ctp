@@ -1,99 +1,78 @@
-<?php
-/**
- * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- * @link          https://cakephp.org CakePHP(tm) Project
- * @since         0.10.0
- * @license       https://opensource.org/licenses/mit-license.php MIT License
- */
-
-$cakeDescription = 'CakePHP: the rapid development php framework';
-?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <?= $this->Html->charset() ?>
+    <?php echo $this->Html->charset(); ?>
+    <title><?php echo $this->fetch('title');?> Cakephp 3.x User Management Premium Plugin with Twitter Bootstrap | Ektanjali Softwares</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <?= $cakeDescription ?>:
-        <?= $this->fetch('title') ?>
-    </title>
-    <?= $this->Html->meta('icon') ?>
-
-
+    <script language="javascript">
+        var urlForJs="<?php echo SITE_URL ?>";
+    </script>
     <?php
-
+        echo $this->Html->meta('icon');
         /* Bootstrap CSS */
-        echo $this->Html->css('/plugins/bootstrap/css/bootstrap.min.css');
+        echo $this->Html->css('/plugins/bootstrap/css/bootstrap.min.css?q='.QRDN);
+
+        /* Usermgmt Plugin CSS */
+        echo $this->Html->css('/usermgmt/css/umstyle.css?q='.QRDN);
 
         /* Bootstrap Datepicker is taken from https://github.com/eternicode/bootstrap-datepicker */
-        echo $this->Html->css('/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css');
+        echo $this->Html->css('/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css?q='.QRDN);
 
         /* Bootstrap Datepicker is taken from https://github.com/smalot/bootstrap-datetimepicker */
-        echo $this->Html->css('/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css');
+        echo $this->Html->css('/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css?q='.QRDN);
 
         /* Chosen is taken from https://github.com/harvesthq/chosen/releases/ */
-        echo $this->Html->css('/plugins/chosen/chosen.min.css');
-
-        /* Jquery latest version taken from http://jquery.com */
-        echo $this->Html->script('jquery-min.js');
-        echo $this->Html->script('jquery-ui.min.js');
-        echo $this->Html->script('custom.js');
+        echo $this->Html->css('/plugins/chosen/chosen.min.css?q='.QRDN);
 
         /* Toastr is taken from https://github.com/CodeSeven/toastr */
-        echo $this->Html->css('/plugins/toastr/build/toastr.min.css');
+        echo $this->Html->css('/plugins/toastr/build/toastr.min.css?q='.QRDN);
 
         /* Jquery latest version taken from http://jquery.com */
-        //echo $this->Html->css('/plugins/blitz/jquery-ui.theme.min.css');
-       // echo $this->Html->script('/plugins/jquery-3.1.1.min.js');
-        //echo $this->Html->script('/plugins/blitz/jquery-ui.min.js');
+        echo $this->Html->script('/plugins/jquery-3.1.1.min.js');
 
         /* Bootstrap JS */
-        echo $this->Html->script('/plugins/bootstrap/js/bootstrap.min.js');
+        echo $this->Html->script('/plugins/bootstrap/js/bootstrap.min.js?q='.QRDN);
 
         /* Bootstrap Datepicker is taken from https://github.com/eternicode/bootstrap-datepicker */
-        echo $this->Html->script('/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js');
+        echo $this->Html->script('/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js?q='.QRDN);
 
         /* Bootstrap Datepicker is taken from https://github.com/smalot/bootstrap-datetimepicker */
-        echo $this->Html->script('/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js');
+        echo $this->Html->script('/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js?q='.QRDN);
 
-        echo $this->Html->script('umscript.js');
+        /* Bootstrap Typeahead is taken from https://github.com/biggora/bootstrap-ajax-typeahead */
+        echo $this->Html->script('/plugins/bootstrap-ajax-typeahead/js/bootstrap-typeahead.min.js?q='.QRDN);
 
+        /* Chosen is taken from https://github.com/harvesthq/chosen/releases/ */
+        echo $this->Html->script('/plugins/chosen/chosen.jquery.min.js?q='.QRDN);
+
+        /* Toastr is taken from https://github.com/CodeSeven/toastr */
+        echo $this->Html->script('/plugins/toastr/build/toastr.min.js?q='.QRDN);
+
+        /* Usermgmt Plugin JS */
+        echo $this->Html->script('/usermgmt/js/umscript.js?q='.QRDN);
+        echo $this->Html->script('/usermgmt/js/ajaxValidation.js?q='.QRDN);
+
+        echo $this->Html->script('/usermgmt/js/chosen/chosen.ajaxaddition.jquery.js?q='.QRDN);
+
+        echo $this->fetch('meta');
+        echo $this->fetch('css');
+        echo $this->fetch('script');
     ?>
-    <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('style.css') ?>
-
-
-
-    <?= $this->fetch('meta') ?>
-    <?= $this->fetch('css') ?>
-    <?= $this->fetch('script') ?>
 </head>
 <body>
-    <nav class="top-bar expanded" data-topbar role="navigation">
-        <ul class="title-area large-3 medium-4 columns">
-            <li class="name">
-                <h1><a href=""><?= $this->fetch('title') ?></a></h1>
-            </li>
-        </ul>
-        <div class="top-bar-section">
-            <ul class="right">
-                <li><a target="_blank" href="https://book.cakephp.org/3.0/">Documentation</a></li>
-                <li><a target="_blank" href="https://api.cakephp.org/3.0/">API</a></li>
-            </ul>
+    <div class="container">
+        <div class="content">
+            <?php if($this->UserAuth->isLogged()) { echo $this->element('Usermgmt.dashboard'); } ?>
+            <?php if($this->UserAuth->isLogged()) { echo $this->element('menu'); } ?>
+            <?php echo $this->element('Usermgmt.message_notification'); ?>
+            <?php echo $this->fetch('content'); ?>
+            <div style="clear:both"></div>
         </div>
-    </nav>
-    <?= $this->Flash->render() ?>
-    <div class="container clearfix">
-        <?= $this->fetch('content') ?>
     </div>
-    <footer>
-    </footer>
+    <div id="footer">
+        <div class="container">
+            <p class="muted">Copyright &copy; <?php echo date('Y');?> Your Site. All Rights Reserved. <a href="http://www.ektanjali.com/" target='_blank'>Developed By</a>.</p>
+        </div>
+    </div>
 </body>
 </html>
