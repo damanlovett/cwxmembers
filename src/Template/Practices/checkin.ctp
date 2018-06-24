@@ -18,44 +18,20 @@
     </ul>
 </nav>
 <div class="practices view large-9 medium-8 columns content">
-    <h3><?= h($practice->title) ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <th scope="row"><?= __('Month') ?></th>
-            <td><?= $practice->has('month') ? $this->Html->link($practice->month->title, ['controller' => 'Months', 'action' => 'view', $practice->month->id]) : '' ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Title') ?></th>
-            <td><?= h($practice->title) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Leader') ?></th>
-            <td><?= h($practice->leader) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($practice->id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Schedule') ?></th>
-            <td><?= h($practice->schedule) ?></td>
-        </tr>
-    </table>
-
-
-<div class="checkins form large-9 medium-8 columns content">
+    <div class="pageTitle">
+        <h3><?= h($practice->title) ?></h3>
+        <h2><?= h($practice->schedule->format('l, F j, Y - g:i a')." :: ".$practice->leader) ?></h2>
+    </div>
+    <hr />
     <?= $this->Form->create($checkin) ?>
-    <fieldset>
-        <legend><?= __('Add Checkin') ?></legend>
+        <h3><?= __('Checkin') ?></h3>
         <?php
             echo $this->Form->hidden('practice_id', ['default' => $practice->id]);
             echo $this->Form->control('user_id', ['options' => $users, 'empty' => true]);
         ?>
-    </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
-</div>
-
+<hr />
 
    <div class="related">
         <h4><?= __('Related Checkins') ?></h4>
@@ -74,6 +50,6 @@
             </tr>
             <?php endforeach; ?>
         </table>
-        <?php endif; ?>
-    </div>
+    </div>        <?php endif; ?>
+
 </div>

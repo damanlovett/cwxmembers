@@ -37,6 +37,8 @@ $this->viewBuilder()->layout('default2'); // New in 3.1
      * @return \Cake\Http\Response|void
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
+
+
     public function view($id = null)
     {
         $month = $this->Months->get($id, [

@@ -18,26 +18,10 @@
     </ul>
 </nav>
 <div class="months view large-9 medium-8 columns content">
-    <h3><?= h($month->title) ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <th scope="row"><?= __('Title') ?></th>
-            <td><?= h($month->title) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Year') ?></th>
-            <td><?= h($month->year) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($month->id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Created') ?></th>
-            <td><?= h($month->created) ?></td>
-        </tr>
-    </table>
 
+        <div class="pageTitle">
+            <h3><?= $month->title." ".$month->year; ?></h3>
+        </div>
 
 
 <div class="panel panel-primary">
@@ -57,26 +41,19 @@
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab1">
 
-                            <h4><?= __('Related Practices') ?></h4>
         <?php if (!empty($month->practices)): ?>
         <table class="basicTable" cellpadding="0" cellspacing="0">
             <thead>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Month Id') ?></th>
-                <th scope="col"><?= __('Schedule') ?></th>
-                <th scope="col"><?= __('Title') ?></th>
+                <th scope="col"><?= __('Name') ?></th>
+                <th scope="col"><?= __('Date') ?></th>
                 <th scope="col"><?= __('Leader') ?></th>
-                <th scope="col"><?= __('Description') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </thead>
             <?php foreach ($month->practices as $practices): ?>
             <tr>
-                <td><?= h($practices->id) ?></td>
-                <td><?= h($practices->month_id) ?></td>
-                <td><?= h($practices->schedule) ?></td>
                 <td><?= h($practices->title) ?></td>
+                <td><?= h($practices->schedule->format('D jS - g:i a')) ?></td>
                 <td><?= h($practices->leader) ?></td>
-                <td><?= h($practices->description) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Practices', 'action' => 'view', $practices->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Practices', 'action' => 'edit', $practices->id]) ?>
@@ -84,6 +61,9 @@
                 </td>
             </tr>
             <?php endforeach; ?>
+            <tfoot>
+                <td colspan="4">&nbsp;</td>
+            </tfoot>
         </table>
         <?php endif; ?>
 
@@ -95,20 +75,19 @@
                 <?php $i = 0;?>
 
             <thead>
-                <th scope="col"><?= __('') ?></th>
-                <th scope="col"><?= __('User Id') ?></th>
-                <th scope="col"><?= __('User Id') ?></th>
+                <th scope="col"><?= __('Player & Signups') ?></th>
             </thead>
             <?php
 
             foreach ($signlist as $signlist): ?>
                 <?php $i++;?>
             <tr>
-                <td><?= $i ?></td>
-                <td><?= h($signlist->user->first_name." ".$signlist->user->last_name) ?></td>
-                <td><?= h($signlist->count) ?></td>
-            </tr>
+                <td><?= h($i.". ".$signlist->user->fullName."  ( ".$signlist->count." )") ?></td>
+                            </tr>
             <?php endforeach; ?>
+            <tfoot>
+                <td colspan="1">&nbsp;</td>
+            </tfoot>
         </table>
         <?php endif; ?>
 
@@ -117,24 +96,18 @@
                         <div class="tab-pane" id="tab3">
 
         <?php if (!empty($month->shows)): ?>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Month Id') ?></th>
-                <th scope="col"><?= __('Dropdown Id') ?></th>
-                <th scope="col"><?= __('Schedule') ?></th>
-                <th scope="col"><?= __('Notes') ?></th>
+        <table class="basicTable">
+            <thead>
+                <th scope="col"><?= __('Name') ?></th>
+                <th scope="col"><?= __('Date') ?></th>
                 <th scope="col"><?= __('Signups Open') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
+            </thead>
             <?php foreach ($month->shows as $shows): ?>
             <tr>
-                <td><?= h($shows->id) ?></td>
-                <td><?= h($shows->Months['title']) ?></td>
                 <td><?= h($shows->Dropdowns['name']) ?></td>
-                <td><?= h($shows->schedule) ?></td>
-                <td><?= h($shows->notes) ?></td>
-                <td><?= h($shows->signups_open) ?></td>
+                <td><?= h($shows->schedule->format('D jS - g:i a')) ?></td>
+                <td><?= h($this->Switches->OnOff($shows->signups_open)) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Shows', 'action' => 'view', $shows->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Shows', 'action' => 'edit', $shows->id]) ?>
@@ -142,6 +115,9 @@
                 </td>
             </tr>
             <?php endforeach; ?>
+            <tfoot>
+                <td colspan="4">&nbsp;</td>
+            </tfoot>
         </table>
         <?php endif; ?>
 

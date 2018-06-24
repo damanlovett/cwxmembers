@@ -4,6 +4,7 @@
  * @var \App\Model\Entity\Month[]|\Cake\Collection\CollectionInterface $months
  */
 ?>
+<div id="newNav">
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
@@ -14,14 +15,13 @@
         <li><?= $this->Html->link(__('New Show'), ['controller' => 'Shows', 'action' => 'add']) ?></li>
     </ul>
 </nav>
+</div>
 <div class="months index large-9 medium-8 columns content">
     <h3><?= __('Months') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+    <table class="basicTable" cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('title') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('year') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('first_friday', 'Month') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
@@ -29,10 +29,8 @@
         <tbody>
             <?php foreach ($months as $month): ?>
             <tr>
-                <td><?= $this->Number->format($month->id) ?></td>
-                <td><?= h($month->title) ?></td>
-                <td><?= h($month->year) ?></td>
-                <td><?= h($month->created) ?></td>
+                <td><?= h($month->title." ".$month->year) ?></td>
+                <td><?= h($month->created->format('m/d/y - g:i a')) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $month->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $month->id]) ?>
@@ -41,6 +39,9 @@
             </tr>
             <?php endforeach; ?>
         </tbody>
+                    <tfoot>
+                        <td colspan="3">&nbsp;</td>
+                    </tfoot>
     </table>
     <div class="paginator">
         <ul class="pagination">

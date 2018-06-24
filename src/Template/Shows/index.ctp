@@ -20,7 +20,7 @@
 </nav>
 <div class="shows index large-9 medium-8 columns content">
     <h3><?= __('Shows') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+    <table class="basicTable" cellpadding="0" cellspacing="0">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
@@ -47,6 +47,9 @@
             </tr>
             <?php endforeach; ?>
         </tbody>
+            <tfoot>
+                <td colspan="6">&nbsp;</td>
+            </tfoot>
     </table>
     <div class="paginator">
         <ul class="pagination">

@@ -22,32 +22,30 @@
 
 
 <div class="practices view large-9 medium-8 columns content">
-    <h3><?= h($practice->title) ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <th scope="row"><?= __('Month') ?></th>
-            <td><?= $practice->has('month') ? $this->Html->link($practice->month->title, ['controller' => 'Months', 'action' => 'view', $practice->month->id]) : '' ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Title') ?></th>
-            <td><?= h($practice->title) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Leader') ?></th>
-            <td><?= h($practice->leader) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($practice->id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Schedule') ?></th>
-            <td><?= h($practice->schedule) ?></td>
-        </tr>
-    </table>
+    <div class="pageTitle">
+        <h3><?= h($practice->title) ?></h3>
+        <h2><?= h($practice->schedule->format('l, F j, Y - g:i a')." :: ".$practice->leader) ?></h2>
+    </div>
+
     <div class="row">
-        <h4><?= __('Description') ?></h4>
+
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default" style="padding: .25rem">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h2 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          <span class="glyphicon glyphicon-triangle-bottom" style="padding-right: 10px"></span>Practice Description
+        </a>
+      </h2>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
         <?= $this->Text->autoParagraph(h($practice->description)); ?>
+      </div>
+    </div>
+  </div>
+</div>
     </div>
     <div class="related">
         <h4><?= __('Checkins') ?></h4>
