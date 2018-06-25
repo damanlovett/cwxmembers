@@ -23,32 +23,35 @@
     <table class="basicTable" cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('month_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('dropdown_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('schedule') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('signups_open') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('dropdown_id','Show') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('month_id','Date') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('signups_open','Sign-ups Open') ?></th>
+                <th scope="col" class="actions"><?= __('') ?></th>
             </tr>
         </thead>
         <tbody>
+            <?php $i=0 ?>
             <?php foreach ($shows as $show): ?>
+                <?php $i++ ?>
             <tr>
-                <td><?= $this->Number->format($show->id) ?></td>
-                <td><?= $show->has('month') ? $this->Html->link($show->month->title, ['controller' => 'Months', 'action' => 'view', $show->month->id]) : '' ?></td>
-                <td><?= $show->has('dropdown') ? $this->Html->link($show->dropdown->name, ['controller' => 'Dropdowns', 'action' => 'view', $show->dropdown->id]) : '' ?></td>
-                <td><?= h($show->schedule) ?></td>
-                <td><?= $this->Number->format($show->signups_open) ?></td>
+                <td><?= $i.". ".$show->dropdown->name ?></td>
+                <td><?= $show->month->title." ".$show->schedule->format('d,Y g:i a') ?></td>
+                <td><?= $show->signups_open ? 'Yes' : 'No' ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $show->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $show->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $show->id], ['confirm' => __('Are you sure you want to delete # {0}?', $show->id)]) ?>
+                    <div class="btn-group">
+                    <button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">Action<span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li><?= $this->Html->link(__('View Show'), ['action' => 'view', $show->id]) ?></li>
+                        <li><?= $this->Html->link(__('View Month'), ['controller' => 'Months', 'action' => 'view', $show->month->id]) ?></li>
+                        <li><?= $this->Html->link(__('Edit'), ['action' => 'edit', $show->id]) ?></li>
+                        <li><?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $show->id], ['confirm' => __('Are you sure you want to delete # {0}?', $show->id)]) ?></li>
+                    </ul>
                 </td>
             </tr>
             <?php endforeach; ?>
         </tbody>
             <tfoot>
-                <td colspan="6">&nbsp;</td>
+                <td colspan="4">&nbsp;</td>
             </tfoot>
     </table>
     <div class="paginator">

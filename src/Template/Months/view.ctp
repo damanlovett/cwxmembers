@@ -4,20 +4,8 @@
  * @var \App\Model\Entity\Month $month
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Month'), ['action' => 'edit', $month->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Month'), ['action' => 'delete', $month->id], ['confirm' => __('Are you sure you want to delete # {0}?', $month->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Months'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Month'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Practices'), ['controller' => 'Practices', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Practice'), ['controller' => 'Practices', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Shows'), ['controller' => 'Shows', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Show'), ['controller' => 'Shows', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="months view large-9 medium-8 columns content">
+
+<div class="months view large-12 medium-12 columns content">
 
         <div class="pageTitle">
             <h3><?= $month->title." ".$month->year; ?></h3>
@@ -36,7 +24,6 @@
                         </ul>
                     </span>
                 </div>
-              <hr />
                 <div class="panel-body">
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab1">
@@ -55,9 +42,14 @@
                 <td><?= h($practices->schedule->format('D jS - g:i a')) ?></td>
                 <td><?= h($practices->leader) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Practices', 'action' => 'view', $practices->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Practices', 'action' => 'edit', $practices->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Practices', 'action' => 'delete', $practices->id], ['confirm' => __('Are you sure you want to delete # {0}?', $practices->id)]) ?>
+
+                    <div class="btn-group">
+                    <button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">Action<span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                   <li> <?= $this->Html->link(__('View'), ['controller' => 'Practices', 'action' => 'view', $practices->id]) ?></li>
+                   <li>   <?= $this->Html->link(__('Edit'), ['controller' => 'Practices', 'action' => 'edit', $practices->id]) ?></li>
+                   <li>   <?= $this->Form->postLink(__('Delete'), ['controller' => 'Practices', 'action' => 'delete', $practices->id], ['confirm' => __('Are you sure you want to delete # {0}?', $practices->id)]) ?></li>
+                    </ul>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -71,7 +63,7 @@
                         <div class="tab-pane" id="tab2">
 
         <?php if (!empty($signlist)): ?>
-        <table class="basicTable" cellpadding="0" cellspacing="0">
+        <table class="basicTable table-hover table-striped" cellpadding="0" cellspacing="0">
                 <?php $i = 0;?>
 
             <thead>

@@ -1,4 +1,15 @@
-/*Panel tabs*/
+/* action buttons */
+
+.btn-group-sm>.btn, .btn-sm {
+    padding:2px 5px;
+    }
+
+    /*Panel tabs */
+.panel {
+    padding: .1rem;
+    background-color: #f2f2f2;
+}
+
 .panel-tabs {
     position: relative;
     bottom: 30px;
@@ -6,42 +17,57 @@
     border-bottom: 1px solid transparent;
 }
 
+.panel-heading {
+    padding: 5px 5px;
+}
+
 .panel-tabs > li {
     float: left;
-    margin-bottom: -1px;
+    margin-bottom: 0;
 }
 
 .panel-tabs > li > a {
     margin-right: 2px;
     margin-top: 4px;
     line-height: .85;
-    border: 1px solid transparent;
+    border: 1px solid #ccc;
     border-radius: 4px 4px 0 0;
-    color: #ffffff;
+    color: #be140b;
 }
 
 .panel-tabs > li > a:hover {
-    border-color: transparent;
-    color: #ffffff;
-    background-color: transparent;
+    border-color: #ccc;
+    color: #fff;
+    background-color: #d15a54;
 }
 
 .panel-tabs > li.active > a,
 .panel-tabs > li.active > a:hover,
 .panel-tabs > li.active > a:focus {
+    border-color: #ccc;
     color: #fff;
+    background-color: #be140b;
     cursor: default;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     border-radius: 2px;
-    background-color: rgba(255,255,255, .23);
-    border-bottom-color: transparent;
 }
 .panel-primary>.panel-heading {
-    color: #fff;
-    background-color: #be140b;
+    color: #be140b;
+    background-color: #fff;
     border-color: #be140b;
+    border-width: 3px;
 }
+
+
+/* page title */
+
+.pageTitle {
+
+
+}
+
+/* page content */
 
 
 /* side menu */
@@ -243,11 +269,15 @@ nav#actions-sidebar.align-right ul ul {
 /* basic table */
 table.basicTable {
   font-family: Verdana, Geneva, sans-serif;
-  border: 1px solid #1C6EA4;
+  border: 1px solid #ccc;
   width: 100%;
   text-align: left;
   border-collapse: collapse;
 }
+table thead tr {
+    border-bottom: 2px solid #4646c8;
+}
+/* basic table part 2
 table.basicTable td, table.basicTable th {
   border: 1px solid #AAAAAA;
   padding: 7px 2px;
@@ -284,16 +314,17 @@ table.basicTable thead th {
 table.basicTable thead th:first-child {
   border-left: none;
 }
-
+*/
+/* basic table part 3 */
 table.basicTable tfoot {
-  font-size: 13px;
-  font-weight: bold;
-  color: #FFFFFF !important;
-  background: #0000B3;
-  border-top: 4px solid #0000B3;
+  font-size: 8px;
+  color: #000 !important;
+  background: #fafafa;
+  border-bottom:2px solid #ccc;
+  max-height: 10px;
 }
 table.basicTable tfoot td {
-  font-size: 13px;
+  font-size: 8px;
 }
 table.basicTable tfoot .links {
   text-align: right;
