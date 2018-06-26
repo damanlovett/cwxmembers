@@ -29,6 +29,24 @@ class PracticesController extends AppController
     public function index()
     {
         $this->paginate = [
+            'limit' => 10,
+            'conditions' => ['visible' => 1],
+            'contain' => ['Months']
+        ];
+        $practices = $this->paginate($this->Practices);
+
+        $this->set(compact('practices'));
+    }
+
+    /**
+     * Index method
+     *
+     * @return \Cake\Http\Response|void
+     */
+    public function admin()
+    {
+        $this->paginate = [
+            'limit' => 10,
             'contain' => ['Months']
         ];
         $practices = $this->paginate($this->Practices);
@@ -61,6 +79,7 @@ class PracticesController extends AppController
      */
     public function checkin($id = null)
     {
+        $this->viewBuilder()->setLayout('guest');
         $practice = $this->Practices->get($id, [
             'contain' => ['Months', 'Checkins']
         ]);

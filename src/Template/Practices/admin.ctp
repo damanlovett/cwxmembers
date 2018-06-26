@@ -4,10 +4,17 @@
  * @var \App\Model\Entity\Practice[]|\Cake\Collection\CollectionInterface $practices
  */
 ?>
-<div style="min-height: 100px">
-    &nbsp;
-</div>
-<div class="practices index large-12 medium-12 columns content">
+<nav class="large-3 medium-4 columns" id="actions-sidebar">
+    <ul class="side-nav">
+        <li class="heading"><?= __('Actions') ?></li>
+        <li><?= $this->Html->link(__('New Practice'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Months'), ['controller' => 'Months', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Month'), ['controller' => 'Months', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Checkins'), ['controller' => 'Checkins', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Checkin'), ['controller' => 'Checkins', 'action' => 'add']) ?></li>
+    </ul>
+</nav>
+<div class="practices index large-9 medium-8 columns content">
     <h3><?= __('Practices') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
@@ -16,7 +23,7 @@
                 <th scope="col"><?= $this->Paginator->sort('schedule') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('title') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('leader') ?></th>
-                <th scope="col" class="actions"><?= __('') ?></th>
+                <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
@@ -27,13 +34,11 @@
                 <td><?= h($practice->title) ?></td>
                 <td><?= h($practice->leader) ?></td>
                 <td class="actions">
-
-                <?php if ($practice->open == 1) {
-                    echo $this->Html->link(__('Checkin'), ['action' => 'checkin', $practice->id], ['class' => 'btn btn-primary']);
-                                }else{
-                    echo $this->Html->link(__('View'), ['action' => 'checkin', $practice->id], ['class' => 'btn btn-primary']);
-                                                }?>
-
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $practice->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $practice->id]) ?>
+                    <?= $this->Html->link(__('Checkin'), ['action' => 'checkin', $practice->id]) ?>
+                    <br />
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $practice->id], ['confirm' => __('Are you sure you want to delete # {0}?', $practice->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

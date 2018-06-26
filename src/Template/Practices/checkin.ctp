@@ -4,51 +4,73 @@
  * @var \App\Model\Entity\Practice $practice
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Practice'), ['action' => 'edit', $practice->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Practice'), ['action' => 'delete', $practice->id], ['confirm' => __('Are you sure you want to delete # {0}?', $practice->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Practices'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Practice'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Months'), ['controller' => 'Months', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Month'), ['controller' => 'Months', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Checkins'), ['controller' => 'Checkins', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Checkin'), ['controller' => 'Checkins', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="practices view large-9 medium-8 columns content">
+<div style="min-height: 100px">
+    &nbsp;
+</div>
+<div class="practices view large-12 medium-12 columns content">
     <div class="pageTitle">
-        <h3><?= h($practice->title) ?></h3>
-        <h2><?= h($practice->schedule->format('l, F j, Y - g:i a')." :: ".$practice->leader) ?></h2>
+        <h1><?= h($practice->title) ?></h1>
+        <h2><?= h($practice->schedule->format('l, F j, Y - g:i a'))?></h2>
+        <h3><i class='fas fa-chalkboard-teacher'></i> &nbsp;&nbsp;<?= h($practice->leader)?></h3>
     </div>
     <hr />
-    <?= $this->Form->create($checkin) ?>
-        <h3><?= __('Checkin') ?></h3>
-        <?php
-            echo $this->Form->hidden('practice_id', ['default' => $practice->id]);
-            echo $this->Form->control('user_id', ['options' => $users, 'empty' => true]);
-        ?>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default" style="padding: .25rem">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h2 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          <span class="glyphicon glyphicon-triangle-bottom" style="padding-right: 10px"></span>Practice Description
+        </a>
+      </h2>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body" style="background-color:white;">
+        <?= $this->Text->autoParagraph(h($practice->description)); ?>
+      </div>
+    </div>
+  </div>
+</div>
+<?php if ($practice->open == 1) {
+
+    echo $this->Form->create($checkin, ['class' => 'form-inline']);
+    echo $this->Form->hidden('practice_id', ['default' => $practice->id]);
+    echo "<div class='form-group'>";
+    echo "<div class='col-sm-10'>";
+    echo $this->Form->control('user_id', ['label' => false, 'div'=>false, 'options' => $users, 'empty' => true, 'default'=>'Check-in Player', 'class' => 'form-control']);
+    echo "</div>";
+    echo "</div>";
+    echo $this->Form->button('Submit', ['class'=>'btn btn-primary btn-sm']);
+    echo $this->Form->end();
+
+                    } else {
+
+
+    echo "<div class='alert alert-danger' role='alert'> Check-in for practice has been disabled.  Please contact the instructor if you need to check in to practice</div>";
+
+                };
+                ?>
+
 <hr />
 
    <div class="related">
-        <h4><?= __('Related Checkins') ?></h4>
+        <h4><?= __('Attendance') ?></h4>
         <?php if (!empty($checkins)): ?>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
+        <?php $i = 0;?>
+        <table class = "basicTable" cellpadding="0" cellspacing="0">
+            <thead>
                 <th scope="col"><?= __('Player') ?></th>
-                <th scope="col"><?= __('Checkin') ?></th>
-                <th scope="col"><?= __('Checkin') ?></th>
-            </tr>
+                <th scope="col"><?= __('Date and Time') ?></th>
+            </thead>
             <?php foreach ($checkins as $checkins): ?>
+                <?php $i++ ?>
             <tr>
-                <td><?= h($checkins->user->fullName); ?></td>
+                <td><?= h($i.". ".$checkins->user->DisplayName); ?></td>
                 <td><?= h($checkins->created) ?></td>
-                <td><?= h($checkins->practice_id) ?></td>
             </tr>
             <?php endforeach; ?>
+            <tfoot>
+                <td colspan="2">&nbsp;</td>
+            </tfoot>
         </table>
     </div>        <?php endif; ?>
 

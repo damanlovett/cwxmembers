@@ -29,6 +29,9 @@
             echo $this->Form->control('schedule', ['empty' => true]);
             echo $this->Form->control('title');
             echo $this->Form->control('leader');
+            echo $this->Form->control('visible');
+            echo $this->Form->control('open');
+            echo "<hr />";
             echo $this->Form->control('description');
         ?>
     </fieldset>

@@ -4,25 +4,12 @@
  * @var \App\Model\Entity\Show $show
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Show'), ['action' => 'edit', $show->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Show'), ['action' => 'delete', $show->id], ['confirm' => __('Are you sure you want to delete # {0}?', $show->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Shows'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Show'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Months'), ['controller' => 'Months', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Month'), ['controller' => 'Months', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Dropdowns'), ['controller' => 'Dropdowns', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Dropdown'), ['controller' => 'Dropdowns', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Assignments'), ['controller' => 'Assignments', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Assignment'), ['controller' => 'Assignments', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Signups'), ['controller' => 'Signups', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Signup'), ['controller' => 'Signups', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
 <div class="shows view large-9 medium-8 columns content">
-    <h3><?= h($show->id) ?></h3>
+        <div class="fpageTitle">
+            <span class="line"><span class="date"><?= h($show->schedule->format('F j, Y - g:i A')) ?></span></span>
+            <h1><?= h($show->dropdown->name) ?></h1>
+        </div>
+
     <table class="vertical-table">
         <tr>
             <th scope="row"><?= __('Month') ?></th>

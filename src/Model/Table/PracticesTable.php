@@ -72,6 +72,12 @@ class PracticesTable extends Table
             ->allowEmpty('leader');
 
         $validator
+            ->allowEmpty('visible');
+
+        $validator
+            ->allowEmpty('open');
+
+        $validator
             ->scalar('description')
             ->maxLength('description', 4294967295)
             ->allowEmpty('description');

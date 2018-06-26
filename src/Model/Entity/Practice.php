@@ -33,6 +33,8 @@ class Practice extends Entity
         'schedule' => true,
         'title' => true,
         'leader' => true,
+        'visible' => true,
+        'open' => true,
         'description' => true,
         'month' => true,
         'checkins' => true

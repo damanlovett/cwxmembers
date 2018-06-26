@@ -7,6 +7,8 @@
 <?= $this->Html->link(__('checkin'), ['controller' => 'checkins', 'action' => 'index','plugin'=>false]);?>
 &nbsp; / &nbsp;
 <?= $this->Html->link(__('users'), ['controller' => 'users', 'action' => 'index','plugin'=>false]);?>
+&nbsp; / &nbsp;
+<?= $this->Html->link(__('dropdowns'), ['controller' => 'dropdowns', 'action' => 'index','plugin'=>false]);?>
 
 
 <hr/>
