@@ -34,7 +34,7 @@
             <tr>
                 <td><?= $this->Number->format($signup->id) ?></td>
                 <td><?= $signup->has('show') ? $this->Html->link($signup->show->id, ['controller' => 'Shows', 'action' => 'view', $signup->show->id]) : '' ?></td>
-                <td><?= $signup->has('user') ? $this->Html->link($signup->user->id, ['controller' => 'Users', 'action' => 'view', $signup->user->id]) : '' ?></td>
+                <td><?= $signup->has('user') ? $this->Html->link($signup->show->id, ['controller' => 'Users', 'action' => 'view', $signup->user->id]) : '' ?></td>
                 <td><?= h($signup->created) ?></td>
                 <td><?= h($signup->modified) ?></td>
                 <td class="actions">

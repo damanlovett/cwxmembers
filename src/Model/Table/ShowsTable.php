@@ -68,8 +68,16 @@ class ShowsTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
+            ->integer('dropdown_id')
+            ->notEmpty('dropdown_id', 'Please select a show');
+
+        $validator
+            ->integer('month_id')
+            ->notEmpty('month_id', 'Please select a month');
+
+        $validator
             ->dateTime('schedule')
-            ->allowEmpty('schedule');
+            ->notEmpty('schedule', 'Please select a date and time');
 
         $validator
             ->scalar('notes')

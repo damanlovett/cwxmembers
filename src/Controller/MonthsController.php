@@ -64,6 +64,40 @@ $signlist->select([
 
     }
 
+    public function signups($id = null)
+    {
+
+        $userId = $this->UserAuth->getUserId();
+
+        $month = $this->Months->get($id, [
+            'contain' => ['Practices', 'Shows.dropdowns','Shows.months', 'Signups']        ]);
+        $this->set('month', $month);
+
+        $this->loadModel('Shows');
+        $cshow = $this->Shows->findByMonth_id($id)
+                    ->contain(['Dropdowns'])
+                    ->where(['Dropdowns.name LIKE' =>'%ComedyWorx']);
+
+        $mshow = $this->Shows->findByMonth_id($id)
+                    ->contain(['Dropdowns'])
+                    ->where(['Dropdowns.name LIKE' =>'%Matinee%']);
+
+        $hshow = $this->Shows->findByMonth_id($id)
+                    ->contain(['Dropdowns'])
+                    ->where(['Dropdowns.name LIKE' =>'%Show%']);
+
+        $this->set(compact('cshow','mshow','hshow'));
+
+        $this->loadModel('Signups');
+        $signups = $this->Signups->findByUser_id($userId)
+                    ->contain(['Shows','Shows.dropdowns'])
+                    ->where(['Signups.month_id' => $id]);
+
+        $this->set('signups', $this->paginate($signups));
+
+
+    }
+
     /**
      * Add method
      *

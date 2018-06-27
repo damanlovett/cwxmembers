@@ -29,6 +29,24 @@ class ShowsController extends AppController
     public function index()
     {
         $this->paginate = [
+            'contain' => ['Months', 'Dropdowns'],
+            'limit' => 10,
+            'order' => ['Show.schedule'=>'asc']
+        ];
+        $shows = $this->paginate($this->Shows);
+
+        $this->set(compact('shows'));
+    }
+
+
+    /**
+     * Manage method
+     *
+     * @return \Cake\Http\Response|void
+     */
+    public function manage()
+    {
+        $this->paginate = [
             'contain' => ['Months', 'Dropdowns']
         ];
         $shows = $this->paginate($this->Shows);
@@ -82,7 +100,7 @@ class ShowsController extends AppController
             $this->Flash->error(__('The show could not be saved. Please, try again.'));
         }
         $months = $this->Shows->Months->find('list', ['order' => ['first_friday' => 'ASC'], 'limit' => 200]);
-        $dropdowns = $this->Shows->Dropdowns->find('list', ['limit' => 200]);
+        $dropdowns = $this->Shows->Dropdowns->find('list', ['conditions' => ['type' => 'show'], 'order' => ['name' => 'ASC'] ]);
         $this->set(compact('show', 'months', 'dropdowns'));
     }
 
@@ -108,7 +126,7 @@ class ShowsController extends AppController
             $this->Flash->error(__('The show could not be saved. Please, try again.'));
         }
         $months = $this->Shows->Months->find('list', ['limit' => 200]);
-        $dropdowns = $this->Shows->Dropdowns->find('list', ['limit' => 200]);
+        $dropdowns = $this->Shows->Dropdowns->find('list', ['conditions' => ['type' => 'show'], 'order' => ['name' => 'ASC'] ]);
         $this->set(compact('show', 'months', 'dropdowns'));
     }
 

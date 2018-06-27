@@ -32,11 +32,16 @@
                 <?php echo $this->Form->control('schedule', ['type'=>'text', 'placeholder'=>'Day of Show', 'label'=>false, 'div'=>false, 'size' => 6, 'class'=>'form-control datetimepicker']); ?>
             </div>
         </div>
-
-        <?php
-            echo $this->Form->control('signups_open');
-            echo $this->Form->control('notes');
-        ?>
+        <div class="um-form-row form-group">
+            <div class="col-sm-3">
+        <?php echo $this->Form->control('signups_open'); ?>
+            </div>
+        </div>
+        <div class="um-form-row form-group">
+            <div class="col-sm-3">
+        <?php echo $this->Form->control('notes'); ?>
+            </div>
+        </div>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
