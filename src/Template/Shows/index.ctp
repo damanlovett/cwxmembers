@@ -5,7 +5,7 @@
  */
 ?>
 <div class="shows index large-12 medium-11 columns content">
-    <h3><?= __('Shows') ?></h3>
+    <h3><i class="fas fa-calendar fa-2x fa-fw"></i><?= __('Shows') ?></h3>
     <table class="basicTable" cellpadding="0" cellspacing="0">
         <thead>
             <tr>
@@ -24,11 +24,12 @@
                 <td><?= $show->month->title." ".$show->schedule->format('d,Y g:i a') ?></td>
                 <td style="text-align: center;"><?= $show->signups_open ? "<i class='fas fa-circle text-success'></i>" : '' ?></td>
                 <td class="actions">
-                    <i class="fas fa-calendar-alt"></i>
+                    <?= $this->Html->link(__(''), ['action' => 'view', $show->id], ['class'=>'fas fa-calendar-alt fa-lg text-success', 'title'=>'Month View']) ?>
+                    <?= $this->Html->link(__(''), ['action' => 'view', $show->id], ['class'=>'fas fa-calendar fa-lg text-success', 'title'=>'View Show']) ?>
                     <div class="btn-group">
                     <button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">Action<span class="caret"></span></button>
                     <ul class="dropdown-menu">
-                        <li><?= $this->Html->link(__('View Show'), ['action' => 'view', $show->id]) ?></li>
+                        <li><?= $this->Html->link(__('  View Show'), ['action' => 'view', $show->id], ['class'=>'fas fa-calendar fa-lg text-success', 'title'=>'View Show']) ?></li>
                         <li><?= $this->Html->link(__('View Month'), ['controller' => 'Months', 'action' => 'view', $show->month->id]) ?></li>
                         <li><?= $this->Html->link(__('Edit'), ['action' => 'edit', $show->id]) ?></li>
                         <li><?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $show->id], ['confirm' => __('Are you sure you want to delete # {0}?', $show->id)]) ?></li>
@@ -38,7 +39,7 @@
             <?php endforeach; ?>
         </tbody>
             <tfoot>
-                <td colspan="4">&nbsp;</td>
+                <td colspan="4"><?php if (empty($show)): ?><p class="text-md-center">Currently, there are no available shows</p><?php endif; ?>&nbsp;</td>
             </tfoot>
     </table>
     <div class="paginator">
