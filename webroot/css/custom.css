@@ -2,6 +2,46 @@ body {
    background-image: url("../simg/wallBackground.jpg");
 }
 
+/* links */
+
+a, a:hover, a:active {
+  color: #b30000;
+}
+
+/* nav bar */
+.navbar-inverse .navbar-brand{
+  background-color: #0000b1;
+  border-color: #fff;
+  color: #fff;
+}
+
+.navbar-inverse {
+  background-color: #b30000;
+  color: #fff;
+  border-color: #fff;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+
+  color: #fff;
+}
+
+/* fieldset */
+fieldset {
+    border: none;
+    padding: 1.25rem;
+    margin: 1.125rem 0;
+}
+
+fieldset legend {
+    border-bottom: 2px solid #0000b1;
+    width: 100%;
+    line-height: 2rem;
+}
+legend {
+    color: #0000b1;
+}
+
 .container .content {
   border: 1px solid #ccc;
 }

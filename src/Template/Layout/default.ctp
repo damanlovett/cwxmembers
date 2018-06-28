@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <?php echo $this->Html->charset(); ?>
-    <title><?php echo $this->fetch('title');?> Cakephp 3.x User Management Premium Plugin with Twitter Bootstrap | Ektanjali Softwares</title>
+    <title><?php echo $this->fetch('title');?> CWX Membership Portal | Lovett Creations</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script language="javascript">
         var urlForJs="<?php echo SITE_URL ?>";

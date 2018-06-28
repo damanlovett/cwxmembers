@@ -8,6 +8,14 @@
 &nbsp; / &nbsp;
 <?= $this->Html->link(__('users'), ['controller' => 'users', 'action' => 'index','plugin'=>false]);?>
 &nbsp; / &nbsp;
+<?= $this->Html->link(__('club standings'), ['controller' => 'club-standings', 'action' => 'index','plugin'=>false]);?>
+&nbsp; / &nbsp;
+<?= $this->Html->link(__('roles'), ['controller' => 'dropdowns', 'action' => 'index','plugin'=>false]);?>
+&nbsp; / &nbsp;
+<?= $this->Html->link(__('member_standings'), ['controller' => 'member-standings', 'action' => 'index','plugin'=>false]);?>
+&nbsp; / &nbsp;
+<?= $this->Html->link(__('dropdowns'), ['controller' => 'dropdowns', 'action' => 'index','plugin'=>false]);?>
+&nbsp; / &nbsp;
 <?= $this->Html->link(__('dropdowns'), ['controller' => 'dropdowns', 'action' => 'index','plugin'=>false]);?>
 
 
