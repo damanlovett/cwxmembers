@@ -27,9 +27,9 @@
             echo $this->Form->control('dropdown_id', ['options' => $dropdowns, 'empty' => true]);
         ?>
 
-        <div class="um-form-row form-group">
+        <div class="um-form-row form-group ">
             <div class="col-sm-3">
-                <?php echo $this->Form->control('schedule', ['type'=>'text', 'placeholder'=>'Day of Show', 'label'=>false, 'div'=>false, 'size' => 6, 'class'=>'form-control datetimepicker']); ?>
+                <?php echo $this->Form->control('schedule', ['type'=>'text', 'placeholder'=>'Day of Show', 'label'=>false, 'div'=>false, 'size' => 3, 'class'=>'form-control datetimepicker']); ?>
             </div>
         </div>
         <div class="um-form-row form-group">

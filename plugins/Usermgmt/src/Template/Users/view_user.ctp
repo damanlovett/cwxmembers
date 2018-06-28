@@ -24,7 +24,7 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
 <div class="panel panel-primary">
 	<div class="panel-heading">
 		<span class="panel-title">
-			<?php echo __('User Detail'); ?>
+			<?php echo __('Member Details'); ?>
 		</span>
 		<?php $page = (isset($this->request->query['page'])) ? $this->request->query['page'] : 1; ?>
 		<span class="panel-title-right">
@@ -34,8 +34,11 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
 			<?php echo $this->Html->link(__('Edit', true), ['action'=>'editUser', $userId, 'page'=>$page], ['class'=>'btn btn-default']); ?>
 		</span>
 	</div>
-	<div class="panel-body">
-		<div style="display:inline-block;">
+	<div class="panel-body container fluid">
+
+<div class="row">
+
+		<div style="display:inline-block;" class="col-md-6">
 			<?php if(!empty($user)) { ?>
 			<table class="table-condensed" style="width:auto">
 				<tbody>
@@ -107,5 +110,26 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
 			</table>
 			<?php } ?>
 		</div>
+
+		<div style="display:inline-block; padding-top:200px;"  class="col-md-6">
+
+			<table class="table-condensed" style="width:auto">
+				<tbody>
+					<tr>
+						<td style="text-align:right"><strong><?php echo __('Group(s)');?>:</strong></td>
+						<td><?php echo h($user['user_detail']['referee'] ? "Yes" : "No");?></td>
+					</tr>
+					<tr>
+						<td style="text-align:right"><strong><?php echo __('Last Login');?>:</strong></td>
+						<td><?php echo ($user['last_login']) ? $user['last_login']->format('d-M-Y') : '';?></td>
+					</tr>
+				</tbody>
+			</table>
+
+
+		</div>
+
+</div>
+
 	</div>
 </div>

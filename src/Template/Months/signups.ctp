@@ -69,7 +69,7 @@
             <ol class="fancyList">
             <?php foreach ($hshow as $hshow): ?>
                 <li><?= h($hshow->dropdown->name) ?><br /><?= h($hshow->schedule->format('l jS - g:i a')) ?>
-                    <?php if($cshow->signups_open == 1) { echo $this->Html->link(__('Signup'), ['controller' => 'Shows', 'action' => 'view', $hshow->id]);} ?>
+                    <?php if($hshow->signups_open == 1) { echo $this->Html->link(__('Signup'), ['controller' => 'Shows', 'action' => 'view', $hshow->id]);} ?>
                 </li>
             <?php endforeach; ?>
             </ol>
