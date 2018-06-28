@@ -29,13 +29,16 @@ class ShowsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Months', 'Dropdowns'],
             'limit' => 10,
             'order' => ['Show.schedule'=>'asc']
         ];
-        $shows = $this->paginate($this->Shows);
 
-        $this->set(compact('shows'));
+        $shows = $this->Shows->find('all')
+                    ->contain(['Months', 'Dropdowns'])
+                    ->where(['visible' => 1]);
+
+        $this->set('shows', $this->paginate($shows));
+
     }
 
 
@@ -44,15 +47,20 @@ class ShowsController extends AppController
      *
      * @return \Cake\Http\Response|void
      */
-    public function manage()
+    public function manager()
     {
         $this->paginate = [
-            'contain' => ['Months', 'Dropdowns']
+            'limit' => 10,
+            'order' => ['Show.schedule'=>'asc']
         ];
-        $shows = $this->paginate($this->Shows);
+        //$shows = $this->paginate($this->Shows);
 
-        $this->set(compact('shows'));
-    }
+        ///$this->set(compact('shows'));
+
+        $shows = $this->Shows->find('all')
+                    ->contain(['Months', 'Dropdowns']);
+
+        $this->set('shows', $this->paginate($shows));    }
 
     /**
      * View method

@@ -7,9 +7,12 @@
 
 <div class="months view large-12 medium-12 columns content">
 
-        <div class="pageTitle">
+        <div class="pageTitle" style="margin-bottom: 20px">
             <h3><?= $month->title." ".$month->year; ?></h3>
         </div>
+
+
+
 
 
 <div class="panel panel-primary">

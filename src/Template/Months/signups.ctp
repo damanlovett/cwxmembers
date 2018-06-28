@@ -93,9 +93,7 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('show_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -104,9 +102,7 @@
         <tbody>
             <?php foreach ($signups as $signup): ?>
             <tr>
-                <td><?= $this->Number->format($signup->id) ?></td>
-                <td><?= $signup->has('show') ? $this->Html->link($signup->show->schedule, ['controller' => 'Shows', 'action' => 'view', $signup->show->id]) : '' ?></td>
-                <td><?= h($signup->show->Dropdowns) ?></td>
+                <td>Harry Show</td>
                 <td><?= h($signup->created) ?></td>
                 <td><?= h($signup->modified) ?></td>
                 <td class="actions">

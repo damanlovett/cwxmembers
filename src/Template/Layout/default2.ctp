@@ -59,6 +59,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         echo $this->Html->script('/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js');
 
         echo $this->Html->script('umscript.js');
+        echo $this->Html->script('custom.js');
 
                 /* Usermgmt Plugin JS */
         echo $this->Html->script('/usermgmt/js/umscript.js?q='.QRDN);
@@ -69,7 +70,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('style.css') ?>
     <?= $this->Html->css('custom.css') ?>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <?= $this->Html->css('all.css') ?>
+    <!--
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous"> -->
 
 
 
@@ -79,7 +82,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->fetch('script') ?>
 </head>
 <body>
-   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+   <nav class="navbar navbar-inverse" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -130,13 +133,16 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
     <?= $this->Flash->render() ?>
     <div class="container clearfix">
-                    <?php if($this->UserAuth->isLogged()) { echo $this->element('Usermgmt.dashboard'); } ?>
+           <!--         <?php if($this->UserAuth->isLogged()) { echo $this->element('Usermgmt.dashboard'); } ?> -->
                     <?php if($this->UserAuth->isLogged()) { echo $this->element('menu'); } ?>
             <?php echo $this->element('Usermgmt.message_notification'); ?>
 
         <?= $this->fetch('content') ?>
     </div>
-    <footer>
-    </footer>
+    <div id="footer">
+        <div class="container">
+            <p class="muted">Copyright &copy; <?php echo date('Y');?> CWX Membership Portal. All Rights Reserved. Developed By  <a href="http://www.lovettcreations.org/" target='_blank'>Lovett Creations</a>.</p>
+        </div>
+    </div>
 </body>
 </html>

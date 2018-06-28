@@ -11,7 +11,7 @@
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('dropdown_id','Show') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('month_id','Date') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('signups_open','Sign-ups Open') ?></th>
+                <th style="text-align: center;" scope="col"><?= $this->Paginator->sort('signups_open','Sign-ups Open') ?></th>
                 <th scope="col" class="actions"><?= __('') ?></th>
             </tr>
         </thead>
@@ -22,8 +22,9 @@
             <tr>
                 <td><?= $i.". ".$show->dropdown->name ?></td>
                 <td><?= $show->month->title." ".$show->schedule->format('d,Y g:i a') ?></td>
-                <td><?= $show->signups_open ? 'Yes' : 'No' ?></td>
+                <td style="text-align: center;"><?= $show->signups_open ? "<i class='fas fa-circle text-success'></i>" : '' ?></td>
                 <td class="actions">
+                    <i class="fas fa-calendar-alt"></i>
                     <div class="btn-group">
                     <button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">Action<span class="caret"></span></button>
                     <ul class="dropdown-menu">
