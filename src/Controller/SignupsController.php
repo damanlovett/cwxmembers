@@ -65,7 +65,7 @@ class SignupsController extends AppController
             if ($this->Signups->save($signup)) {
                 $this->Flash->success(__('The signup has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect($this->referer());
             }
             $this->Flash->error(__('The signup could not be saved. Please, try again.'));
         }
@@ -120,5 +120,24 @@ class SignupsController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+    /**
+     * Remove method
+     *
+     * @param string|null $id Signup id.
+     * @return \Cake\Http\Response|null Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function remove($id = null)
+    {
+        $this->request->allowMethod(['post', 'delete']);
+        $signup = $this->Signups->get($id);
+        if ($this->Signups->delete($signup)) {
+            $this->Flash->success(__('The signup has been deleted.'));
+        } else {
+            $this->Flash->error(__('The signup could not be deleted. Please, try again.'));
+        }
+
+                return $this->redirect($this->referer());
     }
 }

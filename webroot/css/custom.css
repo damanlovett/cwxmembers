@@ -7,17 +7,17 @@ body {
 }
 /* page formatting */
 
-h3.pageTitle {
-  padding: 15px;
-  text-transform: uppercase;
-  background-color: #0000b1;
-  color: #fff;
+.content h3 {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 30px;
 }
+
 .container .content {
   border: 1px solid #ccc;
-  padding: 15px;
-  margin-bottom: 14px;
+  margin-bottom: 5px;
 }
+
+
 /* links */
 
 a, a:hover, a:active {
@@ -68,7 +68,7 @@ legend {
     /*Panel tabs */
 .panel {
     padding: .1rem;
-    background-color: #f2f2f2;
+    background-color: #fff;
 }
 
 .panel-tabs {
@@ -82,6 +82,11 @@ legend {
     padding: 5px 5px;
 }
 
+h3.panel-title {
+    padding: 5px 5px;
+    border: hidden;
+}
+
 .panel-tabs > li {
     float: left;
     margin-bottom: 0;
@@ -91,33 +96,36 @@ legend {
     margin-right: 2px;
     margin-top: 4px;
     line-height: .85;
-    border: 1px solid #ccc;
+    border: 1px solid #b30000;
     border-radius: 4px 4px 0 0;
-    color: #be140b;
+    color: #b30000;
 }
 
 .panel-tabs > li > a:hover {
-    border-color: #ccc;
+    border-color: #b30000;
     color: #fff;
     background-color: #d15a54;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
 }
 
 .panel-tabs > li.active > a,
 .panel-tabs > li.active > a:hover,
 .panel-tabs > li.active > a:focus {
-    border-color: #ccc;
+    border-color: #b30000;
     color: #fff;
     background-color: #be140b;
     cursor: default;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
-    border-radius: 2px;
+    border-radius: 4px 4px 0 0;
 }
 .panel-primary>.panel-heading {
     color: #be140b;
     background-color: #fff;
-    border-color: #be140b;
-    border-width: 3px;
+    border-color: #b30000;
+    border-width: 5px;
 }
 
 div.panel-body table {
@@ -180,12 +188,28 @@ div.pageTitle h3 {
 
 }
 
+h3.pageTitle {
+  padding: 15px;
+  text-transform: uppercase;
+  background-color: #0000b1;
+  color: #fff;
+}
+
 /* fancy page title */
 /* https://wdexplorer.com/20-examples-beautiful-css-typography-design/ */
 
-div.fpageTitle h1 { color: #111; font-family: 'Open Sans Condensed', sans-serif; font-size: 32px; font-weight: 700; line-height: 64px; margin: 0 0 0; padding: 20px 30px; text-align: center; text-transform: uppercase; }
+div.fpageTitle h1 {
+  color: #0000b1;
+  font-family: 'Open Sans Condensed', sans-serif; font-size: 32px; font-weight: 700; line-height: 10px; margin: 0 0 0; padding: 5px 10px; text-align: center; text-transform: uppercase; }
 
-div.fpageTitle h2 { color: #111; font-family: 'Open Sans Condensed', sans-serif; font-size: 48px; font-weight: 700; line-height: 48px; margin: 0 0 24px; padding: 0 30px; text-align: center; text-transform: uppercase; }
+div.fpageTitle h2 {
+  color: #b30000;
+  font-family: 'Open Sans Condensed', sans-serif; font-size: 18px; font-weight: 400; line-height: 24px; margin: 0 0 0; padding: 10px 10px; text-align: center; text-transform: uppercase; }
+
+div.fpageTitle h3 {
+  color: #0000b1;
+  border: none;
+  font-family: 'Open Sans Condensed', sans-serif; font-size: 16px; font-weight: 400; line-height: 12px; margin: 0 0 0; padding: 5px 5px; text-align: center; text-transform: uppercase; }
 
 div.fpageTitle p { color: #111; font-family: 'Open Sans', sans-serif; font-size: 16px; line-height: 28px; margin: 0 0 48px; }
 
@@ -193,22 +217,9 @@ div.fpageTitle a { color: #990000; text-decoration: none; }
 
 div.fpageTitle a:hover { text-decoration: underline }
 
-div.fpageTitle span.date:before { border-top: 1px solid #111; content: ""; position: absolute; top: 12px; left: 0; width: 100%; z-index: -1; }
-
-div.fpageTitle .author { color: #111; display: block; font-family: 'Open Sans', sans-serif; font-size: 16px; padding-bottom: 38px; position: relative; text-align: center; z-index: 1; }
-
-div.fpageTitle .author:before { border-top: 1px solid #111; content: ""; position: absolute; top: 12px; left: 0; width: 100%; z-index: -1; }
-
-div.fpageTitle .date span, .author span { background: #fdfdfd; padding: 0 10px; text-transform: uppercase; }
-
-.line { border-top: 1px solid #111; display: block; margin-top: 60px; padding-top: 50px; position: relative; }
-
-div.fpageTitle .read-more { -moz-border-radius: 50%; -moz-transition: all 0.2s ease-in-out; -webkit-border-radius: 50%; -webkit-transition: all 0.2s ease-in-out; background: #111; border-radius: 50%; border: 10px solid #fdfdfd; color: #fff; display: block; font-family: 'Open Sans', sans-serif; font-size: 14px; height: 80px; line-height: 80px; margin: -40px 0 0 -40px; position: absolute; bottom: 0px; left: 50%; text-align: center; text-transform: uppercase; width: 80px; }
-
-div.fpageTitle .read-more:hover { background: #990000; text-decoration: none; }
-
-
-
+div.fpageTitle span.date {   color: #0000b1;
+  font-family: 'Open Sans Condensed', sans-serif; font-size: 32px; font-weight: 300; line-height: 10px; margin: 0 0 0; padding: 5px 10px; text-align: center; text-transform: uppercase; }
+x; }
 
 /* page content */
 

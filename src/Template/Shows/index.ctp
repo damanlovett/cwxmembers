@@ -6,13 +6,13 @@
 ?>
 <div class="shows index large-12 medium-11 columns content">
     <h3><i class="fas fa-calendar fa-2x fa-fw"></i><?= __('Shows') ?></h3>
-    <table class="basicTable" cellpadding="0" cellspacing="0">
+        <table  class="table table-striped" cellpadding="0" cellspacing="0">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('dropdown_id','Show') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('month_id','Date') ?></th>
                 <th style="text-align: center;" scope="col"><?= $this->Paginator->sort('signups_open','Sign-ups Open') ?></th>
-                <th scope="col" class="actions"><?= __('') ?></th>
+                <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
@@ -21,19 +21,14 @@
                 <?php $i++ ?>
             <tr>
                 <td><?= $i.". ".$show->dropdown->name ?></td>
-                <td><?= $show->month->title." ".$show->schedule->format('d,Y g:i a') ?></td>
-                <td style="text-align: center;"><?= $show->signups_open ? "<i class='fas fa-circle text-success'></i>" : '' ?></td>
+                <td><?= $show->schedule->format('M. j, Y g:i a') ?></td>
+                <td style="text-align: center;"><?= $show->signups_open ? "<i class='fas fa-circle fa-lg fa-fw text-success'></i>" : '' ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__(''), ['action' => 'view', $show->id], ['class'=>'fas fa-calendar-alt fa-lg text-success', 'title'=>'Month View']) ?>
-                    <?= $this->Html->link(__(''), ['action' => 'view', $show->id], ['class'=>'fas fa-calendar fa-lg text-success', 'title'=>'View Show']) ?>
-                    <div class="btn-group">
-                    <button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">Action<span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                        <li><?= $this->Html->link(__('  View Show'), ['action' => 'view', $show->id], ['class'=>'fas fa-calendar fa-lg text-success', 'title'=>'View Show']) ?></li>
-                        <li><?= $this->Html->link(__('View Month'), ['controller' => 'Months', 'action' => 'view', $show->month->id]) ?></li>
-                        <li><?= $this->Html->link(__('Edit'), ['action' => 'edit', $show->id]) ?></li>
-                        <li><?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $show->id], ['confirm' => __('Are you sure you want to delete # {0}?', $show->id)]) ?></li>
-                    </ul>
+                    <?= $this->Html->link(__(''), ['action' => 'view', $show->id], ['class'=>'fas fa-calendar fa-lg fa-fw text-primary', 'title'=>'View Show']) ?>
+                    <?= $this->Html->link(__(''), ['controller'=>'months','action' => 'view', $show->month_id], ['class'=>'fas fa-calendar-alt fa-lg fa-fw text-primary', 'title'=>'View Month']) ?>
+                <?php if($show->signups_open == 1) : ?>
+                    <?= $this->Html->link(__(''), ['action' => 'signup', $show->id], ['class'=>'fas fa-pen-alt fa-lg fa-fw text-primary', 'title'=>'Sign Up']) ?>
+                <?php endif; ?>
                 </td>
             </tr>
             <?php endforeach; ?>

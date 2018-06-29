@@ -43,7 +43,7 @@ class ShowsController extends AppController
 
 
     /**
-     * Manage method
+     * Manager method
      *
      * @return \Cake\Http\Response|void
      */
@@ -53,14 +53,14 @@ class ShowsController extends AppController
             'limit' => 10,
             'order' => ['Show.schedule'=>'asc']
         ];
-        //$shows = $this->paginate($this->Shows);
-
-        ///$this->set(compact('shows'));
 
         $shows = $this->Shows->find('all')
                     ->contain(['Months', 'Dropdowns']);
 
-        $this->set('shows', $this->paginate($shows));    }
+        $this->set('shows', $this->paginate($shows));
+
+
+         }
 
     /**
      * View method
@@ -70,6 +70,31 @@ class ShowsController extends AppController
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
+    {
+        $show = $this->Shows->get($id, [
+            'contain' => ['Months', 'Dropdowns', 'Assignments.users','Assignments.roles', 'Assignments.roles2', 'Signups','Signups.users']
+        ]);
+
+
+        $this->set('show', $show);
+
+        $this->loadModel('Assignments');
+        $inshows = $this->Assignments->findAllByCalloutAndShow_id(0,$id)
+                    ->contain(['Users','Roles', 'Roles2'])
+                    ->order(['Roles.name' => 'asc']);
+
+
+        $this->set(compact('callouts','inshows','signlists'));
+}
+
+    /**
+     * Aview method
+     *
+     * @param string|null $id Show id.
+     * @return \Cake\Http\Response|void
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function mview($id = null)
     {
         $show = $this->Shows->get($id, [
             'contain' => ['Months', 'Dropdowns', 'Assignments.users','Assignments.roles', 'Assignments.roles2', 'Signups','Signups.users']
@@ -90,6 +115,42 @@ class ShowsController extends AppController
 
 
     }
+
+    /**
+     * Signup method
+     *
+     * @param string|null $id Show id.
+     * @return \Cake\Http\Response|void
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function signup($id = null)
+    {
+
+        $userId = $this->UserAuth->getUserId();
+        $show = $this->Shows->get($id, [
+            'contain' => ['Months', 'Dropdowns', 'Assignments.users','Assignments.roles', 'Assignments.roles2', 'Signups','Signups.users']
+        ]);
+
+        $this->set('show', $show);
+
+        $this->loadModel('Signups');
+        $query = $this->Signups->findAllByShow_id($id)
+                    ->contain(['Users'])
+                    ->order(['Signups.created' => 'desc']);
+
+        $mshow = $this->Signups->findByShow_idAndUser_id($id,$userId)
+                    ->contain(['Shows']);
+
+        $this->set(compact('mshow'));
+
+        $this->set('signups', $this->paginate($query));
+
+        //$this->set(compact('signups'));
+
+}
+
+
+
     /**
      * Add method
      *
@@ -103,7 +164,7 @@ class ShowsController extends AppController
             if ($this->Shows->save($show)) {
                 $this->Flash->success(__('The show has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'manager']);
             }
             $this->Flash->error(__('The show could not be saved. Please, try again.'));
         }
@@ -129,7 +190,7 @@ class ShowsController extends AppController
             if ($this->Shows->save($show)) {
                 $this->Flash->success(__('The show has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'manager']);
             }
             $this->Flash->error(__('The show could not be saved. Please, try again.'));
         }

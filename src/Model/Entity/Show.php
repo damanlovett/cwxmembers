@@ -39,7 +39,8 @@ class Show extends Entity
         'month' => true,
         'dropdown' => true,
         'assignments' => true,
-        'signups' => true
+        'signups' => true,
+        'visible' => true
     ];
 
     // full_name virtual field

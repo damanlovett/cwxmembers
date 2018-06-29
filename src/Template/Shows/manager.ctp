@@ -5,7 +5,7 @@
  */
 ?>
 <div class="shows index large-12 medium-11 columns content">
-    <h3><?= __('Shows') ?></h3>
+    <h3><i class="fas fa-calendar fa-2x fa-fw"></i><?= __('Shows') ?></h3>
     <table class="basicTable" cellpadding="0" cellspacing="0">
         <thead>
             <tr>
@@ -22,7 +22,7 @@
                 <?php $i++ ?>
             <tr>
                 <td><?= $i.". ".$show->dropdown->name ?></td>
-                <td><?= $show->month->title." ".$show->schedule->format('d,Y g:i a') ?></td>
+                <td><?= $show->schedule->format('M. j, Y g:i a') ?></td>
                 <td style="text-align: center;"><?= $show->signups_open ? "<i class='fas fa-circle text-success'></i>" : '' ?></td>
                 <td style="text-align: center;"><?= $show->visible ? "<i class='fas fa-circle text-success'></i>" : '' ?></td>
                 <td class="actions">

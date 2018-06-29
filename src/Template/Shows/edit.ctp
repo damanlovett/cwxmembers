@@ -34,6 +34,7 @@
             echo $this->Form->control('schedule', ['empty' => true]);
             echo $this->Form->control('notes');
             echo $this->Form->control('signups_open');
+            echo $this->Form->control('visible');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

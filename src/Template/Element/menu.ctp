@@ -17,6 +17,9 @@
 <?= $this->Html->link(__('dropdowns'), ['controller' => 'dropdowns', 'action' => 'index','plugin'=>false]);?>
 &nbsp; / &nbsp;
 <?= $this->Html->link(__('dropdowns'), ['controller' => 'dropdowns', 'action' => 'index','plugin'=>false]);?>
-
-
 <hr/>
+<?= $this->Html->link(__('show manager'), ['controller' => 'shows', 'action' => 'manager','plugin'=>false]);?>
+&nbsp; / &nbsp;
+
+
+<hr />
