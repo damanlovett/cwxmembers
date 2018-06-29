@@ -43,7 +43,7 @@ class ShowsController extends AppController
 
 
     /**
-     * Manage method
+     * Manager method
      *
      * @return \Cake\Http\Response|void
      */
@@ -79,6 +79,31 @@ class ShowsController extends AppController
         $this->set('show', $show);
 
         $this->loadModel('Assignments');
+        $inshows = $this->Assignments->findAllByCalloutAndShow_id(0,$id)
+                    ->contain(['Users','Roles', 'Roles2'])
+                    ->order(['Roles.name' => 'asc']);
+
+
+        $this->set(compact('callouts','inshows','signlists'));
+}
+
+    /**
+     * Aview method
+     *
+     * @param string|null $id Show id.
+     * @return \Cake\Http\Response|void
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function mview($id = null)
+    {
+        $show = $this->Shows->get($id, [
+            'contain' => ['Months', 'Dropdowns', 'Assignments.users','Assignments.roles', 'Assignments.roles2', 'Signups','Signups.users']
+        ]);
+
+
+        $this->set('show', $show);
+
+        $this->loadModel('Assignments');
         $callouts = $this->Assignments->findAllByCalloutAndShow_id(1,$id)
                     ->contain(['Users','Roles', 'Roles2']);
 
@@ -90,6 +115,7 @@ class ShowsController extends AppController
 
 
     }
+
     /**
      * Add method
      *
@@ -103,7 +129,7 @@ class ShowsController extends AppController
             if ($this->Shows->save($show)) {
                 $this->Flash->success(__('The show has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'manager']);
             }
             $this->Flash->error(__('The show could not be saved. Please, try again.'));
         }
@@ -129,7 +155,7 @@ class ShowsController extends AppController
             if ($this->Shows->save($show)) {
                 $this->Flash->success(__('The show has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'manager']);
             }
             $this->Flash->error(__('The show could not be saved. Please, try again.'));
         }

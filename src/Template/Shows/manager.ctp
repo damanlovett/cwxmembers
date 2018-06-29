@@ -22,7 +22,7 @@
                 <?php $i++ ?>
             <tr>
                 <td><?= $i.". ".$show->dropdown->name ?></td>
-                <td><?= $show->month->title." ".$show->schedule->format('d,Y g:i a') ?></td>
+                <td><?= $show->schedule->format('M. j, Y g:i a') ?></td>
                 <td style="text-align: center;"><?= $show->signups_open ? "<i class='fas fa-circle text-success'></i>" : '' ?></td>
                 <td style="text-align: center;"><?= $show->visible ? "<i class='fas fa-circle text-success'></i>" : '' ?></td>
                 <td class="actions">

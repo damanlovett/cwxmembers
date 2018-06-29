@@ -39,6 +39,11 @@
         </div>
         <div class="um-form-row form-group">
             <div class="col-sm-3">
+        <?php echo $this->Form->control('visible'); ?>
+            </div>
+        </div>
+        <div class="um-form-row form-group">
+            <div class="col-sm-3">
         <?php echo $this->Form->control('notes'); ?>
             </div>
         </div>
