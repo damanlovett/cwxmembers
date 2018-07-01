@@ -116,6 +116,7 @@ class ShowsController extends AppController
 
     }
 
+<<<<<<< HEAD
     /**
      * Signup method
      *
@@ -151,6 +152,8 @@ class ShowsController extends AppController
 
 
 
+=======
+>>>>>>> 437617d249d2776b43f0039b6cc77c8c233f8775
     /**
      * Add method
      *

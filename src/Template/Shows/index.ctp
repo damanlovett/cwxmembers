@@ -26,9 +26,12 @@
                 <td class="actions">
                     <?= $this->Html->link(__(''), ['action' => 'view', $show->id], ['class'=>'fas fa-calendar fa-lg fa-fw text-primary', 'title'=>'View Show']) ?>
                     <?= $this->Html->link(__(''), ['controller'=>'months','action' => 'view', $show->month_id], ['class'=>'fas fa-calendar-alt fa-lg fa-fw text-primary', 'title'=>'View Month']) ?>
+<<<<<<< HEAD
                 <?php if($show->signups_open == 1) : ?>
                     <?= $this->Html->link(__(''), ['action' => 'signup', $show->id], ['class'=>'fas fa-pen-alt fa-lg fa-fw text-primary', 'title'=>'Sign Up']) ?>
                 <?php endif; ?>
+=======
+>>>>>>> 437617d249d2776b43f0039b6cc77c8c233f8775
                 </td>
             </tr>
             <?php endforeach; ?>

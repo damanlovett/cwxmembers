@@ -40,11 +40,15 @@
                 <th scope="col"><?= __('Secondary Role') ?></th>
             </tr>
             <?php foreach ($inshows as $inshows): ?>
+<<<<<<< HEAD
                 <?php if($inshows->user->id == $this->UserAuth->getUserId()) : ?>
                     <tr class="success" >
                         <?php else : ?>
                     <tr>
                         <?php endif; ?>
+=======
+            <tr>
+>>>>>>> 437617d249d2776b43f0039b6cc77c8c233f8775
                 <td><?= h($inshows->user->fullName) ?></td>
                 <td><?= h($inshows->role->name) ?></td>
                 <td><?= h($inshows->roles2->name) ?></td>

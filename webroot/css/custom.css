@@ -201,11 +201,19 @@ h3.pageTitle {
 div.fpageTitle h1 {
   color: #0000b1;
   font-family: 'Open Sans Condensed', sans-serif; font-size: 32px; font-weight: 700; line-height: 10px; margin: 0 0 0; padding: 5px 10px; text-align: center; text-transform: uppercase; }
+<<<<<<< HEAD
 
 div.fpageTitle h2 {
   color: #b30000;
   font-family: 'Open Sans Condensed', sans-serif; font-size: 18px; font-weight: 400; line-height: 24px; margin: 0 0 0; padding: 10px 10px; text-align: center; text-transform: uppercase; }
 
+=======
+
+div.fpageTitle h2 {
+  color: #b30000;
+  font-family: 'Open Sans Condensed', sans-serif; font-size: 18px; font-weight: 400; line-height: 24px; margin: 0 0 0; padding: 10px 10px; text-align: center; text-transform: uppercase; }
+
+>>>>>>> 437617d249d2776b43f0039b6cc77c8c233f8775
 div.fpageTitle h3 {
   color: #0000b1;
   border: none;
