@@ -43,6 +43,7 @@
 
 
 <?= $this->Html->link('Report', ['plugin' => false,'action' => 'signupreport', $show->id], ['escape'=>false]) ?>
+<?= $this->Html->link('Report', ['plugin' => false,'action' => 'jump', $show->id], ['escape'=>false]) ?>
 
 
 
@@ -106,27 +107,9 @@
 
 <div class="panel panel-primary">
 
-
-
-
                 <div class="panel-heading">
                     <i class="fas fa-calendar fa-s fa-fw"></i>Show Information
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <div class="row">
 

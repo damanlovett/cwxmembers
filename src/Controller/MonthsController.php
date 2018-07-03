@@ -96,6 +96,10 @@ $signlist->select([
 
         $this->set('signlist', $signlist);
 
+        $this->loadModel('Shows');
+        $dropdowns = $this->Shows->Dropdowns->find('list', ['conditions' => ['type' => 'show'], 'order' => ['name' => 'ASC'] ]);
+        $this->set(compact('dropdowns'));
+
     }
 
     public function signups($id = null)

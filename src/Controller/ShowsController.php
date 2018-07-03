@@ -220,6 +220,29 @@ class ShowsController extends AppController
     }
 
     /**
+     * Madd method
+     *
+     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
+     */
+    public function madd()
+    {
+        $show = $this->Shows->newEntity();
+        if ($this->request->is('post')) {
+            $show = $this->Shows->patchEntity($show, $this->request->getData());
+            if ($this->Shows->save($show)) {
+                $this->Flash->success(__('The show has been saved.'));
+
+                return $this->redirect($this->referer());
+
+            }
+            $this->Flash->error(__('The show could not be saved. Please, try again.'));
+        }
+    }
+
+
+
+
+    /**
      * Edit method
      *
      * @param string|null $id Show id.
@@ -294,7 +317,7 @@ public function signupreport($id=null) {
                     ->contain(['Users','Shows'])
                     ->order(['Signups.created' => 'desc'])->toArray();
 
-        $_serialize = null;
+        $_serialize = 'datas';
         $_header = ['id', 'First', 'Last', 'Schedule'];
         $_extract = ['id', 'user.first_name', 'user.last_name', 'show.schedule'];
         $this->viewBuilder()->className('CsvView.Csv');
@@ -302,4 +325,6 @@ public function signupreport($id=null) {
         return;
 
         }
+
+
 }

@@ -146,6 +146,27 @@ class PracticesController extends AppController
     }
 
     /**
+     * Madd method
+     *
+     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
+     */
+    public function madd()
+    {
+        $practice = $this->Practices->newEntity();
+        if ($this->request->is('post')) {
+            $practice = $this->Practices->patchEntity($practice, $this->request->getData());
+            if ($this->Practices->save($practice)) {
+                $this->Flash->success(__('The practice has been saved.'));
+
+                return $this->redirect($this->referer());
+            }
+            $this->Flash->error(__('The practice could not be saved. Please, try again.'));
+        }
+        $this->set(compact('practice'));
+    }
+
+
+    /**
      * Edit method
      *
      * @param string|null $id Practice id.
