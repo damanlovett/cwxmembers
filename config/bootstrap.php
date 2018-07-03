@@ -209,6 +209,7 @@ Type::build('timestamp')
  */
 
     Plugin::load('Usermgmt', ['autoload' => true, 'bootstrap' => true, 'routes' => true]);
+    Plugin::load('CsvView');
 
 
 /*
@@ -218,3 +219,6 @@ Type::build('timestamp')
 if (Configure::read('debug')) {
     Plugin::load('DebugKit', ['bootstrap' => true]);
 }
+
+Plugin::load('Migrations');
+Plugin::load('CsvView');

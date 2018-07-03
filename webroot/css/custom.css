@@ -174,11 +174,13 @@ div.pageTitle h1 {
   line-height: 1.3;
 }
 div.pageTitle h2 {
-
-  margin: 0;
+  font-family: 'Open Sans Condensed', sans-serif;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 0;
   padding: 0;
   line-height: 1.3;
-
 }
 div.pageTitle h3 {
 
@@ -207,13 +209,10 @@ div.fpageTitle h2 {
   color: #b30000;
   font-family: 'Open Sans Condensed', sans-serif; font-size: 18px; font-weight: 400; line-height: 24px; margin: 0 0 0; padding: 10px 10px; text-align: center; text-transform: uppercase; }
 
-=======
-
 div.fpageTitle h2 {
   color: #b30000;
   font-family: 'Open Sans Condensed', sans-serif; font-size: 18px; font-weight: 400; line-height: 24px; margin: 0 0 0; padding: 10px 10px; text-align: center; text-transform: uppercase; }
 
->>>>>>> 437617d249d2776b43f0039b6cc77c8c233f8775
 div.fpageTitle h3 {
   color: #0000b1;
   border: none;
@@ -515,4 +514,71 @@ column-rule: 1px solid rgba(28,110,164,0.5);
   background-color:#f5f5f5;
   padding:10px 0 5px;
   text-align:center;
+}
+
+
+
+ul.pagination {
+   margin: 0px;
+}
+ul.pagination li a {
+    color: rgba(0, 0 ,0 , 0.54);
+}
+
+ul.pagination li.active a {
+    background-color: #b30000;
+    color: #FFF;
+    font-weight: bold;
+    cursor: default;
+}
+ul.pagination .disabled:hover a {
+    background: none;
+}
+
+.paginator {
+    text-align: center;
+}
+
+.paginator ul.pagination li {
+    float: none;
+    display: inline-block;
+}
+
+.paginator p {
+    text-align: right;
+    color: rgba(0, 0 ,0 , 0.54);
+    margin: 0;
+    padding-right:10px;
+}
+
+.table {
+  margin-top:15px;
+}
+.table>tfoot>tr>td {
+  border:1px solid #ccc;
+}
+
+.table thead tr, .table tr th {
+  border-bottom: 3px solid #0000b3;
+  border-top: 1px solid #ccc;
+}
+
+.table thead tr th, .table thead tr th a {
+    font-size: 0.975rem;
+}
+
+.table tr th, .table thead tr th {
+
+  background-color: #f9f9f9;
+}
+
+.date select, .time select, .datetime select {
+    display: inline;
+    width: 100px;
+    margin-right: 10px;
+}
+.datepicker,
+.table-condensed {
+  width: 300px;
+  height:400px;
 }

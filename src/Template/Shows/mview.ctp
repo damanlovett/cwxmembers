@@ -13,62 +13,105 @@
             <h3>Visible: <?= $show->signups_open ? "Yes" : "No" ?></h3>
         </div>
 
-<div class="row">
 
-
-    </div>
     <div class="related">
         <h3><?= __('Line Ups') ?></h3>
         <?php if (!empty($inshows)): ?>
-        <table cellpadding="0" cellspacing="0">
+    <table class="table table-striped" cellpadding="0" cellspacing="0">
+        <thead>
             <tr>
                 <th scope="col"><?= __('Player') ?></th>
-                <th scope="col"><?= __('Primary') ?></th>
-                <th scope="col"><?= __('Secondary') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col"><?= __('Performing') ?></th>
+                <th scope="col"><?= __('Support Role') ?></th>
+                <th scope="col" class="actions"><?= __('') ?></th>
             </tr>
+        </thead>
             <?php foreach ($inshows as $inshows): ?>
             <tr>
-                <td><?= h($inshows->user->first_name." ".$inshows->user->last_name) ?></td>
-                <td><?= h($inshows->role->name) ?></td>
-                <td><?= h($inshows->roles2->name) ?></td>
+                <td><?= h($inshows->user->fullName) ?></td>
+                <td><?php if (!empty($inshows->role_id)) : ?> <?= $inshows->role->name ?> <?php else : ?> <?= "none" ?> <?php endif; ?> </td>
+                <td><?php if (!empty($inshows->roles2)) : ?> <?= $inshows->roles2->name ?> <?php else : ?> <?= "none" ?> <?php endif; ?> </td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Assignments', 'action' => 'view', $inshows->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Assignments', 'action' => 'edit', $inshows->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Assignments', 'action' => 'delete', $inshows->id], ['confirm' => __('Are you sure you want to delete # {0}?', $inshows->id)]) ?>
+                    <?= $this->Form->postLink(__(''), ['controller' => 'Assignments', 'action' => 'delete', $inshows->id], ['class'=>'fas icon fa-lg fa-fw fa-user-times', 'title'=>'Delete Assignment']) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
         </table>
         <?php endif; ?>
     </div>
+
+
+
+<?= $this->Html->link('Report', ['plugin' => false,'action' => 'signupreport', $show->id], ['escape'=>false]) ?>
+
+
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default" style="padding: .25rem">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h3 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          <span class="glyphicon glyphicon-triangle-bottom" style="padding-right: 10px"></span>Make Assignment
+        </a>
+      </h3>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+
+        <?= $this->Form->create(null, [
+                                'url' => ['controller' => 'Assignments', 'action' => 'madd', $show->id]
+                            ]); ?>
+                <fieldset>
+                <legend><?= __('Assignment') ?></legend>
+
+                    <?= $this->Form->hidden('show_id', ['value' => $show->id]);?>
+                <div class="row">
+                <div class="col-md-4">
+                    <?= $this->Form->control('user_id', ['label'=>'Player','options' => $users, 'empty' => true]);?>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-md-6">
+                    <?= $this->Form->control('role_id', ['label' => 'Performing', 'empty' => '---']);?>
+                </div>
+                <div class="col-md-6">
+                    <?= $this->Form->control('role2_id', ['label' => 'Supporting Role', 'options' => $roles, 'empty' => '---']);?>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-md-12">
+                    <?= $this->Form->control('notes', ['label' => 'Notes', 'type' => 'textarea', 'class'=> 'form-control']);?>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-md-12">
+                <?= $this->Form->button(__('Add Assignment'), ['class' => 'btn btn-success']) ?>
+                                <?= $this->Form->end() ?>
+                </div>
+                </div>
+                </fieldset>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
 
 
 
 <div class="panel panel-primary">
+
+
+
+
                 <div class="panel-heading">
-                    <h3 class="panel-title"><?= $this->Html->link(__('New Assignment'), ['controller' => 'Assignments', 'action' => 'add', $show->id, 'month'=>$show->month_id], ['class'=>'btn btn-primary']) ?></h3>
-                    <span class="pull-right">
-                        <!-- Tabs -->
-                        <ul class="nav panel-tabs">
-                            <li class="active"><a href="#tab1" data-toggle="tab">Tab 1</a></li>
-                            <li><a href="#tab2" data-toggle="tab">Tab 2</a></li>
-                            <li><a href="#tab3" data-toggle="tab">Tab 3</a></li>
-                            <li><a href="#tab4" data-toggle="tab">Tab 4</a></li>
-                        </ul>
-                    </span>
+                    <i class="fas fa-calendar fa-s fa-fw"></i>Show Information
                 </div>
-                <div class="panel-body">
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="tab1">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At</div>
-                        <div class="tab-pane" id="tab2">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</div>
-                        <div class="tab-pane" id="tab3">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</div>
-                        <div class="tab-pane" id="tab4">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-
-                            Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,</div>
-                    </div>
-                </div>
-            </div>
 
 
 
@@ -85,75 +128,73 @@
 
 
 
+    <div class="row">
 
+        <div class="col-md-4">
 
+            <fieldset>
 
-
-
-
-
-
-
-
-
-
-  <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#signups" aria-controls="signups" role="tab" data-toggle="tab">Signups</a></li>
-    <li role="presentation"><a href="#callouts" aria-controls="callouts" role="tab" data-toggle="tab">Call Outs</a></li>
-  </ul>
-
-  <!-- Tab panes -->
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="signups">
-
-<?php if (!empty($show->signups)): ?>
+                <legend>Show Sign Ups</legend>
+            <?php if (!empty($signups)): ?>
         <table cellpadding="0" cellspacing="0">
+            <?php foreach ($signups as $signups): ?>
             <tr>
-                <th scope="col"><?= __('Player') ?></th>
-                <th scope="col"><?= __('Assigned') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <td><?= h($signups->user->fullName) ?></td>
+                <td><?= h($signups->created->format('M jS')) ?></td>
             </tr>
-            <?php foreach ($show->signups as $signups): ?>
+            <?php endforeach; ?>
+        </table>
+        <?php endif; ?>
+
+            </fieldset>
+
+        </div>
+
+        <div class="col-md-4">
+
+
+            <fieldset>
+
+                <legend>Monthly Sign Ups</legend>
+
+                    <?php if (!empty($signlist)): ?>
+        <table cellpadding="0" cellspacing="0">
+            <?php foreach ($signlist as $signlist): ?>
             <tr>
-                <td><?= h($signups->Users['first_name']." ".$signups->Users['last_name']) ?></td>
-                <td><?= h($signups->created) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Signups', 'action' => 'view', $signups->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Signups', 'action' => 'edit', $signups->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Signups', 'action' => 'delete', $signups->id], ['confirm' => __('Are you sure you want to delete # {0}?', $signups->id)]) ?>
+                <td><?= h($signlist->user['fullName'])?>&nbsp;(&nbsp;<?= h($signlist->count) ?>&nbsp;)</td>
                 </td>
             </tr>
             <?php endforeach; ?>
         </table>
         <?php endif; ?>
 
+            </fieldset>
 
+        </div>
 
-    </div><!-- tab 1 -->
-    <div role="tabpanel" class="tab-pane" id="callouts">
+        <div class="col-md-4">
+            <fieldset>
 
-        <?php if (!empty($callouts)): ?>
+                <legend>Call Outs</legend>
+
+                    <?php if (!empty($callouts)): ?>
         <table cellpadding="0" cellspacing="0">
             <?php foreach ($callouts as $callouts): ?>
             <tr>
-                <td><?= h($callouts->user->first_name." ".$callouts->user->last_name) ?> :: <?= h($callouts->role->name) ?> / <?= h($callouts->roles2->name) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Assignments', 'action' => 'view', $callouts->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Assignments', 'action' => 'edit', $callouts->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Assignments', 'action' => 'delete', $callouts->id], ['confirm' => __('Are you sure you want to delete # {0}?', $callouts->id)]) ?>
-                </td>
+                <td><?= h($callouts->user->fullName) ?>&nbsp;&nbsp;<?= $this->Html->link(__(''), ['controller' => 'Assignments', 'action' => 'edit', $callouts->id], ['class'=>'fas fa-edit fa-s  fa-fw text-warning', 'title'=>'Edit Assignment']) ?></td>
             </tr>
             <?php endforeach; ?>
         </table>
         <?php endif; ?>
+            </fieldset>
+
+        </div>
+
+    </div>
 
 
-    </div><!-- tab 2 -->
-  </div>
 
 </div>
-
-
+</div>
 
 </div>

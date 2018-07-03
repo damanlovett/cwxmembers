@@ -4,17 +4,18 @@
  * @var \App\Model\Entity\Month $month
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Months'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Practices'), ['controller' => 'Practices', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Practice'), ['controller' => 'Practices', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Shows'), ['controller' => 'Shows', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Show'), ['controller' => 'Shows', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="months form large-9 medium-8 columns content">
+<div class="months index large-12 medium-11 columns content panel panel-primary">
+            <div class="panel-heading">
+                <span class="panel-title">
+                    <?php echo __('Sign In'); ?>
+                </span>
+                <span class="panel-title-right">
+                    <?php echo $this->Html->link(__('Sign Up', true), ['controller'=>'Users', 'action'=>'register', 'plugin'=>'Usermgmt'], ['class'=>'btn btn-default']); ?>
+                </span>
+            </div>
+            <div class="panel-body">
+
+
     <?= $this->Form->create($month) ?>
     <fieldset>
         <legend><?= __('Add Month') ?></legend>
@@ -26,4 +27,5 @@
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
+</div>
 </div>

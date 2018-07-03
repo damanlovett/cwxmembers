@@ -4,19 +4,11 @@
  * @var \App\Model\Entity\Month[]|\Cake\Collection\CollectionInterface $months
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Month'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Practices'), ['controller' => 'Practices', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Practice'), ['controller' => 'Practices', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Shows'), ['controller' => 'Shows', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Show'), ['controller' => 'Shows', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="months index large-9 medium-8 columns content">
-    <h3><?= __('Months') ?></h3>
-    <table class="basicTable" cellpadding="0" cellspacing="0">
+<div class="shows index large-12 medium-11 columns content panel panel-default">
+    <div class="panel-body">
+    <h3 class="panel-heading"><i class="fas fa-calendar-alt fa-2x fa-fw"></i><?= __('Months') ?></h3>
+
+        <table  class="table table-striped" cellpadding="0" cellspacing="0">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('first_friday', 'Month') ?></th>
@@ -30,25 +22,30 @@
                 <td><?= h($month->title." ".$month->year) ?></td>
                 <td><?= h($month->created->format('m/d/y - g:i a')) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $month->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $month->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $month->id], ['confirm' => __('Are you sure you want to delete # {0}?', $month->id)]) ?>
+
+                    <?= $this->Html->link(__(''), ['action' => 'mview', $month->id], ['class'=>'fas fa-calendar-alt fa-lg fa-fw text-success', 'title'=>'View Month']) ?>
+                    <?= $this->Html->link(__(''), ['action' => 'edit', $month->id], ['class'=>'fas fa-edit fa-lg fa-fw text-warning', 'title'=>'Edit Month']) ?>
+                    <?= $this->Form->postLink(__(''), ['action' => 'delete', $month->id], ['class'=>'fas fa-times-circle fa-lg fa-fw text-danger', 'title'=>'Delete Month']) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
         </tbody>
                     <tfoot>
-                        <td colspan="3">&nbsp;</td>
+                        <td colspan="3">
+
+                            <div class="paginator">
+                                <ul class="pagination">
+                                    <?= $this->Paginator->first('<< ' . __('first')) ?>
+                                    <?= $this->Paginator->prev('< ' . __('previous')) ?>
+                                    <?= $this->Paginator->numbers() ?>
+                                    <?= $this->Paginator->next(__('next') . ' >') ?>
+                                    <?= $this->Paginator->last(__('last') . ' >>') ?>
+                                </ul>
+                                <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+                            </div>
+
+                        </td>
                     </tfoot>
     </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
-    </div>
+</div>
 </div>

@@ -3,6 +3,8 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\View\View;
+use Cake\View\ViewBuilder;
 /**
  * Shows Controller
  *
@@ -12,6 +14,7 @@ use Cake\Event\Event;
  */
 class ShowsController extends AppController
 {
+
 
      public function beforeFilter(Event $event)
          {
@@ -88,7 +91,7 @@ class ShowsController extends AppController
 }
 
     /**
-     * Aview method
+     * Mview method
      *
      * @param string|null $id Show id.
      * @return \Cake\Http\Response|void
@@ -103,20 +106,63 @@ class ShowsController extends AppController
 
         $this->set('show', $show);
 
+        $this->loadModel('Roles');
+        $roles = $this->Roles->find('list', [
+                            'order' => ['Roles.name' => 'ASC'],
+                            'limit' => 200]);
+
+        $this->set(compact('roles'));
+
         $this->loadModel('Assignments');
         $callouts = $this->Assignments->findAllByCalloutAndShow_id(1,$id)
                     ->contain(['Users','Roles', 'Roles2']);
 
         $inshows = $this->Assignments->findAllByCalloutAndShow_id(0,$id)
-                    ->contain(['Users','Roles', 'Roles2']);
+                    ->contain(['Users','Roles', 'Roles2'])
+                    ->order(['Roles.name' => 'desc']);
+
+        $assignment = $this->Assignments->newEntity();
+        if ($this->request->is('post')) {
+            $assignment = $this->Assignments->patchEntity($assignment, $this->request->getData());
+            if ($this->Assignments->save($assignment)) {
+                $this->Flash->success(__('The assignment has been saved.'));
+
+                return $this->redirect($this->referer());
+            }
+            $this->Flash->error(__('The assignment could not be saved. Please, try again.'));
+        }
+
+        $shows = $this->Assignments->Roles->find('list', ['limit' => 200]);
+        $users = $this->Assignments->Users->find('list', ['limit' => 200]);
 
 
-        $this->set(compact('callouts','inshows','signlists'));
+        $this->set(compact('callouts','inshows','signlists','shows', 'users'));
 
+        $this->loadModel('Signups');
+        $query = $this->Signups->findAllByShow_id($id)
+                    ->contain(['Users'])
+                    ->order(['Signups.created' => 'asc']);
+
+        $this->set('signups', $this->paginate($query));
+
+
+        $signlist = $this->Signups->findByMonth_id($id)->contain([
+    'Users' => function ($q) {
+       return $q
+                    ->select(['first_name','last_name']);}
+                ]);
+                $signlist->select([
+                              'id',
+                              'user_id',
+                              'count' => $signlist->func()->count('*')
+                            ])
+                     ->order(['count' => 'desc'])
+                     ->group('user_id');
+
+        $this->set('signlist', $signlist);
 
     }
 
-<<<<<<< HEAD
     /**
      * Signup method
      *
@@ -151,9 +197,6 @@ class ShowsController extends AppController
 }
 
 
-
-=======
->>>>>>> 437617d249d2776b43f0039b6cc77c8c233f8775
     /**
      * Add method
      *
@@ -203,6 +246,26 @@ class ShowsController extends AppController
     }
 
     /**
+     * Remove method
+     *
+     * @param string|null $id Show id.
+     * @return \Cake\Http\Response|null Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function remove($id = null)
+    {
+        $this->request->allowMethod(['post', 'delete']);
+        $show = $this->Shows->get($id);
+        if ($this->Shows->delete($show)) {
+            $this->Flash->success(__('The show has been deleted.'));
+        } else {
+            $this->Flash->error(__('The show could not be deleted. Please, try again.'));
+        }
+
+                return $this->redirect(['action' => 'manager']);
+    }
+
+    /**
      * Delete method
      *
      * @param string|null $id Show id.
@@ -221,4 +284,22 @@ class ShowsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+public function signupreport($id=null) {
+
+        $this->response->download('show_signups.csv');
+
+        $this->loadModel('Signups');
+        $datas = $this->Signups->findAllByShow_id($id)
+                    ->contain(['Users','Shows'])
+                    ->order(['Signups.created' => 'desc'])->toArray();
+
+        $_serialize = null;
+        $_header = ['id', 'First', 'Last', 'Schedule'];
+        $_extract = ['id', 'user.first_name', 'user.last_name', 'show.schedule'];
+        $this->viewBuilder()->className('CsvView.Csv');
+        $this->set(compact('datas', '_serialize', '_header', '_extract'));
+        return;
+
+        }
 }

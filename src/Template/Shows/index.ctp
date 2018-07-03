@@ -6,7 +6,7 @@
 ?>
 <div class="shows index large-12 medium-11 columns content">
     <h3><i class="fas fa-calendar fa-2x fa-fw"></i><?= __('Shows') ?></h3>
-        <table  class="table table-striped" cellpadding="0" cellspacing="0">
+    <table class="table table-striped" cellpadding="0" cellspacing="0">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('dropdown_id','Show') ?></th>
@@ -26,20 +26,16 @@
                 <td class="actions">
                     <?= $this->Html->link(__(''), ['action' => 'view', $show->id], ['class'=>'fas fa-calendar fa-lg fa-fw text-primary', 'title'=>'View Show']) ?>
                     <?= $this->Html->link(__(''), ['controller'=>'months','action' => 'view', $show->month_id], ['class'=>'fas fa-calendar-alt fa-lg fa-fw text-primary', 'title'=>'View Month']) ?>
-<<<<<<< HEAD
                 <?php if($show->signups_open == 1) : ?>
                     <?= $this->Html->link(__(''), ['action' => 'signup', $show->id], ['class'=>'fas fa-pen-alt fa-lg fa-fw text-primary', 'title'=>'Sign Up']) ?>
                 <?php endif; ?>
-=======
->>>>>>> 437617d249d2776b43f0039b6cc77c8c233f8775
                 </td>
             </tr>
             <?php endforeach; ?>
         </tbody>
             <tfoot>
-                <td colspan="4"><?php if (empty($show)): ?><p class="text-md-center">Currently, there are no available shows</p><?php endif; ?>&nbsp;</td>
-            </tfoot>
-    </table>
+                <td colspan="4"><?php if (empty($show)): ?><p class="text-md-center">Currently, there are no available shows</p><?php endif; ?>&nbsp;
+
     <div class="paginator">
         <ul class="pagination">
             <?= $this->Paginator->first('<< ' . __('first')) ?>
@@ -50,4 +46,9 @@
         </ul>
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
+
+
+                </td>
+            </tfoot>
+    </table>
 </div>

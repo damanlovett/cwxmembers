@@ -10,7 +10,7 @@
         <legend><?= __('Add Practice') ?></legend>
         <?php
             echo $this->Form->control('month_id', ['options' => $months, 'empty' => true]);
-            echo $this->Form->control('schedule', ['empty' => true]);
+            echo $this->Form->control('schedule', ['type'=>'text', 'label'=>false, 'div'=>false, 'class'=>'form-control datetimepicker']);
             echo $this->Form->control('title');
             echo $this->Form->control('leader');
             echo $this->Form->control('visible');

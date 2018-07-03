@@ -55,7 +55,7 @@
         <h3><?= __('Sign Ups') ?>
 
         <?php if (!empty($signups)): ?>
-        <table  class="table table-condensed" cellpadding="0" cellspacing="0">
+        <table  class="table table-striped" cellpadding="0" cellspacing="0">
             <tr>
                 <th scope="col"><?= h('Player') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created', 'Signed Up') ?></th>

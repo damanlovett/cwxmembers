@@ -6,7 +6,7 @@
 ?>
 <div class="shows index large-12 medium-11 columns content">
     <h3><i class="fas fa-calendar fa-2x fa-fw"></i><?= __('Shows') ?></h3>
-    <table class="basicTable" cellpadding="0" cellspacing="0">
+    <table class="table table-striped" cellpadding="0" cellspacing="0">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('dropdown_id','Show') ?></th>
@@ -26,23 +26,17 @@
                 <td style="text-align: center;"><?= $show->signups_open ? "<i class='fas fa-circle text-success'></i>" : '' ?></td>
                 <td style="text-align: center;"><?= $show->visible ? "<i class='fas fa-circle text-success'></i>" : '' ?></td>
                 <td class="actions">
-                    <div class="btn-group">
-                    <button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">Action<span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                        <li><?= $this->Html->link(__('View Show'), ['action' => 'view', $show->id]) ?></li>
-                        <li><?= $this->Html->link(__('View Month'), ['controller' => 'Months', 'action' => 'view', $show->month->id]) ?></li>
-                        <li><?= $this->Html->link(__('Edit'), ['action' => 'edit', $show->id]) ?></li>
-                        <li><?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $show->id], ['confirm' => __('Are you sure you want to delete # {0}?', $show->id)]) ?></li>
-                    </ul>
+
+                        <?= $this->Html->link(__(''), ['action' => 'mview', $show->id], ['class'=>'fas fa-edit fa-lg  fa-fw text-warning', 'title'=>'View / Assign Show']) ?>
+                        <?= $this->Html->link(__(''), ['controller' => 'Months', 'action' => 'view', $show->month->id], ['class'=>'fas fa-calendar-alt fa-lg  fa-fw text-success', 'title'=>'View Month']) ?></li>
+                        <?= $this->Html->link(__(''), ['action' => 'edit', $show->id], ['class'=>'fas fa-calendar fa-lg  fa-fw text-warning', 'title'=>'Edit Show']) ?>
+                        <?= $this->Form->postLink(__(''), ['action' => 'remove', $show->id], ['class'=>'fas fa-times fa-lg  fa-fw text-danger', 'title'=>'Delete Show']) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
         </tbody>
             <tfoot>
-                <td colspan="5">&nbsp;</td>
-            </tfoot>
-    </table>
-    <div class="paginator">
+                <td colspan="5">    <div class="paginator">
         <ul class="pagination">
             <?= $this->Paginator->first('<< ' . __('first')) ?>
             <?= $this->Paginator->prev('< ' . __('previous')) ?>
@@ -52,4 +46,7 @@
         </ul>
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
+</td>
+            </tfoot>
+    </table>
 </div>

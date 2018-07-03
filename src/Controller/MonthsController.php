@@ -64,6 +64,40 @@ $signlist->select([
 
     }
 
+    /**
+     * Mview method
+     *
+     * @param string|null $id Month id.
+     * @return \Cake\Http\Response|void
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+
+
+    public function mview($id = null)
+    {
+        $month = $this->Months->get($id, [
+            'contain' => ['Practices', 'Shows.dropdowns','Shows.months', 'Signups']        ]);
+
+        $this->set('month', $month);
+
+        $this->loadModel('Signups');
+
+$signlist = $this->Signups->findByMonth_id($id)->contain([
+    'Users' => function ($q) {
+       return $q
+            ->select(['first_name','last_name']);}
+]);
+$signlist->select([
+              'id',
+              'user_id',
+              'count' => $signlist->func()->count('*')
+            ])
+     ->group('user_id');
+
+        $this->set('signlist', $signlist);
+
+    }
+
     public function signups($id = null)
     {
 
