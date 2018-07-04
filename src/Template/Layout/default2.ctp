@@ -21,8 +21,16 @@ $cakeDescription = "Lovett Creations :: You'll Love What We Do";
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $this->fetch('title');?> CWX Membership Portal | Lovett Creations</title>
-    <?= $this->Html->meta('icon') ?>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script language="javascript">
+        var urlForJs="<?php echo SITE_URL ?>";
+    </script>
+<?= $this->Html->meta(
+    'favicon.ico',
+    '/cakeicon.ico',
+    ['type' => 'icon']
+);
+?>
 
     <?php
 
@@ -82,55 +90,40 @@ $cakeDescription = "Lovett Creations :: You'll Love What We Do";
     <?= $this->fetch('script') ?>
 </head>
 <body>
-   <nav class="navbar navbar-inverse" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">ComedyWorx Membership Portal</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Links <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="portfolio-1-col.html">Link 1</a></li>
-                            <li><a href="portfolio-1-col.html">Link 1</a></li>
-                            <li><a href="portfolio-1-col.html">Link 1</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Links <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="blog-home-1.html">Link 1</a></li>
-                            <li><a href="blog-home-1.html">Link 2</a></li>
-                            <li><a href="blog-home-1.html">Link 3</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other Pages <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="full-width.html">Full Width Page</a></li>
-                            <li><a href="sidebar.html">Sidebar Page</a></li>
-                            <li><a href="faq.html">FAQ</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header navbar-center">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+        <a class="navbar-brand" " href="/"><?= $this->Html->image('CWXRedBrand.png', ['alt' => 'CWX Brand', 'class'=>'brandImg']); ?>ComedyWorx Membership Portal</a>
+    </div>
 
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+     <ul class="nav navbar-nav navbar-center">
+        <li><a href="#">Link <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
     <?= $this->Flash->render() ?>
     <div class="container clearfix">
            <!--         <?php if($this->UserAuth->isLogged()) { echo $this->element('Usermgmt.dashboard'); } ?> -->

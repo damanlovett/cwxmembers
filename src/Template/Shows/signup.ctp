@@ -52,7 +52,7 @@
 
 
     <div class="related">
-        <h3><?= __('Sign Ups') ?>
+        <h4><?= __('Sign Ups') ?></h4>
 
         <?php if (!empty($signups)): ?>
         <table  class="table table-striped" cellpadding="0" cellspacing="0">

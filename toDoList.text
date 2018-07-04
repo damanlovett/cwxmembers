@@ -1,0 +1,64 @@
+Dashboard
+	Profiles ->
+
+	Shows -> shows/index
+		( make signup smaller )
+
+	Practice -> practies/index 
+			( format page / remove month / reformat time )
+		-> practices/view 
+			( create page from checkin / remove attendance 			 	/ move panel display discription as 					whole )
+			
+	My Activities -> users/me ( routes )
+
+
+ADMIN
+ Portal Manager -> months/index ( reroute name )
+		( add nav bar for access all the below page title )
+		( wishlist add count for shows / practices on index 			page )
+	-> months/mview 
+		( add CRUD icons )
+		( wishlist add pagnation for shows )
+ Table Manager -> dropdown/index
+	
+ 
+ ------- Separator ---------
+ show -> shows/manager 
+		( add CRUD icons )
+	-> shows/edit 
+		( format page / remove nav / correct date field )
+	-> shows/mview ( add icon )
+
+ practice -> practices/manager
+		( remove nav / make icons for CRUD )
+	-> practices/mview 
+		( create page from checkin / add Delete / add user 				form with date )	
+ checkins -> checkins/index 
+		( remove nav / remove view&edit / format displayname / 			move user first )
+ players -> users/index
+		( format page / remove nav )
+	-> users/mview 
+ memberships ->user-details
+		( format page )
+		
+
+NOTE:  	Add return to manager and return to section home in each area
+	Add ckediter to all notes and descriptions.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.asc:after {
+    content: " \2193";
+}

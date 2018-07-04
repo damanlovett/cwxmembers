@@ -2,9 +2,6 @@
 $(document).ready(function () {
 
 
-    // Tabs
-    $("div#tabs").tabs();
-
     // Page Title
     $( "div.content h3:first-child" ).addClass("pageTitle");
 
@@ -12,6 +9,9 @@ $(document).ready(function () {
         $('#sidebar').toggleClass('active');
     });
 
+    $('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').focus()
+})
 
 
 });

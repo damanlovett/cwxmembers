@@ -31,7 +31,7 @@
 <?php endif; ?>
 
     <div class="related">
-        <h3><?= __('Line Ups') ?></h3>
+        <h4><?= __('Line Ups') ?></h4>
         <?php if (!empty($inshows)): ?>
     <table class="table table-striped" cellpadding="0" cellspacing="0">
             <thead>

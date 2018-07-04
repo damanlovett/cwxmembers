@@ -143,7 +143,7 @@
 
 <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h3 class="panel-title">&nbsp;</h3>
+                    <h2 class="panel-title">&nbsp;</h2>
                     <span class="pull-right">
                         <!-- Tabs -->
                         <ul class="nav panel-tabs">

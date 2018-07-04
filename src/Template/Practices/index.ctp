@@ -8,7 +8,7 @@
     &nbsp;
 </div>
 <div class="practices index large-12 medium-12 columns content">
-    <h3><?= __('Practices') ?></h3>
+    <h3><i class="fas fa-chalkboard fa-2x fa-fw"></i><?= 'Practices' ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>

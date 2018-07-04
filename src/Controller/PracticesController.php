@@ -39,11 +39,11 @@ class PracticesController extends AppController
     }
 
     /**
-     * Index method
+     * Manager method
      *
      * @return \Cake\Http\Response|void
      */
-    public function admin()
+    public function manager()
     {
         $this->paginate = [
             'limit' => 10,

@@ -247,4 +247,24 @@ $this->viewBuilder()->layout('default2'); // New in 3.1
 
         return $this->redirect(['action' => 'index']);
     }
+
+    /**
+     * Remove method
+     *
+     * @param string|null $id Assignment id.
+     * @return \Cake\Http\Response|null Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function remove($id = null)
+    {
+        $this->request->allowMethod(['post', 'delete']);
+        $assignment = $this->Assignments->get($id);
+        if ($this->Assignments->delete($assignment)) {
+            $this->Flash->success(__('The assignment has been deleted.'));
+        } else {
+            $this->Flash->error(__('The assignment could not be deleted. Please, try again.'));
+        }
+
+        return $this->redirect($this->referer());
+    }
 }

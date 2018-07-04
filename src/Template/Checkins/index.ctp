@@ -15,7 +15,7 @@
     </ul>
 </nav>
 <div class="checkins index large-9 medium-8 columns content">
-    <h3><?= __('Checkins') ?></h3>
+    <h3><i class="fas fa-clipboard-check fa-2x fa-fw"></i><?= __('Checkins') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>

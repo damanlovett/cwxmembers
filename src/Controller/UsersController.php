@@ -37,13 +37,46 @@ class UsersController extends AppController
     }
 
     /**
+     * Manager method
+     *
+     * @return \Cake\Http\Response|void
+     */
+    public function manager()
+    {
+        $this->paginate = [
+            'contain' => ['UserGroups', 'ClubStandings']
+        ];
+        $users = $this->paginate($this->Users);
+
+        $this->set(compact('users'));
+    }
+
+    /**
      * View method
      *
      * @param string|null $id User id.
      * @return \Cake\Http\Response|void
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
+    public function me()
+    {
+        $id = $this->UserAuth->getUserId();
+
+        $user = $this->Users->get($id, [
+            'contain' => ['UserGroups', 'ClubStandings', 'Assignments', 'Checkins', 'LoginTokens', 'ScheduledEmailRecipients', 'Signups', 'UserActivities', 'UserContacts', 'UserDetails', 'UserEmailRecipients', 'UserEmailSignatures', 'UserEmailTemplates', 'UserSocials']
+        ]);
+
+        $this->set('user', $user);
+    }
+
+    /**
+     * Mview method
+     *
+     * @param string|null $id User id.
+     * @return \Cake\Http\Response|void
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function mview($id = null)
     {
         $user = $this->Users->get($id, [
             'contain' => ['UserGroups', 'ClubStandings', 'Assignments', 'Checkins', 'LoginTokens', 'ScheduledEmailRecipients', 'Signups', 'UserActivities', 'UserContacts', 'UserDetails', 'UserEmailRecipients', 'UserEmailSignatures', 'UserEmailTemplates', 'UserSocials']

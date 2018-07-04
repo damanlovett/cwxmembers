@@ -15,7 +15,7 @@
 
 
     <div class="related">
-        <h3><?= __('Line Ups') ?></h3>
+        <h4><?= __('Line Ups') ?></h4>
         <?php if (!empty($inshows)): ?>
     <table class="table table-striped" cellpadding="0" cellspacing="0">
         <thead>
@@ -32,7 +32,7 @@
                 <td><?php if (!empty($inshows->role_id)) : ?> <?= $inshows->role->name ?> <?php else : ?> <?= "none" ?> <?php endif; ?> </td>
                 <td><?php if (!empty($inshows->roles2)) : ?> <?= $inshows->roles2->name ?> <?php else : ?> <?= "none" ?> <?php endif; ?> </td>
                 <td class="actions">
-                    <?= $this->Form->postLink(__(''), ['controller' => 'Assignments', 'action' => 'delete', $inshows->id], ['class'=>'fas icon fa-lg fa-fw fa-user-times', 'title'=>'Delete Assignment']) ?>
+                    <?= $this->Form->postLink(__(''), ['controller' => 'Assignments', 'action' => 'remove', $inshows->id], ['class'=>'fas icon fa-lg fa-fw fa-user-times', 'title'=>'Delete Assignment']) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -41,16 +41,15 @@
     </div>
 
 
-
+<?php /*
 <?= $this->Html->link('Report', ['plugin' => false,'action' => 'signupreport', $show->id], ['escape'=>false]) ?>
 <?= $this->Html->link('Report', ['plugin' => false,'action' => 'jump', $show->id], ['escape'=>false]) ?>
-
-
+*/?>
 
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
   <div class="panel panel-default" style="padding: .25rem">
     <div class="panel-heading" role="tab" id="headingOne">
-      <h3 class="panel-title">
+      <h5>
         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
           <span class="glyphicon glyphicon-triangle-bottom" style="padding-right: 10px"></span>Make Assignment
         </a>
@@ -120,9 +119,12 @@
                 <legend>Show Sign Ups</legend>
             <?php if (!empty($signups)): ?>
         <table cellpadding="0" cellspacing="0">
+            <?php $i=0?>
             <?php foreach ($signups as $signups): ?>
+                <?php $i++ ?>
             <tr>
-                <td><?= h($signups->user->fullName) ?></td>
+                <td>
+<?= h($signups->user->fullName) ?></td>
                 <td><?= h($signups->created->format('M jS')) ?></td>
             </tr>
             <?php endforeach; ?>

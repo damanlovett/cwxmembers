@@ -17,7 +17,9 @@ body {
   margin-bottom: 5px;
 }
 
-
+.content {
+    padding: 1rem;
+}
 /* links */
 
 a, a:hover, a:active {
@@ -123,6 +125,7 @@ h3.panel-title {
 }
 .panel-primary>.panel-heading {
     color: #be140b;
+    font-size: 20px;
     background-color: #fff;
     border-color: #b30000;
     border-width: 5px;
@@ -197,6 +200,13 @@ h3.pageTitle {
   color: #fff;
 }
 
+.content .related h4 {
+    color: #0000b1;
+    padding-bottom: 0.5rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #0000b1;
+}
 /* fancy page title */
 /* https://wdexplorer.com/20-examples-beautiful-css-typography-design/ */
 
@@ -591,3 +601,7 @@ ul.pagination .disabled:hover a {
   background-color: #eee;
 }
 
+.navbar-brand>img.brandImg {
+    display: inline-block;
+    padding-right: 8px;
+}

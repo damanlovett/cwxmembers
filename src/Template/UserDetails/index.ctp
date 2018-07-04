@@ -4,57 +4,32 @@
  * @var \App\Model\Entity\UserDetail[]|\Cake\Collection\CollectionInterface $userDetails
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New User Detail'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Member Standings'), ['controller' => 'MemberStandings', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Member Standing'), ['controller' => 'MemberStandings', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="userDetails index large-9 medium-8 columns content">
+
+<div class="userDetails index large-12 medium-11 columns content">
     <h3><?= __('User Details') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('nickname') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('jersey') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('starting_year') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('member_standing_id', 'Standing') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('starting_year', 'Started') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('referee') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('host') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('voice') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('delete') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('member_standing_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('abc') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('location') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('cellphone') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($userDetails as $userDetail): ?>
             <tr>
-                <td><?= $this->Number->format($userDetail->id) ?></td>
-                <td><?= $userDetail->has('user') ? $this->Html->link($userDetail->user->id, ['controller' => 'Users', 'action' => 'view', $userDetail->user->id]) : '' ?></td>
-                <td><?= h($userDetail->nickname) ?></td>
-                <td><?= h($userDetail->jersey) ?></td>
-                <td><?= h($userDetail->starting_year) ?></td>
-                <td><?= $this->Number->format($userDetail->referee) ?></td>
-                <td><?= $this->Number->format($userDetail->host) ?></td>
-                <td><?= $this->Number->format($userDetail->voice) ?></td>
-                <td><?= h($userDetail->delete) ?></td>
+                <td><?= $userDetail->has('user') ? $this->Html->link($userDetail->user->fullName, ['controller' => 'Users', 'action' => 'view', $userDetail->user->id]) : '' ?></td>
                 <td><?= $userDetail->has('member_standing') ? $this->Html->link($userDetail->member_standing->title, ['controller' => 'MemberStandings', 'action' => 'view', $userDetail->member_standing->id]) : '' ?></td>
-                <td><?= $this->Number->format($userDetail->abc) ?></td>
-                <td><?= h($userDetail->location) ?></td>
-                <td><?= h($userDetail->cellphone) ?></td>
-                <td><?= h($userDetail->created) ?></td>
-                <td><?= h($userDetail->modified) ?></td>
+                <td><?= $userDetail->has('starting_year') ? $userDetail->starting_year->format('M Y') : '' ?> </td>
+                <td><?= $userDetail->has('referee') ? "<i class='fas fa-check fa-sm -fa-fw text-success'></i>" : '' ?> </td>
+                <td><?= $userDetail->has('host') ? "<i class='fas fa-check fa-sm -fa-fw text-success'></i>" : '' ?> </td>
+                <td><?= $userDetail->has('voice') ? "<i class='fas fa-check fa-sm -fa-fw text-success'></i>" : '' ?> </td>
+                <td><?= $userDetail->has('abc') ? "<i class='fas fa-check fa-sm -fa-fw text-success'></i>" : '' ?> </td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $userDetail->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $userDetail->id]) ?>
