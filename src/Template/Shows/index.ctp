@@ -5,7 +5,7 @@
  */
 ?>
 <div class="shows index large-12 medium-11 columns content">
-    <h3><i class="fas fa-calendar fa-2x fa-fw"></i><?= __('Shows') ?></h3>
+    <h3><i class="fas fa-calendar fa-1x fa-fw"></i>&nbsp;&nbsp;<?= __('Shows') ?></h3>
     <table class="table table-striped" cellpadding="0" cellspacing="0">
         <thead>
             <tr>
@@ -22,7 +22,7 @@
             <tr>
                 <td><?= $i.". ".$show->dropdown->name ?></td>
                 <td><?= $show->schedule->format('M. j, Y g:i a') ?></td>
-                <td style="text-align: center;"><?= $show->signups_open ? "<i class='fas fa-circle fa-lg fa-fw text-success'></i>" : '' ?></td>
+                <td style="text-align: center;"><?= $show->signups_open ? "<i class='fas fa-circle fa-sm fa-fw text-success'></i>" : '' ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__(''), ['action' => 'view', $show->id], ['class'=>'fas fa-calendar fa-lg fa-fw text-primary', 'title'=>'View Show']) ?>
                     <?= $this->Html->link(__(''), ['controller'=>'months','action' => 'view', $show->month_id], ['class'=>'fas fa-calendar-alt fa-lg fa-fw text-primary', 'title'=>'View Month']) ?>

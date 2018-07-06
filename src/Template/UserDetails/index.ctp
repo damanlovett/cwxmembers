@@ -6,7 +6,7 @@
 ?>
 
 <div class="userDetails index large-12 medium-11 columns content">
-    <h3><?= __('User Details') ?></h3>
+    <h3><i class="fas fa-user-shield fa-1x fa-fw"></i>&nbsp;&nbsp;<?= __('Membership') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>

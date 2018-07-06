@@ -1,78 +1,55 @@
 <?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\dashboard[]|\Cake\Collection\CollectionInterface $dashboard
- */
+/* Cakephp 3.x User Management Premium Version (a product of Ektanjali Softwares Pvt Ltd)
+Website- http://ektanjali.com
+Plugin Demo- http://cakephp3-user-management.ektanjali.com/
+Author- Chetan Varshney (The Director of Ektanjali Softwares Pvt Ltd)
+Plugin Copyright No- 11498/2012-CO/L
+
+UMPremium is a copyrighted work of authorship. Chetan Varshney retains ownership of the product and any copies of it, regardless of the form in which the copies may exist. This license is not a sale of the original product or any copies.
+
+By installing and using UMPremium on your server, you agree to the following terms and conditions. Such agreement is either on your own behalf or on behalf of any corporate entity which employs you or which you represent ('Corporate Licensee'). In this Agreement, 'you' includes both the reader and any Corporate Licensee and Chetan Varshney.
+
+The Product is licensed only to you. You may not rent, lease, sublicense, sell, assign, pledge, transfer or otherwise dispose of the Product in any form, on a temporary or permanent basis, without the prior written consent of Chetan Varshney.
+
+The Product source code may be altered (at your risk)
+
+All Product copyright notices within the scripts must remain unchanged (and visible).
+
+If any of the terms of this Agreement are violated, Chetan Varshney reserves the right to action against you.
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Product.
+
+THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE PRODUCT OR THE USE OR OTHER DEALINGS IN THE PRODUCT. */
 ?>
-
-
-    <!-- Header Carousel -->
-
-
-    <!-- Page Content -->
-    <div class="container">
-
-
-
-		<div class="row products">
-
-			<div class="col-sm-4 col-lg-4 col-md-4">
-				<div class="thumbnail">
-					<img src="https://placehold.it/320x150" alt="">
-					<div class="caption">
-					<h4 class="pull-left myBlue"><i class="fas fa-calendar fa-3x fa-fw"></i></h4>
-						<h4><a href="#">Shows</a></h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-					</div>
-					<div class="ratings">
-						<p class="pull-right">&nbsp;</p>
-						<p>&nbsp;</span>
-						</p>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-sm-4 col-lg-4 col-md-4">
-				<div class="thumbnail">
-					<img src="https://placehold.it/320x150" alt="">
-					<div class="caption">
-					<h4 class="pull-left myRed"><i class="fas fa-chalkboard fa-3x fa-fw"></i></h4>
-						<h4><a href="#">Practice</a></h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-					</div>
-					<div class="ratings">
-						<p class="pull-right">&nbsp;</p>
-						<p>&nbsp;</span>
-						</p>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-sm-4 col-lg-4 col-md-4">
-				<div class="thumbnail">
-					<img src="https://placehold.it/320x150" alt="">
-					<div class="caption">
-					<h4 class="pull-left myGreen"><i class="fas fa-user-circle fa-3x fa-fw"></i></h4>
-						<h4><a href="#">My Stuff</a></h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-					</div>
-					<div class="ratings">
-						<p class="pull-right">&nbsp;</p>
-						<p>&nbsp;</span>
-						</p>
-					</div>
-				</div>
-			</div>
-
-		</div>
-
-
-
-
-
-
-
-		<?php	echo "<hr/>";
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<span class="panel-title">
+			<?php echo __('Dashboard');?>
+		</span>
+	</div>
+	<div class="panel-body dashboard-section">
+<?php	if($this->UserAuth->isLogged()) {
+			echo __('Hello').' '.h($var['first_name']).' '.h($var['last_name']);
+			echo "<br/><br/>";
+			$lastLoginTime = $this->UserAuth->getLastLoginTime();
+			if($lastLoginTime) {
+				echo __('Your last login time is ').$lastLoginTime;
+				echo "<br/><br/>";
+			}
+			echo "<h4><span class='label label-default'>My Account</span></h4><br/>";
+			if($this->UserAuth->HP('Users', 'myprofile', 'Usermgmt')) {
+				echo $this->Html->link(__('My Profile'), ['controller'=>'Users', 'action'=>'myprofile', 'plugin'=>'Usermgmt'], ['class'=>'btn btn-default um-btn']);
+			}
+			if($this->UserAuth->HP('Users', 'editProfile', 'Usermgmt')) {
+				echo $this->Html->link(__('Edit Profile'), ['controller'=>'Users', 'action'=>'editProfile', 'plugin'=>'Usermgmt'], ['class'=>'btn btn-default um-btn']);
+			}
+			if($this->UserAuth->HP('Users', 'changePassword', 'Usermgmt')) {
+				echo $this->Html->link(__('Change Password'), ['controller'=>'Users', 'action'=>'changePassword', 'plugin'=>'Usermgmt'], ['class'=>'btn btn-default um-btn']);
+			}
+			if(ALLOW_DELETE_ACCOUNT && $this->UserAuth->HP('Users', 'deleteAccount', 'Usermgmt') && !$this->UserAuth->isAdmin()) {
+				echo $this->Form->postLink(__('Delete Account'), ['controller'=>'Users', 'action'=>'deleteAccount', 'plugin'=>'Usermgmt'], ['escape'=>false, 'class'=>'btn btn-default um-btn', 'confirm'=>__('Are you sure you want to delete your account?')]);
+			}
+			echo "<hr/>";
 
 			if($this->UserAuth->isAdmin()) {
 				echo "<h4><span class='label label-default'>User Management</span></h4><br/>";
@@ -147,13 +124,6 @@
 				}
 				echo "<hr/>";
 			}
-		 ?>
-
+		} ?>
+	</div>
 </div>
-    <div id="footer">
-        <div class="container">
-            <p class="muted">Copyright &copy; <?php echo date('Y');?> CWX Membership Portal. All Rights Reserved. Developed By  <a href="http://www.lovettcreations.org/" target='_blank'>Lovett Creations</a>.</p>
-        </div>
-    </div>
-</body>
-</html>

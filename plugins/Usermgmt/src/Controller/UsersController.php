@@ -136,6 +136,7 @@ class UsersController extends UsermgmtAppController {
 	 */
 	public function dashboard() {
 		/* Do here something for user */
+$this->viewBuilder()->layout('dashboard'); // New in 3.1
 	}
 	/**
 	 * It displays all userss
@@ -790,6 +791,11 @@ class UsersController extends UsermgmtAppController {
 	 * @return void
 	 */
 	public function accessDenied() {
+
+				 $this->viewBuilder()->layout('default2'); // New in 3.1
+
+		        //Don't forget to add use Cake\Event\Event;
+
 
 	}
 	/**

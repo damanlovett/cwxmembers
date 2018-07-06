@@ -5,15 +5,14 @@
  */
 ?>
 <div class="users index large-12 medium-11 columns content">
-    <h3><?= __('Users') ?></h3>
+    <h3><i class="fas fa-user fa-1x fa-fw"></i>&nbsp;&nbsp;<?= __('Players') ?></h3>
     <table class="basicTable" cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('user_group_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('username') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('first_name') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('last_name') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('user_group_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('username') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('active') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('club_standing_id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -22,12 +21,11 @@
         <tbody>
             <?php foreach ($users as $user): ?>
             <tr>
-                <td><?= $this->Number->format($user->id) ?></td>
-                <td><?= $user->has('user_group') ? $this->Html->link($user->user_group->name, ['controller' => 'UserGroups', 'action' => 'view', $user->user_group->id]) : '' ?></td>
-                <td><?= h($user->username) ?></td>
                 <td><?= h($user->first_name) ?></td>
                 <td><?= h($user->last_name) ?></td>
-                <td><?= $this->Number->format($user->active) ?></td>
+                <td><?= $user->has('user_group') ? $this->Html->link($user->user_group->name, ['controller' => 'UserGroups', 'action' => 'view', $user->user_group->id]) : '' ?></td>
+                <td><?= h($user->username) ?></td>
+                <td><?= $user->has('active') ? "Yes" : "No" ?></td>
                 <td><?= $user->has('club_standing') ? $this->Html->link($user->club_standing->title, ['controller' => 'ClubStandings', 'action' => 'view', $user->club_standing->id]) : '' ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'mview', $user->id]) ?>

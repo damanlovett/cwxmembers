@@ -4,149 +4,87 @@
  * @var \App\Model\Entity\User $user
  */
 ?>
-<div class="users view large-12 medium-11 columns content">
-    <h3><i class="fas fa-chalkboard fa-1x fa-fw"></i>&nbsp;&nbsp;<?= 'My Activities' ?></h3>
-
-
-
-
-<div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h2>&nbsp;</h2>
-                    <span class="pull-right">
-                        <!-- Tabs -->
-                        <ul class="nav panel-tabs">
-                            <li class="active"><a href="#tab1" data-toggle="tab">My Line Ups</a></li>
-                            <li><a href="#tab2" data-toggle="tab">Practice :: Check ins</a></li>
-                            <li><a href="#tab3" data-toggle="tab">Show :: Sign Ups</a></li>
-                        </ul>
-                    </span>
-                </div>
-              <hr />
-                <div class="panel-body">
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="tab1">
-
-Coming Soon ( still under construction)
-
-                        </div>
-                        <div class="tab-pane" id="tab2">
-
-Coming Soon ( still under construction)
-
-                        </div>
-                        <div class="tab-pane" id="tab3">
-
-Coming Soon ( still under construction)
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div  style="display:none" > <!-- Heading page until finished -->
-    <div class="related">
-
-
-
-
-
-
-<table cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('show_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('signup_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('role_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('role2_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('callout') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($assignments as $assignment): ?>
-            <tr>
-                <td><?= $this->Number->format($assignment->id) ?></td>
-                <td><?= $assignment->has('show') ? $this->Html->link($assignment->show->id, ['controller' => 'Shows', 'action' => 'view', $assignment->show->id]) : '' ?></td>
-                <td><?= $assignment->has('user') ? $this->Html->link($assignment->user->id, ['controller' => 'Users', 'action' => 'view', $assignment->user->id]) : '' ?></td>
-                <td><?= $assignment->has('show') ? $assignment->show->schedule : '' ?></td>
-                <td><?= $assignment->has('role') ? $this->Html->link($assignment->role->name, ['controller' => 'Roles', 'action' => 'view', $assignment->role->id]) : '' ?></td>
-                <td><?= $assignment->has('roles2') ? $this->Html->link($assignment->roles2->name, ['controller' => 'Roles', 'action' => 'view', $assignment->roles2->id]) : '' ?></td>
-                <td><?= $this->Number->format($assignment->callout) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $assignment->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $assignment->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $assignment->id], ['confirm' => __('Are you sure you want to delete # {0}?', $assignment->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
+<div class="players view large-12 medium-11 columns content">
+    <h3><?= h($user->id) ?></h3>
+    <table class="vertical-table">
+        <tr>
+            <th scope="row"><?= __('User Group') ?></th>
+            <td><?= $user->has('user_group') ? $this->Html->link($user->user_group->name, ['controller' => 'UserGroups', 'action' => 'view', $user->user_group->id]) : '' ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Username') ?></th>
+            <td><?= h($user->username) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Password') ?></th>
+            <td><?= h($user->password) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Email') ?></th>
+            <td><?= h($user->email) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('First Name') ?></th>
+            <td><?= h($user->first_name) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Last Name') ?></th>
+            <td><?= h($user->last_name) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Gender') ?></th>
+            <td><?= h($user->gender) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Photo') ?></th>
+            <td><?= h($user->photo) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Club Standing') ?></th>
+            <td><?= $user->has('club_standing') ? $this->Html->link($user->club_standing->title, ['controller' => 'ClubStandings', 'action' => 'view', $user->club_standing->id]) : '' ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Ip Address') ?></th>
+            <td><?= h($user->ip_address) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Id') ?></th>
+            <td><?= $this->Number->format($user->id) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Active') ?></th>
+            <td><?= $this->Number->format($user->active) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Email Verified') ?></th>
+            <td><?= $this->Number->format($user->email_verified) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Created By') ?></th>
+            <td><?= $this->Number->format($user->created_by) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Modified By') ?></th>
+            <td><?= $this->Number->format($user->modified_by) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Bday') ?></th>
+            <td><?= h($user->bday) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Last Login') ?></th>
+            <td><?= h($user->last_login) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Created') ?></th>
+            <td><?= h($user->created) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Modified') ?></th>
+            <td><?= h($user->modified) ?></td>
+        </tr>
     </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <div class="related">
         <h4><?= __('Related Assignments') ?></h4>
         <?php if (!empty($user->assignments)): ?>
         <table cellpadding="0" cellspacing="0">
@@ -164,7 +102,7 @@ Coming Soon ( still under construction)
             <?php foreach ($user->assignments as $assignments): ?>
             <tr>
                 <td><?= h($assignments->id) ?></td>
-                <td><?= h($assignments->show) ?></td>
+                <td><?= h($assignments->show_id) ?></td>
                 <td><?= h($assignments->user_id) ?></td>
                 <td><?= h($assignments->signup_id) ?></td>
                 <td><?= h($assignments->role_id) ?></td>
@@ -556,5 +494,4 @@ Coming Soon ( still under construction)
         </table>
         <?php endif; ?>
     </div>
-</div> <!------- End of Display None ------->
 </div>

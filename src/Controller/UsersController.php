@@ -52,7 +52,7 @@ class UsersController extends AppController
     }
 
     /**
-     * View method
+     * Me method
      *
      * @param string|null $id User id.
      * @return \Cake\Http\Response|void
@@ -66,7 +66,25 @@ class UsersController extends AppController
             'contain' => ['UserGroups', 'ClubStandings', 'Assignments', 'Checkins', 'LoginTokens', 'ScheduledEmailRecipients', 'Signups', 'UserActivities', 'UserContacts', 'UserDetails', 'UserEmailRecipients', 'UserEmailSignatures', 'UserEmailTemplates', 'UserSocials']
         ]);
 
+
         $this->set('user', $user);
+
+        $this->loadModel('Assignments');
+        $assignments = $this->Assignments->findAllByUser_id($id)->contain([
+            'Roles' => function ($q) {
+               return $q
+                    ->select('name');},
+            'Shows' => function ($q) {
+               return $q
+                    ->select('schedule');},
+        ]);
+        $assignments->select([
+                      'id',
+                      'role_id'
+                    ]);
+
+                $this->set('assignments', $this->paginate($assignments));
+
     }
 
     /**
@@ -78,11 +96,41 @@ class UsersController extends AppController
      */
     public function mview($id = null)
     {
+
+        $id = $this->UserAuth->getUserId();
+
         $user = $this->Users->get($id, [
             'contain' => ['UserGroups', 'ClubStandings', 'Assignments', 'Checkins', 'LoginTokens', 'ScheduledEmailRecipients', 'Signups', 'UserActivities', 'UserContacts', 'UserDetails', 'UserEmailRecipients', 'UserEmailSignatures', 'UserEmailTemplates', 'UserSocials']
         ]);
 
         $this->set('user', $user);
+
+        $this->loadModel('UserDetails');
+        $membership = $this->UserDetails->findByUser_id($id)
+                    ->contain(['MemberStandings']);
+
+
+        $this->set('membership', $membership);
+
+
+
+
+    }
+    /**
+     * View method
+     *
+     * @param string|null $id User id.
+     * @return \Cake\Http\Response|void
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function view($id = null)
+    {
+        $user = $this->Users->get($id, [
+            'contain' => ['UserGroups', 'ClubStandings', 'Assignments', 'Checkins', 'LoginTokens', 'ScheduledEmailRecipients', 'Signups', 'UserActivities', 'UserContacts', 'UserDetails', 'UserEmailRecipients', 'UserEmailSignatures', 'UserEmailTemplates', 'UserSocials']
+        ]);
+
+        $this->set('user', $user);
+
     }
 
     /**

@@ -4,16 +4,12 @@
  * @var \App\Model\Entity\Practice[]|\Cake\Collection\CollectionInterface $practices
  */
 ?>
-<div style="min-height: 100px">
-    &nbsp;
-</div>
 <div class="practices index large-12 medium-12 columns content">
-    <h3><i class="fas fa-chalkboard fa-2x fa-fw"></i><?= 'Practices' ?></h3>
-    <table cellpadding="0" cellspacing="0">
+    <h3><i class="fas fa-calendar fa-1x fa-fw"></i>&nbsp;&nbsp;<?= __('Practice') ?></h3>
+    <table class="table table-striped" cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('month_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('schedule') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('schedule', 'Date') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('title') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('leader') ?></th>
                 <th scope="col" class="actions"><?= __('') ?></th>
@@ -22,17 +18,12 @@
         <tbody>
             <?php foreach ($practices as $practice): ?>
             <tr>
-                <td><?= $practice->has('month') ? $this->Html->link($practice->month->title, ['controller' => 'Months', 'action' => 'view', $practice->month->id]) : '' ?></td>
-                <td><?= h($practice->schedule) ?></td>
+                <td><?= h($practice->schedule->format('F j, Y')) ?></td>
                 <td><?= h($practice->title) ?></td>
-                <td><?= h($practice->leader) ?></td>
+                <td><i class="fas fa-chalkboard-teacher fa-l fa-fw text-primary"></i>&nbsp;&nbsp;<?= h($practice->leader) ?></td>
                 <td class="actions">
 
-                <?php if ($practice->open == 1) {
-                    echo $this->Html->link(__('Checkin'), ['action' => 'checkin', $practice->id], ['class' => 'btn btn-primary']);
-                                }else{
-                    echo $this->Html->link(__('View'), ['action' => 'checkin', $practice->id], ['class' => 'btn btn-primary']);
-                                                }?>
+                <?php echo $this->Html->link(__(''), ['action' => 'view', $practice->id], ['class'=>'fas fa-chalkboard fa-l  fa-fw fa-l text-primary', 'title'=>'View Practice']);?>
 
                 </td>
             </tr>

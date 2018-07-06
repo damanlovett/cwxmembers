@@ -5,7 +5,7 @@
  */
 ?>
 <div class="shows index large-12 medium-11 columns content">
-    <h3><i class="fas fa-calendar fa-2x fa-fw"></i><?= __('Shows') ?></h3>
+    <h3><i class="fas fa-calendar fa-1x fa-fw"></i>&nbsp;&nbsp;<?= __('Shows') ?></h3>
     <table class="table table-striped" cellpadding="0" cellspacing="0">
         <thead>
             <tr>
@@ -23,13 +23,13 @@
             <tr>
                 <td><?= $i.". ".$show->dropdown->name ?></td>
                 <td><?= $show->schedule->format('M. j, Y g:i a') ?></td>
-                <td style="text-align: center;"><?= $show->signups_open ? "<i class='fas fa-circle text-success'></i>" : '' ?></td>
-                <td style="text-align: center;"><?= $show->visible ? "<i class='fas fa-circle text-success'></i>" : '' ?></td>
+                <td style="text-align: center;"><?= $show->signups_open ? "<i class='fas fa-circle text-success fa-sm'></i>" : '' ?></td>
+                <td style="text-align: center;"><?= $show->visible ? "<i class='fas fa-circle text-success fa-sm'></i>" : '' ?></td>
                 <td class="actions">
 
-                        <?= $this->Html->link(__(''), ['action' => 'mview', $show->id], ['class'=>'fas fa-edit fa-lg  fa-fw text-warning', 'title'=>'View / Assign Show']) ?>
-                        <?= $this->Html->link(__(''), ['controller' => 'Months', 'action' => 'view', $show->month->id], ['class'=>'fas fa-calendar-alt fa-lg  fa-fw text-success', 'title'=>'View Month']) ?></li>
-                        <?= $this->Html->link(__(''), ['action' => 'edit', $show->id], ['class'=>'fas fa-calendar fa-lg  fa-fw text-warning', 'title'=>'Edit Show']) ?>
+                        <?= $this->Html->link(__(''), ['action' => 'mview', $show->id], ['class'=>'fas fa-edit fa-lg  fa-fw text-primary', 'title'=>'View / Assign Show']) ?>
+                        <?= $this->Html->link(__(''), ['controller' => 'Months', 'action' => 'view', $show->month->id], ['class'=>'fas fa-calendar-alt fa-lg  fa-fw text-primary', 'title'=>'View Month']) ?></li>
+                        <?= $this->Html->link(__(''), ['action' => 'edit', $show->id], ['class'=>'fas fa-calendar fa-lg  fa-fw text-primary', 'title'=>'Edit Show']) ?>
                         <?= $this->Form->postLink(__(''), ['action' => 'remove', $show->id], ['class'=>'fas fa-times fa-lg  fa-fw text-danger', 'title'=>'Delete Show']) ?>
                 </td>
             </tr>

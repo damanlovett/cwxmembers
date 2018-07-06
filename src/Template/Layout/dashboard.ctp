@@ -103,34 +103,6 @@ $cakeDescription = "Lovett Creations :: You'll Love What We Do";
         <a class="navbar-brand" " href="/"><?= $this->Html->image('CWXRedBrand.png', ['alt' => 'CWX Brand', 'class'=>'brandImg']); ?>ComedyWorx Membership Portal</a>
     </div>
 
- <!--- Portal Manager -> months/index ( reroute name )
-        ( add nav bar for access all the below page title )
-        ( wishlist add count for shows / practices on index             page )
-    -> months/mview
-        ( add CRUD icons )
-        ( wishlist add pagnation for shows )
- Table Manager -> dropdown/index
-
-
- ------- Separator ---------
- show -> shows/manager
-        ( add CRUD icons )
-    -> shows/edit
-        ( format page / remove nav / correct date field )
-    -> shows/mview ( add icon )
-
- practice -> practices/manager
-        ( remove nav / make icons for CRUD )
-    -> practices/mview
-        ( create page from checkin / add Delete / add user              form with date )
- checkins -> checkins/index
-        ( remove nav / remove view&edit / format displayname /          move user first )
- players -> users/index
-        ( format page / remove nav )
-    -> users/mview
- memberships ->user-details
-        ( format page )
--->
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
      <ul class="nav navbar-nav navbar-center" style="margin-left:20px">
@@ -157,6 +129,13 @@ $cakeDescription = "Lovett Creations :: You'll Love What We Do";
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+    <div class="jumbotron text-success">
+  <div class="container">
+    <h1 class="display-4">CWX Membership Portal</h1>
+    <p class="lead">Welcome to the CWX portal, have a seat, take a tour, stay for awhile.</p>
+  </div>
+</div>
+
     <?= $this->Flash->render() ?>
     <div class="container clearfix">
            <?php /*         <?php if($this->UserAuth->isLogged()) { echo $this->element('Usermgmt.dashboard'); } ?> -->
@@ -165,9 +144,9 @@ $cakeDescription = "Lovett Creations :: You'll Love What We Do";
 
         <?= $this->fetch('content') ?>
     </div>
-    <div id="footer">
-        <div class="container">
-            <p class="muted">Copyright &copy; <?php echo date('Y');?> CWX Membership Portal. All Rights Reserved. Developed By  <a href="http://www.lovettcreations.org/" target='_blank'>Lovett Creations</a>.</p>
+    <div id="footer" style="background-color:#fff !important;">
+        <div class="container" style="background-color:#fff">
+            <p class="muted" style="background-color:#fff">Copyright &copy; <?php echo date('Y');?> CWX Membership Portal. All Rights Reserved. Developed By  <a href="http://www.lovettcreations.org/" target='_blank'>Lovett Creations</a>.</p>
         </div>
     </div>
 </body>

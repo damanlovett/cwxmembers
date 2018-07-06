@@ -28,23 +28,17 @@
             <thead>
                 <th scope="col"><?= __('Name') ?></th>
                 <th scope="col"><?= __('Date') ?></th>
-                <th scope="col"><?= __('Signups Open') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th style="text-align: center" scope="col"><?= __('Signups Open') ?></th>
             </thead>
             <?php foreach ($month->shows as $shows): ?>
             <tr>
                 <td><?= h($shows->Dropdowns['name']) ?></td>
                 <td><?= h($shows->schedule->format('D jS - g:i a')) ?></td>
-                <td><?= h($this->Switches->OnOff($shows->signups_open)) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Shows', 'action' => 'view', $shows->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Shows', 'action' => 'edit', $shows->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Shows', 'action' => 'delete', $shows->id], ['confirm' => __('Are you sure you want to delete # {0}?', $shows->id)]) ?>
-                </td>
+                <td style="text-align: center"><?= $shows->signups_open ? "<i class='fas fa-circle fa-sm fa-fw text-success'></i>" : '' ?></td>
             </tr>
             <?php endforeach; ?>
             <tfoot>
-                <td colspan="4">&nbsp;</td>
+                <td colspan="3">&nbsp;</td>
             </tfoot>
         </table>
         <?php endif; ?>
@@ -63,7 +57,7 @@
             <tr>
                 <td><?= h($practices->title) ?></td>
                 <td><?= h($practices->schedule->format('D jS - g:i a')) ?></td>
-                <td><?= h($practices->leader) ?></td>
+                <td><i class="fas fa-chalkboard-teacher fa-l fa-fw text-primary">&nbsp;&nbsp;</i><?= h($practices->leader) ?></td>
             </tr>
             <?php endforeach; ?>
             <tfoot>

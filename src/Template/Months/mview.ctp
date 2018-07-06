@@ -6,7 +6,7 @@
 ?>
 
 <div class="months view large-12 medium-12 columns content">
-<h3><i class="fas fa-calendar-alt fa-2x fa-fw"></i><?= $month->title." ".$month->year; ?></h3>
+<h3><i class="fas fa-calendar-alt fa-1x fa-fw"></i>&nbsp;&nbsp;<?= $month->title." ".$month->year; ?></h3>
 
 
 <div class="row">

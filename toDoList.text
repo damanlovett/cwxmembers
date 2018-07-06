@@ -1,16 +1,18 @@
 Dashboard
 	Profiles ->
 
-	Shows -> shows/index
+	*Shows -> shows/index
 		( make signup smaller )
 
-	Practice -> practies/index 
+	*Practice -> practies/index 
 			( format page / remove month / reformat time )
 		-> practices/view 
-			( create page from checkin / remove attendance 			 	/ move panel display discription as 					whole )
+			( create page from checkin / remove attendance 			 	/ move panel display discription as 					whole / change view and checkin to 				awesome Fonts )
 			
 	My Activities -> users/me ( routes )
 
+NOTE: Bake btn btn-sm
+NOTE: Change Pages fa-1x
 
 ADMIN
  Portal Manager -> months/index ( reroute name )
