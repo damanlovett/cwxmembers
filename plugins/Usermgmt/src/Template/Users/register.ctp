@@ -3,7 +3,7 @@
 Website- http://ektanjali.com
 Plugin Demo- http://cakephp3-user-management.ektanjali.com/
 Author- Chetan Varshney (The Director of Ektanjali Softwares Pvt Ltd)
-Plugin Copyright No- 11498/2012-CO/L
+Plugin Copyright No- 114912/2012-CO/L
 
 UMPremium is a copyrighted work of authorship. Chetan Varshney retains ownership of the product and any copies of it, regardless of the form in which the copies may exist. This license is not a sale of the original product or any copies.
 
@@ -21,8 +21,10 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE PRODUCT OR THE USE OR OTHER DEALINGS IN THE PRODUCT. */
 ?>
-<div class="panel panel-primary">
-	<div class="panel-heading">
+      <div class="content">
+      	<div class="form-registration">
+      		<h1>CWX Membership Portal</h1>
+			<div class="panel-heading">
 		<span class="panel-title">
 			<?php echo __('Sign Up');?>
 		</span>
@@ -32,7 +34,7 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
 	</div>
 	<div class="panel-body">
 		<div class="row">
-			<div class="col-lg-8 col-md-8 col-sm-8">
+			<div class="col-lg-12 col-md-12 col-sm-12">
 				<?php echo $this->element('Usermgmt.ajax_validation', ['formId'=>'registerForm', 'submitButtonId'=>'registerSubmitBtn']);?>
 				<?php echo $this->Form->create($userEntity, ['id'=>'registerForm', 'class'=>'form-horizontal', 'novalidate'=>true]);?>
 				<div class="um-form-row form-group">
@@ -49,31 +51,31 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
 				</div>
 				<div class="um-form-row form-group">
 					<label class="col-sm-3 control-label required"><?php echo __('First Name');?></label>
-					<div class="col-sm-6">
+					<div class="col-sm-9">
 						<?php echo $this->Form->input('Users.first_name', ['type'=>'text', 'label'=>false, 'div'=>false, 'class'=>'form-control']);?>
 					</div>
 				</div>
 				<div class="um-form-row form-group">
 					<label class="col-sm-3 control-label"><?php echo __('Last Name');?></label>
-					<div class="col-sm-6">
+					<div class="col-sm-9">
 						<?php echo $this->Form->input('Users.last_name', ['type'=>'text', 'label'=>false, 'div'=>false, 'class'=>'form-control']);?>
 					</div>
 				</div>
 				<div class="um-form-row form-group">
 					<label class="col-sm-3 control-label required"><?php echo __('Email');?></label>
-					<div class="col-sm-6">
+					<div class="col-sm-9">
 						<?php echo $this->Form->input('Users.email', ['type'=>'text', 'label'=>false, 'div'=>false, 'class'=>'form-control']);?>
 					</div>
 				</div>
 				<div class="um-form-row form-group">
 					<label class="col-sm-3 control-label required"><?php echo __('Password');?></label>
-					<div class="col-sm-6">
+					<div class="col-sm-9">
 						<?php echo $this->Form->input('Users.password', ['type'=>'password', 'label'=>false, 'div'=>false, 'class'=>'form-control']);?>
 					</div>
 				</div>
 				<div class="um-form-row form-group">
 					<label class="col-sm-3 control-label required"><?php echo __('Confirm Password');?></label>
-					<div class="col-sm-6">
+					<div class="col-sm-9">
 						<?php echo $this->Form->input('Users.cpassword', ['type'=>'password', 'label'=>false, 'div'=>false, 'class'=>'form-control']);?>
 					</div>
 				</div>
@@ -97,9 +99,7 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
 				</div>
 				<?php echo $this->Form->end();?>
 			</div>
-			<div class="col-lg-4 col-md-4 col-sm-4">
-				<?php echo $this->element('Usermgmt.provider'); ?>
-			</div>
 		</div>
-	</div>
+</div>
+</div>
 </div>

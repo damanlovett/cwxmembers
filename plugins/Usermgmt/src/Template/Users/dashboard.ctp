@@ -21,7 +21,7 @@
 					<img src="https://placehold.it/320x150" alt="">
 					<div class="caption">
 					<h4 class="pull-left myBlue"><i class="fas fa-calendar fa-3x fa-fw"></i></h4>
-						<h4><a href="#">Shows</a></h4>
+						<h4><?= $this->Html->link(__('Shows'), ['controller' => 'shows', 'action' => 'index','plugin'=>false]);?></h4>
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
 					</div>
 					<div class="ratings">
@@ -37,7 +37,7 @@
 					<img src="https://placehold.it/320x150" alt="">
 					<div class="caption">
 					<h4 class="pull-left myRed"><i class="fas fa-chalkboard fa-3x fa-fw"></i></h4>
-						<h4><a href="#">Practice</a></h4>
+						<h4><?= $this->Html->link(__('Practice'), ['controller' => 'practices', 'action' => 'index','plugin'=>false]);?></h4>
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
 					</div>
 					<div class="ratings">
@@ -53,7 +53,7 @@
 					<img src="https://placehold.it/320x150" alt="">
 					<div class="caption">
 					<h4 class="pull-left myGreen"><i class="fas fa-user-circle fa-3x fa-fw"></i></h4>
-						<h4><a href="#">My Stuff</a></h4>
+						<h4><?= $this->Html->link(__('My Stuff'), ['controller' => 'users', 'action' => 'me','plugin'=>false]);?></li></h4>
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
 					</div>
 					<div class="ratings">

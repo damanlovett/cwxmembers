@@ -1,7 +1,9 @@
 body {
-   background-image: url("../simg/wallBackground.jpg");
+background: #F4F1E4;
+background: -moz-linear-gradient(-45deg, #F4F1E4 0%, #F9F8FF 100%);
+background: -webkit-linear-gradient(-45deg, #F4F1E4 0%, #F9F8FF 100%);
+background: linear-gradient(135deg, #F4F1E4 0%, #F9F8FF 100%);
 }
-
 .yes {
   color:green;
 }
@@ -769,4 +771,7 @@ h4.myGreen {
 }
 h4.myRed {
   color: #b30000;
+}
+.content {
+  background-color: #fff;
 }

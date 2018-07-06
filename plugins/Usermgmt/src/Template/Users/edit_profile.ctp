@@ -21,15 +21,8 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE PRODUCT OR THE USE OR OTHER DEALINGS IN THE PRODUCT. */
 ?>
-<div class="panel panel-primary">
-	<div class="panel-heading">
-		<span class="panel-title">
-			<?php echo __('Edit Profile'); ?>
-		</span>
-		<span class="panel-title-right">
-			<?php echo $this->Html->link(__('Back', true), ['action'=>'myprofile'], ['class'=>'btn btn-default']); ?>
-		</span>
-	</div>
+<div class="users view large-12 medium-11 columns content">
+    <h3><i class="fas fa-user fa-lx fa-fw"></i>&nbsp;&nbsp;<?= h($var['first_name']."'s Profile") ?></h3>
 	<div class="panel-body">
 		<?php echo $this->element('Usermgmt.ajax_validation', ['formId'=>'editProfileForm', 'submitButtonId'=>'editProfileSubmitBtn']); ?>
 		<?php echo $this->Form->create($userEntity, ['type'=>'file', 'id'=>'editProfileForm', 'class'=>'form-horizontal']); ?>
@@ -93,4 +86,6 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
 		</div>
 		<?php echo $this->Form->end(); ?>
 	</div>
+
+
 </div>

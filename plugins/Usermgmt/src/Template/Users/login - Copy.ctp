@@ -21,41 +21,42 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE PRODUCT OR THE USE OR OTHER DEALINGS IN THE PRODUCT. */
 ?>
-      <div class="content">
-      	<div class="form">
-      		<h1>CWX Membership Portal</h1>
+<div class="row" style="margin-top: 50px">
+	<div class="col-sm-6 col-sm-offset-3">
+		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<span class="panel-title">
 					<?php echo __('Sign In'); ?>
 				</span>
 				<?php if(SITE_REGISTRATION) { ?>
 				<span class="panel-title-right">
-					<?php echo $this->Html->link(__('Sign Up', true), ['controller'=>'Users', 'action'=>'register', 'plugin'=>'Usermgmt'], ['class'=>'btn btn-default btn-sm']); ?>
+					<?php echo $this->Html->link(__('Sign Up', true), ['controller'=>'Users', 'action'=>'register', 'plugin'=>'Usermgmt'], ['class'=>'btn btn-default']); ?>
 				</span>
 				<?php } ?>
 			</div>
 			<div class="panel-body">
 				<?php echo $this->element('Usermgmt.ajax_validation', ['formId'=>'loginForm', 'submitButtonId'=>'loginSubmitBtn']); ?>
 				<?php echo $this->Form->create($userEntity, ['id'=>'loginForm', 'class'=>'form-horizontal']); ?>
-				<?php /* <div class="um-form-row form-group"> */ ?>
-					<label class="control-label required"><?php echo __('Email / Username'); ?></label>
-				<?php /*	<div class="col-sm-7"> */ ?>
+				<div class="um-form-row form-group">
+					<label class="col-sm-4 control-label required"><?php echo __('Email / Username'); ?></label>
+					<div class="col-sm-7">
 						<?php echo $this->Form->input('Users.email', ['type'=>'text', 'label'=>false, 'div'=>false, 'placeholder'=>__('Email / Username'), 'class'=>'form-control']); ?>
-				<?php /*	</div>
+					</div>
 				</div>
-				<div class="um-form-row form-group"> */?>
-					<label class="control-label required"><?php echo __('Password'); ?></label>
-			<?php /*		<div class="col-sm-7"> */?>
+				<div class="um-form-row form-group">
+					<label class="col-sm-4 control-label required"><?php echo __('Password'); ?></label>
+					<div class="col-sm-7">
 						<?php echo $this->Form->input('Users.password', ['type'=>'password', 'label'=>false, 'div'=>false, 'placeholder'=>__('Password'), 'class'=>'form-control']); ?>
-			<?php /*		</div>
-				</div> */?>
+					</div>
+				</div>
 				<?php if(USE_REMEMBER_ME) { ?>
 					<div class="um-form-row form-group">
 						<?php if(!isset($userEntity['remember'])) {
 								$userEntity['remember'] = false;
 							} ?>
-						<div class="col-sm-6">
-							<?php echo $this->Form->input('Users.remember', ['type'=>'checkbox', 'label'=>'Remember Me', 'div'=>false, 'class'=>'my_checkbox']); ?>
+						<label class="col-sm-4 control-label"><?php echo __('Remember me'); ?></label>
+						<div class="col-sm-7">
+							<?php echo $this->Form->input('Users.remember', ['type'=>'checkbox', 'label'=>false, 'div'=>false, 'style'=>'margin-left:0']); ?>
 						</div>
 					</div>
 				<?php } ?>
@@ -76,11 +77,12 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
 				<?php } ?>
 				<div class="um-button-row">
 					<?php echo $this->Form->Submit(__('Sign In'), ['div'=>false, 'class'=>'btn btn-primary', 'id'=>'loginSubmitBtn']); ?>
-					<hr />
-					<?php echo $this->Html->link(__('Forgot Password?'), '/forgotPassword', ['class'=>'btn btn-default pull-right um-btn btn-sm']); ?>
-					<?php echo $this->Html->link(__('Email Verification'), '/emailVerification', ['class'=>'btn btn-default pull-left um-btn btn-sm']); ?>
+					<?php echo $this->Html->link(__('Forgot Password?'), '/forgotPassword', ['class'=>'btn btn-default pull-right um-btn']); ?>
+					<?php echo $this->Html->link(__('Email Verification'), '/emailVerification', ['class'=>'btn btn-default pull-right um-btn']); ?>
 				</div>
 				<?php echo $this->Form->end(); ?>
+				<?php echo $this->element('Usermgmt.provider'); ?>
 			</div>
 		</div>
 	</div>
+</div>

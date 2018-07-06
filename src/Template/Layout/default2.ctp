@@ -90,6 +90,7 @@ $cakeDescription = "Lovett Creations :: You'll Love What We Do";
     <?= $this->fetch('script') ?>
 </head>
 <body>
+    <div class="background"></div>
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->

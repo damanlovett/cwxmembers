@@ -806,6 +806,9 @@ $this->viewBuilder()->layout('dashboard'); // New in 3.1
 	 * @return void
 	 */
 	public function login($connect=null) {
+
+		 $this->viewBuilder()->layout('login'); // New in 3.1
+
 		if($this->UserAuth->isLogged()) {
 			if($connect) {
 				$this->render('popup');
@@ -1186,6 +1189,9 @@ $this->viewBuilder()->layout('dashboard'); // New in 3.1
 	 * @return void
 	 */
 	public function register() {
+
+		 $this->viewBuilder()->layout('login'); // New in 3.1
+
 		$userId = $this->UserAuth->getUserId();
 		if($userId) {
 			$this->redirect(['action'=>'dashboard']);
@@ -1278,6 +1284,12 @@ $this->viewBuilder()->layout('dashboard'); // New in 3.1
 	 * @return void
 	 */
 	public function editProfile() {
+
+		            $this->viewBuilder()->layout('default2'); // New in 3.1
+
+
+		        //Don't forget to add use Cake\Event\Event;
+
 		$userId = $this->UserAuth->getUserId();
 		if(!empty($userId)) {
 			$userEntity = $this->Users->getUserById($userId);
@@ -1331,7 +1343,7 @@ $this->viewBuilder()->layout('dashboard'); // New in 3.1
 							}
 							$this->Users->save($userEntity, ['validate'=>false]);
 							$this->Flash->success(__('Your profile has been successfully updated'));
-							$this->redirect(['action'=>'myprofile']);
+			$this->redirect(['controller'=>'users', 'action'=>'mview','plugin'=>false]);
 						}
 					}
 				} else {
@@ -1347,7 +1359,7 @@ $this->viewBuilder()->layout('dashboard'); // New in 3.1
 			}
 		} else {
 			$this->Flash->error(__('Invalid User Id'));
-			$this->redirect(['action'=>'myprofile']);
+			$this->redirect(['controller'=>'users', 'action'=>'mview','plugin'=>false]);
 		}
 	}
 	/**
