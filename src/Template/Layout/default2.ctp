@@ -135,7 +135,7 @@ $cakeDescription = "Lovett Creations :: You'll Love What We Do";
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
      <ul class="nav navbar-nav navbar-center" style="margin-left:20px">
-         <p class="navbar-text pull-right"><?= $var['first_name'];?>, welcome to your CWX portalo <span style="margin-left:15px"><?= $this->Html->link(__('Sign Out'), ['controller'=>'Users', 'action'=>'logout', 'plugin'=>'Usermgmt'], ['class'=>'btn btn-sm btn-default']);?></span></p>
+         <p class="navbar-text pull-right"><?= $var['first_name'];?>, welcome to your CWX portal <span style="margin-left:15px"><?= $this->Html->link(__('Sign Out'), ['controller'=>'Users', 'action'=>'logout', 'plugin'=>'Usermgmt'], ['class'=>'btn btn-sm btn-default']);?></span></p>
         <li><?= $this->Html->link(__('My Profile'), ['controller' => 'users', 'action' => 'mview','plugin'=>false]);?></li>
         <li><?= $this->Html->link(__('Shows'), ['controller' => 'shows', 'action' => 'index','plugin'=>false]);?></li>
         <li><?= $this->Html->link(__('Practices'), ['controller' => 'practices', 'action' => 'index','plugin'=>false]);?></li>

@@ -229,6 +229,35 @@ $this->viewBuilder()->layout('default2'); // New in 3.1
     }
 
     /**
+     * Edit method
+     *
+     * @param string|null $id Assignment id.
+     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
+     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     */
+    public function medit($id = null)
+    {
+        $assignment = $this->Assignments->get($id, [
+            'contain' => []
+        ]);
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $assignment = $this->Assignments->patchEntity($assignment, $this->request->getData());
+            if ($this->Assignments->save($assignment)) {
+                $this->Flash->success(__('The assignment has been saved.'));
+
+                return $this->redirect(['controller'=>'Shows', 'action' => 'mview', $id]);
+            }
+            $this->Flash->error(__('The assignment could not be saved. Please, try again.'));
+        }
+        $shows = $this->Assignments->Shows->find('list', ['limit' => 200]);
+        $users = $this->Assignments->Users->find('list', ['limit' => 200]);
+        $signups = $this->Assignments->Signups->find('list', ['limit' => 200]);
+        $roles = $this->Assignments->Roles->find('list', ['limit' => 200]);
+        $showid = $id;
+        $this->set(compact('assignment', 'shows', 'users', 'signups', 'roles', 'showid'));
+    }
+
+    /**
      * Delete method
      *
      * @param string|null $id Assignment id.

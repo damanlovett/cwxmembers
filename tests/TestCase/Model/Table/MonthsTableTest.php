@@ -26,7 +26,8 @@ class MonthsTableTest extends TestCase
     public $fixtures = [
         'app.months',
         'app.practices',
-        'app.shows'
+        'app.shows',
+        'app.signups'
     ];
 
     /**

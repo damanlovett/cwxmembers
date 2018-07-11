@@ -33,6 +33,7 @@
                 <td><?php if (!empty($inshows->roles2)) : ?> <?= $inshows->roles2->name ?> <?php else : ?> <?= "none" ?> <?php endif; ?> </td>
                 <td class="actions">
                     <?= $this->Form->postLink(__(''), ['controller' => 'Assignments', 'action' => 'remove', $inshows->id], ['class'=>'fas icon fa-lg fa-fw fa-user-times', 'title'=>'Delete Assignment']) ?>
+                    <?= $this->Html->link(__(''), ['controller' => 'Assignments', 'action' => 'medit', $inshows->id], ['class'=>'fas icon fa-lg fa-fw fa-edit text-primary', 'title'=>'Edit Assignment']) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -64,7 +65,7 @@
                 <fieldset>
                 <legend><?= __('Assignment') ?></legend>
 
-                    <?= $this->Form->hidden('show_id', ['value' => $show->id]);?>
+                <?= $this->Form->hidden('show_id', ['value' => $show->id]);?>
                 <div class="row">
                 <div class="col-md-4">
                     <?= $this->Form->control('user_id', ['label'=>'Player','options' => $users, 'empty' => true]);?>
@@ -166,7 +167,7 @@
         <table cellpadding="0" cellspacing="0">
             <?php foreach ($callouts as $callouts): ?>
             <tr>
-                <td><?= h($callouts->user->fullName) ?>&nbsp;&nbsp;<?= $this->Html->link(__(''), ['controller' => 'Assignments', 'action' => 'edit', $callouts->id], ['class'=>'fas fa-edit fa-s  fa-fw text-warning', 'title'=>'Edit Assignment']) ?></td>
+                <td><?= h($callouts->user->fullName) ?>&nbsp;&nbsp;<?= $this->Html->link(__(''), ['controller' => 'Assignments', 'action' => 'medit', $callouts->id], ['class'=>'fas fa-edit fa-s  fa-fw text-warning', 'title'=>'Edit Assignment']) ?></td>
             </tr>
             <?php endforeach; ?>
         </table>

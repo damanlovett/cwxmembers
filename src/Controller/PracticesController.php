@@ -30,6 +30,7 @@ class PracticesController extends AppController
     {
         $this->paginate = [
             'limit' => 10,
+            'order' => ['Practices.schedule' => 'asc'],
             'conditions' => ['visible' => 1],
             'contain' => ['Months']
         ];
@@ -47,6 +48,7 @@ class PracticesController extends AppController
     {
         $this->paginate = [
             'limit' => 10,
+            'order' => ['Practices.schedule' => 'asc'],
             'contain' => ['Months']
         ];
         $practices = $this->paginate($this->Practices);
@@ -137,7 +139,7 @@ class PracticesController extends AppController
             if ($this->Practices->save($practice)) {
                 $this->Flash->success(__('The practice has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'manager']);
             }
             $this->Flash->error(__('The practice could not be saved. Please, try again.'));
         }
@@ -208,6 +210,6 @@ class PracticesController extends AppController
             $this->Flash->error(__('The practice could not be deleted. Please, try again.'));
         }
 
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect(['action' => 'manager']);
     }
 }

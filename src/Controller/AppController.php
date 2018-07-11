@@ -7,7 +7,7 @@ use Cake\Event\Event;
 class AppController extends Controller {
 
     public $components = ['Flash', 'Auth', 'Usermgmt.UserAuth'/*, 'Security', 'Csrf'*/];
-    public $helpers = ['Usermgmt.UserAuth', 'Usermgmt.Image', 'Form'];
+    public $helpers = ['Usermgmt.UserAuth', 'Usermgmt.Image', 'Form','Usermgmt.Tinymce', 'Usermgmt.Ckeditor'];
 
 
 

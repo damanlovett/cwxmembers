@@ -9,10 +9,12 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $title
  * @property string $year
+ * @property \Cake\I18n\FrozenDate $first_friday
  * @property \Cake\I18n\FrozenTime $created
  *
  * @property \App\Model\Entity\Practice[] $practices
  * @property \App\Model\Entity\Show[] $shows
+ * @property \App\Model\Entity\Signup[] $signups
  */
 class Month extends Entity
 {
@@ -29,9 +31,11 @@ class Month extends Entity
     protected $_accessible = [
         'title' => true,
         'year' => true,
+        'first_friday' => true,
         'created' => true,
         'practices' => true,
-        'shows' => true
+        'shows' => true,
+        'signups' => true
     ];
 
     // full_name virtual field

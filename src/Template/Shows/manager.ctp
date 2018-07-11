@@ -5,7 +5,10 @@
  */
 ?>
 <div class="shows index large-12 medium-11 columns content">
-    <h3><i class="fas fa-calendar fa-1x fa-fw"></i>&nbsp;&nbsp;<?= __('Shows') ?></h3>
+    <h3><i class="fas fa-calendar fa-1x fa-fw"></i>&nbsp;&nbsp;<?= __('Show Manager') ?>
+    <?= $this->Html->link(__('New Show'), ['action' => 'add'], ['class'=>'btn btn-default btn-sm pull-right', 'title'=>'New Show']) ?>
+
+    </h3>
     <table class="table table-striped" cellpadding="0" cellspacing="0">
         <thead>
             <tr>

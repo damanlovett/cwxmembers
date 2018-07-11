@@ -15,7 +15,8 @@
                         <!-- Tabs -->
                         <ul class="nav panel-tabs">
                             <li class="active"><a href="#tab1" data-toggle="tab">Shows</a></li>
-                            <li><a href="#tab2" data-toggle="tab">Practices</a></li>
+                            <li><a href="#tab2" data-toggle="tab">Signups</a></li>
+                            <li><a href="#tab3" data-toggle="tab">Practices</a></li>
                         </ul>
                     </span>
                 </div>
@@ -45,6 +46,39 @@
 
                         </div>
                         <div class="tab-pane" id="tab2">
+
+<?php if (!empty($signups)): ?>
+        <table  class="table table-striped" cellpadding="0" cellspacing="0">
+            <thead>
+                <th scope="col"><?= __('Show') ?></th>
+                <th scope="col"><?= __('Player')?></th>
+                <th scope="col"><?= __('Show Date') ?></th>
+            </thead>
+            <?php foreach ($signups as $signups): ?>
+            <tr>
+                <td><?= h($signups->show->dropdown['name']) ?></td>
+                <td><?= h($signups->user->fullName) ?></td>
+                <td><?= h($signups->show->schedule->format('D jS - g:i a')) ?></td>
+            </tr>
+            <?php endforeach; ?>
+            <tfoot>
+                <td colspan="3">    <div class="paginator">
+        <ul class="pagination">
+            <?= $this->Paginator->first('<< ' . __('first')) ?>
+            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->numbers() ?>
+            <?= $this->Paginator->next(__('next') . ' >') ?>
+            <?= $this->Paginator->last(__('last') . ' >>') ?>
+        </ul>
+        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+    </div>
+</td>
+            </tfoot>
+        </table>
+        <?php endif; ?>
+
+
+                        </div>                        <div class="tab-pane" id="tab3">
 
         <?php if (!empty($month->practices)): ?>
         <table  class="table table-striped" cellpadding="0" cellspacing="0">

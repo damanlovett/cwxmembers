@@ -65,4 +65,19 @@ class DropdownsTable extends Table
 
         return $validator;
     }
+    /**
+     * Used to get title by id
+     *
+     * @access public
+     * @param integer $id user id
+     * @return string
+     */
+    public function getDropdownById($id) {
+        $result = $this->find()
+                ->select(['Dropdowns.name'])
+                ->where(['Dropdowns.id'=>$id])
+                ->first();
+        $name = (!empty($result)) ? ($result['name']) : '';
+        return $name;
+    }
 }

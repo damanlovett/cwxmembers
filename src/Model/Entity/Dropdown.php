@@ -29,4 +29,10 @@ class Dropdown extends Entity
         'type' => true,
         'shows' => true
     ];
+
+    // full_name virtual field
+    protected function _getDisplayName()
+    {
+        return $this->_properties['name'];
+    }
 }

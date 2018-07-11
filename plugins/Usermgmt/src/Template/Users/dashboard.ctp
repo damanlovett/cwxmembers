@@ -18,11 +18,13 @@
 
 			<div class="col-sm-4 col-lg-4 col-md-4">
 				<div class="thumbnail">
-					<img src="https://placehold.it/320x150" alt="">
-					<div class="caption">
-					<h4 class="pull-left myBlue"><i class="fas fa-calendar fa-3x fa-fw"></i></h4>
-						<h4><?= $this->Html->link(__('Shows'), ['controller' => 'shows', 'action' => 'index','plugin'=>false]);?></h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+					<?= $this->Html->image('showPic.jpg', ['alt' => 'Shows']);?>
+					<div class="caption" style="text-align:center;">
+					<h4 class="myBlue"><i class="fas fa-calendar fa-3x fa-fw"></i></h4>
+					<h4 class="myBlue"><?= $this->Html->link(__('Shows'), ['controller' => 'shows', 'action' => 'index','plugin'=>false], ['class'=>'homeTitle text-primary']);?></h4>
+					<div class="cwxQuote">
+						<blockquote cite="Adam Mckay">You have to be able to fail with the improv. You have to not care.</blockquote>
+					</div>
 					</div>
 					<div class="ratings">
 						<p class="pull-right">&nbsp;</p>
@@ -34,11 +36,13 @@
 
 			<div class="col-sm-4 col-lg-4 col-md-4">
 				<div class="thumbnail">
-					<img src="https://placehold.it/320x150" alt="">
-					<div class="caption">
-					<h4 class="pull-left myRed"><i class="fas fa-chalkboard fa-3x fa-fw"></i></h4>
-						<h4><?= $this->Html->link(__('Practice'), ['controller' => 'practices', 'action' => 'index','plugin'=>false]);?></h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+					<?= $this->Html->image('practice.jpg', ['alt' => 'Practice']);?>
+					<div class="caption" style="text-align:center;">
+					<h4 class="myRed"><i class="fas fa-chalkboard fa-3x fa-fw"></i></h4>
+					<h4 class="myRed"><?= $this->Html->link(__('Practice'), ['controller' => 'practices', 'action' => 'index','plugin'=>false], ['class'=>'homeTitle text-danger']);?></h4>
+					<div class="cwxQuote">
+						<blockquote cite="Anton Chekhov">Knowledge is of no value unless you put it into practice.</blockquote>
+					</div>
 					</div>
 					<div class="ratings">
 						<p class="pull-right">&nbsp;</p>
@@ -50,11 +54,13 @@
 
 			<div class="col-sm-4 col-lg-4 col-md-4">
 				<div class="thumbnail">
-					<img src="https://placehold.it/320x150" alt="">
-					<div class="caption">
-					<h4 class="pull-left myGreen"><i class="fas fa-user-circle fa-3x fa-fw"></i></h4>
-						<h4><?= $this->Html->link(__('My Stuff'), ['controller' => 'users', 'action' => 'me','plugin'=>false]);?></li></h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+					<?= $this->Html->image('myStuff.jpg', ['alt' => 'myStuff']);?>
+					<div class="caption" style="text-align:center;">
+					<h4 class="myGreen"><i class="fas fa-user-circle fa-3x fa-fw"></i></h4>
+					<h4 class="myGreen"><?= $this->Html->link(__('My Stuff'), ['controller' => 'users', 'action' => 'me','plugin'=>false], ['class'=>'homeTitle text-success']);?></h4>
+					<div class="cwxQuote">
+						<blockquote cite="Carol Burnett">I liked myself better when I wasn't me.</blockquote>
+					</div>
 					</div>
 					<div class="ratings">
 						<p class="pull-right">&nbsp;</p>
@@ -150,10 +156,5 @@
 		 ?>
 
 </div>
-    <div id="footer">
-        <div class="container">
-            <p class="muted">Copyright &copy; <?php echo date('Y');?> CWX Membership Portal. All Rights Reserved. Developed By  <a href="http://www.lovettcreations.org/" target='_blank'>Lovett Creations</a>.</p>
-        </div>
-    </div>
 </body>
 </html>

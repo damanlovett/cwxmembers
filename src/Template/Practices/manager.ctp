@@ -5,7 +5,10 @@
  */
 ?>
 <div class="practices index large-12 medium-11 columns content">
-    <h3><i class="fas fa-chalkboard fa-lx fa-fw"></i>&nbsp;&nbsp;<?= __('Practices') ?></h3>
+    <h3><i class="fas fa-chalkboard fa-lx fa-fw"></i>&nbsp;&nbsp;<?= __('Practice Manager') ?>
+    <?= $this->Html->link(__('New Practice'), ['action' => 'add'], ['class'=>'btn btn-default btn-sm pull-right', 'title'=>'New Practice']) ?>
+
+    </h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>

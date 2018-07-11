@@ -11,6 +11,7 @@ use Cake\Validation\Validator;
  *
  * @property \App\Model\Table\PracticesTable|\Cake\ORM\Association\HasMany $Practices
  * @property \App\Model\Table\ShowsTable|\Cake\ORM\Association\HasMany $Shows
+ * @property \App\Model\Table\SignupsTable|\Cake\ORM\Association\HasMany $Signups
  *
  * @method \App\Model\Entity\Month get($primaryKey, $options = [])
  * @method \App\Model\Entity\Month newEntity($data = null, array $options = [])
@@ -48,7 +49,7 @@ class MonthsTable extends Table
             'foreignKey' => 'month_id'
         ]);
         $this->hasMany('Signups', [
-            'foreignkey' => 'month_id'
+            'foreignKey' => 'month_id'
         ]);
     }
 
@@ -72,6 +73,11 @@ class MonthsTable extends Table
         $validator
             ->scalar('year')
             ->allowEmpty('year');
+
+        $validator
+            ->date('first_friday')
+            ->requirePresence('first_friday', 'create')
+            ->notEmpty('first_friday');
 
         return $validator;
     }

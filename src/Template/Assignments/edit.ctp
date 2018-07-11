@@ -37,7 +37,8 @@
             echo $this->Form->control('callout');
             echo $this->Form->control('notes');
         ?>
-    </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
+        </fieldset>
+
 </div>

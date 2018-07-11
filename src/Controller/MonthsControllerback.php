@@ -48,7 +48,7 @@ $this->viewBuilder()->layout('default2'); // New in 3.1
     public function view($id = null)
     {
         $month = $this->Months->get($id, [
-            'contain' => ['Practices', 'Shows.dropdowns','Shows.months', 'Signups','Signups.users','Signups.shows']        ]);
+            'contain' => ['Practices', 'Shows.dropdowns','Shows.months', 'Signups']        ]);
 
         $this->set('month', $month);
 
@@ -67,23 +67,6 @@ $signlist->select([
      ->group('user_id');
 
         $this->set('signlist', $signlist);
-
-$signups = $this->Signups->findByMonth_id($id)->contain([
-    'Users' => function ($q) {
-       return $q
-            ->select(['first_name','last_name']);},
-    'Shows' => function ($q) {
-       return $q
-            ->contain(['Dropdowns'])
-            ->select(['schedule','dropdown_id','Dropdowns.name']);}
-]);
-$signups->select([
-              'id',
-              'user_id',
-              'month_id'
-            ]);
-
-        $this->set('signups', $this->paginate($signups));
 
     }
 

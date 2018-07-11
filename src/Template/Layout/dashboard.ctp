@@ -106,7 +106,7 @@ $cakeDescription = "Lovett Creations :: You'll Love What We Do";
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
      <ul class="nav navbar-nav navbar-center" style="margin-left:20px">
-         <p class="navbar-text pull-right"><?= $var['first_name'];?>, welcome to your CWX portalo <span style="margin-left:15px"><?= $this->Html->link(__('Sign Out'), ['controller'=>'Users', 'action'=>'logout', 'plugin'=>'Usermgmt'], ['class'=>'btn btn-sm btn-default']);?></span></p>
+         <p class="navbar-text pull-right"><?= $var['first_name'];?>, welcome to your CWX portal <span style="margin-left:15px"><?= $this->Html->link(__('Sign Out'), ['controller'=>'Users', 'action'=>'logout', 'plugin'=>'Usermgmt'], ['class'=>'btn btn-sm btn-default']);?></span></p>
         <li><?= $this->Html->link(__('My Profile'), ['controller' => 'users', 'action' => 'mview','plugin'=>false]);?></li>
         <li><?= $this->Html->link(__('Shows'), ['controller' => 'shows', 'action' => 'index','plugin'=>false]);?></li>
         <li><?= $this->Html->link(__('Practices'), ['controller' => 'practices', 'action' => 'index','plugin'=>false]);?></li>
@@ -129,7 +129,7 @@ $cakeDescription = "Lovett Creations :: You'll Love What We Do";
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-    <div class="jumbotron text-success">
+    <div class="jumbotron">
   <div class="container">
     <h1 class="display-4">CWX Membership Portal</h1>
     <p class="lead">Welcome to the CWX portal, have a seat, take a tour, stay for awhile.</p>
