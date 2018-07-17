@@ -64,15 +64,15 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
 			</div>
 		</div>
 		<div class="um-form-row form-group">
-			<label class="col-sm-2 control-label"><?php echo __('Cellphone'); ?></label>
+			<label class="col-sm-2 control-label"><?php echo __('Phone'); ?></label>
 			<div class="col-sm-3">
-				<?php echo $this->Form->input('Users.user_detail.cellphone', ['type'=>'text', 'label'=>false, 'div'=>false, 'class'=>'form-control']); ?>
+				<?php echo $this->Form->input('Users.user_detail.cellphone', ['type'=>'text', 'label'=>false, 'placeholder'=>'###-###-####','div'=>false, 'class'=>'form-control']); ?>
 			</div>
 		</div>
 		<div class="um-form-row form-group">
-			<label class="col-sm-2 control-label"><?php echo __('Location'); ?></label>
+			<label class="col-sm-2 control-label"><?php echo __('Address'); ?></label>
 			<div class="col-sm-3">
-				<?php echo $this->Form->input('Users.user_detail.location', ['type'=>'text', 'label'=>false, 'div'=>false, 'class'=>'form-control']); ?>
+				<?php echo $this->Form->input('Users.user_detail.location', ['type'=>'textarea', 'label'=>false, 'div'=>false, 'class'=>'form-control']); ?>
 			</div>
 		</div>
 		<div class="um-form-row form-group">

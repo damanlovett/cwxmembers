@@ -951,6 +951,7 @@ class UsersTable extends UsermgmtAppTable {
 		}
 		$genders['male'] = __('Male');
 		$genders['female'] = __('Female');
+		$genders['Prefer Not to Say'] = __('Prefer Not to Say');
 		return $genders;
 	}
 	/**

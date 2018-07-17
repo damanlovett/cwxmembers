@@ -5,10 +5,77 @@
  */
 ?>
 <div class="users view large-12 medium-11 columns content">
-    <h3><i class="fas fa-chalkboard fa-1x fa-fw"></i>&nbsp;&nbsp;<?= 'My Activities' ?></h3>
+    <h3><i class="fas fa-user-circle fa-1x fa-fw"></i>&nbsp;&nbsp;<?= $user->first_name."'s  Activities" ?></h3>
 
 
+    <div class="related">
+        <h4><?= __('Club Information') ?></h4>
+        <?php if (!empty($user->user_details)): ?>
+    <table class="table table-striped" cellpadding="0" cellspacing="0">
 
+            <?php foreach ($user->user_details as $userDetails): ?>
+            <tr>
+                <td class="cellHeader" scope="col"><?= __('Nickname') ?></td>
+                <td><?= h($userDetails->nickname) ?></td>
+            <tr>
+                <td class="cellHeader" scope="col"><?= __('Jersey') ?></td>
+                <td><?= h($userDetails->jersey) ?></td>
+            <tr>
+                <td class="cellHeader" scope="col"><?= __('Starting Year') ?></td>
+                <td><?= $userDetails->has('starting_year')? $userDetails->starting_year->format('Y') : '' ?></td>
+            <tr>
+                <td class="cellHeader" scope="col"><?= __('Referee') ?></td>
+                <td><?= $userDetails->referee ? "<span class='text-success'>Yes</span>" : "No" ?></td>
+            <tr>
+                <td class="cellHeader" scope="col"><?= __('Host') ?></td>
+                <td><?= $userDetails->host ? "<span class='text-success'>Yes</span>" : "No" ?></td>
+            <tr>
+                <td class="cellHeader" scope="col"><?= __('Voice') ?></td>
+                <td><?= $userDetails->voice ? "<span class='text-success'>Yes</span>" : "No" ?></td>
+            <tr>
+                <td class="cellHeader" scope="col"><?= __('Member Standing') ?></td>
+          <?php /* Need to figure out how to out put      <td><?= $userDetails->MemberStandings['title'] ?> </td>*/?>
+                <td>TBA</td>
+            <tr>
+                <td class="cellHeader" scope="col"><?= __('ABC Training') ?></td>
+                <td><?= $userDetails->abc ? "<span class='text-success'>Yes</span>" : "<span class='text-muted'>Not Completed</span>" ?>
+
+
+<!-- Small modal -->
+<?php if($userDetails->abc = 0) :?>
+<?php echo $this->Html->link('','/#', ['data-toggle'=>'modal', 'data-target'=>".bs-example-modal-lg",'class'=>'fas fa-info-circle fa-lg  fa-fw text-success', 'title'=>'title']); ?>
+
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+<div class="row">
+    <div class="col-md-11" style="padding:30px;">
+<h3>ABC CERTIFICATION:</h3>
+<p>As you all know by now, we had a visit from the ALE (awww) a few weeks ago and we need to make sure that anyone who works selling alcohol at our concession has their ABC Certification.  If you have not yet been certified, here is what you need to do:</p>
+<ul>
+<li>Go to the ABC Website</li>
+<li>Click on “Register for Seller/Server Training Program”</li>
+<li>Click on the “Search for a business that I represent that currently holds permits OR has applied for permits” radio button</li>
+<li>Type “Worx Comedy Theatre” in the “Trade Name” field and click on the “Search” button.</li>
+<li>Select the club, register on the site and take the test</li>
+<li>When you are done, you’ll be able to download a PDF copy of the ABC Certificate.  Please e-mail your certification to myself, Ashley and Michael Teague.</li>
+</div>
+</div>
+</div>
+  </div>
+</div>
+<?php endif;?>
+                </td>
+            <tr>
+                <td class="cellHeader" scope="col"><?= __('Address') ?></td>
+                <td><?= h($userDetails->location) ?></td>
+            <tr>
+                <td class="cellHeader" scope="col"><?= __('Phone') ?></td>
+                <td><?= h($userDetails->cellphone) ?></td>
+            <?php endforeach; ?>
+        </table>
+        <?php endif; ?>
+    </div>
 
 <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -27,7 +94,42 @@
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab1">
 
-Coming Soon ( still under construction)
+<div class="assignments index large-9 medium-8 columns content">
+    <h3><?= __('Assignments') ?></h3>
+    <table cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('show_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('signup_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('role_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('rol') ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($assignments as $assignment): ?>
+            <tr>
+                <td><?php if(!empty($assignment->Dropdowns['name'])) { echo $assignment->Dropdowns['name'] ;} ?></td>
+                <td><?php if(!empty($assignment->show->schedule)) { echo $assignment->show->schedule ;} ?></td>
+                <td><?= $assignment->has('role') ? $this->Html->link($assignment->role->name, ['controller' => 'Roles', 'action' => 'view', $assignment->role->id]) : '' ?></td>
+                <td><?= $assignment->has('roles2') ? $this->Html->link($assignment->roles2->name, ['controller' => 'Roles', 'action' => 'view', $assignment->roles2->id]) : '' ?></td>
+                <td><?= $assignment->callout ? "Yes" : "No" ;?>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+    <div class="paginator">
+        <ul class="pagination">
+            <?= $this->Paginator->first('<< ' . __('first')) ?>
+            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->numbers() ?>
+            <?= $this->Paginator->next(__('next') . ' >') ?>
+            <?= $this->Paginator->last(__('last') . ' >>') ?>
+        </ul>
+        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+    </div>
+</div>
 
                         </div>
                         <div class="tab-pane" id="tab2">

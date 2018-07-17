@@ -70,20 +70,28 @@ class UsersController extends AppController
         $this->set('user', $user);
 
         $this->loadModel('Assignments');
-        $assignments = $this->Assignments->findAllByUser_id($id)->contain([
-            'Roles' => function ($q) {
-               return $q
-                    ->select('name');},
-            'Shows' => function ($q) {
-               return $q
-                    ->select('schedule');},
-        ]);
-        $assignments->select([
-                      'id',
-                      'role_id'
-                    ]);
+        $assignments = $this->Assignments->findAllByUser_id(1,$id)
+                    ->contain(['Users','Roles', 'Roles2','Shows','Shows.dropdowns']);
 
-                $this->set('assignments', $this->paginate($assignments));
+
+        $this->set('assignments', $this->paginate($assignments));
+
+
+ //       $this->loadModel('Assignments');
+  //      $assignments = $this->Assignments->findAllByUser_id($id)->contain([
+   //         'Roles' => function ($q) {
+    //           return $q
+     //               ->select('name');},
+      //      'Shows' => function ($q) {
+       //        return $q
+  //                  ->select('schedule');},
+   //     ]);
+    //    $assignments->select([
+     //                 'id',
+      //                'role_id'
+       //             ]);
+
+        //        $this->set('assignments', $this->paginate($assignments));
 
     }
 
