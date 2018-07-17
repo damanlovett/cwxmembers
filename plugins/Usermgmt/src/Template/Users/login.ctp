@@ -24,23 +24,14 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
       <div class="content">
       	<div class="form">
       		<h1>CWX Membership Portal</h1>
-			<div class="panel-heading">
-				<span class="panel-title">
-					<?php echo __('Sign In'); ?>
-				</span>
-				<?php if(SITE_REGISTRATION) { ?>
-				<span class="panel-title-right">
-					<?php echo $this->Html->link(__('Sign Up', true), ['controller'=>'Users', 'action'=>'register', 'plugin'=>'Usermgmt'], ['class'=>'btn btn-default btn-sm']); ?>
-				</span>
-				<?php } ?>
-			</div>
+
 			<div class="panel-body">
 				<?php echo $this->element('Usermgmt.ajax_validation', ['formId'=>'loginForm', 'submitButtonId'=>'loginSubmitBtn']); ?>
 				<?php echo $this->Form->create($userEntity, ['id'=>'loginForm', 'class'=>'form-horizontal']); ?>
 				<?php /* <div class="um-form-row form-group"> */ ?>
-					<label class="control-label required"><?php echo __('Email / Username'); ?></label>
+					<label class="control-label required"><?php echo __('Email or Username'); ?></label>
 				<?php /*	<div class="col-sm-7"> */ ?>
-						<?php echo $this->Form->input('Users.email', ['type'=>'text', 'label'=>false, 'div'=>false, 'placeholder'=>__('Email / Username'), 'class'=>'form-control']); ?>
+						<?php echo $this->Form->input('Users.email', ['type'=>'text', 'label'=>false, 'div'=>false, 'placeholder'=>__('Email or Username'), 'class'=>'form-control']); ?>
 				<?php /*	</div>
 				</div>
 				<div class="um-form-row form-group"> */?>
@@ -77,6 +68,11 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
 				<div class="um-button-row">
 					<?php echo $this->Form->Submit(__('Sign In'), ['div'=>false, 'class'=>'btn btn-primary', 'id'=>'loginSubmitBtn']); ?>
 					<hr />
+									<?php if(SITE_REGISTRATION) { ?>
+				<span>
+					<?php echo $this->Html->link(__('Create Account', true), ['controller'=>'Users', 'action'=>'register', 'plugin'=>'Usermgmt'], ['class'=>'btn btn-success btn-sm']); ?>
+				</span>
+				<?php } ?>
 					<?php echo $this->Html->link(__('Forgot Password?'), '/forgotPassword', ['class'=>'btn btn-default pull-right um-btn btn-sm']); ?>
 					<?php echo $this->Html->link(__('Email Verification'), '/emailVerification', ['class'=>'btn btn-default pull-left um-btn btn-sm']); ?>
 				</div>

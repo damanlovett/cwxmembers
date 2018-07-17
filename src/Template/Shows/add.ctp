@@ -41,16 +41,30 @@
         <hr />
         <div class="um-form-row form-group">
             <div class="col-sm-3">
+        <?php echo $this->Form->control('delete_signup', ['label'=>'Allow player to remove sign up']); ?>
+            </div>
+        </div>
+        <hr />
+        <div class="um-form-row form-group">
+            <div class="col-sm-3">
         <?php echo $this->Form->control('visible'); ?>
             </div>
         </div>
         <hr />
         <div class="um-form-row form-group">
+            <label class="col-sm-12 control-label">Show Notes</label>
             <div class="col-sm-8">
-        <?php echo $this->Tinymce->textarea('notes', ['type' => 'textarea',  'label' => false, 'div' => false, 'style'=>'height:300px'], ['language'=>'en', 'uiColor'=> '#14B8C4'], 'full');?>
+        <?php echo $this->Tinymce->textarea('notes', ['type' => 'textarea',  'placeholder'=>'Place bailing, call time, contact information or any important information about the show here.', 'label' => false, 'div' => false, 'style'=>'height:300px;'], ['language'=>'en', 'uiColor'=> '#14B8C4'], 'full');?>
             </div>
         </div>
-        <div class="col-sm-8" style="margin-top:10px">
+            <div class="row" style="margin-top:10px">
+        <div class="um-form-row form-group">
+            <div class="col-sm-8">
+        <?php echo $this->Form->control('show_url'); ?>
+            </div>
+        </div>
+    </div>
+        <div class="col-sm-8">
     <?= $this->Form->button(__('Add Show'), ['class' => 'btn btn-success']) ?>
     <?= $this->Form->end() ?>
         </div>

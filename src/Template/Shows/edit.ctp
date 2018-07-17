@@ -26,8 +26,8 @@
         </div>
         <div class="col-sm-8">
         <div class="um-form-row form-group ">
-            <div class="col-sm-6">
-                <?php echo $this->Form->control('schedule', ['type'=>'text', 'placeholder'=>'Day of Show', 'label'=>false, 'div'=>false, 'size' => 3, 'class'=>'form-control datetimepicker']); ?>
+            <div class="col-sm-3">
+                <?php echo $this->Form->dateTime('schedule'); ?>
             </div>
         </div>
     </div>
@@ -35,6 +35,12 @@
         <div class="um-form-row form-group">
             <div class="col-sm-3">
         <?php echo $this->Form->control('signups_open'); ?>
+            </div>
+        </div>
+        <hr />
+        <div class="um-form-row form-group">
+            <div class="col-sm-3">
+        <?php echo $this->Form->control('delete_signup', ['label'=>'Allow player to remove sign up']); ?>
             </div>
         </div>
         <hr />
@@ -49,6 +55,12 @@
         <?php echo $this->Tinymce->textarea('notes', ['type' => 'textarea',  'label' => false, 'div' => false, 'style'=>'height:300px'], ['language'=>'en', 'uiColor'=> '#14B8C4'], 'full');?>
             </div>
         </div>
+        <div class="um-form-row form-group">
+            <div class="col-sm-8">
+        <?php echo $this->Form->control('show_url'); ?>
+            </div>
+        </div>
+    </div>
         <div class="col-sm-8" style="margin-top:10px">
     <?= $this->Form->button(__('Edit Show'), ['class' => 'btn btn-success']) ?>
     <?= $this->Form->end() ?>

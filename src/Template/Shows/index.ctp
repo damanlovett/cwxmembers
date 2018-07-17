@@ -26,8 +26,12 @@
                 <td class="actions">
                     <?= $this->Html->link(__(''), ['action' => 'view', $show->id], ['class'=>'fas fa-calendar fa-lg fa-fw text-primary', 'title'=>'View Show']) ?>
                     <?= $this->Html->link(__(''), ['controller'=>'months','action' => 'view', $show->month_id], ['class'=>'fas fa-calendar-alt fa-lg fa-fw text-primary', 'title'=>'View Month']) ?>
+                    <?= $this->Html->link(__(''), ['controller'=>'months','action' => 'view', $show->month_id], ['class'=>'fas fa-calendar-alt fa-lg fa-fw text-primary', 'title'=>'View Month']) ?>
+                    <a href="http://www.cmx.com" title="Show URL"><i class="fab fa-chrome fa-lg text-primary fa-fw"></i></a>
                 <?php if($show->signups_open == 1) : ?>
                     <?= $this->Html->link(__(''), ['action' => 'signup', $show->id], ['class'=>'fas fa-pen-alt fa-lg fa-fw text-primary', 'title'=>'Sign Up']) ?>
+
+
                 <?php endif; ?>
                 </td>
             </tr>

@@ -21,9 +21,11 @@
             </a>
           </h2>
         </div>
-        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
           <div class="panel-body" style="background-color:white;">
-            <?= $this->Text->autoParagraph(h($show->notes)); ?>
+            <?= $show->notes; ?>
+            <hr />
+            <?= $show->has('show_url') ? "<i class='fab fa-chrome fa-lg text-danger fa-fw'></i>&nbsp;<a href='".$show->show_url."'>".$show->show_url."</a>" : "no"; ?>
           </div>
         </div>
       </div>

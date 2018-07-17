@@ -60,6 +60,8 @@
     ?>
 </head>
 <body>
+    <?php echo $this->element('mainMenu');?>
+
     <div class="container">
         <div class="content">
             <?php if($this->UserAuth->isLogged()) { echo $this->element('Usermgmt.dashboard'); } ?>

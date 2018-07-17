@@ -26,11 +26,11 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
       		<h1>CWX Membership Portal</h1>
 			<div class="panel-heading">
 		<span class="panel-title">
-			<?php echo __('Sign Up');?>
 		</span>
 		<span class="panel-title-right">
-			<?php echo $this->Html->link(__('Sign In', true), ['controller'=>'Users', 'action'=>'login', 'plugin'=>'Usermgmt'], ['class'=>'btn btn-default']);?>
+			<?php echo $this->Html->link(__('Back to Login', true), ['controller'=>'Users', 'action'=>'login', 'plugin'=>'Usermgmt'], ['class'=>'btn btn-sm btn-default']);?>
 		</span>
+		<hr />
 	</div>
 	<div class="panel-body">
 		<div class="row">

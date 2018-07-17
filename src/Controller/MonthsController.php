@@ -17,13 +17,34 @@ class MonthsController extends AppController
     public function beforeFilter(Event $event) {
 parent::beforeFilter($event);
 $this->viewBuilder()->layout('default2'); // New in 3.1
+
 }
+
     /**
      * Index method
      *
      * @return \Cake\Http\Response|void
      */
     public function index()
+    {
+
+        $this->paginate = [
+            'contain' => ['Signups','Shows'],
+            'limit' => 10,
+            'order' => ['Months.first_friday' => 'DESC'],
+        ];
+
+        $months = $this->paginate($this->Months);
+
+        $this->set(compact('months'));
+    }
+
+    /**
+     * Manager method
+     *
+     * @return \Cake\Http\Response|void
+     */
+    public function manager()
     {
 
         $this->paginate = [
@@ -34,6 +55,9 @@ $this->viewBuilder()->layout('default2'); // New in 3.1
         $months = $this->paginate($this->Months);
 
         $this->set(compact('months'));
+
+
+
     }
 
     /**

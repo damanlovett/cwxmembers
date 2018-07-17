@@ -87,6 +87,13 @@ class ShowsTable extends Table
             ->allowEmpty('signups_open');
 
         $validator
+            ->allowEmpty('delete_signup');
+
+        $validator
+            ->scalar('show_url')
+            ->allowEmpty('show_url');
+
+        $validator
             ->allowEmpty('visible');
 
         return $validator;

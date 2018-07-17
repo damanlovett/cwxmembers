@@ -43,4 +43,14 @@ class Month extends Entity
     {
         return $this->_properties['title'] . ' ' . $this->_properties['year'];
     }
+
+    public function numberOfShows()
+    {
+        return count($this->shows);
+    }
+
+    public function numberOfSignups()
+    {
+        return count($this->signups);
+    }
 }

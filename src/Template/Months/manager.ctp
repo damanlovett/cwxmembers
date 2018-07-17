@@ -10,28 +10,27 @@
         <table  class="table table-striped" cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th style="width:30px;"><?= __('') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('first_friday', 'Month') ?></th>
-                <th scope="col"style="text-align:center;"><?= __('# of Shows') ?></th>
-                <th scope="col"style="text-align:center;"><?= __('# of Sign Ups') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
+                <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($months as $month): ?>
             <tr>
-                <td>
-                    <?= $this->Html->link(__(''), ['action' => 'view', $month->id], ['class'=>'fas fa-eye fa-l fa-fw text-success', 'title'=>'View Month']) ?>
-                </td>
                 <td><?= h($month->title." ".$month->year) ?></td>
-                <td style="text-align:center;"><?= $month->numberOfShows() ?></td>
-                <td style="text-align:center;"><?= $month->numberOfSignups() ?></td>
                 <td><?= h($month->created->format('m/d/y - g:i a')) ?></td>
+                <td class="actions">
+
+                    <?= $this->Html->link(__(''), ['action' => 'mview', $month->id], ['class'=>'fas fa-calendar-alt fa-lg fa-fw text-primary', 'title'=>'View Month']) ?>
+                    <?= $this->Html->link(__(''), ['action' => 'edit', $month->id], ['class'=>'fas fa-edit fa-lg fa-fw text-primary', 'title'=>'Edit Month']) ?>
+                    <?= $this->Form->postLink(__(''), ['action' => 'delete', $month->id], ['class'=>'fas fa-times-circle fa-lg fa-fw text-danger', 'title'=>'Delete Month']) ?>
+                </td>
             </tr>
             <?php endforeach; ?>
         </tbody>
                     <tfoot>
-                        <td colspan="5">
+                        <td colspan="3">
 
                             <div class="paginator">
                                 <ul class="pagination">

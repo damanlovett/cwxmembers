@@ -5,7 +5,16 @@
  */
 ?>
 <div class="shows view large-12 medium-11 columns content">
-<h3><i class="fas fa-calendar fa-2x fa-fw"></i><?= __('Show Sign Up')?></h3>
+<h3><i class="fas fa-calendar fa-2x fa-fw"></i><?= __('Show Sign Up')?>
+
+
+    <div class="btn-group  pull-right" role="group" aria-label="...">
+    <?= $this->Html->link(__($show->schedule->format('F')), ['controller'=>'Months', 'action' => 'view', $show->month_id], ['class'=>'btn btn-default btn-sm', 'title'=>'Back to Month']) ?>
+    <?= $this->Html->link(__('Shows'), ['controller'=>'Months', 'action' => 'index'], ['class'=>'btn btn-default btn-sm', 'title'=>'Back to Shows']) ?>
+</div>
+</h3>
+
+
        <div class="fpageTitle">
             <h1><?= h($show->dropdown->name) ?></h1>
             <h2><?= h($show->schedule->format('F j, Y - g:i A')) ?></h2>
@@ -70,7 +79,7 @@
                         <?php endif; ?>
                 <td>
                     <?php if($signups->user->id == $this->UserAuth->getUserId() && $show->signups_open == 1  ) : ?>
-<?= $this->Form->postLink(__(''), ['controller' => 'signups', 'action' => 'remove', $signups->id], ['class'=>'fas fa-calendar-times fa-lg fa-fw text-success', 'title'=>'Delete Signup']) ?>
+<?= $this->Form->postLink(__(''), ['controller' => 'signups', 'action' => 'remove', $signups->id], ['class'=>'fas fa-calendar-times fa-lg fa-fw text-dander', 'title'=>'Delete Signup']) ?>
                 <?php elseif($signups->user->id == $this->UserAuth->getUserId() && $show->signups_open == 0  ) : ?>
                     <?= "<i class='fas fa-circle fa-xs fa-fw text-success'></i>";  ?>
                 <?php endif; ?>
