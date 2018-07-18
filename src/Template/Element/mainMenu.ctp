@@ -3,7 +3,7 @@
      <ul class="nav navbar-nav navbar-center fa-ul" style="margin-left:20px">
          <p class="navbar-text pull-right"><?= $var['first_name'];?>, welcome to your CWX portal <span style="margin-left:15px"><?= $this->Html->link(__('Sign Out'), ['controller'=>'Users', 'action'=>'logout', 'plugin'=>'Usermgmt'], ['class'=>'btn btn-sm btn-default']);?></span></p>
         <li><?= $this->Html->link(__('  My Profile'), ['controller' => 'users', 'action' => 'mview','plugin'=>false], ['class'=>'fas fa-user menuIcon','title'=>'my Profile']);?></li>
-        <li><?= $this->Html->link(__('  Shows'), ['controller' => 'months', 'action' => 'index','plugin'=>false], ['class'=>'fas fa-calendar menuIcon', 'title'=>'View Shows']);?></li>
+        <li><?= $this->Html->link(__('  Sign Ups'), ['controller' => 'months', 'action' => 'index','plugin'=>false], ['class'=>'fas fa-calendar menuIcon', 'title'=>'View Shows']);?></li>
 
 
         <li><?= $this->Html->link(__('  Practices'), ['controller' => 'practices', 'action' => 'index','plugin'=>false], ['class'=>'fas fa-chalkboard menuIcon', 'title'=>'View Practices']);?></li>

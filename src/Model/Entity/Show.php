@@ -48,14 +48,15 @@ class Show extends Entity
     {
         $date = new Date($this->_properties['schedule']);
 
-//$date->modify('+2 hours');
-// Outputs 2015-06-15 00:00:00
-//echo $date->format('Y-m-d H:i:s');
+        return $date->format('M j, Y - g:i a');
+    }
 
+    // full_name with Name virtual field
+    protected function _getFullName()
+    {
+        $date = new Date($this->_properties['schedule']);
+        $name = $this->_properties['dropdown']['name'];
 
-
-
-
-        return $date->format('Y-m-d H:i:s');;
+        return $name." :: ".$date->format('M j, Y - g:i a');
     }
 }

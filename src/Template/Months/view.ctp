@@ -6,7 +6,7 @@
 ?>
 <?php $this->assign('title', $month->title);?>
 <div class="months view large-12 medium-12 columns content">
-<h3><i class="fas fa-calendar-alt fa-1x fa-fw"></i>&nbsp;&nbsp;<?= $month->title." ".$month->year; ?>
+<h3><i class="fas fa-calendar fa-1x fa-fw"></i>&nbsp;&nbsp;<?= $month->title." ".$month->year; ?>
     <?= $this->Html->link(__('Back'), ['action' => 'index'], ['class'=>'btn btn-default btn-sm pull-right', 'title'=>'Back to Month']) ?></h3>
 
 
@@ -36,27 +36,28 @@
         <?php if (!empty($month->shows)): ?>
         <table  class="table table-striped" cellpadding="0" cellspacing="0">
             <thead>
-                <th style="width:30px;"><?= __('') ?></th>
+                <th style="width:30px;"><?= __(' ') ?></th>
+                <th style="width:30px;"><?= __(' ') ?></th>
+                <th style="width:30px;"><?= __(' ') ?></th>
                 <th scope="col"><?= __('Name') ?></th>
                 <th scope="col"><?= __('Date') ?></th>
-                <th style="text-align: center" scope="col"><?= __('Sign Ups Open') ?></th>
-
             </thead>
             <?php foreach ($month->shows as $shows): ?>
             <tr>
                 <td>
-<?php if($shows->visible == 1) : ?> <?= $this->Html->link(__(''), ['controller'=>'Shows', 'action' => 'signup', $shows->id], ['class'=>'fas fa-eye fa-lg fa-fw text-success', 'title'=>'View Show'])?>
+                <?php if($shows->visible == 1) : ?> <?= $this->Html->link(__(''), ['controller'=>'Shows', 'action' => 'signup', $shows->id], ['class'=>'fas fa-eye fa-lg fa-fw text-success', 'title'=>'View Show'])?>
                     <?php endif; ?>
                 </td>
+                <td>
+                <?= $shows->signups_open ? $this->Html->link(__(''), ['controller'=>'Shows', 'action' => 'signup', $shows->id], ['class'=>'fas fa-file-signature fa-lg fa-fw text-success', 'title'=>'Sign Up']) : '' ?>
+                </td>
+                <td style="text-align: center">&nbsp;</td>
                 <td><?= h($shows->Dropdowns['name']) ?></td>
-                <td><?= h($shows->schedule->format('D jS - g:i a')) ?></td>
-                <td style="text-align: center"><?= $shows->signups_open ? $this->Html->link(__(''), ['controller'=>'Shows', 'action' => 'signup', $shows->id], ['class'=>'fas fa-file-signature fa-lg fa-fw text-success', 'title'=>'Sign Up']) : '' ?></td>
-
-
+                <td><?= h($shows->DisplayName) ?></td>
             </tr>
             <?php endforeach; ?>
             <tfoot>
-                <td colspan="4">&nbsp;</td>
+                <td colspan="5">&nbsp;</td>
             </tfoot>
         </table>
         <?php endif; ?>
@@ -76,7 +77,7 @@
             <tr>
                 <td><?= h($signups->show->dropdown['name']) ?></td>
                 <td><?= h($signups->user->fullName) ?></td>
-                <td><?= h($signups->show->schedule->format('D jS - g:i a')) ?></td>
+                <td><?= h($signups->show->DisplayName) ?></td>
             </tr>
             <?php endforeach; ?>
             <tfoot>
@@ -109,7 +110,7 @@
             <tr>
                 <td><?= h($practices->title) ?></td>
                 <td><?= h($practices->schedule->format('D jS - g:i a')) ?></td>
-                <td><i class="fas fa-chalkboard-teacher fa-l fa-fw text-primary">&nbsp;&nbsp;</i><?= h($practices->leader) ?></td>
+                <td><i class="fas fa-chalkboard-teacher fa-lg fa-fw text-primary"></i>&nbsp;&nbsp;&nbsp;<?= h($practices->leader) ?></td>
             </tr>
             <?php endforeach; ?>
             <tfoot>

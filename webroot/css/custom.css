@@ -869,3 +869,7 @@ blockquote:after {
 .navbar-inverse .navbar-nav>li>a:hover {
   color: #bbbbbb !important;
 }
+
+table tr th, table tr td {
+  font-size: 1rem;
+}

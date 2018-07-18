@@ -5,7 +5,7 @@
  */
 ?>
 <div class="months index large-12 medium-11 columns content">
-    <h3><i class="fas fa-calendar-alt fa-1x fa-fw"></i>&nbsp;&nbsp;<?= __('Months') ?></h3>
+    <h3><i class="fas fa-calendar fa-1x fa-fw"></i>&nbsp;&nbsp;<?= __('Sign Ups') ?></h3>
 
         <table  class="table table-striped" cellpadding="0" cellspacing="0">
         <thead>

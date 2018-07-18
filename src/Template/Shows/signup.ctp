@@ -10,14 +10,14 @@
 
     <div class="btn-group  pull-right" role="group" aria-label="...">
     <?= $this->Html->link(__($show->schedule->format('F')), ['controller'=>'Months', 'action' => 'view', $show->month_id], ['class'=>'btn btn-default btn-sm', 'title'=>'Back to Month']) ?>
-    <?= $this->Html->link(__('Shows'), ['controller'=>'Months', 'action' => 'index'], ['class'=>'btn btn-default btn-sm', 'title'=>'Back to Shows']) ?>
+    <?= $this->Html->link(__('Show List'), ['controller'=>'Months', 'action' => 'index'], ['class'=>'btn btn-default btn-sm', 'title'=>'Back to Shows']) ?>
 </div>
 </h3>
 
 
        <div class="fpageTitle">
             <h1><?= h($show->dropdown->name) ?></h1>
-            <h2><?= h($show->schedule->format('F j, Y - g:i A')) ?></h2>
+            <h2><?= h($show->DisplayName) ?></h2>
             <h2>
                  <?php if($show->signups_open == 1  ) : ?>
                         <?= $this->Form->create(null, [
