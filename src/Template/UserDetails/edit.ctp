@@ -34,7 +34,7 @@
             echo $this->Form->control('voice');
             echo $this->Form->control('delete');
             echo $this->Form->control('member_standing_id', ['options' => $memberStandings, 'empty' => true]);
-            echo $this->Form->control('abc');
+            echo $this->Form->control('abc', ['type'=>'text', 'label'=>'ABC Certification', 'div'=>false, 'class'=>'form-control datepicker']);;
             echo $this->Form->control('location');
             echo $this->Form->control('cellphone');
         ?>

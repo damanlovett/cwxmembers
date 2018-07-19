@@ -24,6 +24,17 @@ class SwitchesHelper extends Helper
             return $off;
              }
         }
+    public function date($date)
+    {
+
+        return $date->format('M j, Y');
+    }
+
+    public function dateTime($date)
+    {
+
+        return $date->format('M j, Y - g:i a');
+    }
 
     public function access_allow($type){
         switch ($type) {

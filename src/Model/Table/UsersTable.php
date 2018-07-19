@@ -150,6 +150,11 @@ class UsersTable extends Table
             ->date('bday')
             ->allowEmpty('bday');
 
+
+        $validator
+            ->date('abc')
+            ->allowEmpty('abc');
+
         $validator
             ->integer('active')
             ->allowEmpty('active');

@@ -438,6 +438,7 @@ class UsersTable extends UsermgmtAppTable {
 				]
 			])
 			->allowEmpty('bday')
+			->allowEmpty('shirt')
 			->add('bday', [
 				'validDate'=>[
 					'rule'=>['date', 'ymd'],
@@ -954,6 +955,20 @@ class UsersTable extends UsermgmtAppTable {
 		$genders['Prefer Not to Say'] = __('Prefer Not to Say');
 		return $genders;
 	}
+	/**
+	 * Get shirt sizes
+	 *
+	 * @access public
+	 * @param string
+	 * @return string
+	 */
+	public function getShirts() {
+		$this->loadModel('Dropdowns');
+		$shirts = $this->Dropdowns->find('list')
+				->where(['Dropdown.type'=>'shirt'])->toArray;
+		return $shirts;
+	}
+
 	/**
 	 * Used to check users by user group id
 	 *

@@ -38,7 +38,7 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Member Standing') ?></th>
-            <td><?= $userDetail->has('member_standing') ? $this->Html->link($userDetail->member_standing->title, ['controller' => 'MemberStandings', 'action' => 'view', $userDetail->member_standing->id]) : '' ?></td>
+            <td><?= $userDetail->has('member_standing') ? $userDetail->member_standing->title : 'n/a' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Location') ?></th>
@@ -66,7 +66,7 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Abc') ?></th>
-            <td><?= $this->Number->format($userDetail->abc) ?></td>
+            <td><?= $this->Switches->date($userDetail->abc) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Starting Year') ?></th>

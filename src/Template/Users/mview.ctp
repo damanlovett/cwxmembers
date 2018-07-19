@@ -33,10 +33,6 @@
             <td><?= h($user->email) ?></td>
         </tr>
         <tr>
-            <td class="cellHeader" scope="row"><?= __('System Group') ?></td>
-            <td><?= $user->has('user_group') ? $user->user_group->name : '' ?></td>
-        </tr>
-        <tr>
             <td class="cellHeader" scope="row"><?= __('Club Standing') ?></td>
             <td><?= $user->has('club_standing') ? $user->club_standing->title : "<span class='text-muted'>Not Assigned</span>" ?></td>
         </tr>
@@ -46,11 +42,23 @@
         </tr>
         <tr>
             <td class="cellHeader" scope="row"><?= __('Birthday') ?></td>
-            <td><?= $user->has('bday') ? $user->bday : "<span class='text-muted'>Please Update</span>" ?></td>
+            <td><?= $user->has('bday') ? $this->Switches->date($user->bday) : "<span class='text-muted'>Please Update</span>" ?></td>
+        </tr>
+        <tr>
+            <td class="cellHeader" scope="row"><?= __('Shirt Size') ?></td>
+            <td><?= $user->has('shirt') ? $user->shirt : "<span class='text-muted'>Please Update</span>" ?></td>
+        </tr>
+        <tr>
+            <td class="cellHeader" scope="row"><?= __('Address') ?></td>
+            <td><?= (!empty($var['user_detail']['location'])) ? $var['user_detail']['location'] : "<span class='text-muted'>Please Update</span>"?></td>
+        </tr>
+        <tr>
+            <td class="cellHeader" scope="row"><?= __('Phone') ?></td>
+            <td><?= (!empty($var['user_detail']['cellphone'])) ? $var['user_detail']['cellphone'] : "<span class='text-muted'>Please Update</span>"?></td>
         </tr>
         <tr>
             <td class="cellHeader" scope="row"><?= __('Last Login') ?></td>
-            <td><?= h($user->last_login) ?></td>
+            <td><?= $this->Switches->dateTime($user->last_login)?></td>
         </tr>
     </table>
 

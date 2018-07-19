@@ -36,8 +36,8 @@
             <td><?= h($user->gender) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Photo') ?></th>
-            <td><?= h($user->photo) ?></td>
+            <th scope="row"><?= __('ABC Certification') ?></th>
+            <td><?= h($user->abc) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Club Standing') ?></th>

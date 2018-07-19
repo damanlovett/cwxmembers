@@ -34,16 +34,15 @@
                 <td><?= $userDetails->voice ? "<span class='text-success'>Yes</span>" : "No" ?></td>
             <tr>
                 <td class="cellHeader" scope="col"><?= __('Member Standing') ?></td>
-          <?php /* Need to figure out how to out put      <td><?= $userDetails->MemberStandings['title'] ?> </td>*/?>
-                <td>TBA</td>
+          <td><?= $userDetails->member_standing->title ?> </td>
             <tr>
                 <td class="cellHeader" scope="col"><?= __('ABC Training') ?></td>
-                <td><?= $userDetails->abc ? "<span class='text-success'>Yes</span>" : "<span class='text-muted'>Not Completed</span>" ?>
+                <td><?= $userDetails->abc ? "<span class='text-success'>Completed: ".$this->Switches->date($userDetails->abc)."</span> " : "<span class='text-muted'>Not Completed</span>" ?>
 
 
 <!-- Small modal -->
-<?php if($userDetails->abc = 0) :?>
-<?php echo $this->Html->link('','/#', ['data-toggle'=>'modal', 'data-target'=>".bs-example-modal-lg",'class'=>'fas fa-info-circle fa-lg  fa-fw text-success', 'title'=>'title']); ?>
+<?php if(empty($userDetails->abc)) :?>
+<?php echo $this->Html->link('','/#', ['data-toggle'=>'modal', 'data-target'=>".bs-example-modal-lg",'class'=>'fas fa-info-circle fa-lg  fa-fw text-success', 'title'=>'ABC Information']); ?>
 
 <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
   <div class="modal-dialog modal-lg" role="document">
@@ -66,12 +65,6 @@
 </div>
 <?php endif;?>
                 </td>
-            <tr>
-                <td class="cellHeader" scope="col"><?= __('Address') ?></td>
-                <td><?= h($userDetails->location) ?></td>
-            <tr>
-                <td class="cellHeader" scope="col"><?= __('Phone') ?></td>
-                <td><?= h($userDetails->cellphone) ?></td>
             <?php endforeach; ?>
         </table>
         <?php endif; ?>

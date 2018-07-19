@@ -63,7 +63,7 @@ class UsersController extends AppController
         $id = $this->UserAuth->getUserId();
 
         $user = $this->Users->get($id, [
-            'contain' => ['UserGroups', 'ClubStandings', 'Assignments', 'Checkins', 'LoginTokens', 'ScheduledEmailRecipients', 'Signups', 'UserActivities', 'UserContacts', 'UserDetails', 'UserEmailRecipients', 'UserEmailSignatures', 'UserEmailTemplates', 'UserSocials']
+            'contain' => ['UserGroups', 'UserDetails.MemberStandings', 'Assignments', 'Checkins', 'LoginTokens', 'ScheduledEmailRecipients', 'Signups', 'UserActivities', 'UserContacts', 'UserDetails', 'UserEmailRecipients', 'UserEmailSignatures', 'UserEmailTemplates', 'UserSocials']
         ]);
 
 
@@ -108,7 +108,7 @@ class UsersController extends AppController
         $id = $this->UserAuth->getUserId();
 
         $user = $this->Users->get($id, [
-            'contain' => ['UserGroups', 'ClubStandings', 'Assignments', 'Checkins', 'LoginTokens', 'ScheduledEmailRecipients', 'Signups', 'UserActivities', 'UserContacts', 'UserDetails', 'UserEmailRecipients', 'UserEmailSignatures', 'UserEmailTemplates', 'UserSocials']
+            'contain' => ['UserGroups', 'ClubStandings','Assignments', 'Checkins', 'LoginTokens', 'ScheduledEmailRecipients', 'Signups', 'UserActivities', 'UserContacts', 'UserDetails', 'UserEmailRecipients', 'UserEmailSignatures', 'UserEmailTemplates', 'UserSocials']
         ]);
 
         $this->set('user', $user);

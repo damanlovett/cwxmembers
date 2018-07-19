@@ -1353,6 +1353,13 @@ $this->viewBuilder()->layout('dashboard'); // New in 3.1
 				}
 				$genders = $this->Users->getGenders();
 				$this->set(compact('userEntity', 'genders'));
+		        $this->loadModel('Dropdowns');
+		        $shirts = $this->Dropdowns->find('list', [
+		                            'conditions' => ['Dropdowns.type' => 'shirt'],
+		                        	'keyField' => 'name',
+		                        	'valuField' =>'name']);
+
+		        $this->set(compact('shirts'));
 			} else {
 				$this->Flash->error(__('Invalid User Id'));
 				$this->redirect(['action'=>'myprofile']);
