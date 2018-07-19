@@ -44,12 +44,12 @@
             </thead>
             <?php foreach ($month->shows as $shows): ?>
             <tr>
-                <td>
-                <?php if($shows->visible == 1) : ?> <?= $this->Html->link(__(''), ['controller'=>'Shows', 'action' => 'signup', $shows->id], ['class'=>'fas fa-eye fa-lg fa-fw text-success', 'title'=>'View Show'])?>
+                <td class="iconSifze">
+                <?php if($shows->visible == 1) : ?> <?= $this->Html->link(__(''), ['controller'=>'Shows', 'action' => 'signup', $shows->id], ['class'=>'fas fa-eye fa-sm fa-fw text-success iconSize', 'title'=>'View Show'])?>
                     <?php endif; ?>
                 </td>
-                <td>
-                <?= $shows->signups_open ? $this->Html->link(__(''), ['controller'=>'Shows', 'action' => 'signup', $shows->id], ['class'=>'fas fa-file-signature fa-lg fa-fw text-success', 'title'=>'Sign Up']) : '' ?>
+                <td class="iconfSize">
+                <?= $shows->signups_open ? $this->Html->link(__(''), ['controller'=>'Shows', 'action' => 'signup', $shows->id], ['class'=>'fas fa-file-signature fa-sm fa-fw text-success iconSize', 'title'=>'Sign Up']) : '' ?>
                 </td>
                 <td style="text-align: center">&nbsp;</td>
                 <td><?= h($shows->Dropdowns['name']) ?></td>

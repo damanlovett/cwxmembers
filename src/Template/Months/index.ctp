@@ -11,6 +11,7 @@
         <thead>
             <tr>
                 <th style="width:30px;"><?= __('') ?></th>
+                <th style="width:30px;"><?= __('') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('first_friday', 'Month') ?></th>
                 <th scope="col"style="text-align:center;"><?= __('# of Shows') ?></th>
                 <th scope="col"style="text-align:center;"><?= __('# of Sign Ups') ?></th>
@@ -22,6 +23,8 @@
             <tr>
                 <td>
                     <?= $this->Html->link(__(''), ['action' => 'view', $month->id], ['class'=>'fas fa-eye fa-l fa-fw text-success', 'title'=>'View Month']) ?>
+                </td>
+                <td>                    <a href=".$mon" title="Show URL"><i class="fab fa-chrome fa-lg text-primary fa-fw"></i></a>
                 </td>
                 <td><?= h($month->title." ".$month->year) ?></td>
                 <td style="text-align:center;"><?= $month->numberOfShows() ?></td>

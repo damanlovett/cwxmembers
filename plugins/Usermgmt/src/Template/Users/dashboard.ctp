@@ -21,7 +21,7 @@
 					<?= $this->Html->image('showPic.jpg', ['alt' => 'Shows']);?>
 					<div class="caption" style="text-align:center;">
 					<h4 class="myBlue"><?= $this->Html->link(__(''), ['controller' => 'months', 'action' => 'index','plugin'=>false], ['class'=>'fas fa-calendar fa-3x fa-fw myBlue']);?></h4>
-					<h4 class="myBlue"><?= $this->Html->link(__('Sign Ups'), ['controller' => 'shows', 'action' => 'index','plugin'=>false], ['class'=>'homeTitle text-primary']);?></h4>
+					<h4 class="myBlue"><?= $this->Html->link(__('Sign Ups'), ['controller' => 'months', 'action' => 'index','plugin'=>false], ['class'=>'homeTitle text-primary']);?></h4>
 					<div class="cwxQuote">
 						<blockquote cite="Adam Mckay">You have to be able to fail with the improv. You have to not care.</blockquote>
 					</div>
