@@ -41,6 +41,9 @@
             <td><?= $user->active ? "Yes" : "No" ?></td>
         </tr>
         <tr>
+            <td class="cellHeader" scope="row"><?= __('Gender') ?></td>
+            <td><?= $user->gender ? $user->gender : "<span class='text-muted'>Please Update</span>" ?>
+        <tr>
             <td class="cellHeader" scope="row"><?= __('Birthday') ?></td>
             <td><?= $user->has('bday') ? $this->Switches->date($user->bday) : "<span class='text-muted'>Please Update</span>" ?></td>
         </tr>

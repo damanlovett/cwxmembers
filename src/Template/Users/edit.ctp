@@ -57,6 +57,7 @@
             echo $this->Form->control('last_name');
             echo $this->Form->control('gender');
             echo $this->Form->control('abc', ['type'=>'text', 'label'=>'ABC Certification', 'div'=>false, 'class'=>'form-control datepicker']);
+            echo $this->Form->control('harassment', ['type'=>'text', 'label'=>'Harassment Policy', 'div'=>false, 'class'=>'form-control datepicker']);
             echo $this->Form->control('active');
             echo $this->Form->control('club_standing_id', ['options' => $clubStandings, 'empty' => true]);
             echo $this->Form->control('email_verified');

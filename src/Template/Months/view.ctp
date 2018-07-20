@@ -44,14 +44,18 @@
             </thead>
             <?php foreach ($month->shows as $shows): ?>
             <tr>
-                <td class="iconSifze">
-                <?php if($shows->visible == 1) : ?> <?= $this->Html->link(__(''), ['controller'=>'Shows', 'action' => 'signup', $shows->id], ['class'=>'fas fa-eye fa-sm fa-fw text-success iconSize', 'title'=>'View Show'])?>
+                <td>
+                <?php if($shows->visible == 1) : ?> <?= $this->Html->link(__(''), ['controller'=>'Shows', 'action' => 'view', $shows->id], ['class'=>'fas fa-eye fa-xs fa-fw text-success iconSize', 'title'=>'View Show'])?>
                     <?php endif; ?>
                 </td>
-                <td class="iconfSize">
-                <?= $shows->signups_open ? $this->Html->link(__(''), ['controller'=>'Shows', 'action' => 'signup', $shows->id], ['class'=>'fas fa-file-signature fa-sm fa-fw text-success iconSize', 'title'=>'Sign Up']) : '' ?>
+                <td>
+                <?= $shows->signups_open ? $this->Html->link(__(''), ['controller'=>'Shows', 'action' => 'signup', $shows->id], ['class'=>'fas fa-pen-square fa-sm fa-fw text-success iconSize', 'title'=>'Sign Up']) : '' ?>
                 </td>
-                <td style="text-align: center">&nbsp;</td>
+                <td><?php if (!empty($shows->show_url)) : ?> <a href='<?= $shows->show_url ?>' class ="fab fa-chrome fa-sm fa-fw text-success iconSize" target="_blank" title='Show URL'></a> <?php endif;?>
+
+
+
+                </td>
                 <td><?= h($shows->Dropdowns['name']) ?></td>
                 <td><?= h($shows->DisplayName) ?></td>
             </tr>

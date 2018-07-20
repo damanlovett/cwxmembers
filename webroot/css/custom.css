@@ -56,7 +56,7 @@ a, a:hover, a:active {
 }
 
 .navbar-inverse .navbar-nav>li>a {
-
+ font-size: 1em;
   color: #fff;
 }
 
@@ -867,13 +867,24 @@ blockquote:after {
 }
 
 .navbar-inverse .navbar-nav>li>a:hover {
-  color: #bbbbbb !important;
+  background-color:white;
+  color: #0000b3 !important;
 }
 
 table tr th, table tr td {
   font-size: 1rem;
 }
-a.iconSize {
-  font-size:18px;
-  }
-a.iconSize:hover {color:#0000b3;}
+a.iconSize { font-size:18px; text-decoration: none !important;}
+a.iconSize:hover {color:#0000b3; text-decoration: none !important;}
+
+.required > label {
+    font-weight: bold;
+}
+.required > label:after {
+    content: ' *';
+    color: #C3232D;
+}
+
+div.error-message {
+  color:red;
+}

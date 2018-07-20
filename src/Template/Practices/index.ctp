@@ -5,7 +5,7 @@
  */
 ?>
 <div class="practices index large-12 medium-12 columns content">
-    <h3><i class="fas fa-chalkboard fa-1x fa-fw"></i>&nbsp;&nbsp;<?= __('Practice') ?></h3>
+    <h3><i class="fas fa-chalkboard fa-1x fa-fw"></i>&nbsp;&nbsp;<?= __('Practices') ?></h3>
     <table class="table table-striped" cellpadding="0" cellspacing="0">
         <thead>
             <tr>

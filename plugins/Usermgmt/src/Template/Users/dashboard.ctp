@@ -4,7 +4,7 @@
  * @var \App\Model\Entity\dashboard[]|\Cake\Collection\CollectionInterface $dashboard
  */
 ?>
-
+<?php $this->assign('title', 'Dashboard')?>
 
     <!-- Header Carousel -->
 

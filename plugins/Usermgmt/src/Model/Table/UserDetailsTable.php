@@ -46,8 +46,9 @@ class UserDetailsTable extends UsermgmtAppTable {
 		return $validator;
 	}
 	public function validationForEditProfile($validator) {
-		/*$validator
-			->notEmpty('cellphone', __('Please enter cellphone no'));*/
+		$validator
+			->notEmpty('cellphone', __('Please enter a phone number'))
+			->notEmpty('location', __('Please enter your address'));
 		return $validator;
 	}
 }

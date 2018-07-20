@@ -358,7 +358,7 @@ class UsersTable extends UsermgmtAppTable {
 			->notEmpty('first_name', __('Please enter first name'))
 			->allowEmpty('last_name')
 			->notEmpty('email', __('Please enter email'))
-			->notEmpty('gender', __('Please select gender'))
+			->allowEmpty('gender')
 			->add('username', [
 				'mustBeValid'=>[
 					'rule'=>'alphaNumericDashUnderscore',

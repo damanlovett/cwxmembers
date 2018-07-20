@@ -66,7 +66,11 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Abc') ?></th>
-            <td><?= $this->Switches->date($userDetail->abc) ?></td>
+            <td><?= (!empty($userDetail->abc)) ? $this->Switches->date($userDetail->abc) : "Needs Updating"?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Harassment Policy') ?></th>
+            <td><?= (!empty($userDetail->harassment)) ? $this->Switches->date($userDetail->harassment) : "Needs Updating"?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Starting Year') ?></th>

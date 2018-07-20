@@ -22,7 +22,9 @@ The above copyright notice and this permission notice shall be included in all c
 THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE PRODUCT OR THE USE OR OTHER DEALINGS IN THE PRODUCT. */
 ?>
 <div class="users view large-12 medium-11 columns content">
-    <h3><i class="fas fa-user fa-lx fa-fw"></i>&nbsp;&nbsp;<?= h($var['first_name']."'s Profile") ?></h3>
+    <h3><i class="fas fa-user fa-lx fa-fw"></i>&nbsp;&nbsp;<?= h($var['first_name']."'s Profile") ?>
+		<span class="pull-right">
+            <?php echo $this->Html->link(__('Back', true), ['controller'=>'users','action'=>'mview', 'plugin'=>false], ['class'=>'btn btn-default btn-sm']); ?></span></h3>
 	<div class="panel-body">
 		<?php echo $this->element('Usermgmt.ajax_validation', ['formId'=>'editProfileForm', 'submitButtonId'=>'editProfileSubmitBtn']); ?>
 		<?php echo $this->Form->create($userEntity, ['type'=>'file', 'id'=>'editProfileForm', 'class'=>'form-horizontal']); ?>
@@ -52,7 +54,7 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
 			</div>
 		</div>
 		<div class="um-form-row form-group">
-			<label class="col-sm-2 control-label required"><?php echo __('Gender'); ?></label>
+			<label class="col-sm-2 control-label"><?php echo __('Gender'); ?></label>
 			<div class="col-sm-3">
 				<?php echo $this->Form->input('Users.gender', ['type'=>'select', 'options'=>$genders, 'label'=>false, 'div'=>false, 'class'=>'form-control']); ?>
 			</div>
@@ -70,13 +72,13 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
 			</div>
 		</div>
 		<div class="um-form-row form-group">
-			<label class="col-sm-2 control-label"><?php echo __('Phone'); ?></label>
+			<label class="col-sm-2 control-label required"><?php echo __('Phone'); ?></label>
 			<div class="col-sm-3">
 				<?php echo $this->Form->input('Users.user_detail.cellphone', ['type'=>'text', 'label'=>false, 'placeholder'=>'###-###-####','div'=>false, 'class'=>'form-control']); ?>
 			</div>
 		</div>
 		<div class="um-form-row form-group">
-			<label class="col-sm-2 control-label"><?php echo __('Address'); ?></label>
+			<label class="col-sm-2 control-label required"><?php echo __('Address'); ?></label>
 			<div class="col-sm-3">
 				<?php echo $this->Form->input('Users.user_detail.location', ['type'=>'textarea', 'label'=>false, 'div'=>false, 'class'=>'form-control']); ?>
 			</div>

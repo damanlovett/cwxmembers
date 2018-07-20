@@ -4,6 +4,8 @@
  * @var \App\Model\Entity\Month[]|\Cake\Collection\CollectionInterface $months
  */
 ?>
+<?php $this->assign('title','Sign Ups');?>
+
 <div class="months index large-12 medium-11 columns content">
     <h3><i class="fas fa-calendar fa-1x fa-fw"></i>&nbsp;&nbsp;<?= __('Sign Ups') ?></h3>
 
@@ -15,7 +17,6 @@
                 <th scope="col"><?= $this->Paginator->sort('first_friday', 'Month') ?></th>
                 <th scope="col"style="text-align:center;"><?= __('# of Shows') ?></th>
                 <th scope="col"style="text-align:center;"><?= __('# of Sign Ups') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
             </tr>
         </thead>
         <tbody>
@@ -24,12 +25,11 @@
                 <td>
                     <?= $this->Html->link(__(''), ['action' => 'view', $month->id], ['class'=>'fas fa-eye fa-l fa-fw text-success', 'title'=>'View Month']) ?>
                 </td>
-                <td>                    <a href=".$mon" title="Show URL"><i class="fab fa-chrome fa-lg text-primary fa-fw"></i></a>
+                <td>
                 </td>
                 <td><?= h($month->title." ".$month->year) ?></td>
                 <td style="text-align:center;"><?= $month->numberOfShows() ?></td>
                 <td style="text-align:center;"><?= $month->numberOfSignups() ?></td>
-                <td><?= h($month->created->format('m/d/y - g:i a')) ?></td>
             </tr>
             <?php endforeach; ?>
         </tbody>

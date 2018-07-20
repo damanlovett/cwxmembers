@@ -30,10 +30,10 @@
                 <td style="text-align: center;"><?= $show->visible ? "<i class='fas fa-circle text-success fa-sm'></i>" : '' ?></td>
                 <td class="actions">
 
-                        <?= $this->Html->link(__(''), ['action' => 'mview', $show->id], ['class'=>'fas fa-edit fa-lg  fa-fw text-primary', 'title'=>'View / Assign Show']) ?>
-                        <?= $this->Html->link(__(''), ['controller' => 'Months', 'action' => 'view', $show->month->id], ['class'=>'fas fa-calendar-alt fa-lg  fa-fw text-primary', 'title'=>'View Month']) ?></li>
-                        <?= $this->Html->link(__(''), ['action' => 'edit', $show->id], ['class'=>'fas fa-calendar fa-lg  fa-fw text-primary', 'title'=>'Edit Show']) ?>
-                        <?= $this->Form->postLink(__(''), ['action' => 'remove', $show->id], ['class'=>'fas fa-times fa-lg  fa-fw text-danger', 'title'=>'Delete Show']) ?>
+                        <?= $this->Html->link(__(''), ['action' => 'mview', $show->id], ['class'=>'fas fa-plus-square fa-l  fa-fw text-success', 'title'=>'View / Assign Show']) ?>
+                        <?= $this->Html->link(__(''), ['controller' => 'Months', 'action' => 'view', $show->month->id], ['class'=>'fas fa-eye fa-l  fa-fw text-success', 'title'=>'View Month']) ?></li>
+                        <?= $this->Html->link(__(''), ['action' => 'edit', $show->id], ['class'=>'fas fa-edit fa-l  fa-fw text-success', 'title'=>'Edit Show']) ?>
+                        <?= $this->Form->postLink(__(''), ['action' => 'remove', $show->id], ['class'=>'fas fa-trash-alt fa-l  fa-fw text-danger', 'title'=>'Delete Show']) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

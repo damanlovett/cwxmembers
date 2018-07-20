@@ -94,10 +94,10 @@ $cakeDescription = "Lovett Creations :: You'll Love What We Do";
   <div class="background"></div>
 
     <?= $this->Flash->render() ?>
+    <?php echo $this->element('Usermgmt.message_notification'); ?>
     <div class="container clearfix">
            <?php /*         <?php if($this->UserAuth->isLogged()) { echo $this->element('Usermgmt.dashboard'); } ?> -->
                     <?php if($this->UserAuth->isLogged()) { echo $this->element('menu'); } ?> */?>
-            <?php echo $this->element('Usermgmt.message_notification'); ?>
 
         <?= $this->fetch('content') ?>
     </div>

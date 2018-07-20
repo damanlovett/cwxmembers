@@ -90,7 +90,12 @@ class UserDetailsTable extends Table
             ->allowEmpty('delete');
 
         $validator
+            ->date('abc')
             ->allowEmpty('abc');
+
+        $validator
+            ->date('harassment')
+            ->allowEmpty('harassment');
 
         $validator
             ->scalar('location')

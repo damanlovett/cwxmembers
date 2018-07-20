@@ -4,6 +4,7 @@
  * @var \App\Model\Entity\User $user
  */
 ?>
+<?php $this->assign('title','My Activities');?>
 <div class="users view large-12 medium-11 columns content">
     <h3><i class="fas fa-user-circle fa-1x fa-fw"></i>&nbsp;&nbsp;<?= $user->first_name."'s  Activities" ?></h3>
 
@@ -66,6 +67,11 @@
 <?php endif;?>
                 </td>
             <?php endforeach; ?>
+</td>
+</tr>
+            <tr>
+                <td class="cellHeader" scope="col"><?= __('Harassment Policy') ?></td>
+                <td><?= $userDetails->harassment ? "<span class='text-success'>Completed: ".$this->Switches->date($userDetails->harassment)."</span> " : "<span class='text-muted'>Not Completed</span>" ?>
         </table>
         <?php endif; ?>
     </div>

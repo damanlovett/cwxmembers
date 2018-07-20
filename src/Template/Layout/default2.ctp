@@ -104,42 +104,16 @@ $cakeDescription = "Lovett Creations :: You'll Love What We Do";
         <a class="navbar-brand" " href="/"><?= $this->Html->image('CWXRedBrand.png', ['alt' => 'CWX Brand', 'class'=>'brandImg']); ?>ComedyWorx Membership Portal</a>
     </div>
 
- <!--- Portal Manager -> months/index ( reroute name )
-        ( add nav bar for access all the below page title )
-        ( wishlist add count for shows / practices on index             page )
-    -> months/mview
-        ( add CRUD icons )
-        ( wishlist add pagnation for shows )
- Table Manager -> dropdown/index
 
-
- ------- Separator ---------
- show -> shows/manager
-        ( add CRUD icons )
-    -> shows/edit
-        ( format page / remove nav / correct date field )
-    -> shows/mview ( add icon )
-
- practice -> practices/manager
-        ( remove nav / make icons for CRUD )
-    -> practices/mview
-        ( create page from checkin / add Delete / add user              form with date )
- checkins -> checkins/index
-        ( remove nav / remove view&edit / format displayname /          move user first )
- players -> users/index
-        ( format page / remove nav )
-    -> users/mview
- memberships ->user-details
-        ( format page )
--->
 <?php echo $this->element('mainMenu');?>
 </nav>
 <div class="header"></div>
-    <div class="container clearfix">
     <?= $this->Flash->render() ?>
+    <?php echo $this->element('Usermgmt.message_notification'); ?>
+
+    <div class="container clearfix">
            <?php /*         <?php if($this->UserAuth->isLogged()) { echo $this->element('Usermgmt.dashboard'); } ?> -->
                     <?php if($this->UserAuth->isLogged()) { echo $this->element('menu'); } ?> */?>
-            <?php echo $this->element('Usermgmt.message_notification'); ?>
 
         <?= $this->fetch('content') ?>
     </div>
