@@ -28,18 +28,17 @@ $(document).ready(function(e) {
 	}
 });
 </script>
-<div class="panel panel-primary">
-	<div class="panel-heading">
-		<span class="panel-title">
-			<?php echo __('Edit User'); ?>
-		</span>
-		<span class="panel-title-right">
-			<?php $page = (isset($this->request->query['page'])) ? $this->request->query['page'] : 1;?>
-			<?php echo $this->Html->link(__('Back', true), ['action'=>'index', 'page'=>$page], ['class'=>'btn btn-default']);?>
-		</span>
-	</div>
+<?php $this->assign('title','Edit Member');?>
+<div class="users view large-12 medium-11 columns content">
+    <h3><i class="fas fa-user fa-lx fa-fw"></i>&nbsp;&nbsp;<?= h("Edit ".$userEntity->first_name." ".$userEntity->last_name) ?><span class="pull-right">
+            <?php echo $this->Html->link(__('Back', true), ['action'=>'members', 'plugin'=>'usermgmt'], ['class'=>'btn btn-default btn-sm']); ?>
+        </span></h3>
+
+
+
 	<div class="panel-body">
 		<?php echo $this->element('Usermgmt.ajax_validation', ['formId'=>'editUserForm', 'submitButtonId'=>'editUserSubmitBtn']); ?>
+		<h4>Portal Information</h4>
 		<?php echo $this->Form->create($userEntity, ['id'=>'editUserForm', 'class'=>'form-horizontal', 'type'=>'file']);?>
 		<div class="um-form-row form-group">
 			<label class="col-sm-2 control-label required"><?php echo __('Group');?></label>
@@ -53,6 +52,7 @@ $(document).ready(function(e) {
 				<?php echo $this->Form->input('Users.username', ['type'=>'text', 'label'=>false, 'div'=>false, 'class'=>'form-control']);?>
 			</div>
 		</div>
+		<h4 class="pageTitle">Personal</h4>
 		<div class="um-form-row form-group">
 			<label class="col-sm-2 control-label required"><?php echo __('First Name');?></label>
 			<div class="col-sm-3">
@@ -84,9 +84,58 @@ $(document).ready(function(e) {
 			</div>
 		</div>
 		<div class="um-form-row form-group">
-			<label class="col-sm-2 control-label"><?php echo __('Starting Year');?></label>
+			<label class="col-sm-2 control-label"><?php echo __('Address');?></label>
+			<div class="col-sm-3">
+				<?php echo $this->Form->input('Users.user_detail.location', ['type'=>'textarea', 'label'=>false, 'div'=>false, 'class'=>'form-control']);?>
+			</div>
+		</div>
+		<div class="um-form-row form-group">
+			<label class="col-sm-2 control-label"><?php echo __('Phone');?></label>
+			<div class="col-sm-3">
+				<?php echo $this->Form->input('Users.user_detail.cellphone', ['type'=>'text', 'label'=>false, 'div'=>false, 'class'=>'form-control']);?>
+			</div>
+		</div>
+		<h4>Membership</h4>
+		<div class="um-form-row form-group">
+			<label class="col-sm-2 control-label"><?php echo __('Starting Date');?></label>
 			<div class="col-sm-3">
 				<?php echo $this->Form->input('Users.user_detail.starting_year', ['type'=>'text', 'label'=>false, 'div'=>false, 'class'=>'form-control datepicker']);?>
+			</div>
+		</div>
+		<div class="um-form-row form-group">
+			<label class="col-sm-2 control-label"><?php echo __('Nickname');?></label>
+			<div class="col-sm-3">
+				<?php echo $this->Form->input('Users.user_detail.nickname', ['type'=>'text', 'label'=>false, 'div'=>false, 'class'=>'form-control']);?>
+			</div>
+		</div>
+		<div class="um-form-row form-group">
+			<label class="col-sm-2 control-label"><?php echo __('Referee');?></label>
+			<div class="col-sm-3">
+				<?php echo $this->Form->input('Users.user_detail.referee', ['label'=>false, 'div'=>false]);?>
+			</div>
+		</div>
+		<div class="um-form-row form-group">
+			<label class="col-sm-2 control-label"><?php echo __('Host');?></label>
+			<div class="col-sm-3">
+				<?php echo $this->Form->input('Users.user_detail.host', ['label'=>false, 'div'=>false]);?>
+			</div>
+		</div>
+		<div class="um-form-row form-group">
+			<label class="col-sm-2 control-label"><?php echo __('Voice');?></label>
+			<div class="col-sm-3">
+				<?php echo $this->Form->input('Users.user_detail.voice', ['label'=>false, 'div'=>false]);?>
+			</div>
+		</div>
+		<div class="um-form-row form-group">
+			<label class="col-sm-2 control-label"><?php echo __('Member Standing');?></label>
+			<div class="col-sm-3">
+				<?php echo $this->Form->input('Users.user_detail.member_standing_id', ['type'=>'select', 'label'=>false, 'options'=> $memberStandings, 'div'=>false]);?>
+			</div>
+		</div>
+		<div class="um-form-row form-group">
+			<label class="col-sm-2 control-label"><?php echo __('Club Standing');?></label>
+			<div class="col-sm-3">
+				<?php echo $this->Form->input('Users.user_detail.club_standing_id', ['type'=>'select', 'label'=>false, 'options'=> $clubStandings, 'div'=>false]);?>
 			</div>
 		</div>
 		<div class="um-form-row form-group">
@@ -101,27 +150,25 @@ $(document).ready(function(e) {
 				<?php echo $this->Form->input('Users.user_detail.harassment', ['type'=>'text', 'label'=>false, 'div'=>false, 'class'=>'form-control datepicker']);?>
 			</div>
 		</div>
+
+
+
 		<div class="um-form-row form-group">
 			<label class="col-sm-2 control-label"><?php echo __('Photo');?></label>
 			<div class="col-sm-3">
 				<?php echo $this->Form->input('Users.photo_file', ['type'=>'file', 'label'=>false, 'div'=>false]);?>
 			</div>
 		</div>
-		<div class="um-form-row form-group">
-			<label class="col-sm-2 control-label"><?php echo __('Location');?></label>
-			<div class="col-sm-3">
-				<?php echo $this->Form->input('Users.user_detail.location', ['type'=>'text', 'label'=>false, 'div'=>false, 'class'=>'form-control']);?>
-			</div>
-		</div>
-		<div class="um-form-row form-group">
-			<label class="col-sm-2 control-label"><?php echo __('Cellphone');?></label>
-			<div class="col-sm-3">
-				<?php echo $this->Form->input('Users.user_detail.cellphone', ['type'=>'text', 'label'=>false, 'div'=>false, 'class'=>'form-control']);?>
-			</div>
-		</div>
+
+
+
 		<div class="um-button-row">
-			<?php echo $this->Form->Submit(__('Edit User'), ['div'=>false, 'class'=>'btn btn-primary', 'id'=>'editUserSubmitBtn']);?>
+			<?php echo $this->Form->Submit(__('Edit Member'), ['div'=>false, 'class'=>'btn btn-primary text-success', 'id'=>'editUserSubmitBtn']);?>
 		</div>
 		<?php echo $this->Form->end();?>
+
+
+
+
 	</div>
 </div>

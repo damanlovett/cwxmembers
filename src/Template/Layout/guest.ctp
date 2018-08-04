@@ -12,19 +12,24 @@
  * @since         0.10.0
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
-
-$cakeDescription = 'CakePHP: the rapid development php framework';
+$cakeDescription = "Lovett Creations :: You'll Love What We Do";
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <?= $cakeDescription ?>:
-        <?= $this->fetch('title') ?>
-    </title>
-    <?= $this->Html->meta('icon') ?>
+    <title><?php echo $this->fetch('title');?> CWX Membership Portal | Lovett Creations</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script language="javascript">
+        var urlForJs="<?php echo SITE_URL ?>";
+    </script>
+<?= $this->Html->meta(
+    'favicon.ico',
+    '/cakeicon.ico',
+    ['type' => 'icon']
+);
+?>
 
 
     <?php

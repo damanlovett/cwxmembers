@@ -39,4 +39,21 @@ class Practice extends Entity
         'month' => true,
         'checkins' => true
     ];
+
+    // full_name virtual field
+    protected function _getDisplayName()
+    {
+        $date = new Date($this->_properties['schedule']);
+
+        return $date->format('M j, Y - g:i a');
+    }
+
+    // full_name with Name virtual field
+    protected function _getFullName()
+    {
+        $date = new Date($this->_properties['schedule']);
+        $name = $this->_properties['title'];
+
+        return $name." :: ".$date->format('M j, Y - g:i a');
+    }
 }

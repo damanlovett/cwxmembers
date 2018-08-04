@@ -10,7 +10,7 @@
 
 
     <div class="related">
-        <h4><?= __('Club Information') ?></h4>
+        <h4><?= __('Club Membership') ?></h4>
         <?php if (!empty($user->user_details)): ?>
     <table class="table table-striped" cellpadding="0" cellspacing="0">
 
@@ -26,53 +26,97 @@
                 <td><?= $userDetails->has('starting_year')? $userDetails->starting_year->format('Y') : '' ?></td>
             <tr>
                 <td class="cellHeader" scope="col"><?= __('Referee') ?></td>
-                <td><?= $userDetails->referee ? "<span class='text-success'>Yes</span>" : "No" ?></td>
+                <td><?= $userDetails->referee ? "<span class='text-success'><i class='fas fa-check-circle fa-fw'></i></span>" : "No" ?></td>
             <tr>
                 <td class="cellHeader" scope="col"><?= __('Host') ?></td>
-                <td><?= $userDetails->host ? "<span class='text-success'>Yes</span>" : "No" ?></td>
+                <td><?= $userDetails->host ? "<span class='text-success'><i class='fas fa-check-circle fa-fw'></i></span>" : "No" ?></td>
             <tr>
                 <td class="cellHeader" scope="col"><?= __('Voice') ?></td>
-                <td><?= $userDetails->voice ? "<span class='text-success'>Yes</span>" : "No" ?></td>
+                <td><?= $userDetails->voice ? "<span class='text-success'><i class='fas fa-check-circle fa-fw'></i></span>" : "No" ?></td>
             <tr>
                 <td class="cellHeader" scope="col"><?= __('Member Standing') ?></td>
-          <td><?= $userDetails->member_standing->title ?> </td>
+          <td><?= $userDetails->member_standing['title'] ?> </td>
+            </tr>
             <tr>
-                <td class="cellHeader" scope="col"><?= __('ABC Training') ?></td>
-                <td><?= $userDetails->abc ? "<span class='text-success'>Completed: ".$this->Switches->date($userDetails->abc)."</span> " : "<span class='text-muted'>Not Completed</span>" ?>
+                <td class="cellHeader" scope="col"><?= __('Club Standing') ?></td>
+          <td><?= $userDetails->club_standing['title'] ?> </td>
+      </tr>
+            <tr>
+                <td class="cellHeader" scope="col">
+
+                    <!-- ABC Training modal -->
+                    <?php echo $this->Html->link('','/#', ['data-toggle'=>'modal', 'data-target'=>".bs-abc-modal-lg",'class'=>'fas fa-info-circle fa-l  fa-fw text-success', 'title'=>'ABC Information']); ?>
+
+                    <div class="modal fade bs-abc-modal-lg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                      <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                    <div class="row">
+                        <div class="col-md-12" style="padding:30px;">
+                    <h3>ABC CERTIFICATION:</h3>
+                    <p>As you all know by now, we had a visit from the ALE (awww) a few weeks ago and we need to make sure that anyone who works selling alcohol at our concession has their ABC Certification.  If you have not yet been certified, here is what you need to do:</p>
+                    <ul>
+                    <li>Go to the ABC Website</li>
+                    <li>Click on “Register for Seller/Server Training Program”</li>
+                    <li>Click on the “Search for a business that I represent that currently holds permits OR has applied for permits” radio button</li>
+                    <li>Type “Worx Comedy Theatre” in the “Trade Name” field and click on the “Search” button.</li>
+                    <li>Select the club, register on the site and take the test</li>
+                    <li>When you are done, you’ll be able to download a PDF copy of the ABC Certificate.  Please e-mail your certification to myself, Ashley and Michael Teague.</li>
+                    </ul>
+                    </div>
+                    </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          </div>
 
 
-<!-- Small modal -->
-<?php if(empty($userDetails->abc)) :?>
-<?php echo $this->Html->link('','/#', ['data-toggle'=>'modal', 'data-target'=>".bs-example-modal-lg",'class'=>'fas fa-info-circle fa-lg  fa-fw text-success', 'title'=>'ABC Information']); ?>
+                    </div>
+                      </div>
+                    </div>
+                    <!-- End ABC Training modal -->
+                    <?= __('ABC Training') ?></td>
+                <td><?= $userDetails->abc ? "<span class='text-success'><i class='fas fa-check-circle fa-fw'></i>Completed: ".$this->Switches->date($userDetails->abc)."</span> " : "<span class='text-muted'>Not Completed</span>" ?>
 
-<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-<div class="row">
-    <div class="col-md-11" style="padding:30px;">
-<h3>ABC CERTIFICATION:</h3>
-<p>As you all know by now, we had a visit from the ALE (awww) a few weeks ago and we need to make sure that anyone who works selling alcohol at our concession has their ABC Certification.  If you have not yet been certified, here is what you need to do:</p>
-<ul>
-<li>Go to the ABC Website</li>
-<li>Click on “Register for Seller/Server Training Program”</li>
-<li>Click on the “Search for a business that I represent that currently holds permits OR has applied for permits” radio button</li>
-<li>Type “Worx Comedy Theatre” in the “Trade Name” field and click on the “Search” button.</li>
-<li>Select the club, register on the site and take the test</li>
-<li>When you are done, you’ll be able to download a PDF copy of the ABC Certificate.  Please e-mail your certification to myself, Ashley and Michael Teague.</li>
-</div>
-</div>
-</div>
-  </div>
-</div>
-<?php endif;?>
-                </td>
-            <?php endforeach; ?>
+
+
 </td>
 </tr>
             <tr>
-                <td class="cellHeader" scope="col"><?= __('Harassment Policy') ?></td>
-                <td><?= $userDetails->harassment ? "<span class='text-success'>Completed: ".$this->Switches->date($userDetails->harassment)."</span> " : "<span class='text-muted'>Not Completed</span>" ?>
+                <td class="cellHeader" scope="col">
+                <!-- Harrassment modal -->
+                <?php echo $this->Html->link('','/#', ['data-toggle'=>'modal', 'data-target'=>".bs-harassment-modal-lg",'class'=>'fas fa-info-circle fa-l  fa-fw text-success', 'title'=>'Shortform Guide And Harassment Policy']); ?>
+
+                <div class="modal fade bs-harassment-modal-lg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                <div class="row">
+                    <div class="col-md-12" style="padding:30px;">
+                <h3>SHORTFORM GUIDE & HARASSEMENT POLICY SIGNOFFS</h3>
+                <p>In order to be eligible to practice, play or support any of our shows you will need to have signed off on the ComedyWorx Shortform Guide Attestation Form.  It requires that you have read and agree to the policies in Shortform Guide and Harassment Policy. </p>
+                <div class="list-group">
+                  <span class="list-group-item active">
+                    Important Documents
+                  </span>
+                  <span class="list-group-item">Shortform Attestation Form - [ <a href="https://goo.gl/ZMLffs" target="_blank">https://goo.gl/ZMLffs</a> ]</span>
+                  <span class="list-group-item">Shortform Guide: [ <a href="https://goo.gl/WAH1E6" target="_blank">https://goo.gl/WAH1E6</a> ]</span>
+                  <span class="list-group-item">Harassment Policy: [ <a href="https://goo.gl/Lt1VeW" target="_blank">https://goo.gl/Lt1VeW</a> ]</span>
+                </div>
+                </div>
+                </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+
+
+                </div>
+                  </div>
+                </div>
+                <!-- End Harrassment modal -->
+            <?= __('Harassment Policy') ?></td>
+                <td><?= $userDetails->harassment ? "<span class='text-success'><i class='fas fa-check-circle fa-fw'></i>Completed: ".$this->Switches->date($userDetails->harassment)."</span> " : "<span class='text-muted'>Not Completed</span>" ?>
+
+                </td>
         </table>
+    <?php endforeach;?>
         <?php endif; ?>
     </div>
 
@@ -82,9 +126,9 @@
                     <span class="pull-right">
                         <!-- Tabs -->
                         <ul class="nav panel-tabs">
-                            <li class="active"><a href="#tab1" data-toggle="tab">My Line Ups</a></li>
-                            <li><a href="#tab2" data-toggle="tab">Practice :: Check ins</a></li>
-                            <li><a href="#tab3" data-toggle="tab">Show :: Sign Ups</a></li>
+                            <li class="active"><a href="#tab1" data-toggle="tab"><i class="fas fa-calendar fa-l fa-fw"></i>&nbsp;&nbsp;My Shows</a></li>
+                            <li><a href="#tab2" data-toggle="tab"><i class="fas fa-chalkboard fa-l fa-fw"></i>&nbsp;&nbsp;My Practices</a></li>
+                            <li><a href="#tab3" data-toggle="tab"><i class="fas fa-pen-alt fa-l fa-fw "></i>&nbsp;&nbsp;My Sign Ups</a></li>
                         </ul>
                     </span>
                 </div>
@@ -93,52 +137,108 @@
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab1">
 
-<div class="assignments index large-9 medium-8 columns content">
-    <h3><?= __('Assignments') ?></h3>
-    <table cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('show_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('signup_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('role_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('rol') ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($assignments as $assignment): ?>
-            <tr>
-                <td><?php if(!empty($assignment->Dropdowns['name'])) { echo $assignment->Dropdowns['name'] ;} ?></td>
-                <td><?php if(!empty($assignment->show->schedule)) { echo $assignment->show->schedule ;} ?></td>
-                <td><?= $assignment->has('role') ? $this->Html->link($assignment->role->name, ['controller' => 'Roles', 'action' => 'view', $assignment->role->id]) : '' ?></td>
-                <td><?= $assignment->has('roles2') ? $this->Html->link($assignment->roles2->name, ['controller' => 'Roles', 'action' => 'view', $assignment->roles2->id]) : '' ?></td>
-                <td><?= $assignment->callout ? "Yes" : "No" ;?>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
-    </div>
-</div>
+                <div class="users view large-12 medium-11 columns content">
+                    <table class="table table-striped" cellpadding="0" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th scope="col"><?= __('Show') ?></th>
+                                <th scope="col"><?= __('Date') ?></th>
+                                <th scope="col"><?= __('Performing') ?></th>
+                                <th scope="col"><?= __('Support') ?></th>
+                                <th scope="col"><?= __('Called Out') ?></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($assignments as $assignment): ?>
+                            <tr>
+                                <td><?php if(!empty($assignment->Dropdowns['name'])) { echo $assignment->Dropdowns['name'] ;} ?></td>
+                                <td><?php if(!empty($assignment->show->schedule)) { echo $this->Switches->dateTime($assignment->show->schedule) ;} ?></td>
+                                <td><?= $assignment->has('role') ? $assignment->role->name : '' ?></td>
+                                <td><?= $assignment->has('roles2') ? $assignment->roles2->name : '' ?></td>
+                                <td><?= $assignment->callout ? "Yes" : "No" ;?>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                    <div class="paginator">
+                        <ul class="pagination">
+                            <?= $this->Paginator->first('<< ' . __('first'), ['model'=>'Assignments']) ?>
+                            <?= $this->Paginator->prev('< ' . __('previous'), ['model'=>'Assignments']) ?>
+                            <?= $this->Paginator->numbers(['model'=>'Assignments']) ?>
+                            <?= $this->Paginator->next(__('next') . ' >', ['model'=>'Assignments']) ?>
+                            <?= $this->Paginator->last(__('last') . ' >>', ['model'=>'Assignments']) ?>
+                        </ul>
+                        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total'), 'model'=>'Assignments']) ?></p>
+                    </div>
+                </div>
 
                         </div>
                         <div class="tab-pane" id="tab2">
 
-Coming Soon ( still under construction)
+                <div class="users view large-12 medium-11 columns content">
+                    <table class="table table-striped" cellpadding="0" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th scope="col"><?= __('Practice') ?></th>
+                                <th scope="col"><?= __('Date') ?></th>
+                                <th scope="col"><?= __('Leader') ?></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($checkins as $checkin): ?>
+                            <tr>
+                                <td><?php if(!empty($checkin->practice->title)) { echo $checkin->practice->title ;} ?></td>
+                                <td><?php if(!empty($checkin->practice->schedule)) { echo $this->Switches->dateTime($checkin->practice->schedule) ;} ?></td>
+                                <td><?php if(!empty($checkin->practice->leader)) { echo "<i class='fas fa-chalkboard-teacher fa-l fa-fw'></i> &nbsp;&nbsp;".$checkin->practice->leader ;} ?></td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                    <div class="paginator">
+                        <ul class="pagination">
+                            <?= $this->Paginator->first('<< ' . __('first'), ['model'=>'Checkins']) ?>
+                            <?= $this->Paginator->prev('< ' . __('previous'), ['model'=>'Checkins']) ?>
+                            <?= $this->Paginator->numbers(['model'=>'Checkins']) ?>
+                            <?= $this->Paginator->next(__('next') . ' >', ['model'=>'Checkins']) ?>
+                            <?= $this->Paginator->last(__('last') . ' >>', ['model'=>'Checkins']) ?>
+                        </ul>
+                        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total'), 'model'=>'Checkins']) ?></p>
+                    </div>
+                </div>
+
 
                         </div>
                         <div class="tab-pane" id="tab3">
 
-Coming Soon ( still under construction)
+                <div class="users view large-12 medium-11 columns content">
+                    <table class="table table-striped" cellpadding="0" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th scope="col"><?= __('Show') ?></th>
+                                <th scope="col"><?= __('Date') ?></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($signups as $signup): ?>
+                            <tr>
+                                <td><?php if(!empty($signup->Dropdowns['name'])) { echo $signup->Dropdowns['name'] ;} ?></td>
+                                <td><?php if(!empty($signup->show->schedule)) { echo $this->Switches->dateTime($signup->show->schedule) ;} ?></td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                    <div class="paginator">
+                        <ul class="pagination">
+                            <?= $this->Paginator->first('<< ' . __('first'), ['model'=>'Signups']) ?>
+                            <?= $this->Paginator->prev('< ' . __('previous'), ['model'=>'Signups']) ?>
+                            <?= $this->Paginator->numbers(['model'=>'Signups']) ?>
+                            <?= $this->Paginator->next(__('next') . ' >', ['model'=>'Signups']) ?>
+                            <?= $this->Paginator->last(__('last') . ' >>', ['model'=>'Signups']) ?>
+                        </ul>
+                        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total'), 'model'=>'Signups']) ?></p>
+                    </div>
+                </div>
+
 
 
                         </div>

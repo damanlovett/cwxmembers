@@ -29,4 +29,10 @@ class MemberStanding extends Entity
         'notes' => true,
         'user_details' => true
     ];
+    // full_name virtual field
+    protected function _getDisplayName()
+    {
+        return $this->_properties['title'];
+    }
+
 }

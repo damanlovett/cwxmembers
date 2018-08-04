@@ -90,6 +90,11 @@ class SignupsTable extends Table
     {
         $rules->add($rules->existsIn(['show_id'], 'Shows'));
         $rules->add($rules->existsIn(['user_id'], 'Users'));
+        // A list of fields
+        $rules->add($rules->isUnique(
+            ['user_id', 'show_id'],
+            'You have already signed up for this show.'
+        ));
 
         return $rules;
     }

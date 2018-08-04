@@ -5,7 +5,8 @@
  */
 ?>
 <div class="shows view large-12 medium-11 columns content">
-<h3><i class="fas fa-calendar fa-2x fa-fw"></i><?= __('Shows') ?></h3>
+<h3><i class="fas fa-calendar fa-1x fa-fw"></i>&nbsp;&nbsp;<?= __('Show Information') ?>
+    <?= $this->Html->link(__('Month View'), ['controller'=>'months','action' => 'view', $show->month->id], ['class'=>'btn btn-default btn-sm pull-right', 'title'=>'Month View']) ?></h3>
        <div class="fpageTitle">
             <h1><?= h($show->dropdown->name) ?></h1>
             <h2><?= h($show->schedule->format('F j, Y - g:i A')) ?></h2>

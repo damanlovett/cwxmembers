@@ -5,7 +5,7 @@
  */
 ?>
 <div class="shows view large-12 medium-11 columns content">
-<h3><i class="fas fa-calendar fa-2x fa-fw"></i><?= __('Show Sign Up')?>
+<h3><i class="fas fa-calendar fa-l fa-fw"></i>&nbsp;&nbsp;<?= __('Show Sign Up')?>
 
 
     <div class="btn-group  pull-right" role="group" aria-label="...">
@@ -13,15 +13,14 @@
     <?= $this->Html->link(__('Show List'), ['controller'=>'Months', 'action' => 'index'], ['class'=>'btn btn-default btn-sm', 'title'=>'Back to Shows']) ?>
 </div>
 </h3>
-
-
        <div class="fpageTitle">
             <h1><?= h($show->dropdown->name) ?></h1>
             <h2><?= h($show->DisplayName) ?></h2>
             <h2>
                  <?php if($show->signups_open == 1  ) : ?>
+
                         <?= $this->Form->create(null, [
-                        'url' => ['controller' => 'Signups', 'action' => 'add']
+                        'url' => ['controller' => 'Shows', 'action' => 'signup',$show->id]
                     ]); ?>
                             <?php
                                 echo $this->Form->hidden('show_id', ['value' => $show->id]);
@@ -30,14 +29,15 @@
                             ?>
                         <?= $this->Form->button(__('Sign Up'), ['class' => 'btn btn-success']) ?>
                         <?= $this->Form->end() ?>
-            <?php else : ?>
+                <?php else : ?>
 
-                        <?= "Sign ups are closed"; ?>
+                        <?= "Sign ups are closed <br />"; ?>
 
-            <?php endif; ?></h2>
+            <?php endif; ?>
+
+            </h2>
 
         </div>
-
 
 <?php if (!empty($show->notes)) :?>
 
@@ -52,13 +52,12 @@
         </div>
         <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
           <div class="panel-body" style="background-color:white;">
-            <?= $this->Text->autoParagraph(h($show->notes)); ?>
+            <?= $show->notes; ?>
           </div>
         </div>
       </div>
     </div>
 <?php endif; ?>
-
 
     <div class="related">
         <h4><?= __('Sign Ups') ?></h4>

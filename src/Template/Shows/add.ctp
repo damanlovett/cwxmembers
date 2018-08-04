@@ -35,19 +35,33 @@
         <hr />
         <div class="um-form-row form-group">
             <div class="col-sm-3">
+        <?php echo $this->Form->control('players_needed'); ?>
+            </div>
+        </div>
+        <hr />
+        <div class="um-form-row form-group">
+            <div class="col-sm-3">
         <?php echo $this->Form->control('signups_open'); ?>
             </div>
         </div>
         <hr />
         <div class="um-form-row form-group">
             <div class="col-sm-3">
-        <?php echo $this->Form->control('delete_signup', ['label'=>'Allow player to remove sign up']); ?>
+        <?php echo $this->Form->control('visible'); ?>
             </div>
         </div>
         <hr />
         <div class="um-form-row form-group">
-            <div class="col-sm-3">
-        <?php echo $this->Form->control('visible'); ?>
+            <div class="row">
+                <div class="col-sm-4">
+                    <?php echo $this->Form->control('ref_needed'); ?>
+                </div>
+                <div class="col-sm-4">
+                    <?php echo $this->Form->control('voice_needed'); ?>
+                </div>
+                <div class="col-sm-4">
+                    <?php echo $this->Form->control('host_needed'); ?>
+                </div>
             </div>
         </div>
         <hr />

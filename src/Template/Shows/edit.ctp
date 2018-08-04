@@ -24,13 +24,19 @@
         <?php   echo $this->Form->control('dropdown_id', ['label'=>'Show Type', 'options' => $dropdowns, 'empty' => true]);?>
             </div>
         </div>
-        <div class="col-sm-8">
+       <?php /* <div class="col-sm-8" style="display:none;">
         <div class="um-form-row form-group ">
             <div class="col-sm-3">
-                <?php echo $this->Form->dateTime('schedule'); ?>
+                <?php echo $this->Form->input('schedule', ['type'=>'text', 'default'=>true,'label'=>false, 'div'=>false, 'class'=>'form-control datetimepicker']);?>
             </div>
         </div>
-    </div>
+    </div> */?>
+        <hr />
+        <div class="um-form-row form-group">
+            <div class="col-sm-3">
+        <?php echo $this->Form->control('players_needed'); ?>
+            </div>
+        </div>
         <hr />
         <div class="um-form-row form-group">
             <div class="col-sm-3">
@@ -40,13 +46,21 @@
         <hr />
         <div class="um-form-row form-group">
             <div class="col-sm-3">
-        <?php echo $this->Form->control('delete_signup', ['label'=>'Allow player to remove sign up']); ?>
+        <?php echo $this->Form->control('visible'); ?>
             </div>
         </div>
         <hr />
         <div class="um-form-row form-group">
-            <div class="col-sm-3">
-        <?php echo $this->Form->control('visible'); ?>
+            <div class="row">
+                <div class="col-sm-4">
+                    <?php echo $this->Form->control('ref_needed'); ?>
+                </div>
+                <div class="col-sm-4">
+                    <?php echo $this->Form->control('voice_needed'); ?>
+                </div>
+                <div class="col-sm-4">
+                    <?php echo $this->Form->control('host_needed'); ?>
+                </div>
             </div>
         </div>
         <hr />

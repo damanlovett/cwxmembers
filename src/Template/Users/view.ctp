@@ -4,83 +4,89 @@
  * @var \App\Model\Entity\User $user
  */
 ?>
-<div class="players view large-12 medium-11 columns content">
-    <h3><?= h($user->id) ?></h3>
-    <table class="vertical-table">
+<?php $this->assign('title', "Member");?>
+<div class="users view large-12 medium-11 columns content">
+    <h3><i class="fas fa-user fa-lx fa-fw"></i>&nbsp;&nbsp;<?= h($user->first_name."'s Profile") ?><span class="pull-right">
+            <?php echo $this->Html->link(__('Edit', true), ['action'=>'editProfile', 'plugin'=>'usermgmt'], ['class'=>'btn btn-default btn-sm']); ?>
+        </span></h3>
+    <div class="profile">
+                                <img alt="<?php echo h($user['first_name'].' '.$user['last_name']); ?>" src="<?php echo $this->Image->resize('library/'.IMG_DIR, $user['photo'], 200, null, true);?>">
+    </div>
+    <table class="table table-striped table-user" cellpadding="0" cellspacing="0">
         <tr>
-            <th scope="row"><?= __('User Group') ?></th>
+            <td class="cellHeader"  scope="row"><?= __('User Group') ?></td>
             <td><?= $user->has('user_group') ? $this->Html->link($user->user_group->name, ['controller' => 'UserGroups', 'action' => 'view', $user->user_group->id]) : '' ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Username') ?></th>
+            <td class="cellHeader"  scope="row"><?= __('Username') ?></td>
             <td><?= h($user->username) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Password') ?></th>
+            <td class="cellHeader"  scope="row"><?= __('Password') ?></td>
             <td><?= h($user->password) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Email') ?></th>
+            <td class="cellHeader"  scope="row"><?= __('Email') ?></td>
             <td><?= h($user->email) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('First Name') ?></th>
+            <td class="cellHeader"  scope="row"><?= __('First Name') ?></td>
             <td><?= h($user->first_name) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Last Name') ?></th>
+            <td class="cellHeader"  scope="row"><?= __('Last Name') ?></td>
             <td><?= h($user->last_name) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Gender') ?></th>
+            <td class="cellHeader"  scope="row"><?= __('Gender') ?></td>
             <td><?= h($user->gender) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('ABC Certification') ?></th>
+            <td class="cellHeader"  scope="row"><?= __('ABC Certification') ?></td>
             <td><?= h($user->abc) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Club Standing') ?></th>
+            <td class="cellHeader"  scope="row"><?= __('Club Standing') ?></td>
             <td><?= $user->has('club_standing') ? $this->Html->link($user->club_standing->title, ['controller' => 'ClubStandings', 'action' => 'view', $user->club_standing->id]) : '' ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Ip Address') ?></th>
+            <td class="cellHeader"  scope="row"><?= __('Ip Address') ?></td>
             <td><?= h($user->ip_address) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Id') ?></th>
+            <td class="cellHeader"  scope="row"><?= __('Id') ?></td>
             <td><?= $this->Number->format($user->id) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Active') ?></th>
+            <td class="cellHeader"  scope="row"><?= __('Active') ?></td>
             <td><?= $this->Number->format($user->active) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Email Verified') ?></th>
+            <td class="cellHeader"  scope="row"><?= __('Email Verified') ?></td>
             <td><?= $this->Number->format($user->email_verified) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Created By') ?></th>
+            <td class="cellHeader"  scope="row"><?= __('Created By') ?></td>
             <td><?= $this->Number->format($user->created_by) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Modified By') ?></th>
+            <td class="cellHeader"  scope="row"><?= __('Modified By') ?></td>
             <td><?= $this->Number->format($user->modified_by) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Bday') ?></th>
+            <td class="cellHeader"  scope="row"><?= __('Bday') ?></td>
             <td><?= h($user->bday) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Last Login') ?></th>
+            <td class="cellHeader"  scope="row"><?= __('Last Login') ?></td>
             <td><?= h($user->last_login) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Created') ?></th>
+            <td class="cellHeader"  scope="row"><?= __('Created') ?></td>
             <td><?= h($user->created) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Modified') ?></th>
+            <td class="cellHeader"  scope="row"><?= __('Modified') ?></td>
             <td><?= h($user->modified) ?></td>
         </tr>
     </table>
@@ -89,7 +95,7 @@
         <?php if (!empty($user->assignments)): ?>
         <table cellpadding="0" cellspacing="0">
             <tr>
-                <th scope="col"><?= __('Id') ?></th>
+                <td scope="col"><?= __('Id') ?></td>
                 <th scope="col"><?= __('Show Id') ?></th>
                 <th scope="col"><?= __('User Id') ?></th>
                 <th scope="col"><?= __('Signup Id') ?></th>

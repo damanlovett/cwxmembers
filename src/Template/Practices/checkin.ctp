@@ -25,7 +25,7 @@
     </div>
     <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
       <div class="panel-body" style="background-color:white;">
-        <?= $this->Text->autoParagraph(h($practice->description)); ?>
+        <?= $practice->description; ?>
       </div>
     </div>
   </div>

@@ -76,6 +76,35 @@ class SignupsController extends AppController
     }
 
     /**
+     * Add method
+     *
+     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
+     */
+    public function madd()
+    {
+
+    $this->render('/Shows/signup/',$this->request->id);
+        $this->loadModel('Signups');
+        $signup = $this->Signups->newEntity();
+        if ($this->request->is('post')) {
+            $signup = $this->Signups->patchEntity($signup, $this->request->getData());
+            if ($this->Signups->save($signup)) {
+                $this->Flash->success(__('The signup has been saved.'));
+    $this->render('/Shows/signup/',$this->request->id);
+
+                return $this->redirect($this->referer());
+            }
+            $this->Flash->error(__('The signup could not be saved. Please, try again.'));
+        }
+        $shows = $this->Signups->Shows->find('list', ['limit' => 200]);
+        $users = $this->Signups->Users->find('list', ['limit' => 200]);
+        $months = $this->Signups->Months->find('list', ['limit' => 200]);
+        $this->set(compact('signup', 'shows', 'users', 'months'));
+
+
+    }
+
+    /**
      * Edit method
      *
      * @param string|null $id Signup id.

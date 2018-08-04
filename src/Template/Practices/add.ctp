@@ -50,7 +50,13 @@
                         <div style="clear: both;"></div>
             <div class="um-form-row form-group ">
             <div class="col-sm-6">
-            <?= $this->Form->control('description'); ?>
+
+        <?php if(strtoupper(DEFAULT_HTML_EDITOR) == 'TINYMCE') {
+                    echo $this->Tinymce->textarea('description', ['type'=>'textarea', 'label'=>false, 'div'=>false, 'style'=>'height:400px', 'class'=>'form-control'], ['language'=>'en'], 'umcode');
+                } else if(strtoupper(DEFAULT_HTML_EDITOR) == 'CKEDITOR') {
+                    echo $this->Ckeditor->textarea('description', ['type'=>'textarea', 'label'=>false, 'div'=>false, 'style'=>'height:400px', 'class'=>'form-control'], ['language'=>'en', 'uiColor'=>'#14B8C4'], 'full');
+                }
+         ?>
                 </div>
             </div>
 

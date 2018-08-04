@@ -31,17 +31,38 @@ class ShowsController extends AppController
      */
     public function index()
     {
+        $userId = $this->UserAuth->getUserId();
+        $this->set('userId', $userId);
         $this->paginate = [
             'limit' => 10,
             'order' => ['Show.schedule'=>'asc']
         ];
 
         $shows = $this->Shows->find('all')
-                    ->contain(['Months', 'Dropdowns'])
+                    ->contain(['Months', 'Dropdowns','Signups'])
                     ->where(['visible' => 1]);
 
         $this->set('shows', $this->paginate($shows));
 
+        $this->loadModel('StaticPages');
+        $information = $this->StaticPages->find('all', [
+                        'conditions' => ['id'=>2]
+                    ]);
+
+        $this->set(compact('information'));
+
+
+            $this->loadModel('Signups');
+    $qsignup = $this->Signups->newEntity();
+        if ($this->request->is('post')) {
+            $qsignup = $this->Signups->patchEntity($qsignup, $this->request->getData());
+            if ($this->Signups->save($qsignup)) {
+                $this->Flash->success(__('Your signup has been saved.'));
+
+                return $this->redirect($this->referer());
+            }
+            $this->Flash->error(__('You have already signed up for this show.'));
+        }
     }
 
 
@@ -58,9 +79,16 @@ class ShowsController extends AppController
         ];
 
         $shows = $this->Shows->find('all')
-                    ->contain(['Months', 'Dropdowns']);
+                    ->contain(['Months', 'Dropdowns','Signups','Assignments']);
 
         $this->set('shows', $this->paginate($shows));
+
+        $this->loadModel('StaticPages');
+        $information = $this->StaticPages->find('all', [
+                        'conditions' => ['id'=>2]
+                    ]);
+
+        $this->set(compact('information'));
 
 
          }
@@ -108,10 +136,15 @@ class ShowsController extends AppController
 
         $this->loadModel('Roles');
         $roles = $this->Roles->find('list', [
+                            'conditions' => ['Roles.type' => 'support'],
+                            'order' => ['Roles.name' => 'ASC'],
+                            'limit' => 200]);
+        $roles2 = $this->Roles->find('list', [
+                            'conditions' => ['Roles.type' => 'player'],
                             'order' => ['Roles.name' => 'ASC'],
                             'limit' => 200]);
 
-        $this->set(compact('roles'));
+        $this->set(compact('roles','roles2'));
 
         $this->loadModel('Assignments');
         $callouts = $this->Assignments->findAllByCalloutAndShow_id(1,$id)
@@ -119,7 +152,13 @@ class ShowsController extends AppController
 
         $inshows = $this->Assignments->findAllByCalloutAndShow_id(0,$id)
                     ->contain(['Users','Roles', 'Roles2'])
+                    ->where(['Roles.name IS NOT' => 'Roles.name'])
                     ->order(['Roles.name' => 'desc']);
+
+        $supportshows = $this->Assignments->findAllByCalloutAndShow_id(0,$id)
+                    ->contain(['Users','Roles', 'Roles2'])
+                    ->where(['Roles2.name IS NOT' => 'Roles2.name'])
+                    ->order(['Roles2.name' => 'desc']);
 
         $assignment = $this->Assignments->newEntity();
         if ($this->request->is('post')) {
@@ -136,11 +175,11 @@ class ShowsController extends AppController
         $users = $this->Assignments->Users->find('list', ['limit' => 200]);
 
 
-        $this->set(compact('callouts','inshows','signlists','shows', 'users'));
+        $this->set(compact('callouts','inshows', 'supportshows','signlists','shows', 'users'));
 
         $this->loadModel('Signups');
         $query = $this->Signups->findAllByShow_id($id)
-                    ->contain(['Users'])
+                    ->contain(['Users','Users.userdetails'])
                     ->order(['Signups.created' => 'asc']);
 
         $this->set('signups', $this->paginate($query));
@@ -160,6 +199,31 @@ class ShowsController extends AppController
                      ->group('user_id');
 
         $this->set('signlist', $signlist);
+
+    }
+
+    /**
+     * export for Mview method
+     *
+     * @param string|null $id Show id.
+     * @return \Cake\Http\Response|void
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function exsignups($id = null)
+    {
+        $this->response->download('signups.csv');
+
+        $this->loadModel('Signups');
+        $signups = $this->Signups->findAllByShow_id($id)
+                    ->contain(['Users','Users.userdetails'])
+                    ->order(['Signups.created' => 'asc']);
+
+        $this->set('_serialize', 'signups');
+        $this->set('_header', ['Show', 'User','test']);
+        $this->set('_extract', ['show_id', 'user.last_name','Users.user_details.nickname']);
+        $this->viewBuilder()->className('CsvView.Csv');
+
+        $this->set('signups', $signups);
 
     }
 
@@ -188,9 +252,21 @@ class ShowsController extends AppController
         $mshow = $this->Signups->findByShow_idAndUser_id($id,$userId)
                     ->contain(['Shows']);
 
-        $this->set(compact('mshow'));
-
         $this->set('signups', $this->paginate($query));
+        $this->set('mysignup', 'no');
+
+        $signup = $this->Signups->newEntity();
+        if ($this->request->is('post')) {
+            $signup = $this->Signups->patchEntity($signup, $this->request->getData());
+            if ($this->Signups->save($signup)) {
+                $this->Flash->success(__('You have signed up for this show.'));
+    $this->render('/Shows/signup/',$this->request->id);
+
+                return $this->redirect($this->referer());
+            }
+            $this->Flash->error(__('You have already signed up for this show'));
+        }
+
 
         //$this->set(compact('signups'));
 
@@ -237,9 +313,24 @@ class ShowsController extends AppController
             }
             $this->Flash->error(__('The show could not be saved. Please, try again.'));
         }
+        $this->set(compact('show'));
     }
+    public function mcall($id = null)
+    {
+        $this->loadModel('Assignments');
+        $assignment = $this->Assignments->get($id, [
+            'contain' => []
+        ]);
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $assignment = $this->Assignments->patchEntity($assignment, $this->request->getData());
+            if ($this->Assignments->save($assignment)) {
+                $this->Flash->success(__('The member has status is set as call out.'));
 
-
+                return $this->redirect($this->referer());
+            }
+            $this->Flash->error(__('The assignment could not be saved. Please, try again.'));
+        }
+    }
 
 
     /**
@@ -285,7 +376,7 @@ class ShowsController extends AppController
             $this->Flash->error(__('The show could not be deleted. Please, try again.'));
         }
 
-                return $this->redirect(['action' => 'manager']);
+                return $this->redirect($this->referer());
     }
 
     /**

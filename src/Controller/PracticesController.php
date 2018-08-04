@@ -37,6 +37,14 @@ class PracticesController extends AppController
         $practices = $this->paginate($this->Practices);
 
         $this->set(compact('practices'));
+                $this->loadModel('StaticPages');
+        $information = $this->StaticPages->find('all', [
+                        'conditions' => ['id'=>3]
+                    ]);
+
+        $this->set(compact('information'));
+
+
     }
 
     /**
@@ -119,7 +127,7 @@ class PracticesController extends AppController
 
         $this->set(compact('checkins'));
 
-        $users = $this->Checkins->Users->find('list', ['limit' => 200]);
+        $users = $this->Checkins->Users->find('list', ['limit' => 200, 'order'=>['Users.last_name' => 'asc']]);
         $this->set(compact('checkin','checkins', 'users'));
 
 

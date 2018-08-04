@@ -37,6 +37,14 @@ $this->viewBuilder()->layout('default2'); // New in 3.1
         $months = $this->paginate($this->Months);
 
         $this->set(compact('months'));
+
+        $this->loadModel('StaticPages');
+        $information = $this->StaticPages->find('all', [
+                        'conditions' => ['id'=>2]
+                    ]);
+
+        $this->set(compact('information'));
+
     }
 
     /**
@@ -48,14 +56,21 @@ $this->viewBuilder()->layout('default2'); // New in 3.1
     {
 
         $this->paginate = [
+            'contain' => ['Signups','Shows','Practices'],
             'limit' => 10,
-            'order' => ['Months.first_friday' => 'asc'],
+            'order' => ['Months.first_friday' => 'DESC'],
         ];
 
         $months = $this->paginate($this->Months);
 
         $this->set(compact('months'));
 
+        $this->loadModel('StaticPages');
+        $information = $this->StaticPages->find('all', [
+                        'conditions' => ['id'=>2]
+                    ]);
+
+        $this->set(compact('information'));
 
 
     }
@@ -71,6 +86,9 @@ $this->viewBuilder()->layout('default2'); // New in 3.1
 
     public function view($id = null)
     {
+        $userId = $this->UserAuth->getUserId();
+        $this->set('userId', $userId);
+
         $month = $this->Months->get($id, [
             'contain' => ['Practices', 'Shows.dropdowns','Shows.months', 'Signups','Signups.users','Signups.shows']        ]);
 
@@ -104,11 +122,30 @@ $signups = $this->Signups->findByMonth_id($id)->contain([
 $signups->select([
               'id',
               'user_id',
-              'month_id'
+              'month_id',
+              'created'
             ]);
 
         $this->set('signups', $this->paginate($signups));
 
+        $this->loadModel('StaticPages');
+        $information = $this->StaticPages->find('all', [
+                        'conditions' => ['id'=>2]
+                    ]);
+
+        $this->set(compact('information'));
+
+        $this->loadModel('Signups');
+    $qsignup = $this->Signups->newEntity();
+        if ($this->request->is('post')) {
+            $qsignup = $this->Signups->patchEntity($qsignup, $this->request->getData());
+            if ($this->Signups->save($qsignup)) {
+                $this->Flash->success(__('Your signup has been saved.'));
+
+                return $this->redirect($this->referer());
+            }
+            $this->Flash->error(__('You have already signed up for this show.'));
+        }
     }
 
     /**
@@ -125,6 +162,7 @@ $signups->select([
         $month = $this->Months->get($id, [
             'contain' => ['Practices', 'Shows.dropdowns','Shows.months', 'Signups']        ]);
 
+        $months = $this->paginate($this->Months);
         $this->set('month', $month);
 
         $this->loadModel('Signups');
@@ -147,6 +185,27 @@ $signlist->select([
         $dropdowns = $this->Shows->Dropdowns->find('list', ['conditions' => ['type' => 'show'], 'order' => ['name' => 'ASC'] ]);
         $this->set(compact('dropdowns'));
 
+        $this->loadModel('StaticPages');
+        $information = $this->StaticPages->find('all', [
+                        'conditions' => ['id'=>2]
+                    ]);
+
+        $this->set(compact('information'));
+
+
+        $this->loadModel('Shows');
+        $show = $this->Shows->newEntity();
+                if ($this->request->is('post')) {
+                    $show = $this->Shows->patchEntity($show, $this->request->getData());
+                    if ($this->Shows->save($show)) {
+                        $this->Flash->success(__('The show has been saved.'));
+
+                return $this->redirect(['action' => 'mview',$id]);
+
+                    }
+                    $this->Flash->error(__('The show could not be saved. Please, try again.'));
+                }
+        $this->set(compact('show'));
     }
 
     public function signups($id = null)

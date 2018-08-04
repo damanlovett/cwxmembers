@@ -42,6 +42,12 @@ class UsersTable extends UsermgmtAppTable {
 	public function initialize(array $config) {
 		$this->addBehavior('Timestamp');
 		$this->hasOne('Usermgmt.UserDetails');
+        $this->belongsTo('MemberStandings', [
+            'foreignKey' => 'member_standing_id'
+        ]);
+        $this->belongsTo('ClubStandings', [
+            'foreignKey' => 'club_standing_id'
+        ]);
 	}
 	public function validationForLogin($validator) {
 		$validator

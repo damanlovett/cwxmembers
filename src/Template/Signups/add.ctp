@@ -24,7 +24,12 @@
             echo $this->Form->control('show_id', ['options' => $shows, 'empty' => true]);
             echo $this->Form->control('user_id', ['options' => $users, 'empty' => true]);
             echo $this->Form->control('month_id', ['options' => $months, 'empty' => true]);
-            echo $this->Form->control('notes');
+         if(strtoupper(DEFAULT_HTML_EDITOR) == 'TINYMCE') {
+                    echo $this->Tinymce->textarea('notes', ['type'=>'textarea', 'label'=>false, 'div'=>false, 'style'=>'height:400px', 'class'=>'form-control'], ['language'=>'en'], 'umcode');
+                } else if(strtoupper(DEFAULT_HTML_EDITOR) == 'CKEDITOR') {
+                    echo $this->Ckeditor->textarea('notes', ['type'=>'textarea', 'label'=>false, 'div'=>false, 'style'=>'height:400px', 'class'=>'form-control'], ['language'=>'en', 'uiColor'=>'#14B8C4'], 'full');
+                }
+
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

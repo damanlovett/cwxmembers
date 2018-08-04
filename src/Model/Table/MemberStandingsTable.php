@@ -65,4 +65,19 @@ class MemberStandingsTable extends Table
 
         return $validator;
     }
-}
+
+    /**
+     * Used to get title by user id association
+     *
+     * @access public
+     * @param integer $userId user id
+     * @return string
+     */
+    public function getTitleById($id) {
+        $result = $this->find()
+                ->select(['MemberStandings.title'])
+                ->where(['MemberStandings.id'=>$id])
+                ->first();
+        $title = (!empty($result)) ? ($result['title']) : '';
+        return $title;
+    }}

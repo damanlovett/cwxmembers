@@ -49,6 +49,11 @@ class Month extends Entity
         return count($this->shows);
     }
 
+    public function numberOfPractices()
+    {
+        return count($this->practices);
+    }
+
     public function numberOfSignups()
     {
         return count($this->signups);

@@ -55,4 +55,11 @@ class UserDetail extends Entity
         'user' => true,
         'member_standing' => true
     ];
+
+        // full_name virtual field
+    protected function _getSupport()
+    {
+        return $this->_properties['host'] . ', ' . $this->_properties['voice'];
+    }
+
 }

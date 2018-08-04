@@ -100,7 +100,56 @@ class UsersController extends UsermgmtAppController {
 				]
 			]
 		],
-		'online'=>[
+		'members'=>[
+			'Usermgmt.Users'=>[
+				'Users'=>[
+					'type'=>'text',
+					'label'=>'Search',
+					'tagline'=>'Search by name, username, email',
+					'condition'=>'multiple',
+					'searchFields'=>['Users.first_name', 'Users.last_name', 'Users.username', 'Users.email'],
+					'searchFunc'=>['plugin'=>'Usermgmt', 'controller'=>'Users', 'function'=>'indexSearch'],
+					'inputOptions'=>['style'=>'width:200px;']
+				],
+				'Users.id'=>[
+					'type'=>'text',
+					'condition'=>'=',
+					'label'=>'User Id',
+					'inputOptions'=>['style'=>'width:50px;']
+				],
+				'Users.user_group_id'=>[
+					'type'=>'select',
+					'condition'=>'comma',
+					'label'=>'Group',
+					'model'=>'Usermgmt.UserGroups',
+					'selector'=>'getUserGroups'
+				],
+				'Users.email_verified'=>[
+					'type'=>'select',
+					'label'=>'Email Verified',
+					'options'=>[''=>'Select', '0'=>'No', '1'=>'Yes']
+				],
+				'Users.active'=>[
+					'type'=>'select',
+					'label'=>'Status',
+					'options'=>[''=>'Select', '1'=>'Active', '0'=>'Inactive']
+				],
+				'Users.created1'=>[
+					'type'=>'text',
+					'condition'=>'>=',
+					'label'=>'From',
+					'searchField'=>'created',
+					'inputOptions'=>['style'=>'width:100px;', 'class'=>'datepicker']
+				],
+				'Users.created2'=>[
+					'type'=>'text',
+					'condition'=>'<=',
+					'label'=>'To',
+					'searchField'=>'created',
+					'inputOptions'=>['style'=>'width:100px;', 'class'=>'datepicker']
+				]
+			]
+		],		'online'=>[
 			'Usermgmt.UserActivities'=>[
 				'UserActivities'=>[
 					'type'=>'text',
@@ -156,6 +205,27 @@ $this->viewBuilder()->layout('dashboard'); // New in 3.1
 		if($this->request->is('ajax')) {
 			$this->viewBuilder()->layout('ajax');
 			$this->render('/Element/all_users');
+		}
+	}
+	/**
+	 * It displays all members
+	 *
+	 * @access public
+	 * @return void
+	 */
+	public function members() {
+		$this->viewBuilder()->layout('default3'); // New in 3.1
+		$this->paginate = ['limit'=>10, 'order'=>['Users.id'=>'DESC']];
+		$this->Search->applySearch();
+		$users = $this->paginate($this->Users)->toArray();
+		$this->loadModel('Usermgmt.UserGroups');
+		foreach($users as $key=>$user) {
+			$users[$key]['user_group_name'] = $this->UserGroups->getGroupsByIds($user['user_group_id']);
+		}
+		$this->set(compact('users'));
+		if($this->request->is('ajax')) {
+			$this->viewBuilder()->layout('ajax');
+			$this->render('/Element/all_members');
 		}
 	}
 	/**
@@ -358,6 +428,98 @@ $this->viewBuilder()->layout('dashboard'); // New in 3.1
 		$this->set(compact('userGroups', 'userEntity', 'genders'));
 	}
 	/**
+	 * It is used to edit user
+	 *
+	 * @access public
+	 * @param integer $userId user id
+	 * @return void
+	 */
+	public function editMember($userId=null) {
+		$this->viewBuilder()->layout('default2'); // New in 3.1
+		$page = (isset($this->request->query['page'])) ? $this->request->query['page'] : 1;
+		if($userId) {
+			$userEntity = $this->Users->getUserById($userId);
+			if(!empty($userEntity)) {
+				$this->loadModel('Usermgmt.UserDetails');
+				if(!empty($this->request->data)) {
+					if(is_array($this->request->data['Users']['user_group_id'])) {
+						sort($this->request->data['Users']['user_group_id']);
+						$this->request->data['Users']['user_group_id'] = implode(',', $this->request->data['Users']['user_group_id']);
+					}
+				}
+				$oldUserGroupId = $userEntity['user_group_id'];
+				$this->Users->patchEntity($userEntity, $this->request->data, ['validate'=>'forEditUser', 'associated'=>['UserDetails'=>['validate'=>'forEditUser']]]);
+				if($this->request->is(['post', 'put'])) {
+					$errors = $userEntity->errors();
+					if($this->request->is('ajax')) {
+						if(empty($errors)) {
+							$response = ['error'=>0, 'message'=>'success'];
+						} else {
+							$response = ['error'=>1, 'message'=>'failure'];
+							$response['data']['Users'] = $errors;
+						}
+						echo json_encode($response);exit;
+					} else {
+						if(empty($errors)) {
+							if(!empty($this->request->data['Users']['photo_file']['tmp_name']) && is_uploaded_file($this->request->data['Users']['photo_file']['tmp_name']))
+							{
+								$path_info = pathinfo($this->request->data['Users']['photo_file']['name']);
+								chmod($this->request->data['Users']['photo_file']['tmp_name'], 0644);
+								$photo = time().mt_rand().".".$path_info['extension'];
+								$fullpath = WWW_ROOT."library".DS.IMG_DIR;
+								if(!is_dir($fullpath)) {
+									mkdir($fullpath, 0777, true);
+								}
+								move_uploaded_file($this->request->data['Users']['photo_file']['tmp_name'], $fullpath.DS.$photo);
+								$existing_photo = $userEntity['photo'];
+								$userEntity['photo'] = $photo;
+								if(!empty($existing_photo) && file_exists($fullpath.DS.$existing_photo)) {
+									unlink($fullpath.DS.$existing_photo);
+								}
+							}
+							$userEntity['modified_by'] = $this->UserAuth->getUserId();
+							if($oldUserGroupId != $userEntity['user_group_id']) {
+								$this->loadModel('Usermgmt.UserActivities');
+								$this->UserActivities->updateAll(['logout'=>1], ['user_id'=>$userId]);
+							}
+							if(!empty($this->request->data['Users']['bday'])) {
+								$userEntity['bday'] = new Time($this->request->data['Users']['bday']);
+							}
+							if($this->Users->save($userEntity, ['validate'=>false])) {
+								$this->Flash->success(__('The user has been updated successfully'));
+								$this->redirect(['action'=>'members', 'page'=>$page]);
+							} else {
+								$this->Flash->error(__('Unable to save user, please try again'));
+							}
+						}
+					}
+				} else {
+					if(!empty($userEntity['bday'])) {
+						$userEntity['bday'] = $userEntity['bday']->format('Y-m-d');
+					}
+					if(!empty($userEntity['user_group_id'])) {
+						$userEntity['user_group_id'] = explode(',', $userEntity['user_group_id']);
+					}
+				}
+			} else {
+				$this->Flash->error(__('Invalid user id'));
+				$this->redirect(['action'=>'index', 'page'=>$page]);
+			}
+		} else {
+			$this->Flash->error(__('Missing user id'));
+			$this->redirect(['action'=>'members', 'page'=>$page]);
+		}
+		$this->loadModel('Usermgmt.UserGroups');
+		$userGroups = $this->UserGroups->getUserGroups(false);
+		$genders = $this->Users->getGenders(false);
+		$this->set(compact('userGroups', 'userEntity', 'genders'));
+		$this->loadModel('MemberStandings');
+        $memberStandings = $this->Users->MemberStandings->find('list', ['limit' => 200]);
+        $this->set(compact('clubStandings'));
+        $clubStandings = $this->Users->ClubStandings->find('list', ['limit' => 200]);
+        $this->set(compact('clubStandings','memberStandings'));
+	}
+	/**
 	 * It displays user's full details
 	 *
 	 * @access public
@@ -379,6 +541,37 @@ $this->viewBuilder()->layout('dashboard'); // New in 3.1
 		} else {
 			$this->Flash->error(__('Missing user id'));
 			$this->redirect(['action'=>'index', 'page'=>$page]);
+		}
+		$this->set(compact('user', 'userId'));
+	}
+	/**
+	 * It displays member's full details
+	 *
+	 * @access public
+	 * @param integer $userId user id
+	 * @return void
+	 */
+	public function viewMember($userId=null) {
+		$this->viewBuilder()->layout('default2'); // New in 3.1
+		$page = (isset($this->request->query['page'])) ? $this->request->query['page'] : 1;
+		if($userId) {
+			$user = $this->Users->getUserById($userId);
+			if(!empty($user)) {
+				$this->loadModel('MemberStandings');
+				$user['Member'] =$this->MemberStandings->getTitleById($user['member_standing_id']);
+				$this->loadModel('ClubStandings');
+				$user['Club'] =$this->ClubStandings->getTitleById($user['club_standing_id']);
+
+				$this->loadModel('Usermgmt.UserGroups');
+				$user['group_name'] = $this->UserGroups->getGroupsByIds($user['user_group_id']);
+				$user['created_by'] = $this->Users->getNameById($user['created_by']);
+			} else {
+				$this->Flash->error(__('Invalid user id'));
+				$this->redirect(['action'=>'members', 'page'=>$page]);
+			}
+		} else {
+			$this->Flash->error(__('Missing user id'));
+			$this->redirect(['action'=>'members', 'page'=>$page]);
 		}
 		$this->set(compact('user', 'userId'));
 	}
@@ -415,7 +608,8 @@ $this->viewBuilder()->layout('dashboard'); // New in 3.1
 		} else {
 			$this->Flash->error(__('Missing User Id'));
 		}
-		$this->redirect(['action'=>'index', 'page'=>$page]);
+		//$this->redirect(['action'=>'index', 'page'=>$page]);
+		$this->redirect(['action'=>'members', 'page'=>$page]);
 	}
 	/**
 	 * It is used to activate user
@@ -436,15 +630,16 @@ $this->viewBuilder()->layout('dashboard'); // New in 3.1
 					$this->Users->save($userEntity, ['validate'=>false]);
 					$this->loadModel('Usermgmt.UserActivities');
 					$this->UserActivities->updateAll(['logout'=>0], ['user_id'=>$userId]);
-					$this->Flash->success(__('Selected user is activated successfully'));
+					$this->Flash->success(__('Selected member was activated successfully'));
 				}
 			} else {
-				$this->Flash->error(__('Invalid User Id'));
+				$this->Flash->error(__('Invalid Member Id'));
 			}
 		} else {
-			$this->Flash->error(__('Missing User Id'));
+			$this->Flash->error(__('Missing Member Id'));
 		}
-		$this->redirect(['action'=>'index', 'page'=>$page]);
+		//$this->redirect(['action'=>'index', 'page'=>$page]);
+		$this->redirect(['action'=>'members', 'page'=>$page]);
 	}
 	/**
 	 * It is used to inactivate user
@@ -465,15 +660,16 @@ $this->viewBuilder()->layout('dashboard'); // New in 3.1
 					$this->Users->save($userEntity, ['validate'=>false]);
 					$this->loadModel('Usermgmt.UserActivities');
 					$this->UserActivities->updateAll(['logout'=>1], ['user_id'=>$userId]);
-					$this->Flash->success(__('Selected user is de-activated successfully'));
+					$this->Flash->success(__('Selected member was de-activated successfully'));
 				}
 			} else {
-				$this->Flash->error(__('Invalid User Id'));
+				$this->Flash->error(__('Invalid Member Id'));
 			}
 		} else {
-			$this->Flash->error(__('Missing User Id'));
+			$this->Flash->error(__('Missing Member Id'));
 		}
-		$this->redirect(['action'=>'index', 'page'=>$page]);
+		//$this->redirect(['action'=>'index', 'page'=>$page]);
+		$this->redirect(['action'=>'members', 'page'=>$page]);
 	}
 	/**
 	 * It is used to mark verified email of user from all users page
@@ -493,15 +689,18 @@ $this->viewBuilder()->layout('dashboard'); // New in 3.1
 					$userEntity['email_verified'] = 1;
 					$this->Users->save($userEntity, ['validate'=>false]);
 					$this->Flash->success(__('Email of selected user is verified successfully'));
-					$this->redirect(['action'=>'index', 'page'=>$page]);
+					//$this->redirect(['action'=>'index', 'page'=>$page]);
+					$this->redirect(['action'=>'members', 'page'=>$page]);
 				}
 			} else {
 				$this->Flash->error(__('Invaid User Id'));
-				$this->redirect(['action'=>'index', 'page'=>$page]);
+				//$this->redirect(['action'=>'index', 'page'=>$page]);
+				$this->redirect(['action'=>'members', 'page'=>$page]);
 			}
 		} else {
 			$this->Flash->error(__('Missing User Id'));
-			$this->redirect(['action'=>'index', 'page'=>$page]);
+			//$this->redirect(['action'=>'index', 'page'=>$page]);
+			$this->redirect(['action'=>'members', 'page'=>$page]);
 		}
 	}
 	/**

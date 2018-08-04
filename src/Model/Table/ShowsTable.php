@@ -77,7 +77,7 @@ class ShowsTable extends Table
 
         $validator
             ->dateTime('schedule')
-            ->notEmpty('schedule', 'Please select a date and time');
+            ->allowEmpty('schedule');
 
         $validator
             ->scalar('notes')
@@ -87,18 +87,41 @@ class ShowsTable extends Table
             ->allowEmpty('signups_open');
 
         $validator
-            ->allowEmpty('delete_signup');
+            ->allowEmpty('remove_signup');
 
         $validator
             ->scalar('show_url')
             ->allowEmpty('show_url');
 
         $validator
+            ->allowEmpty('voice_needed');
+
+        $validator
+            ->allowEmpty('ref_needed');
+
+        $validator
+            ->allowEmpty('host_needed');
+
+        $validator
             ->allowEmpty('visible');
 
         return $validator;
     }
-
+    /**
+     * Used to check scheduled date
+     *
+     * @access public
+     * @return boolean
+     */
+    public function checkForScheduledDate($value, $context) {
+        if(is_object($value)) {
+            $value = $value->format('Y-m-d H:i:s');
+        }
+        if(!empty($value) && strtotime($value) < time()) {
+            return false;
+        }
+        return true;
+    }
     /**
      * Returns a rules checker object that will be used for validating
      * application integrity.

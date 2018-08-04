@@ -45,7 +45,7 @@
     </table>
     <div class="row">
         <h4><?= __('Notes') ?></h4>
-        <?= $this->Text->autoParagraph(h($signup->notes)); ?>
+        <?= $signup->notes; ?>
     </div>
     <div class="related">
         <h4><?= __('Related Assignments') ?></h4>

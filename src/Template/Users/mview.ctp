@@ -4,7 +4,7 @@
  * @var \App\Model\Entity\User $user
  */
 ?>
-<?php $this->assign('title', "My Profile");?>
+<?php $this->assign('title', "Member");?>
 <div class="users view large-12 medium-11 columns content">
     <h3><i class="fas fa-user fa-lx fa-fw"></i>&nbsp;&nbsp;<?= h($user->first_name."'s Profile") ?><span class="pull-right">
             <?php echo $this->Html->link(__('Edit', true), ['action'=>'editProfile', 'plugin'=>'usermgmt'], ['class'=>'btn btn-default btn-sm']); ?>
@@ -69,5 +69,4 @@
 
 
 
-</div>
 </div>

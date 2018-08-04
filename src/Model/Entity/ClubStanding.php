@@ -29,4 +29,10 @@ class ClubStanding extends Entity
         'notes' => true,
         'users' => true
     ];
+
+    // full_name virtual field
+    protected function _getDisplayName()
+    {
+        return $this->_properties['title'];
+    }
 }

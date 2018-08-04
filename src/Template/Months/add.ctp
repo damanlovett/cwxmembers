@@ -6,7 +6,7 @@
 ?>
 <div class="shows index large-12 medium-11 columns content">
     <h3><i class="fas fa-calendar-alt fa-1x fa-fw"></i>&nbsp;&nbsp;<?= __('New Month') ?>
-    <?= $this->Html->link(__('Back'), ['action' => 'index'], ['class'=>'btn btn-default btn-sm pull-right', 'title'=>'Back to Manager']) ?></h3>
+    <?= $this->Html->link(__('Back'), ['action' => 'manager'], ['class'=>'btn btn-default btn-sm pull-right', 'title'=>'Back to Manager']) ?></h3>
 
     <?= $this->Form->create($month) ?>
     <fieldset>

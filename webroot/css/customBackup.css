@@ -45,7 +45,7 @@ a, a:hover, a:active {
 /* nav bar */
 .navbar-inverse .navbar-brand{
   background-color: #0000b3;
-  border-color: #0000b3;
+  border-color: #fff;
   color: #fff;
 }
 
@@ -150,7 +150,7 @@ h3.panel-title {
     font-size: 20px;
     background-color: #fff;
     border-color: #b30000;
-    border-width: 8px;
+    border-width: 5px;
 }
 
 div.panel-body table {
@@ -598,9 +598,10 @@ ul.pagination .disabled:hover a {
 .table thead tr th, .table thead tr th a {
     font-size: 0.975rem;
 }
+
 .table tr th, .table thead tr th {
+
   background-color: #f9f9f9;
-  color: #0000b3;
 }
 
 .date select, .time select, .datetime select {
@@ -625,12 +626,7 @@ td.cellHeader {
   text-align: right;
   color: #0000b3;
 }
-td.cellHeader .modal{
-    width: auto;
-    border:none;
-    text-align: left;
-    color: #000;
-  }
+
 .my_checkbox {
   position: absolute;
   top: 0;
@@ -640,18 +636,6 @@ td.cellHeader .modal{
   background-color: #eee;
 }
 
-fieldset.miniForm {
-  border:1px solid #ccc;
-    background-color:#dff0d8;
-    height: 500px;
-}
-
-fieldset.miniForm legend {
-  border:1px solid #dff0d8;
-  width:auto;
-  padding-right:30px;
-  padding-left:30px;
-}
 .navbar-brand>img.brandImg {
     display: inline-block;
     padding-right: 8px;
@@ -874,6 +858,7 @@ blockquote:after {
   font-family: 'Open Sans Condensed', sans-serif;
   text-transform: uppercase;
 }
+
 .menuIcon {
   font-weight:550;
   font-size:20px;
@@ -886,12 +871,12 @@ blockquote:after {
   color: #0000b3 !important;
 }
 
-a.iconSize { font-size:18px; text-decoration: none !important;}
-
-a.iconSize:hover {color:#0000b3; text-decoration: none !important;}
-table tr th a:after {
-    content: " \2193";
+table tr th, table tr td {
+  font-size: 1rem;
 }
+a.iconSize { font-size:18px; text-decoration: none !important;}
+a.iconSize:hover {color:#0000b3; text-decoration: none !important;}
+
 .required > label {
     font-weight: bold;
 }
@@ -909,7 +894,6 @@ th.iconBox {
 button.btnLink {
   background: transparent;
   width:20px;
-  height:0px;
   padding:0;
 }
 button.btnLink:hover {
@@ -918,15 +902,4 @@ button.btnLink:hover {
 a.text-success:hover {
   color:#0000b1;
   text-decoration: none;
-}
-.navbar-inverse>.open>a:hover {
-  color:#0000b1;
-  background-color: #fff;
-}
-.autoWidth {
-  width:auto;
-  margin-right:40px;
-}
-legend.tablesuccess {
-  background-color:#dff0d8;
 }

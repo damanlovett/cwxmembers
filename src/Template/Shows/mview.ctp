@@ -5,47 +5,102 @@
  */
 ?>
 <div class="shows view large-12 medium-11 columns content">
-<h3><i class="fas fa-calendar fa-2x fa-fw"></i><?= __('Shows') ?></h3>
+<h3><i class="fas fa-calendar fa-l fa-fw"></i>&nbsp;&nbsp;<?= __('Shows') ?>
+        <div class="btn-toolbar pull-right" role="toolbar" aria-label="...">
+    <?= $this->Html->link(__('All Shows'), ['controller'=>'shows', 'action' => 'manager'], ['class'=>'btn btn-default btn-sm', 'title'=>'View All Shows']) ?>
+    <?= $this->Html->link(__('By Month'), ['controller'=>'months', 'action' => 'manager'], ['class'=>'btn btn-default btn-sm', 'title'=>'View By Month']) ?>
+        </div>
+</h3>
        <div class="fpageTitle">
             <h1><?= h($show->dropdown->name) ?></h1>
-            <h2><?= h($show->schedule->format('F j, Y - g:i A')) ?></h2>
+            <h2><?= h($this->Switches->datetime($show->schedule)) ?></h2>
             <h3>Sign-ups: <?= $show->signups_open ? "Open" : "Close" ?></h3>
             <h3>Visible: <?= $show->signups_open ? "Yes" : "No" ?></h3>
         </div>
 
 
-    <div class="related">
-        <h4><?= __('Line Ups') ?></h4>
+    <div class="related content" style="padding-top:10px; padding-bottom:0px">
+        <h4 style="border:none; margin:0;"><?= __('Performing') ?></h4>
         <?php if (!empty($inshows)): ?>
     <table class="table table-striped" cellpadding="0" cellspacing="0">
         <thead>
             <tr>
+                <th scope="col" class="iconBox"><?= __('') ?></th>
+                <th scope="col" class="iconBox"><?= __('') ?></th>
+                <th scope="col" class="iconBox"><?= __('') ?></th>
                 <th scope="col"><?= __('Player') ?></th>
                 <th scope="col"><?= __('Performing') ?></th>
-                <th scope="col"><?= __('Support Role') ?></th>
-                <th scope="col" class="actions"><?= __('') ?></th>
             </tr>
         </thead>
             <?php foreach ($inshows as $inshows): ?>
             <tr>
+                <td><?= $this->Form->postLink(__(''), ['controller' => 'Assignments', 'action' => 'remove', $inshows->id], ['class'=>'fas  fa-user-times fa-l fa-fw btnLink', 'title'=>'Delete Assignment']) ?></td>
+                <td scope="col" class="iconBox">
+                <?= $this->Form->create(null, [
+                                'url' => ['controller' => 'Shows', 'action' => 'mcall', $inshows->id]
+                            ]); ?>
+
+                <?= $this->Form->hidden('show_id', ['value' => $inshows->show_id]);?>
+                <?= $this->Form->hidden('user_id', ['value' => $inshows->user_id]);?>
+                <?= $this->Form->hidden('callout', ['value' => 1]);?>
+                <?= $this->Form->button(__('<i class="fas fa-phone fa-l fa-fw btnLink"></i>'), ['class'=>'btnLink text-danger', 'title'=>'Called Out'])?>
+                <?= $this->Form->end()?>
+
+
+                </td>
+                <td scope="col" class="iconBox"><?= __('') ?></td>
                 <td><?= h($inshows->user->fullName) ?></td>
                 <td><?php if (!empty($inshows->role_id)) : ?> <?= $inshows->role->name ?> <?php else : ?> <?= "none" ?> <?php endif; ?> </td>
-                <td><?php if (!empty($inshows->roles2)) : ?> <?= $inshows->roles2->name ?> <?php else : ?> <?= "none" ?> <?php endif; ?> </td>
-                <td class="actions">
-                    <?= $this->Form->postLink(__(''), ['controller' => 'Assignments', 'action' => 'remove', $inshows->id], ['class'=>'fas icon fa-lg fa-fw fa-user-times', 'title'=>'Delete Assignment']) ?>
-                    <?= $this->Html->link(__(''), ['controller' => 'Assignments', 'action' => 'medit', $inshows->id], ['class'=>'fas icon fa-lg fa-fw fa-edit text-primary', 'title'=>'Edit Assignment']) ?>
-                </td>
             </tr>
             <?php endforeach; ?>
         </table>
         <?php endif; ?>
+    </div>
+    <div class="related content" style="padding-top:10px; padding-bottom:0px">
+        <h4 style="border:none; margin:0;"><?= __('Support') ?></h4>
+        <?php if (!empty($supportshows)): ?>
+    <table class="table table-striped" cellpadding="0" cellspacing="0">
+        <thead style="background-color:#fff !important;">
+            <tr>
+                <th scope="col" class="iconBox"><?= __('') ?></th>
+                <th scope="col" class="iconBox"><?= __('') ?></th>
+                <th scope="col" class="iconBox"><?= __('') ?></th>
+                <th scope="col"><?= __('Player') ?></th>
+                <th scope="col"><?= __('Role') ?></th>
+            </tr>
+        </thead>
+            <?php foreach ($supportshows as $supportshows): ?>
+            <tr>
+                <td class="actions"><?= $this->Form->postLink(__(''), ['controller' => 'Assignments', 'action' => 'remove', $supportshows->id], ['class'=>'fas fa-l fa-fw fa-user-times', 'title'=>'Delete Assignment']) ?></td>
+                <td scope="col" class="iconBox">
+                <?= $this->Form->create(null, [
+                                'url' => ['controller' => 'Shows', 'action' => 'mcall', $supportshows->id]
+                            ]); ?>
+
+                <?= $this->Form->hidden('show_id', ['value' => $supportshows->show_id]);?>
+                <?= $this->Form->hidden('user_id', ['value' => $supportshows->user_id]);?>
+                <?= $this->Form->hidden('callout', ['value' => 1]);?>
+                <?= $this->Form->button(__('<i class="fas fa-phone fa-l fa-fw"></i>'), ['class'=>' btnLink text-danger', 'title'=>'Called Out'])?>
+                <?= $this->Form->end()?>
+
+
+                </td>
+                <td scope="col" class="iconBox"><?= __('') ?></td>
+                <td><?= h($supportshows->user->fullName) ?></td>
+                <td><?php if (!empty($supportshows->roles2)) : ?> <?= $supportshows->roles2->name ?> <?php else : ?> <?= "none" ?> <?php endif; ?> </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <?php endif; ?>
+
+
     </div>
 
 
 <?php /*
 <?= $this->Html->link('Report', ['plugin' => false,'action' => 'signupreport', $show->id], ['escape'=>false]) ?>
 <?= $this->Html->link('Report', ['plugin' => false,'action' => 'jump', $show->id], ['escape'=>false]) ?>
-*/?>
+
 
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
   <div class="panel panel-default" style="padding: .25rem">
@@ -57,45 +112,35 @@
       </h3>
     </div>
     <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-      <div class="panel-body">
-
+      <div class="panel-body"> */?>
+                <div class="alert alert-success row" style="margin-bottom:30px">
+                <div class="col-md-12">
         <?= $this->Form->create(null, [
                                 'url' => ['controller' => 'Assignments', 'action' => 'madd', $show->id]
-                            ]); ?>
+                        ,'class'=>'form-inline']); ?>
                 <fieldset>
-                <legend><?= __('Assignment') ?></legend>
-
+                <legend class="tablesuccess"><?= __('Make Assignment') ?></legend>
                 <?= $this->Form->hidden('show_id', ['value' => $show->id]);?>
-                <div class="row">
-                <div class="col-md-4">
-                    <?= $this->Form->control('user_id', ['label'=>'Player','options' => $users, 'empty' => true]);?>
+                <div class="form-group col-md-4">
+                    <?= $this->Form->control('user_id', ['label'=>false,'options' => $users, 'empty' => 'Select Player']);?>
                 </div>
+                <div class="form-group col-md-4">
+                    <?= $this->Form->control('role_id', ['label' => false, 'options' => $roles2, 'empty' => 'Performing']);?>
                 </div>
-                <div class="row">
-                <div class="col-md-6">
-                    <?= $this->Form->control('role_id', ['label' => 'Performing', 'empty' => '---']);?>
+                <div class="form-group col-md-4">
+                    <?= $this->Form->control('role2_id', ['label' => false, 'options' => $roles, 'empty' => 'Supporting ']);?>
                 </div>
-                <div class="col-md-6">
-                    <?= $this->Form->control('role2_id', ['label' => 'Supporting Role', 'options' => $roles, 'empty' => '---']);?>
-                </div>
-                </div>
-                <div class="row">
-                <div class="col-md-12">
-                    <?= $this->Form->control('notes', ['label' => 'Notes', 'type' => 'textarea', 'class'=> 'form-control']);?>
-                </div>
-                </div>
-                <div class="row">
                 <div class="col-md-12">
                 <?= $this->Form->button(__('Add Assignment'), ['class' => 'btn btn-success']) ?>
                                 <?= $this->Form->end() ?>
                 </div>
-                </div>
                 </fieldset>
-
-      </div>
+</div>
+</div>
+ <?php /*     </div>
     </div>
   </div>
-</div>
+</div> */?>
 
 
 
@@ -108,7 +153,7 @@
 <div class="panel panel-primary">
 
                 <div class="panel-heading">
-                    <i class="fas fa-calendar fa-s fa-fw"></i>Show Information
+                    <h4 style="border:none; padding-top:15px; margin-bottom:0;"><i class="fas fa-calendar fa-s fa-fw"></i>&nbsp;Show Information</h4>
                 </div>
 
     <div class="row">
@@ -117,15 +162,14 @@
 
             <fieldset>
 
-                <legend>Show Sign Ups</legend>
+                <legend><i class="fas fa-pen-alt fa-xs fa-fw"></i>&nbsp;Show Sign Ups</legend>
             <?php if (!empty($signups)): ?>
         <table cellpadding="0" cellspacing="0">
             <?php $i=0?>
             <?php foreach ($signups as $signups): ?>
                 <?php $i++ ?>
             <tr>
-                <td>
-<?= h($signups->user->fullName) ?></td>
+                <td><?= h($signups->user->fullName) ?></td>
                 <td><?= h($signups->created->format('M jS')) ?></td>
             </tr>
             <?php endforeach; ?>
@@ -141,7 +185,7 @@
 
             <fieldset>
 
-                <legend>Monthly Sign Ups</legend>
+                <legend><i class="fas fa-pen-alt fa-xs fa-fw"></i>&nbsp;Monthly Sign Ups</legend>
 
                     <?php if (!empty($signlist)): ?>
         <table cellpadding="0" cellspacing="0">
@@ -161,13 +205,13 @@
         <div class="col-md-4">
             <fieldset>
 
-                <legend>Call Outs</legend>
+                <legend><i class="fas fa-phone fa-xs fa-fw"></i>&nbsp;Call Outs</legend>
 
                     <?php if (!empty($callouts)): ?>
         <table cellpadding="0" cellspacing="0">
             <?php foreach ($callouts as $callouts): ?>
             <tr>
-                <td><?= h($callouts->user->fullName) ?>&nbsp;&nbsp;<?= $this->Html->link(__(''), ['controller' => 'Assignments', 'action' => 'medit', $callouts->id], ['class'=>'fas fa-edit fa-s  fa-fw text-warning', 'title'=>'Edit Assignment']) ?></td>
+                <td><?= h($callouts->user->fullName) ?>&nbsp;&nbsp;<?= $this->Form->postLink(__(''), ['controller' => 'Assignments', 'action' => 'remove', $callouts->id], ['class'=>'fas icon fa-l fa-fw fa-user-times', 'title'=>'Delete Assignment']) ?></td>
             </tr>
             <?php endforeach; ?>
         </table>

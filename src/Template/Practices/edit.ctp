@@ -32,8 +32,12 @@
             echo $this->Form->control('visible');
             echo $this->Form->control('open');
             echo "<hr />";
-            echo $this->Form->control('description');
-        ?>
+        if(strtoupper(DEFAULT_HTML_EDITOR) == 'TINYMCE') {
+                    echo $this->Tinymce->textarea('description', ['type'=>'textarea', 'label'=>false, 'div'=>false, 'style'=>'height:400px', 'class'=>'form-control'], ['language'=>'en'], 'umcode');
+                } else if(strtoupper(DEFAULT_HTML_EDITOR) == 'CKEDITOR') {
+                    echo $this->Ckeditor->textarea('description', ['type'=>'textarea', 'label'=>false, 'div'=>false, 'style'=>'height:400px', 'class'=>'form-control'], ['language'=>'en', 'uiColor'=>'#14B8C4'], 'full');
+                }
+                 ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>

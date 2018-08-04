@@ -32,7 +32,6 @@
             echo $this->Form->control('referee');
             echo $this->Form->control('host');
             echo $this->Form->control('voice');
-            echo $this->Form->control('delete');
             echo $this->Form->control('member_standing_id', ['options' => $memberStandings, 'empty' => true]);
             echo $this->Form->control('abc', ['type'=>'text', 'label'=>'ABC Certification', 'div'=>false, 'class'=>'form-control datepicker']);
             echo $this->Form->control('harassment', ['type'=>'text', 'label'=>'Harassment Policy', 'div'=>false, 'class'=>'form-control datepicker']);

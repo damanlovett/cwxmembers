@@ -40,7 +40,12 @@ class Show extends Entity
         'dropdown' => true,
         'assignments' => true,
         'signups' => true,
-        'visible' => true
+        'ref_needed' => true,
+        'players_needed' => true,
+        'voice_needed' => true,
+        'host_needed' => true,
+        'visible' => true,
+        'show_url' => true
     ];
 
     // full_name virtual field
@@ -59,4 +64,11 @@ class Show extends Entity
 
         return $name." :: ".$date->format('M j, Y - g:i a');
     }
+
+    // Signup Count
+    public function numberOfSignups()
+    {
+        return count($this->signups);
+    }
+
 }
