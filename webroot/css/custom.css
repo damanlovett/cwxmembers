@@ -1050,6 +1050,11 @@ th.iconBox {
     width: 25px;
 }
 
+th.iconBox2 {
+    width: 30px;
+    text-align: center;
+}
+
 button.btnLink {
     background: transparent;
     width: 20px;

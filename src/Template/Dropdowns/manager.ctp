@@ -10,8 +10,6 @@
 		<i class="fas fa-table fa-l fa-fw"></i>&nbsp;&nbsp;
 		<?= __('Table Manager') ?>&nbsp;&nbsp;
 	</h3>
-
-
 	<div class="panel panel-primary">
 		<div class="panel-heading">
 			<h1 class="panel-title">&nbsp;</h1>
@@ -41,37 +39,25 @@
 			<!-- Tab panes -->
 			<div class="tab-content">
 				<div role="tabpanel" class="tab-pane active" id="shows">
-					<table cellpadding="0" cellspacing="0">
+					<table class="table table-striped table-bordered" cellpadding="0" cellspacing="0" style="width:50%">
 						<thead>
 							<tr>
-								<th>&nbsp;</th>
-								<th>&nbsp;</th>
+								<th class="iconBox2">&nbsp;&nbsp;</th>
 								<th scope="col">
 									<?= $this->Paginator->sort('name') ?>
-								</th>
-								<th scope="col" class="actions">
-									<?= __('created') ?>
 								</th>
 							</tr>
 						</thead>
 						<tbody>
 							<?php foreach ($shows as $show): ?>
 							<tr>
-								<td>
-									<?= $this->Html->link(__('View'), ['action' => 'view', $show->id]) ?>
-									<?= $this->Html->link(__('Edit'), ['action' => 'edit', $show->id]) ?>
-									<?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $show->id], ['confirm' => __('Are you sure you want to delete # {0}?', $show->id)]) ?>
-								</td>
-								<td>
-									<?= $this->Html->link(__('View'), ['action' => 'view', $show->id]) ?>
-									<?= $this->Html->link(__('Edit'), ['action' => 'edit', $show->id]) ?>
-									<?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $show->id], ['confirm' => __('Are you sure you want to delete # {0}?', $show->id)]) ?>
+								<td class="iconBox2">
+									<?= $this->Html->link(__(''), ['action' => 'edit', $show->id], ['class'=>'fas fa-edit fa-l fa-fw text-success', 'title'=>'Sign Up']) ?>
+									<?php /* <?= $this->Html->link(__('Edit'), ['action' => 'edit', $show->id]) ?>
+									<?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $show->id], ['confirm' => __('Are you sure you want to delete # {0}?', $show->id)]) ?> */?>
 								</td>
 								<td>
 									<?= h($show->name) ?>
-								</td>
-								<td>
-									<?= h($show->created) ?>
 								</td>
 							</tr>
 							<?php endforeach; ?>
@@ -79,14 +65,12 @@
 					</table>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="players">
-					<table cellpadding="0" cellspacing="0">
+					<table class="table table-striped table-bordered" cellpadding="0" cellspacing="0" style="width:50%">
 						<thead>
 							<tr>
+								<th class="iconBox2">&nbsp;&nbsp;</th>
 								<th scope="col">
 									<?= $this->Paginator->sort('name') ?>
-								</th>
-								<th scope="col" class="actions">
-									<?= __('Actions') ?>
 								</th>
 							</tr>
 						</thead>
@@ -94,12 +78,11 @@
 							<?php foreach ($players as $player): ?>
 							<tr>
 								<td>
-									<?= h($player->name) ?>
+									<?= $this->Html->link(__(''), ['action' => 'view', $player->id], ['class'=>'fas fa-edit fa-l fa-fw text-success', 'title'=>'Edit']) ?>
+									<?php /* <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $player->id], ['confirm' => __('Are you sure you want to delete # {0}?', $player->id)]) ?> */?>
 								</td>
-								<td class="actions">
-									<?= $this->Html->link(__('View'), ['action' => 'view', $player->id]) ?>
-									<?= $this->Html->link(__('Edit'), ['action' => 'edit', $player->id]) ?>
-									<?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $player->id], ['confirm' => __('Are you sure you want to delete # {0}?', $player->id)]) ?>
+								<td>
+									<?= h($player->name) ?>
 								</td>
 							</tr>
 							<?php endforeach; ?>
@@ -107,14 +90,13 @@
 					</table>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="clubs">
-					<table cellpadding="0" cellspacing="0">
+					<table class="table table-striped table-bordered" cellpadding="0" cellspacing="0" style="width:50%">
 						<thead>
 							<tr>
+								<th class="iconBox2">&nbsp;&nbsp;</th>
+
 								<th scope="col">
 									<?= $this->Paginator->sort('name') ?>
-								</th>
-								<th scope="col" class="actions">
-									<?= __('Actions') ?>
 								</th>
 							</tr>
 						</thead>
@@ -122,12 +104,11 @@
 							<?php foreach ($clubs as $club): ?>
 							<tr>
 								<td>
-									<?= h($club->title) ?>
+									<?= $this->Html->link(__(''), ['controller'=>'club-standings','action' => 'edit', $club->id], ['class'=>'fas fa-edit fa-l fa-fw text-success', 'title'=>'Edit']) ?>
+									<?php /* <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $player->id], ['confirm' => __('Are you sure you want to delete # {0}?', $player->id)]) ?> */?>
 								</td>
-								<td class="actions">
-									<?= $this->Html->link(__('View'), ['action' => 'view', $club->id]) ?>
-									<?= $this->Html->link(__('Edit'), ['action' => 'edit', $club->id]) ?>
-									<?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $club->id], ['confirm' => __('Are you sure you want to delete # {0}?', $club->id)]) ?>
+								<td>
+									<?= h($club->title) ?>
 								</td>
 							</tr>
 							<?php endforeach; ?>
@@ -135,14 +116,13 @@
 					</table>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="members">
-					<table cellpadding="0" cellspacing="0">
+					<table class="table table-striped table-bordered" cellpadding="0" cellspacing="0" style="width:50%">
+
 						<thead>
 							<tr>
+								<th class="iconBox2">&nbsp;&nbsp;</th>
 								<th scope="col">
 									<?= $this->Paginator->sort('name') ?>
-								</th>
-								<th scope="col" class="actions">
-									<?= __('Actions') ?>
 								</th>
 							</tr>
 						</thead>
@@ -150,12 +130,11 @@
 							<?php foreach ($members as $member): ?>
 							<tr>
 								<td>
-									<?= h($member->title) ?>
+									<?= $this->Html->link(__(''), ['controller'=>'member-standings', 'action' => 'edit', $member->id], ['class'=>'fas fa-edit fa-l fa-fw text-success', 'title'=>'Edit']) ?>
+									<?php /* <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $member->id], ['confirm' => __('Are you sure you want to delete # {0}?', $member->id)]) ?> */?>
 								</td>
-								<td class="actions">
-									<?= $this->Html->link(__('View'), ['action' => 'view', $member->id]) ?>
-									<?= $this->Html->link(__('Edit'), ['action' => 'edit', $member->id]) ?>
-									<?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $member->id], ['confirm' => __('Are you sure you want to delete # {0}?', $member->id)]) ?>
+								<td>
+									<?= h($member->title) ?>
 								</td>
 							</tr>
 							<?php endforeach; ?>
@@ -163,14 +142,12 @@
 					</table>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="shirts">
-					<table cellpadding="0" cellspacing="0">
+					<table class="table table-striped table-bordered" cellpadding="0" cellspacing="0" style="width:50%">
 						<thead>
 							<tr>
+								<th class="iconBox2">&nbsp;&nbsp;</th>
 								<th scope="col">
 									<?= $this->Paginator->sort('name') ?>
-								</th>
-								<th scope="col" class="actions">
-									<?= __('Actions') ?>
 								</th>
 							</tr>
 						</thead>
@@ -178,12 +155,12 @@
 							<?php foreach ($shirts as $shirt): ?>
 							<tr>
 								<td>
-									<?= h($shirt->name) ?>
+									<?= $this->Html->link(__(''), ['action' => 'edit', $shirt->id], ['class'=>'fas fa-edit fa-l fa-fw text-success', 'title'=>'Edit']) ?>
+									<?php /* <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $member->id], ['confirm' => __('Are you sure you want to delete # {0}?', $member->id)]) ?> */?>
 								</td>
-								<td class="actions">
-									<?= $this->Html->link(__('View'), ['action' => 'view', $shirt->id]) ?>
-									<?= $this->Html->link(__('Edit'), ['action' => 'edit', $shirt->id]) ?>
-									<?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $shirt->id], ['confirm' => __('Are you sure you want to delete # {0}?', $player->id)]) ?>
+
+								<td>
+									<?= h($shirt->name) ?>
 								</td>
 							</tr>
 							<?php endforeach; ?>
