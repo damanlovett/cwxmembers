@@ -94,6 +94,23 @@ $this->viewBuilder()->layout('default2'); // New in 3.1
 
         $this->set('month', $month);
 
+
+//         $this->loadModel('Checkins');
+
+// $checkin = $this->Checkins->findByMonth_id($id)->contain([
+//     'Users' => function ($q) {
+//        return $q
+//             ->select(['first_name','last_name']);}
+// ]);
+// $checkin->select([
+//               'id',
+//               'user_id',
+//               'count' => $signlist->func()->count('*')
+//             ])
+//      ->group('user_id');
+
+//         $this->set('checkin', $checkin);
+
         $this->loadModel('Signups');
 
 $signlist = $this->Signups->findByMonth_id($id)->contain([

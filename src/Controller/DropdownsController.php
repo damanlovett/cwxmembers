@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Dropdowns Controller
@@ -13,6 +14,11 @@ use App\Controller\AppController;
 class DropdownsController extends AppController
 {
 
+    public function beforeFilter(Event $event) {
+        parent::beforeFilter($event);
+        $this->viewBuilder()->layout('default2'); // New in 3.1
+
+    }
     /**
      * Index method
      *
@@ -23,6 +29,49 @@ class DropdownsController extends AppController
         $dropdowns = $this->paginate($this->Dropdowns);
 
         $this->set(compact('dropdowns'));
+
+    }
+
+    /**
+     * Index method
+     *
+     * @return \Cake\Http\Response|void
+     */
+    public function manager()
+    {
+        $dropdowns = $this->paginate($this->Dropdowns);
+        $this->set(compact('dropdowns'));
+
+        $shows = $this->Dropdowns->find()
+                 ->where(['type LIKE' => '%show%'])
+                 ->order(['name' => 'asc'])->toArray();
+
+         $this->set(compact('shows'));
+
+        $players = $this->Dropdowns->find()
+                ->where(['type LIKE' => '%player%'])
+                ->order(['name' => 'asc'])->toArray();
+
+         $this->set(compact('players'));
+
+        $shirts = $this->Dropdowns->find()
+               ->where(['type LIKE' => '%shirt%'])
+                ->order(['name' => 'asc'])->toArray();
+
+        $this->set(compact('shirts'));
+
+        $this->loadModel('ClubStandings');
+        $clubs = $this->ClubStandings->find('all')
+                ->order(['title' => 'asc'])->toArray();
+
+        $this->set(compact('clubs'));
+
+
+        $this->loadModel('MemberStandings');
+        $members = $this->MemberStandings->find()
+        ->order(['title' => 'asc'])->toArray();
+
+        $this->set(compact('members'));
     }
 
     /**
