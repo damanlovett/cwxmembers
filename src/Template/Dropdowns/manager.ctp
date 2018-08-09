@@ -10,40 +10,41 @@
 		<i class="fas fa-table fa-l fa-fw"></i>&nbsp;&nbsp;
 		<?= __('Table Manager') ?>&nbsp;&nbsp;
 	</h3>
+
 	<div class="panel panel-primary">
 		<div class="panel-heading">
-			<h1 class="panel-title">&nbsp;</h1>
-			<span class="pull-left">
+			<h1 class=" panel-title ">&nbsp;</h1>
+			<span class="pull-left ">
 				<!-- Nav tabs -->
-				<ul class="nav panel-tabs" role="tablist">
-					<li role="presentation" class="active">
-						<a href="#shows" aria-controls="shows" role="tab" data-toggle="tab">Shows</a>
+				<ul class="nav panel-tabs " role="tablist ">
+					<li role="presentation " class="active ">
+						<a href="#shows " aria-controls="shows " role="tab " data-toggle="tab ">Shows</a>
 					</li>
-					<li role="presentation">
-						<a href="#players" aria-controls="players" role="tab" data-toggle="tab">Players</a>
+					<li role="presentation ">
+						<a href="#players " aria-controls="players " role="tab " data-toggle="tab ">Players</a>
 					</li>
-					<li role="presentation">
-						<a href="#clubs" aria-controls="clubs" role="tab" data-toggle="tab">Club Standings</a>
+					<li role="presentation ">
+						<a href="#clubs " aria-controls="clubs " role="tab " data-toggle="tab ">Club Standings</a>
 					</li>
-					<li role="presentation">
-						<a href="#members" aria-controls="members" role="tab" data-toggle="tab">Member Standings</a>
+					<li role="presentation ">
+						<a href="#members " aria-controls="members " role="tab " data-toggle="tab ">Member Standings</a>
 					</li>
-					<li role="presentation">
-						<a href="#shirts" aria-controls="shirts" role="tab" data-toggle="tab">Shirts</a>
+					<li role="presentation ">
+						<a href="#shirts " aria-controls="shirts " role="tab " data-toggle="tab ">Shirts</a>
 					</li>
 				</ul>
 			</span>
 		</div>
-		<div class="panel-body">
+		<div class="panel-body ">
 
 			<!-- Tab panes -->
-			<div class="tab-content">
-				<div role="tabpanel" class="tab-pane active" id="shows">
-					<table class="table table-striped table-bordered" cellpadding="0" cellspacing="0" style="width:50%">
+			<div class="tab-content ">
+				<div role="tabpanel " class="tab-pane active " id="shows ">
+					<table class="table table-striped table-bordered " cellpadding="0 " cellspacing="0 " style="width:50% ">
 						<thead>
 							<tr>
-								<th class="iconBox2">&nbsp;&nbsp;</th>
-								<th scope="col">
+								<th class="iconBox2 ">&nbsp;&nbsp;</th>
+								<th scope="col ">
 									<?= $this->Paginator->sort('name') ?>
 								</th>
 							</tr>
@@ -51,7 +52,7 @@
 						<tbody>
 							<?php foreach ($shows as $show): ?>
 							<tr>
-								<td class="iconBox2">
+								<td class="iconBox2 ">
 									<?= $this->Html->link(__(''), ['action' => 'edit', $show->id], ['class'=>'fas fa-edit fa-l fa-fw text-success', 'title'=>'Sign Up']) ?>
 									<?php /* <?= $this->Html->link(__('Edit'), ['action' => 'edit', $show->id]) ?>
 									<?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $show->id], ['confirm' => __('Are you sure you want to delete # {0}?', $show->id)]) ?> */?>
@@ -64,12 +65,12 @@
 						</tbody>
 					</table>
 				</div>
-				<div role="tabpanel" class="tab-pane" id="players">
-					<table class="table table-striped table-bordered" cellpadding="0" cellspacing="0" style="width:50%">
+				<div role="tabpanel " class="tab-pane " id="players ">
+					<table class="table table-striped table-bordered " cellpadding="0 " cellspacing="0 " style="width:50% ">
 						<thead>
 							<tr>
-								<th class="iconBox2">&nbsp;&nbsp;</th>
-								<th scope="col">
+								<th class="iconBox2 ">&nbsp;&nbsp;</th>
+								<th scope="col ">
 									<?= $this->Paginator->sort('name') ?>
 								</th>
 							</tr>
@@ -89,13 +90,13 @@
 						</tbody>
 					</table>
 				</div>
-				<div role="tabpanel" class="tab-pane" id="clubs">
-					<table class="table table-striped table-bordered" cellpadding="0" cellspacing="0" style="width:50%">
+				<div role="tabpanel " class="tab-pane " id="clubs ">
+					<table class="table table-striped table-bordered " cellpadding="0 " cellspacing="0 " style="width:50% ">
 						<thead>
 							<tr>
-								<th class="iconBox2">&nbsp;&nbsp;</th>
+								<th class="iconBox2 ">&nbsp;&nbsp;</th>
 
-								<th scope="col">
+								<th scope="col ">
 									<?= $this->Paginator->sort('name') ?>
 								</th>
 							</tr>
@@ -115,13 +116,13 @@
 						</tbody>
 					</table>
 				</div>
-				<div role="tabpanel" class="tab-pane" id="members">
-					<table class="table table-striped table-bordered" cellpadding="0" cellspacing="0" style="width:50%">
+				<div role="tabpanel " class="tab-pane " id="members ">
+					<table class="table table-striped table-bordered " cellpadding="0 " cellspacing="0 " style="width:50% ">
 
 						<thead>
 							<tr>
-								<th class="iconBox2">&nbsp;&nbsp;</th>
-								<th scope="col">
+								<th class="iconBox2 ">&nbsp;&nbsp;</th>
+								<th scope="col ">
 									<?= $this->Paginator->sort('name') ?>
 								</th>
 							</tr>
@@ -141,12 +142,12 @@
 						</tbody>
 					</table>
 				</div>
-				<div role="tabpanel" class="tab-pane" id="shirts">
-					<table class="table table-striped table-bordered" cellpadding="0" cellspacing="0" style="width:50%">
+				<div role="tabpanel " class="tab-pane " id="shirts ">
+					<table class="table table-striped table-bordered " cellpadding="0 " cellspacing="0 " style="width:50% ">
 						<thead>
 							<tr>
-								<th class="iconBox2">&nbsp;&nbsp;</th>
-								<th scope="col">
+								<th class="iconBox2 ">&nbsp;&nbsp;</th>
+								<th scope="col ">
 									<?= $this->Paginator->sort('name') ?>
 								</th>
 							</tr>

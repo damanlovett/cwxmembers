@@ -6,79 +6,91 @@
 ?>
 <?php $this->assign('title', 'Dashboard')?>
 
-    <!-- Header Carousel -->
+<!-- Header Carousel -->
 
 
-    <!-- Page Content -->
-    <div class="container">
+<!-- Page Content -->
+<div class="container">
 
 
 
-		<div class="row products">
+	<div class="row products">
 
-			<div class="col-sm-4 col-lg-4 col-md-4">
-				<div class="thumbnail">
-					<?= $this->Html->image('showPic.jpg', ['alt' => 'Shows']);?>
-					<div class="caption" style="text-align:center;">
-					<h4 class="myBlue"><?= $this->Html->link(__(''), ['controller' => 'months', 'action' => 'index','plugin'=>false], ['class'=>'fas fa-calendar fa-3x fa-fw myBlue']);?></h4>
-					<h4 class="myBlue"><?= $this->Html->link(__('Sign Ups'), ['controller' => 'months', 'action' => 'index','plugin'=>false], ['class'=>'homeTitle text-primary']);?></h4>
+		<div class="col-sm-4 col-lg-4 col-md-4">
+			<div class="thumbnail">
+				<?= $this->Html->image('showPic.jpg', ['alt' => 'Shows']);?>
+				<div class="caption" style="text-align:center;">
+					<h4 class="myBlue">
+						<?= $this->Html->link(__(''), ['controller' => 'months', 'action' => 'index','plugin'=>false], ['class'=>'fas fa-calendar fa-3x fa-fw myBlue']);?>
+					</h4>
+					<h4 class="myBlue">
+						<?= $this->Html->link(__('Sign Ups'), ['controller' => 'months', 'action' => 'index','plugin'=>false], ['class'=>'homeTitle text-primary']);?>
+					</h4>
 					<div class="cwxQuote">
 						<blockquote cite="Adam Mckay">You have to be able to fail with the improv. You have to not care.</blockquote>
 					</div>
-					</div>
-					<div class="ratings">
-						<p class="pull-right">&nbsp;</p>
-						<p>&nbsp;</span>
-						</p>
-					</div>
+				</div>
+				<div class="ratings">
+					<p class="pull-right">&nbsp;</p>
+					<p>&nbsp;</span>
+					</p>
 				</div>
 			</div>
+		</div>
 
-			<div class="col-sm-4 col-lg-4 col-md-4">
-				<div class="thumbnail">
-					<?= $this->Html->image('practice.jpg', ['alt' => 'Practice']);?>
-					<div class="caption" style="text-align:center;">
-					<h4 class="myRed"><?= $this->Html->link(__(''), ['controller' => 'practices', 'action' => 'index','plugin'=>false], ['class'=>'fas fa-chalkboard fa-3x fa-fw myRed']);?></h4>
-					<h4 class="myRed"><?= $this->Html->link(__('Practice'), ['controller' => 'practices', 'action' => 'index','plugin'=>false], ['class'=>'homeTitle text-danger']);?></h4>
+		<div class="col-sm-4 col-lg-4 col-md-4">
+			<div class="thumbnail">
+				<?= $this->Html->image('practice.jpg', ['alt' => 'Practice']);?>
+				<div class="caption" style="text-align:center;">
+					<h4 class="myRed">
+						<?= $this->Html->link(__(''), ['controller' => 'practices', 'action' => 'index','plugin'=>false], ['class'=>'fas fa-chalkboard fa-3x fa-fw myRed']);?>
+					</h4>
+					<h4 class="myRed">
+						<?= $this->Html->link(__('Practice'), ['controller' => 'practices', 'action' => 'index','plugin'=>false], ['class'=>'homeTitle text-danger']);?>
+					</h4>
 					<div class="cwxQuote">
 						<blockquote cite="Anton Chekhov">Knowledge is of no value unless you put it into practice.</blockquote>
 					</div>
-					</div>
-					<div class="ratings">
-						<p class="pull-right">&nbsp;</p>
-						<p>&nbsp;</span>
-						</p>
-					</div>
+				</div>
+				<div class="ratings">
+					<p class="pull-right">&nbsp;</p>
+					<p>&nbsp;</span>
+					</p>
 				</div>
 			</div>
+		</div>
 
-			<div class="col-sm-4 col-lg-4 col-md-4">
-				<div class="thumbnail">
-					<?= $this->Html->image('myStuff.jpg', ['alt' => 'myStuff']);?>
-					<div class="caption" style="text-align:center;">
-					<h4 class="myGreen"><?= $this->Html->link(__(''), ['controller' => 'users', 'action' => 'me','plugin'=>false], ['class'=>'fas fa-user-circle fa-3x fa-fw myGreen']);?></h4>
-					<h4 class="myGreen"><?= $this->Html->link(__('My Activities'), ['controller' => 'users', 'action' => 'me','plugin'=>false], ['class'=>'homeTitle text-success']);?></h4>
+		<div class="col-sm-4 col-lg-4 col-md-4">
+			<div class="thumbnail">
+				<?= $this->Html->image('myStuff.jpg', ['alt' => 'myStuff']);?>
+				<div class="caption" style="text-align:center;">
+					<h4 class="myGreen">
+						<?= $this->Html->link(__(''), ['controller' => 'users', 'action' => 'me','plugin'=>false], ['class'=>'fas fa-user-circle fa-3x fa-fw myGreen']);?>
+					</h4>
+					<h4 class="myGreen">
+						<?= $this->Html->link(__('My Activities'), ['controller' => 'users', 'action' => 'me','plugin'=>false], ['class'=>'homeTitle']);?>
+					</h4>
 					<div class="cwxQuote">
 						<blockquote cite="Carol Burnett">I liked myself better when I wasn't me.</blockquote>
 					</div>
-					</div>
-					<div class="ratings">
-						<p class="pull-right">&nbsp;</p>
-						<p>&nbsp;</span>
-						</p>
-					</div>
+				</div>
+				<div class="ratings">
+					<p class="pull-right">&nbsp;</p>
+					<p>&nbsp;</span>
+					</p>
 				</div>
 			</div>
-
 		</div>
 
+	</div>
 
 
 
 
 
 
-		<?php	echo "<hr/>";
+
+	<?php	echo "<hr/>";
 
 			if($this->UserAuth->isAdmin()) {
 				echo "<h4><span class='label label-default'>User Management</span></h4><br/>";
@@ -157,4 +169,5 @@
 
 </div>
 </body>
+
 </html>
