@@ -55,6 +55,21 @@ body {
     padding: 1rem;
 }
 
+h4.tableTitle {
+    background-color: #eee;
+    border-color: #b30000;
+    border-width: 8px;
+    padding: 10px;
+}
+
+div.tableSeparator {
+    height: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: none;
+}
+
 /* links */
 
 a,
@@ -71,9 +86,12 @@ a:active {
 }
 
 .navbar-inverse {
-    background-color: #b30000;
-    color: #fff;
-    border-color: #fff;
+    background: #eb3349;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #da0d25, #f13e22);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #da0d25, #f13e22);
+    background: #000 url('../img/panelheaderimg.png') repeat-x center;
 }
 
 .navbar-inverse .navbar-nav>li>a {
@@ -1072,12 +1090,11 @@ div.error-message {
 }
 
 th.iconBox {
-    width: 25px;
-    text-align: center
+    width: 30px;
 }
 
 td.iconBox {
-    border-right: 1px solid #fff !important;
+    width: 30px;
 }
 
 th.iconBox2 {
@@ -1113,12 +1130,4 @@ a.text-success:hover {
 
 legend.tablesuccess {
     background-color: #dff0d8;
-}
-
-.navbar-inverse {
-    background: #eb3349;
-    /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #da0d25, #f13e22);
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #da0d25, #f13e22);
 }

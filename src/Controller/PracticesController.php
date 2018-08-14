@@ -14,10 +14,10 @@ class PracticesController extends AppController
 {
 
     public function beforeFilter(Event $event)
-        {
-            parent::beforeFilter($event);
-            $this->viewBuilder()->layout('default2'); // New in 3.1
-        }
+    {
+        parent::beforeFilter($event);
+        $this->viewBuilder()->layout('default2'); // New in 3.1
+    }
 
         //Don't forget to add use Cake\Event\Event;
 
@@ -37,10 +37,35 @@ class PracticesController extends AppController
         $practices = $this->paginate($this->Practices);
 
         $this->set(compact('practices'));
-                $this->loadModel('StaticPages');
+        $this->loadModel('StaticPages');
         $information = $this->StaticPages->find('all', [
-                        'conditions' => ['id'=>3]
-                    ]);
+            'conditions' => ['id' => 3]
+        ]);
+
+        $this->set(compact('information'));
+
+
+    }
+    /**
+     * grid method
+     *
+     * @return \Cake\Http\Response|void
+     */
+    public function grid()
+    {
+        $this->paginate = [
+            'limit' => 10,
+            'order' => ['Practices.schedule' => 'asc'],
+            'conditions' => ['visible' => 1],
+            'contain' => ['Months']
+        ];
+        $practices = $this->paginate($this->Practices);
+
+        $this->set(compact('practices'));
+        $this->loadModel('StaticPages');
+        $information = $this->StaticPages->find('all', [
+            'conditions' => ['id' => 3]
+        ]);
 
         $this->set(compact('information'));
 
@@ -115,8 +140,9 @@ class PracticesController extends AppController
         ];
         //$checkins = $this->paginate($this->Checkins);
         $checkins = $this->Checkins->find('all', [
-                            'contain' => ['Users'],
-                            'conditions' => ['practice_id' => $id]]);
+            'contain' => ['Users'],
+            'conditions' => ['practice_id' => $id]
+        ]);
 
 // In a controller or table method.
 //    'conditions' => ['Articles.created >' => new DateTime('-10 days')],
@@ -127,8 +153,8 @@ class PracticesController extends AppController
 
         $this->set(compact('checkins'));
 
-        $users = $this->Checkins->Users->find('list', ['limit' => 200, 'order'=>['Users.last_name' => 'asc']]);
-        $this->set(compact('checkin','checkins', 'users'));
+        $users = $this->Checkins->Users->find('list', ['limit' => 200, 'order' => ['Users.last_name' => 'asc']]);
+        $this->set(compact('checkin', 'checkins', 'users'));
 
 
 

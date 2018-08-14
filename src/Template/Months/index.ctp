@@ -28,7 +28,7 @@
 	<table class="table table-striped table-bordered" cellpadding="0" cellspacing="0">
 		<thead>
 			<tr>
-				<th style="width:30px;">
+				<th class="iconBox" ;>
 					<?= __('') ?>
 				</th>
 				<th style="width:30px;">

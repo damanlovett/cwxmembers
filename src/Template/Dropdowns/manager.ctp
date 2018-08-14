@@ -16,21 +16,21 @@
 			<h1 class=" panel-title ">&nbsp;</h1>
 			<span class="pull-left ">
 				<!-- Nav tabs -->
-				<ul class="nav panel-tabs " role="tablist ">
-					<li role="presentation " class="active ">
-						<a href="#shows " aria-controls="shows " role="tab " data-toggle="tab ">Shows</a>
+				<ul class="nav panel-tabs">
+					<li class="active ">
+						<a href="#shows" role="tab " data-toggle="tab">Shows</a>
 					</li>
-					<li role="presentation ">
-						<a href="#players " aria-controls="players " role="tab " data-toggle="tab ">Players</a>
+					<li>
+						<a href="#players" role="tab" data-toggle="tab">Players</a>
 					</li>
-					<li role="presentation ">
-						<a href="#clubs " aria-controls="clubs " role="tab " data-toggle="tab ">Club Standings</a>
+					<li>
+						<a href="#clubs" role="tab" data-toggle="tab">Club Standings</a>
 					</li>
-					<li role="presentation ">
-						<a href="#members " aria-controls="members " role="tab " data-toggle="tab ">Member Standings</a>
+					<li>
+						<a href="#members" role="tab" data-toggle="tab">Member Standings</a>
 					</li>
-					<li role="presentation ">
-						<a href="#shirts " aria-controls="shirts " role="tab " data-toggle="tab ">Shirts</a>
+					<li>
+						<a href="#shirts" role="tab" data-toggle="tab">Shirts</a>
 					</li>
 				</ul>
 			</span>

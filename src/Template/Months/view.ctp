@@ -9,7 +9,9 @@
 	<h3>
 		<i class="fas fa-calendar-alt fa-1x fa-fw"></i>&nbsp;&nbsp;
 		<?= $month->title." ".$month->year; ?>
-		<?= $this->Html->link(__('Back'), ['action' => 'index'], ['class'=>'btn btn-default btn-sm pull-right', 'title'=>'Back to Month']) ?>
+		<div class="btn-group btn-group-sm pull-right" role="group" aria-label="...">
+			<?= $this->Html->link(__('Back'), ['action' => 'index'], ['class'=>'btn btn-default btn-sm pull-right', 'title'=>'Back to Month']) ?>
+		</div>
 	</h3>
 
 	<?php foreach($information as $information): ?>
@@ -25,12 +27,12 @@
 	<div class="panel panel-primary">
 		<div class="panel-heading">
 			<h1 class="panel-title">&nbsp;</h1>
-			<span class="pull-right">
+			<span class="pull-left">
 				<!-- Tabs -->
 				<ul class="nav panel-tabs">
 					<li class="active">
 						<a href="#tab1" data-toggle="tab">
-							<i class="fas fa-calendar fa-l fa-fw"></i>&nbsp;&nbsp;Shows</a>
+							<i class="fas fa-cog fa-l fa-fw"></i>&nbsp;&nbsp;Shows</a>
 					</li>
 					<li>
 						<a href="#tab2" data-toggle="tab">
@@ -38,7 +40,7 @@
 					</li>
 					<li>
 						<a href="#tab3" data-toggle="tab">
-							<i class="fas fa-chalkboard-teacher fa-l fa-fw"></i>&nbsp;&nbsp;Practices</a>
+							<i class="fas fa-chalkboard fa-l fa-fw"></i>&nbsp;&nbsp;Practices</a>
 					</li>
 				</ul>
 			</span>
@@ -48,7 +50,7 @@
 				<div class="tab-pane active" id="tab1">
 
 					<?php if (!empty($month->shows)): ?>
-					<table class="table table-striped" cellpadding="0" cellspacing="0">
+					<table class="table table-striped table-bordered" cellpadding="0" cellspacing="0">
 						<thead>
 							<th class="iconBox">
 								<?= __('') ?>
@@ -63,15 +65,19 @@
 								<?= __('') ?>
 							</th>
 							<th scope="col">
-								<?= __('Name') ?>
+								<i class="fas fa-cog fa-l fa-fw"></i>&nbsp;
+								<?= __('Show') ?>
 							</th>
 							<th scope="col">
+								<i class="fas fa-clock fa-l fa-fw"></i>&nbsp;
 								<?= __('Date') ?>
 							</th>
 							<th style="text-align: center" scope="col">
+								<i class="fas fa-pen-alt fa-l fa-fw"></i>&nbsp;
 								<?= __('Sign Ups') ?>
 							</th>
 							<th style="text-align: center" scope="col">
+								<i class="fas fa-people-carry fa-l fa-fw"></i>&nbsp;
 								<?= __('Needs') ?>
 							</th>
 						</thead>
@@ -157,18 +163,22 @@
 				<div class="tab-pane" id="tab2">
 
 					<?php if (!empty($signups)): ?>
-					<table class="table table-striped" cellpadding="0" cellspacing="0">
+					<table class="table table-striped table-bordered" cellpadding="0" cellspacing="0">
 						<thead>
 							<th scope="col">
+								<i class="fas fa-cog fa-l fa-fw"></i>&nbsp;
 								<?= __('Show') ?>
 							</th>
 							<th scope="col">
+								<i class="fas fa-clock fa-l fa-fw"></i>&nbsp;
 								<?= __('Date')?>
 							</th>
 							<th scope="col">
+								<i class="fas fa-user-circle fa-l fa-fw"></i>&nbsp;
 								<?= __('Player')?>
 							</th>
 							<th scope="col">
+								<i class="fas fa-pen-alt fa-l fa-fw"></i>&nbsp;
 								<?= __('Signed Up On')?>
 							</th>
 						</thead>
@@ -212,18 +222,21 @@
 				<div class="tab-pane" id="tab3">
 
 					<?php if (!empty($month->practices)): ?>
-					<table class="table table-striped" cellpadding="0" cellspacing="0">
+					<table class="table table-striped table-bordered" cellpadding="0" cellspacing="0">
 						<thead>
 							<th style="width:30px;">
 								<?= __('') ?>
 							</th>
 							<th scope="col">
+								<i class="fas fa-chalkboard fa-l fa-fw"></i>&nbsp;
 								<?= __('Practice') ?>
 							</th>
 							<th scope="col">
+								<i class="fas fa-clock fa-l fa-fw"></i>&nbsp;
 								<?= __('Date') ?>
 							</th>
 							<th scope="col">
+								<i class="fas fa-chalkboard-teacher fa-l fa-fw"></i>&nbsp;
 								<?= __('Leader') ?>
 							</th>
 						</thead>
@@ -239,7 +252,6 @@
 								<?= h($this->Switches->datetime($practices->schedule)) ?>
 							</td>
 							<td>
-								<i class="fas fa-chalkboard-teacher fa-l fa-fw text-primary"></i>&nbsp;&nbsp;&nbsp;
 								<?= h($practices->leader) ?>
 							</td>
 						</tr>

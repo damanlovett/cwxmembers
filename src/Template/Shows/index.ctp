@@ -43,15 +43,19 @@
 					<?= __('') ?>
 				</th>
 				<th scope="col">
+					<i class="fas fa-calendar fa-l fa-fw"></i>&nbsp;
 					<?= $this->Paginator->sort('dropdown_id','Show') ?>
 				</th>
 				<th scope="col">
+					<i class="fas fa-calendar-alt fa-l fa-fw"></i>&nbsp;
 					<?= $this->Paginator->sort('month_id','Date') ?>
 				</th>
 				<th style="text-align: center;" scope="col">
+					<i class="fas fa-pen-alt fa-l fa-fw"></i>&nbsp;
 					<?= $this->Paginator->sort('signups_open','Sign Ups Open') ?>
 				</th>
 				<th style="text-align: center;" scope="col">
+					<i class="fas fa-pen-alt fa-l fa-fw"></i>&nbsp;
 					<?= __('Sign Ups') ?>
 				</th>
 			</tr>
@@ -89,7 +93,7 @@
 				</td>
 				<td class="iconBox">
 					<?php if(!empty($show->show_url)) : ?>
-					<a href="<?= $show->show_url?>" title="Show URL">
+					<a href="<?= $show->show_url?>" target="_blank" title="Show URL">
 						<i class="fab fa-chrome fa-l text-success fa-fw"></i>
 					</a>
 					<?php endif; ?>

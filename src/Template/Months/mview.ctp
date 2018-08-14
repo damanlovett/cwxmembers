@@ -179,10 +179,14 @@
 						<!-- Nav tabs -->
 						<ul class="nav panel-tabs" role="tablist">
 							<li role="presentation" class="active">
-								<a href="#shows" aria-controls="shows" role="tab" data-toggle="tab">Shows</a>
+
+								<a href="#shows" aria-controls="shows" role="tab" data-toggle="tab">
+									<i class="fas fa-cog fa-1x fa-fw"></i>&nbsp;&nbsp;Shows</a>
 							</li>
 							<li role="presentation">
-								<a href="#practices" aria-controls="practices" role="tab" data-toggle="tab">Practices</a>
+
+								<a href="#practices" aria-controls="practices" role="tab" data-toggle="tab">
+									<i class="fas fa-chalkboard fa-1x fa-fw"></i>&nbsp;&nbsp;Practices</a>
 							</li>
 						</ul>
 					</span>
@@ -193,7 +197,7 @@
 					<div class="tab-content">
 						<div role="tabpanel" class="tab-pane active" id="shows">
 							<?php if (!empty($month->shows)): ?>
-							<table class="table table-striped " cellpadding="0 " cellspacing="0 ">
+							<table class="table table-striped table-bordered" cellpadding="0" cellspacing="0">
 								<thead>
 									<th class="iconBox ">
 										<?= __('') ?>
@@ -208,12 +212,15 @@
 										<?= __('') ?>
 									</th>
 									<th scope="col ">
-										<?= __('Name') ?>
+										<i class="fas fa-cog fa-1x fa-fw"></i>
+										<?= __( 'Show') ?>
 									</th>
 									<th scope="col ">
+										<i class="fas fa-clock fa-1x fa-fw"></i>
 										<?= __('Date') ?>
 									</th>
 									<th style="text-align: center " scope="col ">
+										<i class="fas fa-pen-alt fa-1x fa-fw"></i>
 										<?= __('Sign Ups') ?>
 									</th>
 									<th style="text-align: center " scope="col ">
@@ -274,15 +281,18 @@
 						</div>
 						<div role="tabpanel" class="tab-pane" id="practices">
 							<?php if (!empty($month->practices)): ?>
-							<table class="table table-striped" cellpadding="0" cellspacing="0">
+							<table class="table table-striped table-bordered" cellpadding="0" cellspacing="0">
 								<thead>
 									<th scope="col">
-										<?= __('Name') ?>
+										<i class="fas fa-chalkboard fa-1x fa-fw"></i>
+										<?= __('Practice') ?>
 									</th>
 									<th scope="col">
+										<i class="fas fa-clock fa-1x fa-fw"></i>
 										<?= __('Date') ?>
 									</th>
 									<th scope="col">
+										<i class="fas fa-chalkboard-teacher fa-1x fa-fw"></i>
 										<?= __('Leader') ?>
 									</th>
 								</thead>
@@ -295,7 +305,6 @@
 										<?= h($this->Switches->datetime($practices->schedule)) ?>
 									</td>
 									<td>
-										<i class="fas fa-chalkboard-teacher fa-l fa-fw text-primary"></i>&nbsp;&nbsp;
 										<?= h($practices->leader) ?>
 									</td>
 								</tr>
