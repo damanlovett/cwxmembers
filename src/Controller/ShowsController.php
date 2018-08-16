@@ -16,11 +16,11 @@ class ShowsController extends AppController
 {
 
 
-     public function beforeFilter(Event $event)
-         {
-             parent::beforeFilter($event);
-             $this->viewBuilder()->layout('default2'); // New in 3.1
-         }
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        $this->viewBuilder()->layout('default2'); // New in 3.1
+    }
 
          //Don't forget to add use Cake\Event\Event;
 
@@ -35,25 +35,25 @@ class ShowsController extends AppController
         $this->set('userId', $userId);
         $this->paginate = [
             'limit' => 10,
-            'order' => ['Show.schedule'=>'asc']
+            'order' => ['Show.schedule' => 'asc']
         ];
 
         $shows = $this->Shows->find('all')
-                    ->contain(['Months', 'Dropdowns','Signups'])
-                    ->where(['visible' => 1]);
+            ->contain(['Months', 'Dropdowns', 'Signups'])
+            ->where(['visible' => 1]);
 
         $this->set('shows', $this->paginate($shows));
 
         $this->loadModel('StaticPages');
         $information = $this->StaticPages->find('all', [
-                        'conditions' => ['id'=>2]
-                    ]);
+            'conditions' => ['id' => 2]
+        ]);
 
         $this->set(compact('information'));
 
 
-            $this->loadModel('Signups');
-    $qsignup = $this->Signups->newEntity();
+        $this->loadModel('Signups');
+        $qsignup = $this->Signups->newEntity();
         if ($this->request->is('post')) {
             $qsignup = $this->Signups->patchEntity($qsignup, $this->request->getData());
             if ($this->Signups->save($qsignup)) {
@@ -75,23 +75,23 @@ class ShowsController extends AppController
     {
         $this->paginate = [
             'limit' => 10,
-            'order' => ['Show.schedule'=>'asc']
+            'order' => ['Show.schedule' => 'asc']
         ];
 
         $shows = $this->Shows->find('all')
-                    ->contain(['Months', 'Dropdowns','Signups','Assignments']);
+            ->contain(['Months', 'Dropdowns', 'Signups', 'Assignments']);
 
         $this->set('shows', $this->paginate($shows));
 
         $this->loadModel('StaticPages');
         $information = $this->StaticPages->find('all', [
-                        'conditions' => ['id'=>2]
-                    ]);
+            'conditions' => ['id' => 2]
+        ]);
 
         $this->set(compact('information'));
 
 
-         }
+    }
 
     /**
      * View method
@@ -103,20 +103,20 @@ class ShowsController extends AppController
     public function view($id = null)
     {
         $show = $this->Shows->get($id, [
-            'contain' => ['Months', 'Dropdowns', 'Assignments.users','Assignments.roles', 'Assignments.roles2', 'Signups','Signups.users']
+            'contain' => ['Months', 'Dropdowns', 'Assignments.users', 'Assignments.roles', 'Assignments.roles2', 'Signups', 'Signups.users']
         ]);
 
 
         $this->set('show', $show);
 
         $this->loadModel('Assignments');
-        $inshows = $this->Assignments->findAllByCalloutAndShow_id(0,$id)
-                    ->contain(['Users','Roles', 'Roles2'])
-                    ->order(['Roles.name' => 'asc']);
+        $inshows = $this->Assignments->findAllByCalloutAndShow_id(0, $id)
+            ->contain(['Users', 'Roles', 'Roles2'])
+            ->order(['Roles.name' => 'asc']);
 
 
-        $this->set(compact('callouts','inshows','signlists'));
-}
+        $this->set(compact('callouts', 'inshows', 'signlists'));
+    }
 
     /**
      * Mview method
@@ -128,7 +128,7 @@ class ShowsController extends AppController
     public function mview($id = null)
     {
         $show = $this->Shows->get($id, [
-            'contain' => ['Months', 'Dropdowns', 'Assignments.users','Assignments.roles', 'Assignments.roles2', 'Signups','Signups.users']
+            'contain' => ['Months', 'Dropdowns', 'Assignments.users', 'Assignments.roles', 'Assignments.roles2', 'Signups', 'Signups.users']
         ]);
 
 
@@ -136,29 +136,31 @@ class ShowsController extends AppController
 
         $this->loadModel('Roles');
         $roles = $this->Roles->find('list', [
-                            'conditions' => ['Roles.type' => 'support'],
-                            'order' => ['Roles.name' => 'ASC'],
-                            'limit' => 200]);
+            'conditions' => ['Roles.type' => 'support'],
+            'order' => ['Roles.name' => 'ASC'],
+            'limit' => 200
+        ]);
         $roles2 = $this->Roles->find('list', [
-                            'conditions' => ['Roles.type' => 'player'],
-                            'order' => ['Roles.name' => 'ASC'],
-                            'limit' => 200]);
+            'conditions' => ['Roles.type' => 'player'],
+            'order' => ['Roles.name' => 'ASC'],
+            'limit' => 200
+        ]);
 
-        $this->set(compact('roles','roles2'));
+        $this->set(compact('roles', 'roles2'));
 
         $this->loadModel('Assignments');
-        $callouts = $this->Assignments->findAllByCalloutAndShow_id(1,$id)
-                    ->contain(['Users','Roles', 'Roles2']);
+        $callouts = $this->Assignments->findAllByCalloutAndShow_id(1, $id)
+            ->contain(['Users', 'Roles', 'Roles2']);
 
-        $inshows = $this->Assignments->findAllByCalloutAndShow_id(0,$id)
-                    ->contain(['Users','Roles', 'Roles2'])
-                    ->where(['Roles.name IS NOT' => 'Roles.name'])
-                    ->order(['Roles.name' => 'desc']);
+        $inshows = $this->Assignments->findAllByCalloutAndShow_id(0, $id)
+            ->contain(['Users', 'Roles', 'Roles2'])
+            ->where(['Roles.name IS NOT' => 'Roles.name'])
+            ->order(['Roles.name' => 'desc']);
 
-        $supportshows = $this->Assignments->findAllByCalloutAndShow_id(0,$id)
-                    ->contain(['Users','Roles', 'Roles2'])
-                    ->where(['Roles2.name IS NOT' => 'Roles2.name'])
-                    ->order(['Roles2.name' => 'desc']);
+        $supportshows = $this->Assignments->findAllByCalloutAndShow_id(0, $id)
+            ->contain(['Users', 'Roles', 'Roles2'])
+            ->where(['Roles2.name IS NOT' => 'Roles2.name'])
+            ->order(['Roles2.name' => 'desc']);
 
         $assignment = $this->Assignments->newEntity();
         if ($this->request->is('post')) {
@@ -175,28 +177,29 @@ class ShowsController extends AppController
         $users = $this->Assignments->Users->find('list', ['limit' => 200]);
 
 
-        $this->set(compact('callouts','inshows', 'supportshows','signlists','shows', 'users'));
+        $this->set(compact('callouts', 'inshows', 'supportshows', 'signlists', 'shows', 'users'));
 
         $this->loadModel('Signups');
         $query = $this->Signups->findAllByShow_id($id)
-                    ->contain(['Users','Users.userdetails'])
-                    ->order(['Signups.created' => 'asc']);
+            ->contain(['Users', 'Users.userdetails'])
+            ->order(['Signups.created' => 'asc']);
 
         $this->set('signups', $this->paginate($query));
 
 
         $signlist = $this->Signups->findByMonth_id($id)->contain([
-    'Users' => function ($q) {
-       return $q
-                    ->select(['first_name','last_name']);}
-                ]);
-                $signlist->select([
-                              'id',
-                              'user_id',
-                              'count' => $signlist->func()->count('*')
-                            ])
-                     ->order(['count' => 'desc'])
-                     ->group('user_id');
+            'Users' => function ($q) {
+                return $q
+                    ->select(['first_name', 'last_name']);
+            }
+        ]);
+        $signlist->select([
+            'id',
+            'user_id',
+            'count' => $signlist->func()->count('*')
+        ])
+            ->order(['count' => 'desc'])
+            ->group('user_id');
 
         $this->set('signlist', $signlist);
 
@@ -215,12 +218,12 @@ class ShowsController extends AppController
 
         $this->loadModel('Signups');
         $signups = $this->Signups->findAllByShow_id($id)
-                    ->contain(['Users','Users.userdetails'])
-                    ->order(['Signups.created' => 'asc']);
+            ->contain(['Users', 'Users.userdetails'])
+            ->order(['Signups.created' => 'asc']);
 
         $this->set('_serialize', 'signups');
-        $this->set('_header', ['Show', 'User','test']);
-        $this->set('_extract', ['show_id', 'user.last_name','Users.user_details.nickname']);
+        $this->set('_header', ['Show', 'User', 'test']);
+        $this->set('_extract', ['show_id', 'user.last_name', 'Users.user_details.nickname']);
         $this->viewBuilder()->className('CsvView.Csv');
 
         $this->set('signups', $signups);
@@ -239,18 +242,18 @@ class ShowsController extends AppController
 
         $userId = $this->UserAuth->getUserId();
         $show = $this->Shows->get($id, [
-            'contain' => ['Months', 'Dropdowns', 'Assignments.users','Assignments.roles', 'Assignments.roles2', 'Signups','Signups.users']
+            'contain' => ['Months', 'Dropdowns', 'Assignments.users', 'Assignments.roles', 'Assignments.roles2', 'Signups', 'Signups.users']
         ]);
 
         $this->set('show', $show);
 
         $this->loadModel('Signups');
         $query = $this->Signups->findAllByShow_id($id)
-                    ->contain(['Users'])
-                    ->order(['Signups.created' => 'desc']);
+            ->contain(['Users'])
+            ->order(['Signups.created' => 'desc']);
 
-        $mshow = $this->Signups->findByShow_idAndUser_id($id,$userId)
-                    ->contain(['Shows']);
+        $mshow = $this->Signups->findByShow_idAndUser_id($id, $userId)
+            ->contain(['Shows']);
 
         $this->set('signups', $this->paginate($query));
         $this->set('mysignup', 'no');
@@ -260,7 +263,7 @@ class ShowsController extends AppController
             $signup = $this->Signups->patchEntity($signup, $this->request->getData());
             if ($this->Signups->save($signup)) {
                 $this->Flash->success(__('You have signed up for this show.'));
-    $this->render('/Shows/signup/',$this->request->id);
+                $this->render('/Shows/signup/', $this->request->id);
 
                 return $this->redirect($this->referer());
             }
@@ -270,7 +273,7 @@ class ShowsController extends AppController
 
         //$this->set(compact('signups'));
 
-}
+    }
 
 
     /**
@@ -291,7 +294,7 @@ class ShowsController extends AppController
             $this->Flash->error(__('The show could not be saved. Please, try again.'));
         }
         $months = $this->Shows->Months->find('list', ['order' => ['first_friday' => 'ASC'], 'limit' => 200]);
-        $dropdowns = $this->Shows->Dropdowns->find('list', ['conditions' => ['type' => 'show'], 'order' => ['name' => 'ASC'] ]);
+        $dropdowns = $this->Shows->Dropdowns->find('list', ['conditions' => ['type' => 'show'], 'order' => ['name' => 'ASC']]);
         $this->set(compact('show', 'months', 'dropdowns'));
     }
 
@@ -355,7 +358,7 @@ class ShowsController extends AppController
             $this->Flash->error(__('The show could not be saved. Please, try again.'));
         }
         $months = $this->Shows->Months->find('list', ['limit' => 200]);
-        $dropdowns = $this->Shows->Dropdowns->find('list', ['conditions' => ['type' => 'show'], 'order' => ['name' => 'ASC'] ]);
+        $dropdowns = $this->Shows->Dropdowns->find('list', ['conditions' => ['type' => 'show'], 'order' => ['name' => 'ASC']]);
         $this->set(compact('show', 'months', 'dropdowns'));
     }
 
@@ -376,7 +379,7 @@ class ShowsController extends AppController
             $this->Flash->error(__('The show could not be deleted. Please, try again.'));
         }
 
-                return $this->redirect($this->referer());
+        return $this->redirect($this->referer());
     }
 
     /**
@@ -399,14 +402,15 @@ class ShowsController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
-public function signupreport($id=null) {
+    public function signupreport($id = null)
+    {
 
         $this->response->download('show_signups.csv');
 
         $this->loadModel('Signups');
         $datas = $this->Signups->findAllByShow_id($id)
-                    ->contain(['Users','Shows'])
-                    ->order(['Signups.created' => 'desc'])->toArray();
+            ->contain(['Users', 'Shows'])
+            ->order(['Signups.created' => 'desc'])->toArray();
 
         $_serialize = 'datas';
         $_header = ['id', 'First', 'Last', 'Schedule'];
@@ -415,7 +419,7 @@ public function signupreport($id=null) {
         $this->set(compact('datas', '_serialize', '_header', '_extract'));
         return;
 
-        }
+    }
 
 
 }
