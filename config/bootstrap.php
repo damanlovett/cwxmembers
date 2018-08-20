@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
@@ -208,9 +209,7 @@ Type::build('timestamp')
  *
  */
 
-    Plugin::load('Usermgmt', ['autoload' => true, 'bootstrap' => true, 'routes' => true]);
-    Plugin::load('CsvView', ['routes' => true ]);
-
+Plugin::load('Usermgmt', ['autoload' => true, 'bootstrap' => true, 'routes' => true]);
 
 /*
  * Only try to load DebugKit in development mode
@@ -221,3 +220,4 @@ if (Configure::read('debug')) {
 }
 
 Plugin::load('Migrations');
+Plugin::load('CsvView', ['autoload' => true, 'bootstrap' => true, 'routes' => true]);

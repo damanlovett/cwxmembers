@@ -12,6 +12,7 @@ $(document).ready(function () {
         $('#myInput').focus()
     })
 
-    $('h3 a').removeClass('btn-primary btn-default').addClass('btn-success');
+    $('h3 a').removeClass('btn-primary btn-success btn-danger').addClass('btn-default');
+    $('h3 button').removeClass('btn-primary btn-success btn-danger').addClass('btn-default btn-sm');
 
 });

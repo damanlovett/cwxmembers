@@ -14,10 +14,10 @@ class SignupsController extends AppController
 {
 
     public function beforeFilter(Event $event)
-        {
-            parent::beforeFilter($event);
-            $this->viewBuilder()->layout('default2'); // New in 3.1
-        }
+    {
+        parent::beforeFilter($event);
+        $this->viewBuilder()->layout('default2'); // New in 3.1
+    }
 
         //Don't forget to add use Cake\Event\Event;
 
@@ -36,6 +36,27 @@ class SignupsController extends AppController
         $this->set(compact('signups'));
     }
 
+
+    public function signupReport($id = null)
+    {
+
+        $this->response->download('signups.csv');
+
+        $data = $this->Signups->find('all')->contain('Shows', 'Users', 'Assignments', 'Months')->where(['Signups.month_id' => $id]);
+        $_serialize = 'data';
+        $_delimiter = chr(9); //tab
+        $_enclosure = '"';
+        $_newline = '\r\n';
+        $_eol = '~';
+        $_bom = true;
+
+        $this->viewBuilder()->setClassName('CsvView.Csv');
+        $this->set(compact('data', '_serialize', '_delimiter', '_enclosure', '_newline', '_eol', '_bom'));
+    }
+
+
+
+
     /**
      * View method
      *
@@ -46,7 +67,7 @@ class SignupsController extends AppController
     public function view($id = null)
     {
         $signup = $this->Signups->get($id, [
-            'contain' => ['Shows', 'Users', 'Assignments','Months']
+            'contain' => ['Shows', 'Users', 'Assignments', 'Months']
         ]);
 
         $this->set('signup', $signup);
@@ -83,14 +104,14 @@ class SignupsController extends AppController
     public function madd()
     {
 
-    $this->render('/Shows/signup/',$this->request->id);
+        $this->render('/Shows/signup/', $this->request->id);
         $this->loadModel('Signups');
         $signup = $this->Signups->newEntity();
         if ($this->request->is('post')) {
             $signup = $this->Signups->patchEntity($signup, $this->request->getData());
             if ($this->Signups->save($signup)) {
                 $this->Flash->success(__('The signup has been saved.'));
-    $this->render('/Shows/signup/',$this->request->id);
+                $this->render('/Shows/signup/', $this->request->id);
 
                 return $this->redirect($this->referer());
             }
@@ -167,6 +188,6 @@ class SignupsController extends AppController
             $this->Flash->error(__('The signup could not be deleted. Please, try again.'));
         }
 
-                return $this->redirect($this->referer());
+        return $this->redirect($this->referer());
     }
 }

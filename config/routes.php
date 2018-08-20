@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Routes configuration
  *
@@ -52,8 +53,9 @@ Router::scope('/', function (RouteBuilder $routes) {
      * its action called 'display', and we pass a param to select the view file
      * to use (in this case, src/Template/Pages/home.ctp)...
      */
+    Router::extensions('csv');
+
     $routes->connect('/', ['controller' => 'Users', 'action' => 'dashboard', 'plugin' => 'Usermgmt', 'dashboard']);
-Router::extensions('csv');
 
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
@@ -84,4 +86,3 @@ Router::extensions('csv');
  * how to customize the loading of plugin routes.
  */
 Plugin::routes();
-

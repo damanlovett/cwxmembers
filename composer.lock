@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3b7a0cf952558a92c8ffc8e5046f9ef8",
+    "content-hash": "beca0510ee503801d57d64b72af32c01",
     "packages": [
         {
             "name": "aura/intl",
@@ -291,26 +291,30 @@
         },
         {
             "name": "friendsofcake/cakephp-csvview",
-            "version": "3.2.2",
+            "version": "3.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfCake/cakephp-csvview.git",
-                "reference": "e86d9ddbfd382c19bfee679237a44611019afbcf"
+                "reference": "81f2f055b5578925e545173d59e12ea545b672b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfCake/cakephp-csvview/zipball/e86d9ddbfd382c19bfee679237a44611019afbcf",
-                "reference": "e86d9ddbfd382c19bfee679237a44611019afbcf",
+                "url": "https://api.github.com/repos/FriendsOfCake/cakephp-csvview/zipball/81f2f055b5578925e545173d59e12ea545b672b5",
+                "reference": "81f2f055b5578925e545173d59e12ea545b672b5",
                 "shasum": ""
             },
             "require": {
-                "cakephp/cakephp": "~3.0",
-                "php": ">=5.4.16"
+                "cakephp/cakephp": "^3.5.5",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "cakephp/cakephp-codesniffer": "^3.0",
+                "phpunit/phpunit": "^5.7.14|^6.0"
             },
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
-                    "CsvView\\": "src"
+                    "CsvView\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -358,7 +362,7 @@
                 "export",
                 "view"
             ],
-            "time": "2017-03-16T16:36:08+00:00"
+            "time": "2018-08-15T13:31:13+00:00"
         },
         {
             "name": "josegonzalez/dotenv",
