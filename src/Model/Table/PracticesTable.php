@@ -59,7 +59,7 @@ class PracticesTable extends Table
 
         $validator
             ->dateTime('schedule')
-            ->allowEmpty('schedule');
+            ->notEmpty('schedule', __('Please enter a valid date'));
 
         $validator
             ->scalar('title')

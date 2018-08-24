@@ -46,6 +46,34 @@ class PracticesController extends AppController
 
 
     }
+
+
+    /**
+     * dashboard method
+     *
+     * @return \Cake\Http\Response|void
+     */
+    public function dashboard()
+    {
+        $this->viewBuilder()->setLayout('guest');
+        $this->paginate = [
+            'limit' => 10,
+            'order' => ['Practices.schedule' => 'asc'],
+            'conditions' => ['visible' => 1],
+            'contain' => ['Months']
+        ];
+        $practices = $this->paginate($this->Practices);
+
+        $this->set(compact('practices'));
+        $this->loadModel('StaticPages');
+        $information = $this->StaticPages->find('all', [
+            'conditions' => ['id' => 3]
+        ]);
+
+        $this->set(compact('information'));
+
+
+    }
     /**
      * grid method
      *
@@ -87,6 +115,14 @@ class PracticesController extends AppController
         $practices = $this->paginate($this->Practices);
 
         $this->set(compact('practices'));
+
+        $this->loadModel('StaticPages');
+        $information = $this->StaticPages->find('all', [
+            'conditions' => ['id' => 3]
+        ]);
+
+        $this->set(compact('information'));
+
     }
 
     /**
@@ -97,6 +133,22 @@ class PracticesController extends AppController
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
+    {
+        $practice = $this->Practices->get($id, [
+            'contain' => ['Months', 'Checkins.users']
+        ]);
+
+        $this->set('practice', $practice);
+    }
+
+    /**
+     * Mview method
+     *
+     * @param string|null $id Practice id.
+     * @return \Cake\Http\Response|void
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function mview($id = null)
     {
         $practice = $this->Practices->get($id, [
             'contain' => ['Months', 'Checkins.users']
@@ -219,7 +271,7 @@ class PracticesController extends AppController
             if ($this->Practices->save($practice)) {
                 $this->Flash->success(__('The practice has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'manager']);
             }
             $this->Flash->error(__('The practice could not be saved. Please, try again.'));
         }

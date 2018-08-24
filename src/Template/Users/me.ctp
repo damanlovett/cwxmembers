@@ -200,7 +200,7 @@
                 <ul class="nav panel-tabs">
                     <li class="active">
                         <a href="#tab1" data-toggle="tab">
-                            <i class="fas fa-calendar fa-l fa-fw"></i>&nbsp;&nbsp;My Shows</a>
+                            <i class="fas fa-cog fa-l fa-fw"></i>&nbsp;&nbsp;My Shows</a>
                     </li>
                     <li>
                         <a href="#tab2" data-toggle="tab">
@@ -223,18 +223,23 @@
                             <thead>
                                 <tr>
                                     <th scope="col">
+                                        <i class="fas fas fa-cog fa-l fa-fw"></i>
                                         <?= __('Show') ?>
                                     </th>
                                     <th scope="col">
+                                        <i class="fas fa-clock fa-l fa-fw"></i>
                                         <?= __('Date') ?>
                                     </th>
                                     <th scope="col">
+                                        <i class="fas fa-users-cog fa-l fa-fw"></i>
                                         <?= __('Performing') ?>
                                     </th>
                                     <th scope="col">
+                                        <i class="fas fas fa-people-carry fa-l fa-fw"></i>
                                         <?= __('Support') ?>
                                     </th>
                                     <th scope="col">
+                                        <i class="fas fa-phone fa-l fa-fw"></i>
                                         <?= __('Called Out') ?>
                                     </th>
                                 </tr>
@@ -244,13 +249,13 @@
                                 <tr>
                                     <td>
                                         <?php if (!empty($assignment->Dropdowns['name'])) {
-										echo $assignment->Dropdowns['name'];
-									} ?>
+                                            echo $assignment->Dropdowns['name'];
+                                        } ?>
                                     </td>
                                     <td>
                                         <?php if (!empty($assignment->show->schedule)) {
-										echo $this->Switches->dateTime($assignment->show->schedule);
-									} ?>
+                                            echo $this->Switches->dateTime($assignment->show->schedule);
+                                        } ?>
                                     </td>
                                     <td>
                                         <?= $assignment->has('role') ? $assignment->role->name : '' ?>
@@ -286,12 +291,15 @@
                             <thead>
                                 <tr>
                                     <th scope="col">
+                                        <i class="fas fa-chalkboard fa-l fa-fw"></i>
                                         <?= __('Practice') ?>
                                     </th>
                                     <th scope="col">
+                                        <i class="fas fa-clock fa-l fa-fw"></i>
                                         <?= __('Date') ?>
                                     </th>
                                     <th scope="col">
+                                        <i class="fas fas fa-chalkboard-teacher fa-l fa-fw"></i>
                                         <?= __('Leader') ?>
                                     </th>
                                 </tr>
@@ -301,18 +309,18 @@
                                 <tr>
                                     <td>
                                         <?php if (!empty($checkin->practice->title)) {
-										echo $checkin->practice->title;
-									} ?>
+                                            echo $checkin->practice->title;
+                                        } ?>
                                     </td>
                                     <td>
                                         <?php if (!empty($checkin->practice->schedule)) {
-										echo $this->Switches->dateTime($checkin->practice->schedule);
-									} ?>
+                                            echo $this->Switches->dateTime($checkin->practice->schedule);
+                                        } ?>
                                     </td>
                                     <td>
                                         <?php if (!empty($checkin->practice->leader)) {
-										echo "<i class='fas fa-chalkboard-teacher fa-l fa-fw'></i> &nbsp;&nbsp;" . $checkin->practice->leader;
-									} ?>
+                                            echo $checkin->practice->leader;
+                                        } ?>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
@@ -341,9 +349,11 @@
                             <thead>
                                 <tr>
                                     <th scope="col">
+                                        <i class="fas fa-cog fa-l fa-fw"></i>
                                         <?= __('Show') ?>
                                     </th>
                                     <th scope="col">
+                                        <i class="fas fa-clock fa-l fa-fw"></i>
                                         <?= __('Date') ?>
                                     </th>
                                 </tr>
@@ -353,13 +363,13 @@
                                 <tr>
                                     <td>
                                         <?php if (!empty($signup->Dropdowns['name'])) {
-										echo $signup->Dropdowns['name'];
-									} ?>
+                                            echo $signup->Dropdowns['name'];
+                                        } ?>
                                     </td>
                                     <td>
                                         <?php if (!empty($signup->show->schedule)) {
-										echo $this->Switches->dateTime($signup->show->schedule);
-									} ?>
+                                            echo $this->Switches->dateTime($signup->show->schedule);
+                                        } ?>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>

@@ -10,8 +10,7 @@
         <i class="fas fa-chalkboard fa-1x fa-fw"></i>&nbsp;&nbsp;
         <?= h($practice->title) ?>
         <div class="btn-toolbar pull-right" role="toolbar" aria-label="...">
-            <?= $this->Html->link(__('Practices'), ['controller' => 'practices', 'action' => 'index', 'plugin' => false], ['class' => 'btn btn-default btn-sm']); ?>
-            <?= $this->Html->link(__('Month'), ['controller' => 'months', 'action' => 'view', $practice->month_id, 'plugin' => false], ['class' => 'btn btn-default btn-sm']); ?>
+            <?= $this->Html->link(__('Back'), ['controller' => 'practices', 'action' => 'manager', 'plugin' => false], ['class' => 'btn btn-default btn-sm']); ?>
         </div>
     </h3>
     <h2>
@@ -26,15 +25,15 @@
     <hr />
     <?php if ($practice->open == 1) {
 
-				echo "<div class='alert alert-danger' role='alert'> Check-in is enabled</div>";
+        echo "<div class='alert alert-danger' role='alert'> Check-in is enabled</div>";
 
-			} else {
+    } else {
 
 
-				echo "<div class='alert alert-danger' role='alert'> Check-in for practice has been disabled.</div>";
+        echo "<div class='alert alert-danger' role='alert'> Check-in for practice has been disabled.</div>";
 
-			};
-			?>
+    };
+    ?>
 
     <hr />
 
