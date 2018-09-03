@@ -61,7 +61,6 @@ class UsersController extends AppController
     public function me()
     {
         $id = $this->UserAuth->getUserId();
-
         $user = $this->Users->get($id, [
             'contain' => ['UserGroups', 'UserDetails.MemberStandings', 'Assignments', 'Checkins', 'LoginTokens', 'ScheduledEmailRecipients', 'Signups', 'UserActivities', 'UserContacts', 'UserDetails', 'UserEmailRecipients', 'UserEmailSignatures', 'UserEmailTemplates', 'UserSocials']
         ]);
@@ -157,6 +156,153 @@ class UsersController extends AppController
                 return ($results);
             },
             'created', 'practice.leader'
+        ];
+        $this->viewBuilder()->className('CsvView.Csv');
+        $this->set(compact('datas', '_serialize', '_header', '_extract'));
+        return;
+    }
+
+
+    public function phoneBook()
+    {
+        $this->response->download("cwx_phonebook.csv");
+        $this->loadModel('UserDetails');
+        $datas = $this->UserDetails->find('all')->contain(['Users', 'MemberStandings'])->order(['Users.last_name' => 'asc'])->toArray();
+
+        $_serialize = 'datas';
+        $_header = ['Last Name', 'First Name', 'Status', 'Year', 'Phone #', 'e-mail'];
+        $_extract = [
+            'user.last_name', 'user.first_name',
+            function ($row) {
+                $results = $row['member_standing']['title'];
+                return ($results);
+            },
+            function ($row) {
+                $results = date_format($row['starting_year'], "Y");
+                return ($results);
+            }, 'cellphone', 'user.email'
+        ];
+        $this->viewBuilder()->className('CsvView.Csv');
+        $this->set(compact('datas', '_serialize', '_header', '_extract'));
+        return;
+    }
+
+
+    public function members($id = null)
+    {
+        $this->loadModel('UserDetails');
+        if ($id == 0) {
+            $this->response->download("all_members.csv");
+            $datas = $this->UserDetails->find('all')->contain(['Users', 'MemberStandings'])->order(['Users.last_name' => 'asc'])->toArray();
+        } else {
+            $this->response->download("active_members.csv");
+            $datas = $this->UserDetails->find('all')->contain(['Users', 'MemberStandings'])->order(['Users.last_name' => 'asc'])->where(['Users.active' => $id])->toArray();
+        }
+
+        $_serialize = 'datas';
+        $_header = ['Last Name', 'First Name', 'Status', 'Active', 'Year', 'Phone #', 'e-mail', 'Birthday', 'Shirt Size', 'Jersey', 'Nickname', 'Referee', 'Voice/DJ', 'Host', 'Attestation Form', 'ABC Certification'];
+        $_extract = [
+            'user.last_name', 'user.first_name',
+            function ($row) {
+                $results = $row['member_standing']['title'];
+                return ($results);
+            },
+            function ($row) {
+                if ($row['user']['active'] == 1) {
+                    $results = 'Yes';
+                } else {
+                    $results = 'No';
+                }
+                return ($results);
+            },
+            function ($row) {
+                $results = date_format($row['starting_year'], "Y");
+                return ($results);
+            }, 'cellphone', 'user.email', 'user.bday', 'user.shirt', 'jersey', 'nickname',
+            function ($row) {
+                if ($row['referee'] == 1) {
+                    $results = 'Yes';
+                } else {
+                    $results = 'No';
+                }
+                return ($results);
+            },
+            function ($row) {
+                if ($row['voice'] == 1) {
+                    $results = 'Yes';
+                } else {
+                    $results = 'No';
+                }
+                return ($results);
+            },
+            function ($row) {
+                if ($row['host'] == 1) {
+                    $results = 'Yes';
+                } else {
+                    $results = 'No';
+                }
+                return ($results);
+            },
+            function ($row) {
+                if (!empty($row['harassment'])) {
+                    $results = $row['harassment'];
+                } else {
+                    $results = 'Not Completed';
+                }
+                return ($results);
+            },
+            function ($row) {
+                if (!empty($row['abc'])) {
+                    $results = $row['abc'];
+                } else {
+                    $results = 'Not Completed';
+                }
+                return ($results);
+            }
+        ];
+        $this->viewBuilder()->className('CsvView.Csv');
+        $this->set(compact('datas', '_serialize', '_header', '_extract'));
+        return;
+    }
+
+    public function harassmentABC()
+    {
+        $this->loadModel('UserDetails');
+        $this->response->download("harassment_abc.csv");
+        $datas = $this->UserDetails->find('all')->contain(['Users', 'MemberStandings'])->order(['Users.last_name' => 'asc'])->toArray();
+
+        $_serialize = 'datas';
+        $_header = ['Last Name', 'First Name', 'Status', 'Active', 'Attestation Form', 'ABC Certification'];
+        $_extract = [
+            'user.last_name', 'user.first_name',
+            function ($row) {
+                $results = $row['member_standing']['title'];
+                return ($results);
+            },
+            function ($row) {
+                if ($row['user']['active'] == 1) {
+                    $results = 'Yes';
+                } else {
+                    $results = 'No';
+                }
+                return ($results);
+            },
+            function ($row) {
+                if (!empty($row['harassment'])) {
+                    $results = $row['harassment'];
+                } else {
+                    $results = 'Not Completed';
+                }
+                return ($results);
+            },
+            function ($row) {
+                if (!empty($row['abc'])) {
+                    $results = $row['abc'];
+                } else {
+                    $results = 'Not Completed';
+                }
+                return ($results);
+            }
         ];
         $this->viewBuilder()->className('CsvView.Csv');
         $this->set(compact('datas', '_serialize', '_header', '_extract'));

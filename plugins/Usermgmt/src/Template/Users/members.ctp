@@ -21,11 +21,48 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE PRODUCT OR THE USE OR OTHER DEALINGS IN THE PRODUCT. */
 ?>
-<?php $this->assign('title', "Member");?>
+<?php $this->assign('title', "Member"); ?>
 <div class="users view large-12 medium-11 columns content">
-    <h3 class="pageTitle"><i class="fas fa-user fa-lx fa-fw"></i>&nbsp;&nbsp;<?= h("All CWX Members") ?></h3>
+    <h3 class="pageTitle"><i class="fas fa-user fa-lx fa-fw"></i>&nbsp;&nbsp;
+        <?= h("All CWX Members") ?>
 
-		<?php echo $this->element('Usermgmt.all_members');?>
+        <div class="btn-toolbar pull-right" role="toolbar" aria-label="...">
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    Member Reports <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <?= $this->Html->link("<i class='fas fa-download fa-fw'></i>&nbsp;&nbsp;Active Members", [
+                          'plugin' => false,
+                          'controller' => 'users', 'action' => 'members', 1
+                        ], ['escape' => false, 'title' => 'Download Active Members']) ?>
+                    </li>
+                    <li>
+                        <?= $this->Html->link("<i class='fas fa-download fa-fw'></i>&nbsp;&nbsp;All Members", [
+                          'plugin' => false,
+                          'controller' => 'users', 'action' => 'members', 0
+                        ], ['escape' => false, 'title' => 'Download All Members']) ?>
+                    </li>
+                    <li>
+                        <?= $this->Html->link("<i class='fas fa-download fa-fw'></i>&nbsp;&nbsp;CWX Phonebook", [
+                          'plugin' => false,
+                          'controller' => 'users', 'action' => 'phoneBook'
+                        ], ['escape' => false, 'title' => 'Download Phonebook']) ?>
+                    </li>
+                    <li>
+                        <?= $this->Html->link("<i class='fas fa-download fa-fw'></i>&nbsp;&nbsp;Attestation/ABC", [
+                          'plugin' => false,
+                          'controller' => 'users', 'action' => 'harassmentABC'
+                        ], ['escape' => false, 'title' => 'Download Harassment/ABC']) ?>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </h3>
+
+    <?php echo $this->element('Usermgmt.all_members'); ?>
 
 
 </div>
