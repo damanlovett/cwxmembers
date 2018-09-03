@@ -34,7 +34,7 @@
                         ], ['escape' => false, 'title' => 'Download My Sign Ups']) ?>
                     </li>
                     <li>
-                        <?= $this->Html->link("<i class='fas fa-download fa-fw'></i>&nbsp;&nbsp;Assignments", ['controller' => 'users', 'action' => 'assignmentReport', $var['id']], ['escape' => false, 'title' => 'Download My Assignments']) ?>
+                        <?= $this->Html->link("<i class='fas fa-download fa-fw'></i>&nbsp;&nbsp;My Shows", ['controller' => 'users', 'action' => 'assignmentReport', $var['id']], ['escape' => false, 'title' => 'Download My Assignments']) ?>
                     </li>
                 </ul>
             </div>
