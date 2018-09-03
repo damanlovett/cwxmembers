@@ -35,4 +35,21 @@ class ClubStanding extends Entity
     {
         return $this->_properties['title'];
     }
+
+    /**
+     * Used to get title by user id association
+     *
+     * @access public
+     * @param integer $userId user id
+     * @return string
+     */
+    public function getTitleById($id)
+    {
+        $result = $this->find()
+            ->select(['ClubStandings.title'])
+            ->where(['ClubStandings.id' => $id])
+            ->first();
+        $title = (!empty($result)) ? ($result['title']) : '';
+        return $title;
+    }
 }

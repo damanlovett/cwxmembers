@@ -10,6 +10,39 @@
     <h3>
         <i class="fas fa-user-circle fa-1x fa-fw"></i>&nbsp;&nbsp;
         <?= $user->first_name . "'s  Activities" ?>
+        <div class="btn-toolbar pull-right" role="toolbar" aria-label="...">
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    My Activity Reports <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <?= $this->Html->link("<i class='fab fa-google-drive fa-fw'></i>&nbsp;&nbsp;Shortform Attestation", "https://goo.gl/ZMLffs", ['escape' => false, 'title' => 'Download Attestation Form']) ?>
+                        <?= $this->Html->link("<i class='fab fa-google-drive fa-fw'></i>&nbsp;&nbsp;Shortform Guide", "https://goo.gl/WAH1E6", ['escape' => false, 'title' => 'Download Shortform Guide']) ?>
+                        <?= $this->Html->link("<i class='fab fa-google-drive fa-fw'></i>&nbsp;&nbsp;Harassment Policy", "https://goo.gl/Lt1VeW", ['escape' => false, 'title' => 'Download Harassment Policy']) ?>
+                    </li>
+                    <li role="separator" class="divider"></li>
+                    <li>
+                        <?= $this->Html->link("<i class='fas fa-download fa-fw'></i>&nbsp;&nbsp;Practice Check Ins", [
+                            'controller' => 'users', 'action' => 'practiceReport', $var['id']
+                        ], ['escape' => false, 'title' => 'Download My Checkins']) ?>
+                    </li>
+                    <li>
+                        <?= $this->Html->link("<i class='fas fa-download fa-fw'></i>&nbsp;&nbsp;Shows Sign Ups", [
+                            'controller' => 'users', 'action' => 'signupReport', $var['id']
+                        ], ['escape' => false, 'title' => 'Download My Sign Ups']) ?>
+                    </li>
+                    <li>
+                        <?= $this->Html->link("<i class='fas fa-download fa-fw'></i>&nbsp;&nbsp;Assignments", ['controller' => 'users', 'action' => 'assignmentReport', $var['id']], ['escape' => false, 'title' => 'Download My Assignments']) ?>
+                    </li>
+                </ul>
+            </div>
+            <?= $this->Html->link(__('My Profile'), ['controller' => 'users', 'action' => 'mview'], ['class' => 'btn btn-sm', 'title' => 'My Profile']) ?>
+
+
+        </div>
+
     </h3>
 
 
@@ -76,7 +109,7 @@
                                             <?= __('Club Standing') ?>
                                         </td>
                                         <td>
-                                            <?= $userDetails->club_standing['title'] ?>
+                                            <?= $standing ?>
                                         </td>
                                     </tr>
                                     <tr>

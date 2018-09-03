@@ -20,21 +20,21 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li>
-                        <?= $this->Html->link('Sign Up Template', '/library/ComedyWorxShowLineupsTemplate.csv', ['title' => 'Download Template']) ?>
+                        <?= $this->Html->link("<i class='fas fa-download fa-fw'></i>&nbsp;&nbsp;Sign Up Template", "/library/ComedyWorxShowLineupsTemplate.csv", ['escape' => false, 'title' => 'Download Template']) ?>
                     </li>
                     <li role="separator" class="divider"></li>
                     <li>
-                        <?= $this->Html->link('Practice Check Ins', [
+                        <?= $this->Html->link("<i class='fas fa-download fa-fw'></i>&nbsp;&nbsp;Practice Check Ins", [
                             'controller' => 'months', 'action' => 'practiceReport', $month->id, $month->title
                         ], ['escape' => false, 'title' => 'Download Checkins']) ?>
                     </li>
                     <li>
-                        <?= $this->Html->link("{$month->title} Shows", [
+                        <?= $this->Html->link("<i class='fas fa-download fa-fw'></i>&nbsp;&nbsp;{$month->title} Shows", [
                             'controller' => 'months', 'action' => 'showReport', $month->id, $month->title
                         ], ['escape' => false, 'title' => 'Download Shows']) ?>
                     </li>
                     <li>
-                        <?= $this->Html->link("{$month->title} Sign Ups", ['controller' => 'months', 'action' => 'signupReport', $month->id, $month->title], ['escape' => false, 'title' => 'Download Signups']) ?>
+                        <?= $this->Html->link("<i class='fas fa-download fa-fw'></i>&nbsp;&nbsp;{$month->title} Sign Ups", ['controller' => 'months', 'action' => 'signupReport', $month->id, $month->title], ['escape' => false, 'title' => 'Download Signups']) ?>
                     </li>
                 </ul>
             </div>

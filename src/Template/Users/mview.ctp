@@ -58,6 +58,7 @@
                 <?= __('Club Standing') ?>
             </td>
             <td>
+                <?= $var['club_standing']['title'] ?>
                 <?= $user->has('club_standing') ? $user->club_standing->title : "<span class='text-muted'>Not Assigned</span>" ?>
             </td>
         </tr>

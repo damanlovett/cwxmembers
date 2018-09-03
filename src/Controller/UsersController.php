@@ -14,10 +14,10 @@ class UsersController extends AppController
 {
 
     public function beforeFilter(Event $event)
-        {
-            parent::beforeFilter($event);
-            $this->viewBuilder()->layout('default2'); // New in 3.1
-        }
+    {
+        parent::beforeFilter($event);
+        $this->viewBuilder()->layout('default2'); // New in 3.1
+    }
 
         //Don't forget to add use Cake\Event\Event;
 
@@ -66,47 +66,101 @@ class UsersController extends AppController
             'contain' => ['UserGroups', 'UserDetails.MemberStandings', 'Assignments', 'Checkins', 'LoginTokens', 'ScheduledEmailRecipients', 'Signups', 'UserActivities', 'UserContacts', 'UserDetails', 'UserEmailRecipients', 'UserEmailSignatures', 'UserEmailTemplates', 'UserSocials']
         ]);
 
-
         $this->set('user', $user);
+
+        $this->loadModel('ClubStandings');
+        $standing = $this->ClubStandings->getTitleById($user['club_standing_id']);
+        $this->set('standing', $standing);
 
         $this->loadModel('Assignments');
         $assignments = $this->Assignments->findAllByUser_id($id)
-                    ->contain(['Users','Roles', 'Roles2','Shows','Shows.dropdowns']);
+            ->contain(['Users', 'Roles', 'Roles2', 'Shows', 'Shows.dropdowns']);
 
         $this->set('assignments', $this->paginate($assignments));
 
         $this->loadModel('Checkins');
         $checkins = $this->Checkins->findAllByUser_id($id)
-                    ->contain(['Practices']);
+            ->contain(['Practices']);
 
         $this->set('checkins', $this->paginate($checkins));
 
         $this->loadModel('Signups');
         $signups = $this->Signups->findAllByUser_id($id)
-                    ->contain(['Shows','Shows.dropdowns']);
+            ->contain(['Shows', 'Shows.dropdowns']);
 
         $this->set('signups', $this->paginate($signups));
 
+    }
 
+    public function signupReport()
+    {
+        $id = $this->UserAuth->getUserId();
+        $this->response->download("my_show_signups.csv");
 
+        //$datas = $this->Memberships->find('all')->contain('Users')->where(['Memberships.processed' => $id])->toArray();
+        $this->loadModel('Signups');
+        $datas = $this->Signups->find('all')->contain(['Users', 'Shows', 'Shows.dropdowns', 'Months'])->order(['Shows.schedule' => 'asc'])->where(['Signups.user_id' => $id])->toArray();
 
+        $_serialize = 'datas';
+        $_header = ['Show', 'Date', 'Signed Up On'];
+        $_extract = [
+            'Dropdowns.name',
+            function ($row) {
+                $results = date_format($row['show']['schedule'], "M j, Y - g:i a");
+                return ($results);
+            }, 'created'
+        ];
+        $this->viewBuilder()->className('CsvView.Csv');
+        $this->set(compact('datas', '_serialize', '_header', '_extract'));
+        return;
+    }
 
- //       $this->loadModel('Assignments');
-  //      $assignments = $this->Assignments->findAllByUser_id($id)->contain([
-   //         'Roles' => function ($q) {
-    //           return $q
-     //               ->select('name');},
-      //      'Shows' => function ($q) {
-       //        return $q
-  //                  ->select('schedule');},
-   //     ]);
-    //    $assignments->select([
-     //                 'id',
-      //                'role_id'
-       //             ]);
+    public function assignmentReport()
+    {
+        //$id = $this->UserAuth->getUserId();
+        $id = 2;
+        $this->response->download("my_show_assignments.csv");
 
-        //        $this->set('assignments', $this->paginate($assignments));
+        //$datas = $this->Memberships->find('all')->contain('Users')->where(['Memberships.processed' => $id])->toArray();
+        $this->loadModel('Assignments');
+        $datas = $this->Assignments->find('all')->contain(['Users', 'Shows', 'Shows.dropdowns', 'Roles', 'Roles2'])->order(['Shows.schedule' => 'asc'])->where(['Assignments.user_id' => $id])->toArray();
 
+        $_serialize = 'datas';
+        $_header = ['Show', 'Date', 'Signed Up On', '1', '2'];
+        $_extract = [
+            'Dropdowns.name',
+            function ($row) {
+                $results = date_format($row['show']['schedule'], "M j, Y - g:i a");
+                return ($results);
+            }, 'created', 'role.name', 'roles2.name'
+        ];
+        $this->viewBuilder()->className('CsvView.Csv');
+        $this->set(compact('datas', '_serialize', '_header', '_extract'));
+        return;
+    }
+
+    public function practiceReport()
+    {
+        $id = $this->UserAuth->getUserId();
+        $this->response->download("my_practice_checkins.csv");
+
+        //$datas = $this->Memberships->find('all')->contain('Users')->where(['Memberships.processed' => $id])->toArray();
+        $this->loadModel('Checkins');
+        $datas = $this->Checkins->find('all')->contain(['Users', 'Practices'])->order(['Practices.schedule' => 'asc'])->where(['user_id' => $id])->toArray();
+
+        $_serialize = 'datas';
+        $_header = ['Practice', 'Date', 'Checked In On', 'Practice Leader'];
+        $_extract = [
+            'practice.title',
+            function ($row) {
+                $results = date_format($row['practice']['schedule'], "M j, Y - g:i a");
+                return ($results);
+            },
+            'created', 'practice.leader'
+        ];
+        $this->viewBuilder()->className('CsvView.Csv');
+        $this->set(compact('datas', '_serialize', '_header', '_extract'));
+        return;
     }
 
     /**
@@ -122,14 +176,13 @@ class UsersController extends AppController
         $id = $this->UserAuth->getUserId();
 
         $user = $this->Users->get($id, [
-            'contain' => ['UserGroups', 'ClubStandings','Assignments', 'Checkins', 'LoginTokens', 'ScheduledEmailRecipients', 'Signups', 'UserActivities', 'UserContacts', 'UserDetails', 'UserEmailRecipients', 'UserEmailSignatures', 'UserEmailTemplates', 'UserSocials']
+            'contain' => ['UserGroups', 'ClubStandings', 'Assignments', 'Checkins', 'LoginTokens', 'ScheduledEmailRecipients', 'Signups', 'UserActivities', 'UserContacts', 'UserDetails', 'UserEmailRecipients', 'UserEmailSignatures', 'UserEmailTemplates', 'UserSocials']
         ]);
-
         $this->set('user', $user);
 
         $this->loadModel('UserDetails');
         $membership = $this->UserDetails->findByUser_id($id)
-                    ->contain(['MemberStandings']);
+            ->contain(['MemberStandings']);
 
 
         $this->set('membership', $membership);

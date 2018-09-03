@@ -87,6 +87,17 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
 															echo "<li>" . $this->Form->postLink(__('Verify Email'), ['action' => 'verifyEmail', $row['id'], 'page' => $page], ['escape' => false, 'confirm' => __('Are you sure you want to verify email of this user?')]) . "</li>";
 														}
 													}
+													echo "<li role='separator' class='divider'></li>";
+													echo "<li>" . $this->Html->link("<i class='fas fa-download fa-fw'></i> Practices", [
+														'plugin' => false, 'controller' => 'users', 'action' => 'practiceReport', $row['id']
+													], ['escape' => false, 'title' => 'Download Practices']) . "</li>";
+													echo "<li>" . $this->Html->link("<i class='fas fa-download fa-fw'></i> Sign Ups", [
+
+														'plugin' => false, 'controller' => 'users', 'action' => 'signupReport', $row['id']
+													], ['escape' => false, 'title' => 'Download Sign Ups']) . "</li>";
+													echo "<li>" . $this->Html->link("<i class='fas fa-download fa-fw'></i> Assignments", [
+														'plugin' => false, 'controller' => 'users', 'action' => 'assignmentReport', $row['id']
+													], ['escape' => false, 'title' => 'Download Assignments']) . "</li>";
 													echo "</ul>";
 													echo "</div>";
 													echo "</td>";
