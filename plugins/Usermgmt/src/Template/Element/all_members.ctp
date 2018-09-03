@@ -23,75 +23,81 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
 ?>
 
 <div id="updateUsersIndex">
-	<?php echo $this->Search->searchForm('Users', ['legend'=>false, 'updateDivId'=>'updateUsersIndex']); ?>
-	<?php echo $this->element('Usermgmt.paginator', ['updateDivId'=>'updateUsersIndex']); ?>
+    <?php echo $this->Search->searchForm('Users', ['legend' => false, 'updateDivId' => 'updateUsersIndex']); ?>
+    <?php echo $this->element('Usermgmt.paginator', ['updateDivId' => 'updateUsersIndex']); ?>
     <table class="table table-striped" cellpadding="0" cellspacing="0">
-		<thead>
-			<tr>
-				<th style="width:30px;"><?php echo __('#'); ?></th>
-				<th scope="col"><?php echo $this->Paginator->sort('Users.first_name', __('Name')); ?></th>
-				<th scope="col"><?php echo $this->Paginator->sort('Users.username', __('Username')); ?></th>
-				<th scope="col"><?php echo $this->Paginator->sort('Users.email', __('Email')); ?></th>
-				<th><?php echo __('Groups(s)'); ?></th>
-				<th scope="col"><?php echo $this->Paginator->sort('Users.email_verified', __('Email Verified')); ?></th>
-				<th scope="col"><?php echo $this->Paginator->sort('Users.active', __('Status')); ?></th>
-				<th><?php echo __('Action'); ?></th>
-			</tr>
-		</thead>
-		<tbody>
-	<?php	if(!empty($users)) {
-				$page = $this->request->params['paging']['Users']['page'];
-				$limit = $this->request->params['paging']['Users']['perPage'];
-				$i = ($page-1) * $limit;
-				foreach($users as $row) {
-					$i++;
-					echo "<tr>";
-						echo "<td>".$i."</td>";
-						echo "<td>".h($row['first_name']).' '.h($row['last_name'])."</td>";
-						echo "<td>".h($row['username'])."</td>";
-						echo "<td>".h($row['email'])."</td>";
-						echo "<td>".$row['user_group_name']."</td>";
-						echo "<td>";
-							if($row['email_verified']) {
-								echo "<span class='text-success'>".__('Yes')."</span>";
-							} else {
-								echo "<span class='text-danger'>".__('No')."</span>";
-							}
-						echo"</td>";
-						echo "<td>";
-							if($row['active']) {
-								echo "<span class='text-success'>".__('Active')."</span>";
-							} else {
-								echo "<span class='text-danger'>".__('Inactive')."</span>";
-							}
-						echo"</td>";
-						echo "<td>";
-							echo "<div class='btn-group'>";
-								echo "<button class='btn btn-primary btn-sm dropdown-toggle' data-toggle='dropdown'>".__('Action')." <span class='caret'></span></button>";
-								echo "<ul class='dropdown-menu'>";
-									echo "<li>".$this->Html->link(__('View Member'), ['controller'=>'Users', 'action'=>'viewMember', $row['id'], 'page'=>$page], ['escape'=>false])."</li>";
-									echo "<li>".$this->Html->link(__('Edit User'), ['controller'=>'Users', 'action'=>'editMember', $row['id'], 'page'=>$page], ['escape'=>false])."</li>";
-									if($row['id'] != 1 && strtolower($row['username']) != 'admin') {
-										if($row['active']) {
-											echo "<li>".$this->Form->postLink(__('Inactivate'), ['controller'=>'Users', 'action'=>'setInactive', $row['id'], 'page'=>$page], ['escape'=>false, 'confirm'=>__('Are you sure you want to inactivate this user?')])."</li>";
-										} else {
-											echo "<li>".$this->Form->postLink(__('Activate'), ['controller'=>'Users', 'action'=>'setActive', $row['id'], 'page'=>$page], ['escape'=>false, 'confirm'=>__('Are you sure you want to activate this user?')])."</li>";
-										}
-										if(!$row['email_verified']) {
-											echo "<li>".$this->Form->postLink(__('Verify Email'), ['action'=>'verifyEmail', $row['id'], 'page'=>$page], ['escape'=>false, 'confirm'=>__('Are you sure you want to verify email of this user?')])."</li>";
-										}
-									}
-									echo "</ul>";
-							echo "</div>";
-						echo "</td>";
-					echo "</tr>";
-				}
-			} else {
-				echo "<tr><td colspan=10><br/><br/>".__('No Records Available')."</td></tr>";
+        <thead>
+            <tr>
+                <th style="width:30px;">
+                    <?php echo __('#'); ?>
+                </th>
+                <th scope="col">
+                    <?php echo $this->Paginator->sort('Users.last_name', __('Name')); ?>
+                </th>
+                <th scope="col">
+                    <?php echo $this->Paginator->sort('Users.username', __('Username')); ?>
+                </th>
+                <th scope="col">
+                    <?php echo $this->Paginator->sort('Users.email', __('Email')); ?>
+                </th>
+                <th>
+                    <?php echo __('Groups(s)'); ?>
+                </th>
+                <th style="width:100px;" scope="col">
+                    <?php echo $this->Paginator->sort('Users.active', __('Status')); ?>
+                </th>
+                <th style="width:100px;">
+                    <?php echo __('Action'); ?>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php	if (!empty($users)) {
+												$page = $this->request->params['paging']['Users']['page'];
+												$limit = $this->request->params['paging']['Users']['perPage'];
+												$i = ($page - 1) * $limit;
+												foreach ($users as $row) {
+													$i++;
+													echo "<tr>";
+													echo "<td>" . $i . "</td>";
+													echo "<td>" . h($row['last_name']) . ', ' . h($row['first_name']) . "</td>";
+													echo "<td>" . h($row['username']) . "</td>";
+													echo "<td>" . h($row['email']) . "</td>";
+													echo "<td>" . $row['user_group_name'] . "</td>";
+													echo "<td>";
+													if ($row['active']) {
+														echo "<span class='text-success'>" . __('Active') . "</span>";
+													} else {
+														echo "<span class='text-danger'>" . __('Inactive') . "</span>";
+													}
+													echo "</td>";
+													echo "<td>";
+													echo "<div class='btn-group'>";
+													echo "<button class='btn btn-primary btn-sm dropdown-toggle' data-toggle='dropdown'>" . __('Action') . " <span class='caret'></span></button>";
+													echo "<ul class='dropdown-menu'>";
+													echo "<li>" . $this->Html->link(__('View Member'), ['controller' => 'Users', 'action' => 'viewMember', $row['id'], 'page' => $page], ['escape' => false]) . "</li>";
+													echo "<li>" . $this->Html->link(__('Edit User'), ['controller' => 'Users', 'action' => 'editMember', $row['id'], 'page' => $page], ['escape' => false]) . "</li>";
+													if ($row['id'] != 1 && strtolower($row['username']) != 'admin') {
+														if ($row['active']) {
+															echo "<li>" . $this->Form->postLink(__('Inactivate'), ['controller' => 'Users', 'action' => 'setInactive', $row['id'], 'page' => $page], ['escape' => false, 'confirm' => __('Are you sure you want to inactivate this user?')]) . "</li>";
+														} else {
+															echo "<li>" . $this->Form->postLink(__('Activate'), ['controller' => 'Users', 'action' => 'setActive', $row['id'], 'page' => $page], ['escape' => false, 'confirm' => __('Are you sure you want to activate this user?')]) . "</li>";
+														}
+														if (!$row['email_verified']) {
+															echo "<li>" . $this->Form->postLink(__('Verify Email'), ['action' => 'verifyEmail', $row['id'], 'page' => $page], ['escape' => false, 'confirm' => __('Are you sure you want to verify email of this user?')]) . "</li>";
+														}
+													}
+													echo "</ul>";
+													echo "</div>";
+													echo "</td>";
+													echo "</tr>";
+												}
+											} else {
+												echo "<tr><td colspan=10><br/><br/>" . __('No Records Available') . "</td></tr>";
+											} ?>
+        </tbody>
+    </table>
+    <?php if (!empty($users)) {
+				echo $this->element('Usermgmt.pagination', ['paginationText' => __('Number of Users')]);
 			} ?>
-		</tbody>
-	</table>
-	<?php if(!empty($users)) {
-		echo $this->element('Usermgmt.pagination', ['paginationText'=>__('Number of Users')]);
-	}?>
 </div>

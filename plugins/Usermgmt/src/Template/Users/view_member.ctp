@@ -22,124 +22,194 @@ The above copyright notice and this permission notice shall be included in all c
 THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE PRODUCT OR THE USE OR OTHER DEALINGS IN THE PRODUCT. */
 ?>
 <div class="users view large-12 medium-11 columns content">
-	<h3><i class="fas fa-user fa-lx fa-fw"></i>&nbsp;&nbsp;<?= h("Member Details") ?>
-		<span class="pull-right">
-		<?php $page = (isset($this->request->query['page'])) ? $this->request->query['page'] : 1; ?>
-			<?php echo $this->Html->link(__('Back', true), ['action'=>'members', 'page'=>$page], ['class'=>'btn btn-sm btn-default']); ?>
-			<?php echo $this->Html->link(__('Edit', true), ['action'=>'editMember', $user->id, 'page'=>$page], ['class'=>'btn btn-sm btn-default']); ?>
-		</span>
-	</h3>
+    <h3><i class="fas fa-user fa-lx fa-fw"></i>&nbsp;&nbsp;
+        <?= h("Member Details") ?>
+        <span class="pull-right">
+            <?php $page = (isset($this->request->query['page'])) ? $this->request->query['page'] : 1; ?>
+            <?php echo $this->Html->link(__('Back', true), ['action' => 'members', 'page' => $page], ['class' => 'btn btn-sm btn-default']); ?>
+            <?php echo $this->Html->link(__('Edit', true), ['action' => 'editMember', $user->id, 'page' => $page], ['class' => 'btn btn-sm btn-default']); ?>
+        </span>
+    </h3>
 
 
-		<div style="display:inline-block;" class="col-md-6">
-			<?php if(!empty($user)) { ?>
-			<table class="table-condensed" style="width:auto">
-				<tbody>
-					<tr>
-						<td>
-							<div class="profile">
-								<img alt="<?php echo h($user['first_name'].' '.$user['last_name']); ?>" src="<?php echo $this->Image->resize('library/'.IMG_DIR, $user['photo'], 200, null, true);?>">
-							</div>
-						</td>
-						<td><h1><?php echo h($user['first_name']).' '.h($user['last_name']);?></h1></td>
-					</tr>
-					<tr>
-						<td style="text-align:right"><strong><?php echo __('Group(s)');?>:</strong></td>
-						<td><?php echo h($user['group_name']);?></td>
-					</tr>
-					<tr>
-						<td style="text-align:right"><strong><?php echo __('Username');?>:</strong></td>
-						<td><?php echo h($user['username']);?></td>
-					</tr>
-					<tr>
-						<td style="text-align:right"><strong><?php echo __('Email');?>:</strong></td>
-						<td><?php echo h($user['email']);?></td>
-					</tr>
-					<tr>
-						<td style="text-align:right"><strong><?php echo __('Gender');?>:</strong></td>
-						<td><?php echo h(ucwords($user['gender']));?></td>
-					</tr>
-					<tr>
-						<td style="text-align:right"><strong><?php echo __('Birthday');?>:</strong></td>
-						<td><?php if(!empty($user['bday'])) { echo $this->Switches->date($user['bday']); } ?></td>
-					</tr>
-					<tr>
-						<td style="text-align:right"><strong><?php echo __('Phone');?>:</strong></td>
-						<td><?php echo h($user['user_detail']['cellphone']);?></td>
-					</tr>
-					<tr>
-						<td style="text-align:right"><strong><?php echo __('Address'); ?>:</strong></td>
-						<td><?php echo h($user['user_detail']['location']);?></td>
-					</tr>
-					<tr>
-						<td style="text-align:right"><strong><?php echo __('Status');?>:</strong></td>
-						<td><?php echo ($user['active']) ? __('Active') : __('Inactive');?></td>
-					</tr>
-					<tr>
-						<td style="text-align:right"><strong><?php echo __('Email Verified');?></strong></td>
-						<td><?php echo ($user['email_verified']) ? __('Yes') : __('No');?></td>
-					</tr>
-					<tr>
-						<td style="text-align:right"><strong><?php echo __('Joined');?>:</strong></td>
-						<td><?php echo  $this->Switches->date($user['created']);?></td>
-					</tr>
-					<tr>
-						<td style="text-align:right"><strong><?php echo __('Last Login');?>:</strong></td>
-						<td><?php echo ($user['last_login']) ? $user['last_login']->timeAgoInWords(['accuracy' => 'hours'
-						]) : ''?></td>
-					</tr>
-				</tbody>
-			</table>
-			<?php } ?>
-		</div>
+    <div style="display:inline-block;" class="col-md-6">
+        <?php if (!empty($user)) { ?>
+        <table class="table-condensed" style="width:auto">
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="profile">
+                            <img alt="<?php echo h($user['first_name'] . ' ' . $user['last_name']); ?>" src="<?php echo $this->Image->resize('library/' . IMG_DIR, $user['photo'], 200, null, true); ?>">
+                        </div>
+                    </td>
+                    <td>
+                        <h1>
+                            <?php echo h($user['first_name']) . ' ' . h($user['last_name']); ?>
+                        </h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right"><strong>
+                            <?php echo __('Group(s)'); ?>:</strong></td>
+                    <td>
+                        <?php echo h($user['group_name']); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right"><strong>
+                            <?php echo __('Username'); ?>:</strong></td>
+                    <td>
+                        <?php echo h($user['username']); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right"><strong>
+                            <?php echo __('Email'); ?>:</strong></td>
+                    <td>
+                        <?php echo h($user['email']); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right"><strong>
+                            <?php echo __('Gender'); ?>:</strong></td>
+                    <td>
+                        <?php echo h(ucwords($user['gender'])); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right"><strong>
+                            <?php echo __('Birthday'); ?>:</strong></td>
+                    <td>
+                        <?php if (!empty($user['bday'])) {
+										echo $this->Switches->date($user['bday']);
+									} ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right"><strong>
+                            <?php echo __('Phone'); ?>:</strong></td>
+                    <td>
+                        <?php echo h($user['user_detail']['cellphone']); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right"><strong>
+                            <?php echo __('Address'); ?>:</strong></td>
+                    <td>
+                        <?php echo h($user['user_detail']['location']); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right"><strong>
+                            <?php echo __('Status'); ?>:</strong></td>
+                    <td>
+                        <?php echo ($user['active']) ? __('Active') : __('Inactive'); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right"><strong>
+                            <?php echo __('Email Verified'); ?></strong></td>
+                    <td>
+                        <?php echo ($user['email_verified']) ? __('Yes') : __('No'); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right"><strong>
+                            <?php echo __('Joined'); ?>:</strong></td>
+                    <td>
+                        <?php echo $this->Switches->date($user['created']); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right"><strong>
+                            <?php echo __('Last Login'); ?>:</strong></td>
+                    <td>
+                        <?php echo ($user['last_login']) ? $user['last_login']->timeAgoInWords(['accuracy' => 'hours']) : '' ?>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <?php 
+	} ?>
+    </div>
 
-		<div style="display:inline-block; padding-top:200px;"  class="col-md-6">
-			<table class="table-condensed" style="width:auto">
-				<tbody>
-					<tr>
-						<td style="text-align:right"><strong><?php echo __('Club Standing');?>:</strong></td>
-						<td><?php echo h($user['Club'] ? $user['Club'] : "N/A");?></td>
-					</tr>
-					<tr>
-						<td style="text-align:right"><strong><?php echo __('Membership Standing');?>:</strong></td>
-						<td><?php echo h($user['Member'] ? $user['Member'] : "N/A");?></td>
-					</tr>
-					<tr>
-						<td style="text-align:right"><strong><?php echo __('Nickname');?>:</strong></td>
-						<td><?php echo h($user['user_detail']['nickname'] ? "Yes" : "N/A");?></td>
-					</tr>
-					<tr>
-						<td style="text-align:right"><strong><?php echo __('Jersey');?>:</strong></td>
-						<td><?php echo h($user['user_detail']['jersey'] ? "Yes" : "N/A");?></td>
-					</tr>
-					<tr>
-						<td style="text-align:right"><strong><?php echo __('Starting Year');?>:</strong></td>
-						<td><?php echo h($user['user_detail']['starting_year'] ? $user['user_detail']['starting_year']->format('Y') : "N/A");?></td>
-					</tr>
-					<tr>
-						<td style="text-align:right"><strong><?php echo __('Voice');?>:</strong></td>
-						<td><?php echo h($user['user_detail']['voice'] ? "Yes" : "N/A");?></td>
-					</tr>
-					<tr>
-						<td style="text-align:right"><strong><?php echo __('Host');?>:</strong></td>
-						<td><?php echo h($user['user_detail']['host'] ? "Yes" : "N/A");?></td>
-					</tr>
-					<tr>
-						<td style="text-align:right"><strong><?php echo __('Referee');?>:</strong></td>
-						<td><?php echo h($user['user_detail']['referee'] ? "Yes" : "N/A");?></td>
-					</tr>
-					<tr>
-						<td style="text-align:right"><strong><?php echo __('ABC Certification');?>:</strong></td>
-						<td><?php echo h($user['user_detail']['abc'] ? "Yes".$user['user_detail']['abc'] : "N/A");?></td>
-					</tr>
-					<tr>
-						<td style="text-align:right"><strong><?php echo __('Harrassment Policy');?>:</strong></td>
-						<td><?php echo h($user['user_detail']['harrassment'] ? "Yes".$user['user_detail']['harrassment'] : "N/A");?></td>
-					</tr>
-				</tbody>
-			</table>
+    <div style="display:inline-block; padding-top:200px;" class="col-md-6">
+        <table class="table-condensed" style="width:auto">
+            <tbody>
+                <tr>
+                    <td style="text-align:right"><strong>
+                            <?php echo __('Club Standing'); ?>:</strong></td>
+                    <td>
+                        <?php echo h($user['Club'] ? $user['Club'] : "N/A"); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right"><strong>
+                            <?php echo __('Membership Standing'); ?>:</strong></td>
+                    <td>
+                        <?php echo h($user['Member'] ? $user['Member'] : "N/A"); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right"><strong>
+                            <?php echo __('Nickname'); ?>:</strong></td>
+                    <td>
+                        <?php echo h($user['user_detail']['nickname'] ? $user['user_detail']['nickname'] : "N/A"); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right"><strong>
+                            <?php echo __('Jersey'); ?>:</strong></td>
+                    <td>
+                        <?php echo h($user['user_detail']['jersey'] ? $user['user_detail']['jersey'] : "N/A"); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right"><strong>
+                            <?php echo __('Starting Year'); ?>:</strong></td>
+                    <td>
+                        <?php echo h($user['user_detail']['starting_year'] ? $user['user_detail']['starting_year']->format('Y') : "N/A"); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right"><strong>
+                            <?php echo __('Voice'); ?>:</strong></td>
+                    <td>
+                        <?php echo h($user['user_detail']['voice'] ? "Yes" : "N/A"); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right"><strong>
+                            <?php echo __('Host'); ?>:</strong></td>
+                    <td>
+                        <?php echo h($user['user_detail']['host'] ? "Yes" : "N/A"); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right"><strong>
+                            <?php echo __('Referee'); ?>:</strong></td>
+                    <td>
+                        <?php echo h($user['user_detail']['referee'] ? "Yes" : "N/A"); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right"><strong>
+                            <?php echo __('ABC Certification'); ?>:</strong></td>
+                    <td>
+                        <?php echo h($user['user_detail']['abc'] ? "Yes" . $user['user_detail']['abc'] : "N/A"); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right"><strong>
+                            <?php echo __('Harrassment Policy'); ?>:</strong></td>
+                    <td>
+                        <?php echo h($user['user_detail']['harrassment'] ? "Yes" . $user['user_detail']['harrassment'] : "N/A"); ?>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
 
-		</div>
+    </div>
 
 </div>

@@ -22,78 +22,103 @@ The above copyright notice and this permission notice shall be included in all c
 THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE PRODUCT OR THE USE OR OTHER DEALINGS IN THE PRODUCT. */
 ?>
 <div class="users view large-12 medium-11 columns content">
-    <h3><i class="fas fa-user fa-lx fa-fw"></i>&nbsp;&nbsp;<?= h($var['first_name']."'s Profile") ?>
-		<span class="pull-right">
-            <?php echo $this->Html->link(__('Back', true), ['controller'=>'users','action'=>'mview', 'plugin'=>false], ['class'=>'btn btn-default btn-sm']); ?></span></h3>
-	<div class="panel-body">
-		<?php echo $this->element('Usermgmt.ajax_validation', ['formId'=>'editProfileForm', 'submitButtonId'=>'editProfileSubmitBtn']); ?>
-		<?php echo $this->Form->create($userEntity, ['type'=>'file', 'id'=>'editProfileForm', 'class'=>'form-horizontal']); ?>
-		<?php $changeUserName = (ALLOW_CHANGE_USERNAME || empty($userEntity['username'])) ? false : true; ?>
-		<div class="um-form-row form-group">
-			<label class="col-sm-2 control-label required"><?php echo __('Username'); ?></label>
-			<div class="col-sm-3">
-				<?php echo $this->Form->input('Users.username', ['type'=>'text', 'label'=>false, 'div'=>false, 'readonly'=>$changeUserName, 'class'=>'form-control']); ?>
-			</div>
-		</div>
-		<div class="um-form-row form-group">
-			<label class="col-sm-2 control-label required"><?php echo __('First Name'); ?></label>
-			<div class="col-sm-3">
-				<?php echo $this->Form->input('Users.first_name', ['type'=>'text', 'label'=>false, 'div'=>false, 'class'=>'form-control']); ?>
-			</div>
-		</div>
-		<div class="um-form-row form-group">
-			<label class="col-sm-2 control-label"><?php echo __('Last Name'); ?></label>
-			<div class="col-sm-3">
-				<?php echo $this->Form->input('Users.last_name', ['type'=>'text', 'label'=>false, 'div'=>false, 'class'=>'form-control']); ?>
-			</div>
-		</div>
-		<div class="um-form-row form-group">
-			<label class="col-sm-2 control-label required"><?php echo __('Email'); ?></label>
-			<div class="col-sm-3">
-				<?php echo $this->Form->input('Users.email', ['type'=>'text', 'label'=>false, 'div'=>false, 'class'=>'form-control']); ?>
-			</div>
-		</div>
-		<div class="um-form-row form-group">
-			<label class="col-sm-2 control-label"><?php echo __('Gender'); ?></label>
-			<div class="col-sm-3">
-				<?php echo $this->Form->input('Users.gender', ['type'=>'select', 'options'=>$genders, 'label'=>false, 'div'=>false, 'class'=>'form-control']); ?>
-			</div>
-		</div>
-		<div class="um-form-row form-group">
-			<label class="col-sm-2 control-label"><?php echo __('Birthday'); ?></label>
-			<div class="col-sm-3">
-				<?php echo $this->Form->input('Users.bday', ['type'=>'text', 'label'=>false, 'div'=>false, 'class'=>'form-control datepicker']); ?>
-			</div>
-		</div>
-		<div class="um-form-row form-group">
-			<label class="col-sm-2 control-label"><?php echo __('Shirt Size'); ?></label>
-			<div class="col-sm-3">
-				<?php echo $this->Form->input('Users.shirt', ['type'=>'select', 'options'=>$shirts, 'label'=>false, 'div'=>false, 'class'=>'form-control']); ?>
-			</div>
-		</div>
-		<div class="um-form-row form-group">
-			<label class="col-sm-2 control-label required"><?php echo __('Phone'); ?></label>
-			<div class="col-sm-3">
-				<?php echo $this->Form->input('Users.user_detail.cellphone', ['type'=>'text', 'label'=>false, 'placeholder'=>'###-###-####','div'=>false, 'class'=>'form-control']); ?>
-			</div>
-		</div>
-		<div class="um-form-row form-group">
-			<label class="col-sm-2 control-label required"><?php echo __('Address'); ?></label>
-			<div class="col-sm-3">
-				<?php echo $this->Form->input('Users.user_detail.location', ['type'=>'textarea', 'label'=>false, 'div'=>false, 'class'=>'form-control']); ?>
-			</div>
-		</div>
-		<div class="um-form-row form-group">
-			<label class="col-sm-2 control-label"><?php echo __('Photo');?></label>
-			<div class="col-sm-3">
-				<?php echo $this->Form->input('Users.photo_file', ['type'=>'file', 'label'=>false, 'div'=>false]);?>
-			</div>
-		</div>
-		<div class="um-button-row">
-			<?php echo $this->Form->Submit(__('Update Profile'), ['class'=>'btn btn-primary', 'id'=>'editProfileSubmitBtn']); ?>
-		</div>
-		<?php echo $this->Form->end(); ?>
-	</div>
+    <h3><i class="fas fa-user fa-lx fa-fw"></i>&nbsp;&nbsp;
+        <?= h($var['first_name'] . "'s Profile") ?>
+        <span class="pull-right">
+            <?php echo $this->Html->link(__('Back', true), ['controller' => 'users', 'action' => 'mview', 'plugin' => false], ['class' => 'btn btn-default btn-sm']); ?></span></h3>
+    <div class="panel-body">
+        <?php echo $this->element('Usermgmt.ajax_validation', ['formId' => 'editProfileForm', 'submitButtonId' => 'editProfileSubmitBtn']); ?>
+        <?php echo $this->Form->create($userEntity, ['type' => 'file', 'id' => 'editProfileForm', 'class' => 'form-horizontal']); ?>
+        <?php $changeUserName = (ALLOW_CHANGE_USERNAME || empty($userEntity['username'])) ? false : true; ?>
+        <div class="um-form-row form-group">
+            <label class="col-sm-2 control-label required">
+                <?php echo __('Username'); ?></label>
+            <div class="col-sm-3">
+                <?php echo $this->Form->input('Users.username', ['type' => 'text', 'label' => false, 'div' => false, 'readonly' => $changeUserName, 'class' => 'form-control']); ?>
+            </div>
+        </div>
+        <div class="um-form-row form-group">
+            <label class="col-sm-2 control-label required">
+                <?php echo __('First Name'); ?></label>
+            <div class="col-sm-3">
+                <?php echo $this->Form->input('Users.first_name', ['type' => 'text', 'label' => false, 'div' => false, 'class' => 'form-control']); ?>
+            </div>
+        </div>
+        <div class="um-form-row form-group">
+            <label class="col-sm-2 control-label">
+                <?php echo __('Last Name'); ?></label>
+            <div class="col-sm-3">
+                <?php echo $this->Form->input('Users.last_name', ['type' => 'text', 'label' => false, 'div' => false, 'class' => 'form-control']); ?>
+            </div>
+        </div>
+        <div class="um-form-row form-group">
+            <label class="col-sm-2 control-label required">
+                <?php echo __('Email'); ?></label>
+            <div class="col-sm-3">
+                <?php echo $this->Form->input('Users.email', ['type' => 'text', 'label' => false, 'div' => false, 'class' => 'form-control']); ?>
+            </div>
+        </div>
+        <div class="um-form-row form-group">
+            <label class="col-sm-2 control-label">
+                <?php echo __('Gender'); ?></label>
+            <div class="col-sm-3">
+                <?php echo $this->Form->input('Users.gender', ['type' => 'select', 'options' => $genders, 'label' => false, 'div' => false, 'class' => 'form-control']); ?>
+            </div>
+        </div>
+        <div class="um-form-row form-group">
+            <label class="col-sm-2 control-label">
+                <?php echo __('Birthday'); ?></label>
+            <div class="col-sm-3">
+                <?php echo $this->Form->input('Users.bday', ['type' => 'text', 'label' => false, 'div' => false, 'class' => 'form-control datepicker']); ?>
+            </div>
+        </div>
+        <div class="um-form-row form-group">
+            <label class="col-sm-2 control-label">
+                <?php echo __('Nick Name'); ?></label>
+            <div class="col-sm-3">
+                <?php echo $this->Form->input('Users.user_detail.nickname', ['type' => 'text', 'label' => false, 'div' => false, 'class' => 'form-control']); ?>
+            </div>
+        </div>
+        <div class="um-form-row form-group">
+            <label class="col-sm-2 control-label">
+                <?php echo __('Jersey'); ?></label>
+            <div class="col-sm-3">
+                <?php echo $this->Form->input('Users.user_detail.jersey', ['type' => 'text', 'label' => false, 'div' => false, 'class' => 'form-control']); ?>
+            </div>
+        </div>
+        <div class="um-form-row form-group">
+            <label class="col-sm-2 control-label">
+                <?php echo __('Shirt Size'); ?></label>
+            <div class="col-sm-3">
+                <?php echo $this->Form->input('Users.shirt', ['type' => 'select', 'options' => $shirts, 'label' => false, 'div' => false, 'class' => 'form-control']); ?>
+            </div>
+        </div>
+        <div class="um-form-row form-group">
+            <label class="col-sm-2 control-label required">
+                <?php echo __('Phone'); ?></label>
+            <div class="col-sm-3">
+                <?php echo $this->Form->input('Users.user_detail.cellphone', ['type' => 'text', 'label' => false, 'placeholder' => '###-###-####', 'div' => false, 'class' => 'form-control']); ?>
+            </div>
+        </div>
+        <div class="um-form-row form-group">
+            <label class="col-sm-2 control-label required">
+                <?php echo __('Address'); ?></label>
+            <div class="col-sm-3">
+                <?php echo $this->Form->input('Users.user_detail.location', ['type' => 'textarea', 'label' => false, 'div' => false, 'class' => 'form-control']); ?>
+            </div>
+        </div>
+        <div class="um-form-row form-group">
+            <label class="col-sm-2 control-label">
+                <?php echo __('Photo'); ?></label>
+            <div class="col-sm-3">
+                <?php echo $this->Form->input('Users.photo_file', ['type' => 'file', 'label' => false, 'div' => false]); ?>
+            </div>
+        </div>
+        <div class="um-button-row">
+            <?php echo $this->Form->Submit(__('Update Profile'), ['class' => 'btn btn-primary', 'id' => 'editProfileSubmitBtn']); ?>
+        </div>
+        <?php echo $this->Form->end(); ?>
+    </div>
 
 
 </div>
