@@ -23,32 +23,38 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
 ?>
 <?php
 namespace Usermgmt\Model\Table;
+
 use Usermgmt\Model\Table\UsermgmtAppTable;
 use Cake\Validation\Validator;
 
-class UserDetailsTable extends UsermgmtAppTable {
+class UserDetailsTable extends UsermgmtAppTable
+{
 
-	public function initialize(array $config) {
+	public function initialize(array $config)
+	{
 		$this->addBehavior('Timestamp');
 		$this->belongsTo('Usermgmt.Users');
 	}
-	public function validationForAddUser($validator) {
+	public function validationForAddUser($validator)
+	{
 		return $validator;
 	}
-	public function validationForEditUser($validator) {
+	public function validationForEditUser($validator)
+	{
 		/*$validator
 			->notEmpty('cellphone', __('Please enter cellphone no'));*/
 		return $validator;
 	}
-	public function validationForMultipleUsers($validator) {
+	public function validationForMultipleUsers($validator)
+	{
 		/*$validator
 			->notEmpty('cellphone', __('Please enter cellphone no'));*/
 		return $validator;
 	}
-	public function validationForEditProfile($validator) {
+	public function validationForEditProfile($validator)
+	{
 		$validator
-			->notEmpty('cellphone', __('Please enter a phone number'))
-			->notEmpty('location', __('Please enter your address'));
+			->notEmpty('cellphone', __('Please enter a phone number'));
 		return $validator;
 	}
 }
