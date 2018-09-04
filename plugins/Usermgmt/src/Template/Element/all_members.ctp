@@ -76,7 +76,7 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
 													echo "<button class='btn btn-primary btn-sm dropdown-toggle' data-toggle='dropdown'>" . __('Action') . " <span class='caret'></span></button>";
 													echo "<ul class='dropdown-menu'>";
 													echo "<li>" . $this->Html->link(__('View Member'), ['controller' => 'Users', 'action' => 'viewMember', $row['id'], 'page' => $page], ['escape' => false]) . "</li>";
-													echo "<li>" . $this->Html->link(__('Edit User'), ['controller' => 'Users', 'action' => 'editMember', $row['id'], 'page' => $page], ['escape' => false]) . "</li>";
+													echo "<li>" . $this->Html->link(__('Edit Member'), ['controller' => 'Users', 'action' => 'editMember', $row['id'], 'page' => $page], ['escape' => false]) . "</li>";
 													if ($row['id'] != 1 && strtolower($row['username']) != 'admin') {
 														if ($row['active']) {
 															echo "<li>" . $this->Form->postLink(__('Inactivate'), ['controller' => 'Users', 'action' => 'setInactive', $row['id'], 'page' => $page], ['escape' => false, 'confirm' => __('Are you sure you want to inactivate this user?')]) . "</li>";

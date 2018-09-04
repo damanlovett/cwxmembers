@@ -24,7 +24,7 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
 <?php $this->assign('title', "Member"); ?>
 <div class="users view large-12 medium-11 columns content">
     <h3 class="pageTitle"><i class="fas fa-user fa-lx fa-fw"></i>&nbsp;&nbsp;
-        <?= h("All CWX Members") ?>
+        <?= h("ComedyWorx Members") ?>
 
         <div class="btn-toolbar pull-right" role="toolbar" aria-label="...">
             <div class="btn-group">
@@ -35,26 +35,26 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
                 <ul class="dropdown-menu">
                     <li>
                         <?= $this->Html->link("<i class='fas fa-download fa-fw'></i>&nbsp;&nbsp;Active Members", [
-                          'plugin' => false,
-                          'controller' => 'users', 'action' => 'members', 1
+                            'plugin' => false,
+                            'controller' => 'users', 'action' => 'members', 1
                         ], ['escape' => false, 'title' => 'Download Active Members']) ?>
                     </li>
                     <li>
                         <?= $this->Html->link("<i class='fas fa-download fa-fw'></i>&nbsp;&nbsp;All Members", [
-                          'plugin' => false,
-                          'controller' => 'users', 'action' => 'members', 0
+                            'plugin' => false,
+                            'controller' => 'users', 'action' => 'members', 0
                         ], ['escape' => false, 'title' => 'Download All Members']) ?>
                     </li>
                     <li>
                         <?= $this->Html->link("<i class='fas fa-download fa-fw'></i>&nbsp;&nbsp;CWX Phonebook", [
-                          'plugin' => false,
-                          'controller' => 'users', 'action' => 'phoneBook'
+                            'plugin' => false,
+                            'controller' => 'users', 'action' => 'phoneBook'
                         ], ['escape' => false, 'title' => 'Download Phonebook']) ?>
                     </li>
                     <li>
                         <?= $this->Html->link("<i class='fas fa-download fa-fw'></i>&nbsp;&nbsp;Attestation/ABC", [
-                          'plugin' => false,
-                          'controller' => 'users', 'action' => 'harassmentABC'
+                            'plugin' => false,
+                            'controller' => 'users', 'action' => 'harassmentABC'
                         ], ['escape' => false, 'title' => 'Download Harassment/ABC']) ?>
                     </li>
                 </ul>
