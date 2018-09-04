@@ -40,6 +40,12 @@
                 <th class="iconBox">
                     <?= __('') ?>
                 </th>
+                <th class="iconBox">
+                    <?= __('') ?>
+                </th>
+                <th class="iconBox">
+                    <?= __('') ?>
+                </th>
                 <th scope="col">
                     <i class="far fa-calendar-alt fa-l fa-fw myRed"></i>
                     <?= $this->Paginator->sort('first_friday', 'Month') ?>
@@ -65,6 +71,12 @@
                     <?= $this->Html->link(__(''), ['action' => 'mview', $month->id], ['class' => 'fas fa-eye fa-l fa-fw text-success', 'title' => 'Manage Month']) ?>
                 </td>
                 <td>
+                    <?= $this->Html->link(__(''), ['controller' => 'months', 'action' => 'signupReport', $month->id, $month->title], ['class' => 'fas fa-pen-alt fa-l fa-fw text-success', 'escape' => false, 'title' => 'Download Show Signups']) ?>
+                </td>
+                <td>
+                    <?= $this->Html->link(__(''), ['controller' => 'months', 'action' => 'practiceReport', $month->id, $month->title], ['class' => 'fas fa-chalkboard fa-l fa-fw text-success', 'escape' => false, 'title' => 'Download Practice Check Ins']) ?>
+                </td>
+                <td>
                     <?= h($month->title . " " . $month->year) ?>
                 </td>
                 <td style="text-align:center;">
@@ -80,7 +92,7 @@
             <?php endforeach; ?>
         </tbody>
         <tfoot>
-            <td colspan="5">
+            <td colspan="7">
 
                 <div class="paginator">
                     <ul class="pagination">

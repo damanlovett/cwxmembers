@@ -8,7 +8,7 @@
 <div class="shows index large-12 medium-11 columns content">
     <h3>
         <i class="fas fa-calendar fa-1 fa-fw"></i>&nbsp;&nbsp;
-        <?= __('Show Up Manager') ?>&nbsp;&nbsp;
+        <?= __('Sign Up Manager') ?>&nbsp;&nbsp;
         <small style="color:white;margin-right:20px;">[ by Show ]</small>
         <div class="btn-toolbar pull-right" role="toolbar" aria-label="...">
             <?= $this->Html->link('<span class="far fa-eye fa-l  fa-fw"></span> Month', ['controller' => 'months', 'action' => 'manager'], ['class' => 'btn btn-success', 'title' => 'View by Month', 'escape' => false]) ?>
@@ -132,7 +132,7 @@
         </tfoot>
     </table>
     <?php if (!empty($shows)) {
-				echo $this->element('Usermgmt.pagination', ['paginationText' => __('Number of Shows')]);
-			} ?>
+        echo $this->element('Usermgmt.pagination', ['paginationText' => __('Number of Shows')]);
+    } ?>
 
 </div>
