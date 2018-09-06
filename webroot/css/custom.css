@@ -40,7 +40,6 @@ body {
 }
 
 /* page formatting */
-
 .content h3 {
     border-bottom: 1px solid #ccc;
     margin-bottom: 30px;
@@ -71,7 +70,6 @@ div.tableSeparator {
 }
 
 /* links */
-
 a,
 a:hover,
 a:active {
@@ -79,7 +77,6 @@ a:active {
 }
 
 /* nav bar */
-
 .navbar-inverse .navbar-brand {
     background-color: #0000b3;
     color: #fff;
@@ -107,7 +104,6 @@ a:active {
 }
 
 /* fieldset */
-
 fieldset {
     border: none;
     padding: 1.25rem;
@@ -125,14 +121,12 @@ legend {
 }
 
 /* action buttons */
-
 .btn-group-sm>.btn,
 .btn-sm {
     padding: 2px 5px;
 }
 
 /*Panel tabs */
-
 .panel {
     padding: .1rem;
     background-color: #fff;
@@ -229,7 +223,6 @@ ol.fancyList li {
 }
 
 /* page title */
-
 div.pageTitle h1 {
     font-family: 'Open Sans Condensed', sans-serif;
     text-transform: uppercase;
@@ -272,9 +265,7 @@ h3.pageTitle {
 }
 
 /* fancy page title */
-
 /* https://wdexplorer.com/20-examples-beautiful-css-typography-design/ */
-
 div.fpageTitle h1 {
     color: #0000b3;
     font-family: 'Open Sans Condensed', sans-serif;
@@ -354,9 +345,7 @@ div.fpageTitle span.date {
 }
 
 /* page content */
-
 /* side menu */
-
 nav#actions-sidebar {
     padding: 0;
     margin: 0;
@@ -433,7 +422,6 @@ nav#actions-sidebar ul ul li {
 }
 
 /* Custom CSS Styles */
-
 nav#actions-sidebar {
     width: 200px;
     background: #009688;
@@ -593,7 +581,6 @@ nav#actions-sidebar.align-right ul ul {
 }
 
 /* basic table */
-
 table.basicTable {
     font-family: Verdana, Geneva, sans-serif;
     border: 1px solid #ccc;
@@ -644,9 +631,7 @@ table.basicTable thead th:first-child {
   border-left: none;
 }
 */
-
 /* basic table part 3 */
-
 table.basicTable tfoot {
     font-size: 8px;
     color: #000 !important;
@@ -684,7 +669,6 @@ table.basicTable tfoot .links a {
 }
 
 /* footer */
-
 #footer {
     background-color: #f5f5f5;
     padding: 10px 0 5px;
@@ -743,12 +727,14 @@ ul.dropdown-menu li.disabled {
 .table thead tr th,
 .table thead tr th a {
     font-size: 0.975rem;
+    font-weight: normal !important;
 }
 
 .table tr th,
 .table thead tr th {
     background-color: #f9f9f9;
     color: #0000b3;
+    font-weight: normal !important;
 }
 
 .date select,
@@ -861,7 +847,6 @@ div.message2.hidden {
 }
 
 /* Home Page Carousel */
-
 header.carousel {
     height: 50%;
 }
@@ -880,13 +865,11 @@ header.carousel .fill {
 }
 
 /* 404 Page Styles */
-
 .error-404 {
     font-size: 100px;
 }
 
 /* Pricing Page Styles */
-
 .price {
     display: block;
     font-size: 50px;
@@ -905,14 +888,13 @@ header.carousel .fill {
 }
 
 /* Footer Styles */
-
 footer {
     margin: 50px 0;
 }
 
 /* Responsive Styles */
-
 @media(max-width:991px) {
+
     .customer-img,
     .img-related {
         margin-bottom: 30px;
@@ -923,6 +905,7 @@ footer {
     .img-portfolio {
         margin-bottom: 15px;
     }
+
     header.carousel .carousel {
         height: 70%;
     }
@@ -1023,7 +1006,7 @@ blockquote:before {
 }
 
 blockquote:after {
-    content: "\2013 \2003" attr(cite);
+    content: "\2013 \2003"attr(cite);
     display: block;
     text-align: right;
     font-size: 0.775em;
