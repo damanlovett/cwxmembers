@@ -2,9 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\src",
+    "\\src\\Controller",
     "\\src\\Model",
-    "\\src\\Model\\Table"
+    "\\src\\Template\\Users"
   ],
-  "SelectedNode": "\\src\\Model\\Table\\AssignmentsTable.php",
   "PreviewInSolutionExplorer": false
 }

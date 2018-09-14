@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskName": "task-me",
+      "appliesTo": "src/Template/Users/me.ctp",
+      "type": "launch"
+    }
+  ]
+}
