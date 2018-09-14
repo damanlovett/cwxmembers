@@ -142,7 +142,7 @@ class DefaultWriter implements WriterInterface
         try {
             $success = $filesystem->delete($path);
         } catch (FileNotFoundException $e) {
-            // TODO: log this?
+            // TODO2: log this?
         }
 
         return $success;
