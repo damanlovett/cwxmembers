@@ -90,7 +90,7 @@
                         <?= $this->Html->link(__(''), ['action' => 'edit', $show->id], ['class' => 'fas fa-edit fa-l  fa-fw text-success', 'title' => 'Edit Show']) ?>
                     </td>
                     <td>
-                        <?= $this->Form->postLink(__(''), ['action' => 'remove', $show->id], ['class' => 'fas fa-trash-alt fa-l  fa-fw text-danger', 'title' => 'Delete Show']) ?>
+                        <?= $this->Html->link(__(''), ['action' => 'remove', $show->id], ['class' => 'fas fa-trash-alt fa-l  fa-fw text-danger disabled', 'title' => 'Delete Show']) ?>
                     </td>
                     <td class="iconBox">
                         <?= __('') ?>
