@@ -50,12 +50,12 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
 
 
 
-                echo '<tr><td> <img alt="' . $row['first_name'] . ' ' . $row['last_name'] . '" src="' . $this->Image->resize('library/' . IMG_DIR, $row['photo'], 100, null, true) . '" >' . $row['first_name'] . '&nbsp;&nbsp;' . $row['last_name'] . '</td>';
+                echo '<tr><td class="galleryHeader"> <img alt="' . $row['first_name'] . ' ' . $row['last_name'] . '" src="' . $this->Image->resize('library/' . IMG_DIR, $row['photo'], 100, null, true) . '" ><h4>' . $row['first_name'] . '&nbsp;&nbsp;' . $row['last_name'] . '</h4><div  class="gallery"><br />' . $row['user_detail']['nickname'] . '<br/>' . $row['jersey'] . '<br/>' . $row['email'] . '<br/>' . $row['cellphone'] . '</div></td>';
                 echo '';
 
 
             } else {
-                echo '<td>' . $row['first_name'] . '&nbsp;&nbsp;' . $row['last_name'] . '</td>';
+                echo '<td class="galleryHeader"> <img alt="' . $row['first_name'] . ' ' . $row['last_name'] . '" src="' . $this->Image->resize('library/' . IMG_DIR, $row['photo'], 100, null, true) . '" ><h4>' . $row['first_name'] . '&nbsp;&nbsp;' . $row['last_name'] . '</h4><div  class="gallery"><br />' . $row['user_detail']['nickname'] . '<br/>' . $row['jersey'] . '<br/>' . $row['email'] . '<br/>' . $row['cellphone'] . '</div></td>';
             }
             $i++;
         }

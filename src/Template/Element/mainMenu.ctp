@@ -19,7 +19,10 @@
             <?= $this->Html->link(__('  Practices'), ['controller' => 'practices', 'action' => 'index', 'plugin' => false], ['class' => 'fas fa-chalkboard menuIcon', 'title' => 'View Practices']); ?>
         </li>
         <li>
-            <?= $this->Html->link(__('  My Activities'), ['controller' => 'users', 'action' => 'me', 'plugin' => false], ['class' => 'fas fa-user-circle menuIcon', 'title' => 'My Activities']); ?>
+            <?= $this->Html->link(__('  Directory'), ['controller' => 'users', 'action' => 'gallery', 'plugin' => 'Usermgmt'], ['class' => 'fas fa-address-book menuIcon', 'title' => 'CWX Directory']); ?>
+        </li>
+        <li>
+            <?= $this->Html->link(__('  My Activities'), ['controller' => 'users', 'action' => 'me', 'plugin' => false], ['class' => 'fas fa-user menuIcon', 'title' => 'My Activities']); ?>
         </li>
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"

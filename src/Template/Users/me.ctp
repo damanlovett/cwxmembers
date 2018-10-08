@@ -18,9 +18,9 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li>
-                        <?= $this->Html->link("<i class='fab fa-google-drive fa-fw'></i>&nbsp;&nbsp;Shortform Attestation", "https://goo.gl/ZMLffs", ['escape' => false, 'title' => 'Download Attestation Form']) ?>
-                        <?= $this->Html->link("<i class='fab fa-google-drive fa-fw'></i>&nbsp;&nbsp;Shortform Guide", "https://goo.gl/WAH1E6", ['escape' => false, 'title' => 'Download Shortform Guide']) ?>
-                        <?= $this->Html->link("<i class='fab fa-google-drive fa-fw'></i>&nbsp;&nbsp;Harassment Policy", "https://goo.gl/Lt1VeW", ['escape' => false, 'title' => 'Download Harassment Policy']) ?>
+                        <?= $this->Html->link("<i class='fab fa-google-drive fa-fw'></i>&nbsp;&nbsp;Shortform Attestation", "https://goo.gl/ZMLffs", ['escape' => false, 'target' => '_blank', 'title' => 'Download Attestation Form']) ?>
+                        <?= $this->Html->link("<i class='fab fa-google-drive fa-fw'></i>&nbsp;&nbsp;Shortform Guide", "https://goo.gl/WAH1E6", ['escape' => false, 'target' => '_blank', 'title' => 'Download Shortform Guide']) ?>
+                        <?= $this->Html->link("<i class='fab fa-google-drive fa-fw'></i>&nbsp;&nbsp;Harassment Policy", "https://goo.gl/Lt1VeW", ['escape' => false, 'target' => '_blank', 'title' => 'Download Harassment Policy']) ?>
                     </li>
                     <li role="separator" class="divider"></li>
                     <li>
