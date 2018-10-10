@@ -2901,7 +2901,7 @@ $.ui.plugin.add( "draggable", "connectToSortable", {
 						this.refreshPositions();
 					} );
 
-					// Hack so receive/update callbacks work (mostly)
+					// Hacked so receive/update callbacks work (mostly)
 					draggable.currentItem = draggable.element;
 					sortable.fromOutside = draggable;
 				}
@@ -10355,7 +10355,7 @@ $.extend( Datepicker.prototype, {
 		inst.dpDiv.css( { position: "absolute", display: "block", top: "-1000px" } );
 		$.datepicker._updateDatepicker( inst );
 
-		// fix width for dynamic number of date pickers
+		// Fix2 width for dynamic number of date pickers
 		// and adjust position before showing
 		offset = $.datepicker._checkOffset( inst, offset, isFixed );
 		inst.dpDiv.css( { position: ( $.datepicker._inDialog && $.blockUI ?
@@ -14522,7 +14522,7 @@ $.widget( "ui.spinner", {
 		// - rounding is based on 0, so adjust back to our base
 		value = base + aboveMin;
 
-		// Fix precision from bad JS floating point math
+		// Fix2 precision from bad JS floating point math
 		value = parseFloat( value.toFixed( this._precision() ) );
 
 		// Clamp the value

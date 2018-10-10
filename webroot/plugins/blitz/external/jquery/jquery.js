@@ -740,7 +740,7 @@ var i,
 		setDocument();
 	};
 
-// Optimize for push.apply( _, NodeList )
+// Optimized for push.apply( _, NodeList )
 try {
 	push.apply(
 		(arr = slice.call( preferredDoc.childNodes )),
@@ -4665,10 +4665,10 @@ function buildFragment( elems, context, scripts, selection, ignored ) {
 
 				jQuery.merge( nodes, tmp.childNodes );
 
-				// Fix #12392 for WebKit and IE > 9
+				// Fix2 #12392 for WebKit and IE > 9
 				tmp.textContent = "";
 
-				// Fix #12392 for oldIE
+				// Fix2 #12392 for oldIE
 				while ( tmp.firstChild ) {
 					tmp.removeChild( tmp.firstChild );
 				}
@@ -4679,7 +4679,7 @@ function buildFragment( elems, context, scripts, selection, ignored ) {
 		}
 	}
 
-	// Fix #11356: Clear elements from fragment
+	// Fix2 #11356: Clear elements from fragment
 	if ( tmp ) {
 		safe.removeChild( tmp );
 	}
@@ -5324,7 +5324,7 @@ jQuery.event = {
 		}
 
 		// Support: IE<9
-		// Fix target property (#1925)
+		// Fix2 target property (#1925)
 		if ( !event.target ) {
 			event.target = originalEvent.srcElement || document;
 		}
@@ -6095,7 +6095,7 @@ function domManip( collection, args, callback, ignored ) {
 				}
 			}
 
-			// Fix #11809: Avoid leaking memory
+			// Fix2 #11809: Avoid leaking memory
 			fragment = first = null;
 		}
 	}
@@ -6152,7 +6152,7 @@ jQuery.extend( {
 			destElements = getAll( clone );
 			srcElements = getAll( elem );
 
-			// Fix all IE cloning issues
+			// Fix2 all IE cloning issues
 			for ( i = 0; ( node = srcElements[ i ] ) != null; ++i ) {
 
 				// Ensure that the destination node is not null; Fixes #9587
@@ -8543,7 +8543,7 @@ jQuery.each( jQuery.expr.match.bool.source.match( /\w+/g ), function( i, name ) 
 	}
 } );
 
-// fix oldIE attroperties
+// Fix2 oldIE attroperties
 if ( !getSetInput || !getSetAttribute ) {
 	jQuery.attrHooks.value = {
 		set: function( elem, value, name ) {
@@ -8680,7 +8680,7 @@ jQuery.extend( {
 
 		if ( nType !== 1 || !jQuery.isXMLDoc( elem ) ) {
 
-			// Fix name and attach hooks
+			// Fix2 name and attach hooks
 			name = jQuery.propFix[ name ] || name;
 			hooks = jQuery.propHooks[ name ];
 		}

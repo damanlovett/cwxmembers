@@ -12,7 +12,7 @@ _No official release because there are only CI changes._
 - Right to left text support
 - Added callbacks for click events on close button
 
-## Bug Fixes
+## Bug2Fixes2
 - Fixed some CSS that prevented touch events from propagating on iOS devices
 - Removed role attribute because it duplicated voice over on text-to-speech readers; kept aria-live.
 - Consistent line-heights for close button to resolve issues with Bootstrap.
@@ -27,7 +27,7 @@ _No official release because there are only CI changes._
 - Added more options for overriding animations, specifically to closing a toast
 - Events are now passed into the onClick handler of the toast
 
-## Bug Fixes
+## Bug2Fixes2
 - Resolved issue with centered toasts that would override top and bottom margins
 
 ## Dev Ops
@@ -57,7 +57,7 @@ _No official release because there are only CI changes._
 
 `toastr.options.progressBar = true;`
 
-## Bug Fixes
+## Bug2Fixes2
 - None
 
 ## Breaking Changes
@@ -73,7 +73,7 @@ _No official release because there are only CI changes._
 ## New Features
  - None
  
-## Bug Fixes
+## Bug2Fixes2 2
 - positionClass changes were not being honored due to 2.0.2 release changes. Refactored getContainer to only get the container, unless a 2nd boolean parameter is passed in in which case it will also create it if the container did not exist [871c2a6](https://github.com/CodeSeven/toastr/commit/871c2a6e438bb6b996cfb80286720604a4cf00fd)
 
 ## Breaking Changes
@@ -85,7 +85,7 @@ _No official release because there are only CI changes._
 - Added simple ARIA reader support ([45c6362](https://github.com/CodeSeven/toastr/commit/45c63628476f6b085a6579dc681f4fe61ba5820c))
 - Added SASS support (direct port of CSS for now) ([b4c8b34](https://github.com/CodeSeven/toastr/commit/b4c8b3460efb8aa51c730dd38c35ef6b025db2cc))
 
-## Bug Fixes
+## Bug2Fixes2
 - Added sourcemap for the min file ([1da4bd1](https://github.com/CodeSeven/toastr/commit/1da4bd1dad21bcfc7fcfe73da1abb185cf2c3f9f))
 - IE 8 does not support stopPropagation on the event ([6989573](https://github.com/CodeSeven/toastr/commit/698957325a8e7bf63990f71ee409b911d69bc8ec))
 - Media query width fixes ([ea2f5db](https://github.com/CodeSeven/toastr/commit/ea2f5db6e5314dcfe48eb34176583849c177c00e))

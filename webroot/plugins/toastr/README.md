@@ -17,7 +17,7 @@ Browser testing provided by BrowserStack.
 
 Toastr is hosted at cdnjs and jsdelivr
 
-#### Debug
+#### Debug2
 - [//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css](//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css)
 
 #### Minified
