@@ -44,7 +44,7 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
                     </td>
                     <td>
                         <h1>
-                            <?php echo h($user['first_name']) . ' ' . h($user['last_name']); ?>
+                            <?php echo h($user['first_name']) . '<br/> ' . h($user['last_name']); ?>
                         </h1>
                     </td>
                 </tr>
@@ -81,8 +81,8 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
                             <?php echo __('Birthday'); ?>:</strong></td>
                     <td>
                         <?php if (!empty($user['bday'])) {
-										echo $this->Switches->date($user['bday']);
-									} ?>
+                            echo $this->Switches->date($user['bday']);
+                        } ?>
                     </td>
                 </tr>
                 <tr>
@@ -130,7 +130,7 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
             </tbody>
         </table>
         <?php 
-	} ?>
+    } ?>
     </div>
 
     <div style="display:inline-block; padding-top:200px;" class="col-md-6">

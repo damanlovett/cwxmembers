@@ -15,10 +15,11 @@ class AssignmentsController extends AppController
 {
 
 
-    public function beforeFilter(Event $event) {
-parent::beforeFilter($event);
-$this->viewBuilder()->layout('default2'); // New in 3.1
-}
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        $this->viewBuilder()->layout('default2'); // New in 3.1
+    }
     /**
      * Index method
      *
@@ -56,7 +57,7 @@ $this->viewBuilder()->layout('default2'); // New in 3.1
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add($id=null, $id2=null)
+    public function add($id = null, $id2 = null)
     {
         $id2 = $this->request->getQuery('month');
         $this->loadModel('Shows');
@@ -81,45 +82,45 @@ $this->viewBuilder()->layout('default2'); // New in 3.1
 
         $inshows = $this->Assignments->find('all');
         $inshows->select([
-              'id',
-              'user_id',
-              'Users.first_name',
-              'Users.last_name',
-              'Roles.type',
-              'count' => $inshows->func()->count('*')
-            ])
-     ->where(['Roles.type' => 'player'])
-     ->contain(['Users','Roles'])
-     ->group('user_id');
+            'id',
+            'user_id',
+            'Users.first_name',
+            'Users.last_name',
+            'Roles.type',
+            'count' => $inshows->func()->count('*')
+        ])
+            ->where(['Roles.type' => 'player'])
+            ->contain(['Users', 'Roles'])
+            ->group('user_id');
 
         $this->loadModel('Signups');
         $signups = $this->Signups->find('all')
-                            ->where(['show_id' => $id])
-                            ->contain(['Users']);
+            ->where(['show_id' => $id])
+            ->contain(['Users']);
 
         $totals = $this->Signups->find('all')
-                            ->where(['month_id' => $id2])
-                            ->contain(['Users', 'Months']);
+            ->where(['month_id' => $id2])
+            ->contain(['Users', 'Months']);
 
         $roles = $this->Assignments->Roles->find('list', [
-                            'order' => ['Roles.name' => 'ASC'],
-                            'limit' => 200]);
+            'order' => ['Roles.name' => 'ASC'],
+            'limit' => 200
+        ]);
 
         $signlist = $this->Signups->find('all');
         $signlist->select([
-              'id',
-              'user_id',
-              'Users.first_name',
-              'Users.last_name',
-              'month_id',
-              'count' => $signlist->func()->count('*')
-            ])
-        ->where(['month_id' => $id2])
-        ->contain(['Users','Months'])
-        ->group('user_id');
+            'id',
+            'user_id',
+            'Users.first_name',
+            'Users.last_name',
+            'month_id',
+            'count' => $signlist->func()->count('*')
+        ])
+            ->where(['month_id' => $id2])
+            ->contain(['Users', 'Months'])
+            ->group('user_id');
 
        // foreach ($Query as $row) {
-       //    debug($row);
        // }
         $this->set(compact('assignment', 'shows', 'users', 'signups', 'roles', 'totals', 'signlist', 'inshows'));
     }
@@ -132,7 +133,7 @@ $this->viewBuilder()->layout('default2'); // New in 3.1
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function madd($id=null, $id2=null)
+    public function madd($id = null, $id2 = null)
     {
         $id2 = $this->request->getQuery('month');
         $this->loadModel('Shows');
@@ -157,45 +158,45 @@ $this->viewBuilder()->layout('default2'); // New in 3.1
 
         $inshows = $this->Assignments->find('all');
         $inshows->select([
-              'id',
-              'user_id',
-              'Users.first_name',
-              'Users.last_name',
-              'Roles.type',
-              'count' => $inshows->func()->count('*')
-            ])
-     ->where(['Roles.type' => 'player'])
-     ->contain(['Users','Roles'])
-     ->group('user_id');
+            'id',
+            'user_id',
+            'Users.first_name',
+            'Users.last_name',
+            'Roles.type',
+            'count' => $inshows->func()->count('*')
+        ])
+            ->where(['Roles.type' => 'player'])
+            ->contain(['Users', 'Roles'])
+            ->group('user_id');
 
         $this->loadModel('Signups');
         $signups = $this->Signups->find('all')
-                            ->where(['show_id' => $id])
-                            ->contain(['Users']);
+            ->where(['show_id' => $id])
+            ->contain(['Users']);
 
         $totals = $this->Signups->find('all')
-                            ->where(['month_id' => $id2])
-                            ->contain(['Users', 'Months']);
+            ->where(['month_id' => $id2])
+            ->contain(['Users', 'Months']);
 
         $roles = $this->Assignments->Roles->find('list', [
-                            'order' => ['Roles.name' => 'ASC'],
-                            'limit' => 200]);
+            'order' => ['Roles.name' => 'ASC'],
+            'limit' => 200
+        ]);
 
         $signlist = $this->Signups->find('all');
         $signlist->select([
-              'id',
-              'user_id',
-              'Users.first_name',
-              'Users.last_name',
-              'month_id',
-              'count' => $signlist->func()->count('*')
-            ])
-        ->where(['month_id' => $id2])
-        ->contain(['Users','Months'])
-        ->group('user_id');
+            'id',
+            'user_id',
+            'Users.first_name',
+            'Users.last_name',
+            'month_id',
+            'count' => $signlist->func()->count('*')
+        ])
+            ->where(['month_id' => $id2])
+            ->contain(['Users', 'Months'])
+            ->group('user_id');
 
        // foreach ($Query as $row) {
-       //    debug($row);
        // }
         $this->set(compact('assignment', 'shows', 'users', 'signups', 'roles', 'totals', 'signlist', 'inshows'));
     }
@@ -245,7 +246,7 @@ $this->viewBuilder()->layout('default2'); // New in 3.1
             if ($this->Assignments->save($assignment)) {
                 $this->Flash->success(__('The assignment has been saved.'));
 
-                return $this->redirect(['controller'=>'Shows', 'action' => 'mview', $id]);
+                return $this->redirect(['controller' => 'Shows', 'action' => 'mview', $id]);
             }
             $this->Flash->error(__('The assignment could not be saved. Please, try again.'));
         }

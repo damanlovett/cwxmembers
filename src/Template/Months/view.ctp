@@ -51,11 +51,8 @@
                 <div class="tab-pane active" id="tab1">
 
                     <?php if (!empty($month->shows)) : ?>
-                    <table class="table table-striped table-bordered" cellpadding="0" cellspacing="0">
+                    <table class="table table-bordered table-hover" cellpadding="0" cellspacing="0">
                         <thead>
-                            <th class="iconBox">
-                                <?= __('') ?>
-                            </th>
                             <th class="iconBox">
                                 <?= __('') ?>
                             </th>
@@ -86,26 +83,21 @@
                         <tr>
                             <td>
                                 <?php if ($shows->visible == 1) : ?>
-                                <?= $this->Html->link(__(''), ['controller' => 'Shows', 'action' => 'view', $shows->id], ['class' => 'fas fa-eye fa-l fa-fw text-success', 'title' => 'View Show']) ?>
-                                <?php endif; ?>
-                            </td>
-                            <td>
-                                <?php if ($shows->visible == 1) : ?>
-                                <?= $this->Html->link(__(''), ['controller' => 'Shows', 'action' => 'signup', $shows->id], ['class' => 'fas fa-pen-alt fa-l fa-fw text-success', 'title' => 'View and Sign Up']) ?>
+                                <?= $this->Html->link(__(''), ['controller' => 'Shows', 'action' => 'signup', $shows->id], ['class' => 'fas fa-eye fa-l fa-fw text-success', 'title' => 'View Show']) ?>
                                 <?php endif; ?>
                             </td>
                             <td>
                                 <?php if ($shows->signups_open == 1 && $shows->visible == 1) : ?>
                                 <?= $this->Form->create(null, [
-																																'url' => ['controller' => 'Months', 'action' => 'view', $month->id], ['class' => 'form-horizontal']
-																															]); ?>
+                                    'url' => ['controller' => 'Months', 'action' => 'view', $month->id], ['class' => 'form-horizontal']
+                                ]); ?>
 
                                 <?php
-																															echo $this->Form->hidden('show_id', ['value' => $shows->id]);
-																															echo $this->Form->hidden('user_id', ['value' => $userId]);
-																															echo $this->Form->hidden('month_id', ['value' => $shows->month_id]);
-																															?>
-                                <?= $this->Form->button(__('<i class="fas fa-pen-square fa-1x fa-fw"></i>'), ['class' => 'fas fa-pen-sqare fa-l fa-fw btnLink text-success', 'title' => 'Quick Sign Up']) ?>
+                                echo $this->Form->hidden('show_id', ['value' => $shows->id]);
+                                echo $this->Form->hidden('user_id', ['value' => $userId]);
+                                echo $this->Form->hidden('month_id', ['value' => $shows->month_id]);
+                                ?>
+                                <?= $this->Form->button(__('<i class="fas fa-pen-alt fa-1x fa-fw"></i>'), ['class' => 'fas fa-pen-sqare fa-l fa-fw btnLink text-success', 'title' => 'Sign Up']) ?>
                                 <?= $this->Form->end() ?>
                                 <?php endif; ?>
                             </td>
@@ -159,8 +151,8 @@
                     </table>
                     <?php endif; ?>
                     <?php if (empty($month->shows)) {
-																				echo "<div style='text-align: center; margin-top:25px; min-height:300px'>Currently, there are no shows for sign ups or viewing.  Please check back later.</div>";
-																			} ?>
+                        echo "<div style='text-align: center; margin-top:25px; min-height:300px'>Currently, there are no shows for sign ups or viewing.  Please check back later.</div>";
+                    } ?>
 
                 </div>
                 <div class="tab-pane" id="tab2">
@@ -254,8 +246,8 @@
                     </table>
                     <?php endif; ?>
                     <?php if (empty($month->practices)) {
-																				echo "<div style='text-align: center; margin-top:25px; min-height:300px'>Currently, there are no practices scheduled for this month.  Please check back later.</div>";
-																			} ?>
+                        echo "<div style='text-align: center; margin-top:25px; min-height:300px'>Currently, there are no practices scheduled for this month.  Please check back later.</div>";
+                    } ?>
 
 
                 </div>
