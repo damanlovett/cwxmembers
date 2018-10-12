@@ -97,7 +97,7 @@
                                 echo $this->Form->hidden('user_id', ['value' => $userId]);
                                 echo $this->Form->hidden('month_id', ['value' => $shows->month_id]);
                                 ?>
-                                <?= $this->Form->button(__('<i class="fas fa-pen-alt fa-1x fa-fw"></i>'), ['class' => 'fas fa-pen-sqare fa-l fa-fw btnLink text-success', 'title' => 'Sign Up']) ?>
+                                <a href="#" onclick="this.parentNode.submit();" title="Sign Up"><i class="fas fa-pen-alt fa-1x fa-fw text-success"></i></a>
                                 <?= $this->Form->end() ?>
                                 <?php endif; ?>
                             </td>
@@ -133,7 +133,7 @@
                         </tr>
                         <?php endforeach; ?>
                         <tfoot>
-                            <td colspan="8">
+                            <td colspan="7">
                                 <div class="paginator" style="display:none;">
                                     <ul class="pagination">
                                         <?= $this->Paginator->first('<< ' . __('first')) ?>

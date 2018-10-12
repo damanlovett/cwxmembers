@@ -762,6 +762,26 @@ td.cellHeader {
     color: #0000b3;
 }
 
+td.galleryHeader h4 {
+    margin-bottom: 0;
+    color: #be140b;
+    padding-bottom: 0.5rem;
+    margin-bottom: -12px;
+    border-bottom: none;
+}
+
+td.galleryHeader span {
+    display: inline-block;
+    width: 100px;
+    font-weight: bold;
+    border-right: 3px solid #ccc;
+    padding-right: 10px;
+    margin-right: 10px;
+    text-align: right;
+    color: #0000b3;
+}
+
+
 td.cellHeader .modal {
     width: auto;
     border: none;
@@ -1088,6 +1108,19 @@ button.btnLink {
     padding: 0;
 }
 
+button.btnLinkSubmit {
+    background: none !important;
+    color: inherit;
+    border: none;
+    padding: 0 !important;
+    font: inherit;
+    /*border is optional*/
+    border-bottom: 1px solid #444;
+    cursor: pointer;
+
+
+}
+
 button.btnLink:hover {
     color: #0000b1;
 }
@@ -1113,8 +1146,4 @@ legend.tablesuccess {
 
 div.gallery {
     margin-top: 0;
-}
-
-td.galleryHeader h4 {
-    margin-bottom: 0;
 }
