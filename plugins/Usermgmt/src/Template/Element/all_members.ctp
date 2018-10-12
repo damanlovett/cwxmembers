@@ -28,7 +28,7 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
     <table class="table table-striped" cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th style="width:30px;">
+                <th style="width:40px;">
                     <?php echo __('#'); ?>
                 </th>
                 <th scope="col">
@@ -37,15 +37,15 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
                 <th scope="col">
                     <?php echo $this->Paginator->sort('Users.username', __('Username')); ?>
                 </th>
-                <th scope="col">
-                    <?php echo $this->Paginator->sort('Users.email', __('Email')); ?>
-                </th>
                 <th>
                     <?php echo __('Groups(s)'); ?>
                 </th>
-                <th style="width:100px;" scope="col">
-                    <?php echo $this->Paginator->sort('Users.active', __('Status')); ?>
+                <th scope="col">
+                    <?php echo $this->Paginator->sort('Users.last_login', __('Last Login')); ?>
                 </th>
+				<th>
+				<?php echo __('Last Login'); ?>
+				</th>
                 <th style="width:100px;">
                     <?php echo __('Action'); ?>
                 </th>
@@ -62,8 +62,10 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
 													echo "<td>" . $i . "</td>";
 													echo "<td>" . h($row['last_name']) . ', ' . h($row['first_name']) . "</td>";
 													echo "<td>" . h($row['username']) . "</td>";
-													echo "<td>" . h($row['email']) . "</td>";
 													echo "<td>" . $row['user_group_name'] . "</td>";
+													echo "<td>";
+													echo ($row['last_login']) ? $row['last_login']->timeAgoInWords(['accuracy' => 'hours']) : 'N/A';
+													echo "</td>";
 													echo "<td>";
 													if ($row['active']) {
 														echo "<span class='text-success'>" . __('Active') . "</span>";

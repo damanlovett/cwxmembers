@@ -10,10 +10,10 @@
 		<i class="fas fa-calendar fa-l fa-fw"></i>&nbsp;&nbsp;
 		<?= __('Show Sign Up') ?>
 
-
+?>
 		<div class="btn-toolbar pull-right" role="toolbar" aria-label="...">
 			<?= $this->Html->link(__($show->schedule->format('F')), ['controller' => 'Months', 'action' => 'view', $show->month_id], ['class' => 'btn btn-sm', 'title' => 'Back to Month']) ?>
-	//TODO Remove Button for production		<div style="display:none;"><?= $this->Html->link(__('Show List'), ['controller' => 'Months', 'action' => 'index'], ['class' => 'btn btn-default btn-sm', 'title' => 'Back to Shows']) ?></div>
+
 		</div>
 	</h3>
 	<div class="fpageTitle">
@@ -34,7 +34,7 @@
 		echo $this->Form->hidden('user_id', ['value' => $this->UserAuth->getUserId()]);
 		echo $this->Form->hidden('month_id', ['value' => $show->month_id]);
 		?>
-			<?= $this->Form->button(__('Sign Up'), ['class' => 'btn btn-success']) ?>
+			<?= $this->Form->button(__('<i class="fas fa-pen-alt fa-1x fa-fw text"></i> &nbsp;  Sign Up'), ['class' => 'btn btn-success']) ?>
 			<?= $this->Form->end() ?>
 			<?php else : ?>
 
@@ -91,7 +91,7 @@
 					<?php endif; ?>
 					<td>
 						<?php if ($signups->user->id == $this->UserAuth->getUserId() && $show->signups_open == 1) : ?>
-						<?= $this->Form->postLink(__(''), ['controller' => 'signups', 'action' => 'remove', $signups->id], ['class' => 'fas fa-calendar-times fa-lg fa-fw text-dander', 'title' => 'Delete Signup']) ?>
+						<?= $this->Form->postLink(__(''), ['controller' => 'signups', 'action' => 'remove', $signups->id], ['class' => 'fas fa-minus-square fa-lg fa-fw text-dander', 'title' => 'Delete Signup']) ?>
 						<?php elseif ($signups->user->id == $this->UserAuth->getUserId() && $show->signups_open == 0) : ?>
 						<?= "<i class='fas fa-circle fa-xs fa-fw text-success'></i>"; ?>
 						<?php endif; ?>
