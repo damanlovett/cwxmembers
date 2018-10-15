@@ -77,7 +77,7 @@ class ShowsTable extends Table
 
         $validator
             ->dateTime('schedule')
-            ->allowEmpty('schedule');
+            ->notEmpty('schedule', 'Please enter a valid date');
 
         $validator
             ->scalar('notes')
@@ -113,11 +113,12 @@ class ShowsTable extends Table
      * @access public
      * @return boolean
      */
-    public function checkForScheduledDate($value, $context) {
-        if(is_object($value)) {
+    public function checkForScheduledDate($value, $context)
+    {
+        if (is_object($value)) {
             $value = $value->format('Y-m-d H:i:s');
         }
-        if(!empty($value) && strtotime($value) < time()) {
+        if (!empty($value) && strtotime($value) < time()) {
             return false;
         }
         return true;
