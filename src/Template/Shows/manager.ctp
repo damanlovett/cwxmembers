@@ -57,11 +57,11 @@
                 </th>
                 <th scope="col">
                     <i class="fas fa-clock fa-1x fa-fw myRed"></i>
-                    <?= $this->Paginator->sort('month_id', 'Date') ?>
+                    <?= $this->Paginator->sort('schedule', 'Date') ?>
                 </th>
                 <th style="text-align: center" scope="col">
-                    <i class="fas fa-pen-alt fa-1x fa-fw"></i>
-                    <?= __('Sign Ups') ?>
+                    <i class="fas fa-pen-alt fa-1x fa-fw myRed"></i>
+                    <?= $this->Paginator->sort('numberOfSignups', 'Sign Ups') ?>
                 </th>
                 <th style="text-align: center" scope="col">
                     <i class="fas fa-hands-helping fa-1x fa-fw "></i>
