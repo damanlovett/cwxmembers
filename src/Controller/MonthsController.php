@@ -215,27 +215,28 @@ class MonthsController extends AppController
         $this->set('userId', $userId);
 
         $month = $this->Months->get($id, [
-            'contain' => ['Practices', 'Shows.dropdowns', 'Shows.months', 'Signups', 'Signups.users', 'Signups.shows']
+            'contain' => ['Practices', 'Shows.dropdowns', 'Shows.months', 'Shows.signups', 'Signups', 'Signups.users', 'Signups.shows']
         ]);
 
         $this->set('month', $month);
 
 
-//         $this->loadModel('Checkins');
+        $this->loadModel('Checkins');
 
-// $checkin = $this->Checkins->findByMonth_id($id)->contain([
-//     'Users' => function ($q) {
-//        return $q
-//             ->select(['first_name','last_name']);}
-// ]);
-// $checkin->select([
-//               'id',
-//               'user_id',
-//               'count' => $signlist->func()->count('*')
-//             ])
-//      ->group('user_id');
+        $checkin = $this->Checkins->findByMonth_id($id)->contain([
+            'Users' => function ($q) {
+                return $q
+                    ->select(['first_name', 'last_name']);
+            }
+        ]);
+        $checkin->select([
+            'id',
+            'user_id',
+            'count' => $checkin->func()->count('*')
+        ])
+            ->group('user_id');
 
-//         $this->set('checkin', $checkin);
+        $this->set('checkin', $checkin);
 
         $this->loadModel('Signups');
 

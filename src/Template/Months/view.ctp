@@ -114,9 +114,9 @@
                                 <?= h($shows->DisplayName) ?>
                             </td>
                             <td style="text-align: center;">
-                                <?= $shows->numberOfSignups() ?>
 
                                 <?php if (!empty($shows->players_needed)) : ?>
+                                <?= $shows->numberOfSignups() ?>
 
                                 need
 
@@ -127,8 +127,12 @@
                             </td>
                             <td style="text-align: center;">
                                 <?= $shows->ref_needed ? '   ' . $this->Html->image('ref.png', ['title' => 'need a ref']) . '  ' : $this->Html->image('need.png') . '  ' ?>
-                                <?= $shows->voice_needed ? '   ' . $this->Html->image('voice.png', ['title' => 'need a voice']) . '  ' : '   ' . $this->Html->image('need.png') . '  ' ?>
-                                <?= $shows->host_needed ? '   ' . $this->Html->image('host.png', ['title' => 'need a host']) : '   ' . $this->Html->image('need.png') ?>
+                                <?php if ($shows->voice_needed || $shows->host_needed == 1) {
+                                    echo $this->Html->image('voice.png', ['title' => 'need a voice or DJ']);
+                                } else {
+                                    echo $this->Html->image('need.png');
+
+                                } ?>
                             </td>
                         </tr>
                         <?php endforeach; ?>

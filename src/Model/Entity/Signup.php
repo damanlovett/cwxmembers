@@ -40,4 +40,9 @@ class Signup extends Entity
         'user' => true,
         'assignments' => true
     ];
+    public function numberOfSignups()
+    {
+        return count($this->signups);
+    }
+
 }

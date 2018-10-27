@@ -114,9 +114,13 @@
                         <?php endif; ?>
                     </td>
                     <td style="text-align: center;">
-                        <?= $show->ref_needed ? '   ' . $this->Html->image('ref.png', ['title' => 'need a ref']) . '  ' : $this->Html->image('need.png') . '  ' ?>
-                        <?= $show->voice_needed ? '   ' . $this->Html->image('voice.png', ['title' => 'need a voice']) . '  ' : '   ' . $this->Html->image('need.png') . '  ' ?>
-                        <?= $show->host_needed ? '   ' . $this->Html->image('host.png', ['title' => 'need a host']) : '   ' . $this->Html->image('need.png') ?>
+                    <?= $show->ref_needed ? '   ' . $this->Html->image('ref.png', ['title' => 'need a ref']) . '  ' : $this->Html->image('need.png') . '  ' ?>
+                                <?php if ($show->voice_needed || $show->host_needed == 1) {
+                                    echo $this->Html->image('voice.png', ['title' => 'need a voice or DJ']);
+                                } else {
+                                    echo $this->Html->image('need.png');
+
+                                } ?>
                     </td>
                     <td style="text-align: center;">
                         <?= $show->signups_open ? "<i class='fas fa-check-circle fa-l fa-fw text-success'></i>" : '' ?>
