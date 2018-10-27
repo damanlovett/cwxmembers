@@ -79,6 +79,7 @@
                                 <?= __('Needs') ?>
                             </th>
                         </thead>
+                        <?php $previous = ''; ?>
                         <?php foreach ($month->shows as $shows) : ?>
                         <tr>
                             <td>
@@ -107,9 +108,14 @@
                                     title='Show URL'></a>
                                 <?php endif; ?>
                             </td>
+                            <?php if ($previous == $shows->Dropdowns['name']) {
+                                echo '<td>&nbsp;</td>';
+                            } else { ?>
                             <td>
                                 <?= h($shows->Dropdowns['name']) ?>
                             </td>
+                            <?php 
+                        } ?>
                             <td>
                                 <?= h($shows->DisplayName) ?>
                             </td>
@@ -135,7 +141,8 @@
                                 } ?>
                             </td>
                         </tr>
-                        <?php endforeach; ?>
+                        <?php $previous = $shows->Dropdowns['name'];
+                        endforeach; ?>
                         <tfoot>
                             <td colspan="7">
                                 <div class="paginator" style="display:none;">
@@ -181,14 +188,25 @@
                                 <?= __('Signed Up On') ?>
                             </th>
                         </thead>
+                        <?php $previous2 = ''; ?>
                         <?php foreach ($signups as $signups) : ?>
                         <tr>
+                        <?php if ($previous2 == $signups->show->DisplayName) {
+                            echo '<td>&nbsp;</td>';
+                        } else { ?> 
                             <td>
                                 <?= h($signups->show->dropdown['name']) ?>
                             </td>
+                            <?php 
+                        } ?>
+          <?php if ($previous2 == $signups->show->DisplayName) {
+                echo '<td>&nbsp;</td>';
+            } else { ?> 
                             <td>
-                                <?= h($signups->show->DisplayName) ?>
+                            <?= h($signups->show->DisplayName) ?>
                             </td>
+                            <?php 
+                        } ?>                                
                             <td>
                                 <?= h($signups->user->fullName) ?>
                             </td>
@@ -196,7 +214,9 @@
                                 <?= h($this->Switches->datetime($signups->created)) ?>
                             </td>
                         </tr>
-                        <?php endforeach; ?>
+                        <?php 
+                        $previous2 = $signups->show->DisplayName;
+                        endforeach; ?>
                         <tfoot>
                             <td colspan="4">
                                 <?php echo $this->element('Usermgmt.pagination', ['paginationText' => __('Number of Shows')]); ?>
@@ -258,5 +278,3 @@
             </div>
         </div>
     </div>
-
-</div>
