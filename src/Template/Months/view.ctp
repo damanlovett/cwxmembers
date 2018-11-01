@@ -20,16 +20,26 @@
     <div class="alert alert-success" role="alert">
         <i class="fas fa-info-circle fa-3x fa-fw fa-pull-left"></i>
         <?= $information->page_content ?>
+        <div style="clear: both;"></div>
     </div>
 
     <?php endforeach; ?>
 
+            <hr />
+            <ul class="nav nav-pills">
+            <li role="presentation"  class="disabled"><a href="#"><strong>Icon Legend:</strong></a> &nbsp;&nbsp;</li>
+            <li role="presentation"  class="disabled"><a href="#"><i class="fas fa-eye fa-l  fa-fw text-success"></i> View and signup for show</a></li>
+            <li role="presentation"  class="disabled"><a href="#"><i class="fas fa-pen-alt fa-l fa-fw text-success"></i> One click show sign up</a></li>
+            <li role="presentation"  class="disabled"><a href="#"><?= $this->Html->image('ref.png', ['title' => 'need a ref or host']) ?> Need ref / host </a></li>
+            <li role="presentation"  class="disabled"><a href="#"><?= $this->Html->image('voice.png', ['title' => 'need a voice or DJ', 'class' => 'text-sucesss']) ?> Need voice / DJ</a></li>
+            </ul>
+            <div style="clear: both;"></div>
 
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h1 class="panel-title">&nbsp;</h1>
             <span class="pull-left">
-                <!-- Tabs -->
+                <!-- TODO this works Tabs -->
                 <ul class="nav panel-tabs">
                     <li class="active">
                         <a href="#tab1" data-toggle="tab">

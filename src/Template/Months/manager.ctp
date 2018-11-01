@@ -11,8 +11,8 @@
         <?= __('Sign Up Manager') ?>&nbsp;&nbsp;
         <small style="color:white;margin-right:20px;">[ by month ]</small>
         <div class="btn-toolbar pull-right" role="toolbar" aria-label="...">
-            <?= $this->Html->link(__('All Shows'), ['controller' => 'shows', 'action' => 'manager'], ['class' => 'btn btn-default btn-sm', 'title' => 'View All Shows']) ?>
-            <?= $this->Html->link(__('+ Month '), ['action' => 'add'], ['class' => 'btn btn-success btn-sm', 'title' => 'Add Month']) ?>
+            <?= $this->Html->link(__('View All Shows'), ['controller' => 'shows', 'action' => 'manager'], ['class' => 'btn btn-default btn-sm', 'title' => 'View All Shows']) ?>
+            <?= $this->Html->link(__('Add Month '), ['action' => 'add'], ['class' => 'btn btn-success btn-sm', 'title' => 'Add Month']) ?>
         </div>
 
 
@@ -34,6 +34,15 @@
     </div>
 
     <?php endforeach; ?>
+    <hr />
+            <ul class="nav nav-pills">
+            <li role="presentation"  class="disabled"><a href="#"><strong>Icon Legend:</strong></a> &nbsp;&nbsp;</li>
+            <li role="presentation"  class="disabled"><a href="#"><i class="fas fa-eye fa-l  fa-fw text-success"></i> View month</a></li>
+            <li role="presentation"  class="disabled"><a href="#"><i class="fas fa-pen-alt fa-l fa-fw text-success"></i> Download show signups</a></li>
+            <li role="presentation"  class="disabled"><a href="#"><i class="fas fa-chalkboard fa-l fa-fw text-success"></i> View practices</a></li>
+            </ul>
+            <div style="clear: both;"></div>
+
     <table class="table table-striped table-bordered" cellpadding="0" cellspacing="0">
         <thead>
             <tr>
