@@ -186,6 +186,10 @@ class ShowsController extends AppController
 
         $this->set('signups', $this->paginate($query));
 
+        $showusers = $this->Signups->find('all', [
+            'conditions' => ['user_id' => $id]
+        ]);
+        $this->set(compact('showusers'));
 
         $signlist = $this->Signups->findByMonth_id($id)->contain([
             'Users' => function ($q) {
