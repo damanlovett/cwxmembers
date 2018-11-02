@@ -3,9 +3,19 @@ Site Information:
 
 Todo:
   ✔ Fix all Icons @IconInformation @done(18-09-14 15:04)
-  ☐  change  text on first day of the month input box when adding a month 
+  ✔  change  text on first day of the month input box when adding a month @done(11-02-18 13:16)
   ☐ item two
  
+Cary Updates:
+  ☐ Make player drop down have only players that signed up of the show
+      The assignment list doesn't match the players who signed up for the show (in this example there are 8 people signed up and 13 users in the list)
+  ☐ Make assinments unique
+      You are able to assign someone to multiple show roles (may be done accidentally).
+  ☐ Remove the extra toggle
+        Just list it as "Ref/Host Needed" and "Voice/DJ" needed.
+  ☐ Add Mettlesome and Alumnit to the show dropdown
+  ☐ Take off date time from the edit show form
+
 Project:
 
 Archive:
