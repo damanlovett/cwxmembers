@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Show $show
@@ -9,8 +10,8 @@
 		<i class="fas fa-cog fa-l fa-fw"></i>&nbsp;&nbsp;
 		<?= __('Shows') ?>
 		<div class="btn-toolbar pull-right" role="toolbar" aria-label="...">
-			<?= $this->Html->link(__('All Shows'), ['controller'=>'shows', 'action' => 'manager'], ['class'=>'btn btn-default btn-sm', 'title'=>'View All Shows']) ?>
-			<?= $this->Html->link(__('By Month'), ['controller'=>'months', 'action' => 'manager'], ['class'=>'btn btn-default btn-sm', 'title'=>'View By Month']) ?>
+			<?= $this->Html->link(__('All Shows'), ['controller' => 'shows', 'action' => 'manager'], ['class' => 'btn btn-default btn-sm', 'title' => 'View All Shows']) ?>
+			<?= $this->Html->link(__('By Month'), ['controller' => 'months', 'action' => 'manager'], ['class' => 'btn btn-default btn-sm', 'title' => 'View By Month']) ?>
 		</div>
 	</h3>
 	<div class="fpageTitle">
@@ -33,7 +34,7 @@
 			<i class="fas fa-users-cog fa-l fa-fw"></i>&nbsp;
 			<?= __('Performing') ?>
 		</h4>
-		<?php if (!empty($inshows)): ?>
+		<?php if (!empty($inshows)) : ?>
 		<table class="table table-striped table-bordered" cellpadding="0" cellspacing="0">
 			<thead>
 				<tr>
@@ -55,21 +56,21 @@
 					</th>
 				</tr>
 			</thead>
-			<?php foreach ($inshows as $inshows): ?>
+			<?php foreach ($inshows as $inshows) : ?>
 			<tr>
 				<td>
-					<?= $this->Form->postLink(__(''), ['controller' => 'Assignments', 'action' => 'remove', $inshows->id], ['class'=>'fas  fa-user-times fa-l fa-fw btnLink', 'title'=>'Delete Assignment']) ?>
+					<?= $this->Form->postLink(__(''), ['controller' => 'Assignments', 'action' => 'remove', $inshows->id], ['class' => 'fas  fa-user-times fa-l fa-fw btnLink', 'title' => 'Delete Assignment']) ?>
 				</td>
 				<td scope="col" class="iconBox">
 					<?= $this->Form->create(null, [
-                                'url' => ['controller' => 'Shows', 'action' => 'mcall', $inshows->id]
-                            ]); ?>
+					'url' => ['controller' => 'Shows', 'action' => 'mcall', $inshows->id]
+				]); ?>
 
-					<?= $this->Form->hidden('show_id', ['value' => $inshows->show_id]);?>
-					<?= $this->Form->hidden('user_id', ['value' => $inshows->user_id]);?>
-					<?= $this->Form->hidden('callout', ['value' => 1]);?>
-					<?= $this->Form->button(__('<i class="fas fa-phone fa-l fa-fw btnLink"></i>'), ['class'=>'btnLink text-danger', 'title'=>'Called Out'])?>
-					<?= $this->Form->end()?>
+					<?= $this->Form->hidden('show_id', ['value' => $inshows->show_id]); ?>
+					<?= $this->Form->hidden('user_id', ['value' => $inshows->user_id]); ?>
+					<?= $this->Form->hidden('callout', ['value' => 1]); ?>
+					<?= $this->Form->button(__('<i class="fas fa-phone fa-l fa-fw btnLink"></i>'), ['class' => 'btnLink text-danger', 'title' => 'Called Out']) ?>
+					<?= $this->Form->end() ?>
 
 
 				</td>
@@ -98,7 +99,7 @@
 			<i class="fas fa-people-carry fa-l fa-fw"></i>&nbsp;
 			<?= __('Support') ?>
 		</h4>
-		<?php if (!empty($supportshows)): ?>
+		<?php if (!empty($supportshows)) : ?>
 		<table class="table table-striped table-bordered" cellpadding="0" cellspacing="0">
 			<thead style="background-color:#fff !important;">
 				<tr>
@@ -120,21 +121,21 @@
 					</th>
 				</tr>
 			</thead>
-			<?php foreach ($supportshows as $supportshows): ?>
+			<?php foreach ($supportshows as $supportshows) : ?>
 			<tr>
 				<td class="actions">
-					<?= $this->Form->postLink(__(''), ['controller' => 'Assignments', 'action' => 'remove', $supportshows->id], ['class'=>'fas fa-l fa-fw fa-user-times', 'title'=>'Delete Assignment']) ?>
+					<?= $this->Form->postLink(__(''), ['controller' => 'Assignments', 'action' => 'remove', $supportshows->id], ['class' => 'fas fa-l fa-fw fa-user-times', 'title' => 'Delete Assignment']) ?>
 				</td>
 				<td scope="col" class="iconBox">
 					<?= $this->Form->create(null, [
-                                'url' => ['controller' => 'Shows', 'action' => 'mcall', $supportshows->id]
-                            ]); ?>
+					'url' => ['controller' => 'Shows', 'action' => 'mcall', $supportshows->id]
+				]); ?>
 
-					<?= $this->Form->hidden('show_id', ['value' => $supportshows->show_id]);?>
-					<?= $this->Form->hidden('user_id', ['value' => $supportshows->user_id]);?>
-					<?= $this->Form->hidden('callout', ['value' => 1]);?>
-					<?= $this->Form->button(__('<i class="fas fa-phone fa-l fa-fw"></i>'), ['class'=>' btnLink text-danger', 'title'=>'Called Out'])?>
-					<?= $this->Form->end()?>
+					<?= $this->Form->hidden('show_id', ['value' => $supportshows->show_id]); ?>
+					<?= $this->Form->hidden('user_id', ['value' => $supportshows->user_id]); ?>
+					<?= $this->Form->hidden('callout', ['value' => 1]); ?>
+					<?= $this->Form->button(__('<i class="fas fa-phone fa-l fa-fw"></i>'), ['class' => ' btnLink text-danger', 'title' => 'Called Out']) ?>
+					<?= $this->Form->end() ?>
 
 
 				</td>
@@ -175,27 +176,27 @@
       </h3>
     </div>
     <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-      <div class="panel-body"> */?>
+      <div class="panel-body"> */ ?>
 	<div style="tableSeparator">&nbsp;</div>
 
 	<div class="alert alert-success row" style="margin-bottom:30px">
 		<div class="col-md-12">
 			<?= $this->Form->create(null, [
-                                'url' => ['controller' => 'Assignments', 'action' => 'madd', $show->id]
-                        ,'class'=>'form-inline']); ?>
+			'url' => ['controller' => 'Assignments', 'action' => 'madd', $show->id], 'class' => 'form-inline'
+		]); ?>
 			<fieldset>
 				<legend class="tablesuccess">
 					<?= __('Make Assignment') ?>
 				</legend>
-				<?= $this->Form->hidden('show_id', ['value' => $show->id]);?>
+				<?= $this->Form->hidden('show_id', ['value' => $show->id]); ?>
 				<div class="form-group col-md-4">
-					<?= $this->Form->control('user_id', ['label'=>false,'options' => $users, 'empty' => 'Select Player']);?>
+					<?= $this->Form->control('user_id', ['label' => false, 'options' => $users, 'empty' => 'Select Player']); ?>
 				</div>
 				<div class="form-group col-md-4">
-					<?= $this->Form->control('role_id', ['label' => false, 'options' => $roles2, 'empty' => 'Performing']);?>
+					<?= $this->Form->control('role_id', ['label' => false, 'options' => $roles2, 'empty' => 'Performing']); ?>
 				</div>
 				<div class="form-group col-md-4">
-					<?= $this->Form->control('role2_id', ['label' => false, 'options' => $roles, 'empty' => 'Supporting ']);?>
+					<?= $this->Form->control('role2_id', ['label' => false, 'options' => $roles, 'empty' => 'Supporting ']); ?>
 				</div>
 				<div class="col-md-12">
 					<?= $this->Form->button(__('Add Assignment'), ['class' => 'btn btn-success']) ?>
@@ -207,7 +208,7 @@
 	<?php /*     </div>
     </div>
   </div>
-</div> */?>
+</div> */ ?>
 
 
 
@@ -232,10 +233,10 @@
 
 					<legend>
 						<i class="fas fa-pen-alt fa-xs fa-fw"></i>&nbsp;Show Sign Ups</legend>
-					<?php if (!empty($signups)): ?>
+					<?php if (!empty($signups)) : ?>
 					<table cellpadding="0" cellspacing="0">
-						<?php $i=0?>
-						<?php foreach ($signups as $signups): ?>
+						<?php $i = 0 ?>
+						<?php foreach ($signups as $signups) : ?>
 						<?php $i++ ?>
 						<tr>
 							<td>
@@ -261,12 +262,12 @@
 					<legend>
 						<i class="fas fa-pen-alt fa-xs fa-fw"></i>&nbsp;Monthly Sign Ups</legend>
 
-					<?php if (!empty($signlist)): ?>
+					<?php if (!empty($signlist)) : ?>
 					<table cellpadding="0" cellspacing="0">
-						<?php foreach ($signlist as $signlist): ?>
+						<?php foreach ($signlist as $signlist) : ?>
 						<tr>
 							<td>
-								<?= h($signlist->user['fullName'])?>&nbsp;(&nbsp;
+								<?= h($signlist->user['fullName']) ?>&nbsp;(&nbsp;
 								<?= h($signlist->count) ?>&nbsp;)</td>
 							</td>
 						</tr>
@@ -284,13 +285,13 @@
 					<legend>
 						<i class="fas fa-phone fa-xs fa-fw"></i>&nbsp;Call Outs</legend>
 
-					<?php if (!empty($callouts)): ?>
+					<?php if (!empty($callouts)) : ?>
 					<table cellpadding="0" cellspacing="0">
-						<?php foreach ($callouts as $callouts): ?>
+						<?php foreach ($callouts as $callouts) : ?>
 						<tr>
 							<td>
 								<?= h($callouts->user->fullName) ?>&nbsp;&nbsp;
-								<?= $this->Form->postLink(__(''), ['controller' => 'Assignments', 'action' => 'remove', $callouts->id], ['class'=>'fas icon fa-l fa-fw fa-user-times', 'title'=>'Delete Assignment']) ?>
+								<?= $this->Form->postLink(__(''), ['controller' => 'Assignments', 'action' => 'remove', $callouts->id], ['class' => 'fas icon fa-l fa-fw fa-user-times', 'title' => 'Delete Assignment']) ?>
 							</td>
 						</tr>
 						<?php endforeach; ?>

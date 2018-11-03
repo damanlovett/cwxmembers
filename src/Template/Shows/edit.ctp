@@ -30,18 +30,7 @@
         </div>
         <hr />
 
-        <div class="col-sm-8">
-            <div class="um-form-row form-group">
-                <p class="help-block">Last Date Entered:<strong class="text-success">
-                        <?= $this->Switches->datetime($show->schedule); ?></strong>
-                </p>
-                <div class="col-md-4">
-
-                    <?= $this->Form->control('schedule', ['type' => 'text', 'value' => '', 'label' => false, 'placeholder' => 'Confirm Day of Show', 'div' => false, 'class' => 'form-control datetimepicker']); ?>
-                </div>
-            </div>
-        </div>
-        <hr />
+        
         <div class="um-form-row form-group">
             <div class="col-sm-3">
                 <?php echo $this->Form->control('players_needed'); ?>
@@ -63,15 +52,12 @@
         <div class="um-form-row form-group">
             <div class="row">
                 <div class="col-sm-4">
-                    <?php echo $this->Form->control('ref_needed'); ?>
+                    <?php echo $this->Form->control('ref_needed', ['label' => 'Ref / Host Needed']); ?>
                 </div>
                 <div class="col-sm-4">
-                    <?php echo $this->Form->control('voice_needed'); ?>
+                    <?php echo $this->Form->control('voice_needed', ['label' => 'Voice / DJ Needed']); ?>
                 </div>
-                <div class="col-sm-4">
-                    <?php echo $this->Form->control('host_needed'); ?>
-                </div>
-            </div>
+     </div>
         </div>
         <hr />
         <div class="um-form-row form-group">

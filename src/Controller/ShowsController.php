@@ -174,7 +174,7 @@ class ShowsController extends AppController
         }
 
         $shows = $this->Assignments->Roles->find('list', ['limit' => 200]);
-        $users = $this->Assignments->Users->find('list', ['limit' => 200]);
+        $users = $this->Assignments->Users->find('list', ['active' => 1, 'order' => ['last_name' => 'ASC']]);
 
 
         $this->set(compact('callouts', 'inshows', 'supportshows', 'signlists', 'shows', 'users'));
@@ -186,10 +186,14 @@ class ShowsController extends AppController
 
         $this->set('signups', $this->paginate($query));
 
-        $showusers = $this->Signups->find('all', [
-            'conditions' => ['user_id' => $id]
-        ]);
-        $this->set(compact('showusers'));
+        $showusers = $this->Signups->find('list', [
+            'conditions' => ['month_id' => $id],
+            'keyField' => 'user_id',
+            'valueField' => 'user.displayName'
+        ])
+            ->contain(['Users']);
+
+        $this->set('showusers', $showusers);
 
         $signlist = $this->Signups->findByMonth_id($id)->contain([
             'Users' => function ($q) {
