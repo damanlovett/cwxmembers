@@ -19,3 +19,51 @@ Cary Updates:
 Project:
 
 Archive:
+
+Notes:
+  Example of changing records by link: 
+    <?= $this->Html->link(__('Close Sign Ups'), ['controller' => 'show', 'action' => 'close_signup',0,$show->id], ['class'=>'btn btn-success btn-sm']) ?>
+    <?= $this->Html->link(__('Open Sign Ups'), ['controller' => 'show', 'action' => 'close_signup',1,$show->id], ['class'=>'btn btn-success btn-sm']) ?>
+    
+/**
+* Used to open / close sign ups
+*
+* @access public
+* @return array
+*/
+public function close_signup($id=null,$showID) {
+
+   $connection = ConnectionManager::get('default');
+   $connection->update('shows', ['signups_open' => $id], ['id' => $showID]);
+
+   if($id == 0){
+   $this->Flash->success(__('Sign ups for the month are closed'));
+     } else {
+   $this->Flash->success(__('Sign ups for the month are open'));
+     }
+     return $this->redirect($this->referer());
+
+}
+
+<?= $this->Html->link(__('Turn On Shows Visible'), ['controller' => 'show', 'action' => 'visible',1,$show->id], ['class'=>'btn btn-success btn-sm']) ?>
+<?= $this->Html->link(__('Turn Off Show Visible'), ['controller' => 'show', 'action' => 'visible',0,$show->id], ['class'=>'btn btn-success btn-sm']) ?>
+
+/**
+* Used to reset visiblity
+*
+* @access public
+* @return array
+*/
+public function toggle_visiblity($id=null,$showID) {
+
+$connection = ConnectionManager::get('default');
+$connection->update('shows', ['signups_open' => $id], ['id' => $$show->id]);
+
+if($id == 0){
+$this->Flash->success(__('Sign ups for the month are closed'));
+ } else {
+$this->Flash->success(__('Sign ups for the month are open'));
+ }
+ return $this->redirect($this->referer());
+
+}
