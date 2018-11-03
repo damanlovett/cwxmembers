@@ -5,6 +5,8 @@ use App\Controller\AppController;
 use Cake\Event\Event;
 use Cake\View\View;
 use Cake\View\ViewBuilder;
+use Cake\Datasource\ConnectionManager;
+
 /**
  * Shows Controller
  *
@@ -212,6 +214,49 @@ class ShowsController extends AppController
         $this->set('signlist', $signlist);
 
     }
+
+    /**
+     * Used to open / close sign ups
+     *
+     * @access public
+     * @return array
+     */
+    public function closeSignup($id = null, $monthID = null)
+    {
+
+        $connection = ConnectionManager::get('default');
+        $connection->update('shows', ['signups_open' => $id], ['month_id' => $monthID]);
+
+        if ($id == 0) {
+            $this->Flash->success(__('Sign ups for the month are closed'));
+        } else {
+            $this->Flash->success(__('Sign ups for the month are open'));
+        }
+        return $this->redirect($this->referer());
+
+    }
+
+    /**
+     * Used to reset visiblity
+     *
+     * @access public
+     * @return array
+     */
+    public function toggleVisibility($id = null, $monthID = null)
+    {
+
+        $connection = ConnectionManager::get('default');
+        $connection->update('shows', ['visible' => $id], ['month_id' => $monthID]);
+
+        if ($id == 1) {
+            $this->Flash->success(__('Shows for the month are visible'));
+        } else {
+            $this->Flash->success(__('Shows for the month are not visible'));
+        }
+        return $this->redirect($this->referer());
+
+    }
+
 
     /**
      * export for Mview method

@@ -40,7 +40,7 @@
             </div>
             <a class="btn btn-sm" role="button" data-toggle="collapse" href="#collapseAddSection" aria-expanded="false"
                 aria-controls="collapseAddSection">
-                <i class="fas fa-plus fa-1 fa-fw"></i>&nbsp;Show / Practice
+                Add Show / Practice
             </a>
 
 
@@ -64,7 +64,19 @@
         </div>
 
     </div>
+    
+    
+    
 
+<ul class="nav nav-pills">
+            <li role="presentation"  class="disabled"><a href="#"><strong>Sign Ups:</strong></a> &nbsp;&nbsp;</li>
+            <li role="presentation"><?= $this->Html->link(__('Close'), ['controller' => 'shows', 'action' => 'close_signup', 0, $month->id], ['class' => 'btn btn-default btn-sm']) ?></li>
+            <li role="presentation"><?= $this->Html->link(__('Open'), ['controller' => 'shows', 'action' => 'close_signup', 1, $month->id], ['class' => 'btn btn-default btn-sm']) ?></li>
+            <li role="presentation"  class="disabled"><a href="#"><strong>Visibility:</strong></a> &nbsp;&nbsp;</li>
+            <li role="presentation"><?= $this->Html->link(__('Turn On'), ['controller' => 'shows', 'action' => 'toggle_visibility', 1, $month->id], ['class' => 'btn btn-default btn-sm']) ?></li>
+            <li role="presentation"><?= $this->Html->link(__('Turn Off'), ['controller' => 'shows', 'action' => 'toggle_visibility', 0, $month->id], ['class' => 'btn btn-default btn-sm']) ?></li>
+            </ul>
+            <div style="clear: both;"></div>
     <div class="row collapse" id="collapseAddSection">
         <div class="col-md-6 ">
 
@@ -94,16 +106,13 @@
                 </div>
                 <div class="um-form-row form-group " style="margin-left:20px ">
                     <div class="row ">
-                        <div class="col-sm-3 ">
-                            <?php echo $this->Form->control('ref_needed', ['label' => 'Ref Needed', 'type' => 'checkbox', 'class' => 'form-control my_checkbox']); ?>
+                        <div class="col-sm-4 ">
+                            <?php echo $this->Form->control('ref_needed', ['label' => 'Ref / Host Needed', 'type' => 'checkbox', 'class' => 'form-control my_checkbox']); ?>
                         </div>
-                        <div class="col-sm-3 ">
-                            <?php echo $this->Form->control('voice_needed', ['label' => 'Voice Needed', 'type' => 'checkbox', 'class' => 'form-control my_checkbox']); ?>
+                        <div class="col-sm-4 ">
+                            <?php echo $this->Form->control('voice_needed', ['label' => ' Voice / DJ Needed', 'type' => 'checkbox', 'class' => 'form-control my_checkbox']); ?>
                         </div>
-                        <div class="col-sm-3 ">
-                            <?php echo $this->Form->control('host_needed', ['label' => 'Host Needed', 'type' => 'checkbox', 'class' => 'form-control my_checkbox']); ?>
-                        </div>
-                        <div class="col-sm-3 ">
+                        <div class="col-sm-4 ">
                             <?php echo $this->Form->control('players_needed'); ?>
                         </div>
                     </div>
@@ -113,7 +122,7 @@
                         <?php echo $this->Form->control('signups_open', ['label' => 'Sign Ups Open', 'type' => 'checkbox', 'class' => 'form-control my_checkbox']); ?>
                     </div>
                     <div class="col-md-6 ">
-                        <?php echo $this->Form->control('visible', ['label' => 'Visble', 'type' => 'checkbox', 'class' => 'form-control my_checkbox']); ?>
+                        <?php echo $this->Form->control('visible', ['label' => 'Visible', 'type' => 'checkbox', 'class' => 'form-control my_checkbox']); ?>
                     </div>
                 </div>
                 <hr />
@@ -164,7 +173,7 @@
                 </div>
                 <div class="um-form-row form-group " style="margin-left:20px ">
                     <div class="col-md-6 ">
-                        <?= $this->Form->control('visible', ['label' => 'Visble', 'type' => 'checkbox', 'class' => 'form-control my_checkbox']); ?>
+                        <?= $this->Form->control('visible', ['label' => 'Visible', 'type' => 'checkbox', 'class' => 'form-control my_checkbox']); ?>
                     </div>
                     <div class="col-md-6 ">
                         <?= $this->Form->control('open', ['label' => 'Open', 'type' => 'checkbox', 'class' => 'form-control my_checkbox']); ?>
