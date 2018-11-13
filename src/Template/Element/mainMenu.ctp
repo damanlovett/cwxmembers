@@ -52,6 +52,9 @@
                 <li class="disabled">
                     <?= $this->Html->link(__('Membership'), ['controller' => 'UserDetails', 'action' => 'index', 'plugin' => false]); ?>
                 </li>
+               <?php if ($this->UserAuth->HP('Users', 'online', 'Usermgmt')) {
+                    echo "<li>" . $this->Html->link(__('System Admin'), ['controller' => 'Users', 'action' => 'index', 'plugin' => 'Usermgmt']) . "</li>";
+                } ?>
             </ul>
         </li>
     </ul>
