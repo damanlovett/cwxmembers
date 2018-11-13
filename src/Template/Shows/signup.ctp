@@ -10,7 +10,6 @@
 		<i class="fas fa-calendar fa-l fa-fw"></i>&nbsp;&nbsp;
 		<?= __('Show Sign Up') ?>
 
-?>
 		<div class="btn-toolbar pull-right" role="toolbar" aria-label="...">
 			<?= $this->Html->link(__($show->schedule->format('F')), ['controller' => 'Months', 'action' => 'view', $show->month_id], ['class' => 'btn btn-sm', 'title' => 'Back to Month']) ?>
 

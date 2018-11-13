@@ -118,14 +118,11 @@
                                     title='Show URL'></a>
                                 <?php endif; ?>
                             </td>
-                            <?php if ($previous == $shows->Dropdowns['name']) {
-                                echo '<td>&nbsp;</td>';
-                            } else { ?>
+
                             <td>
                                 <?= h($shows->Dropdowns['name']) ?>
                             </td>
-                            <?php 
-                        } ?>
+    
                             <td>
                                 <?= h($shows->DisplayName) ?>
                             </td>
@@ -201,22 +198,14 @@
                         <?php $previous2 = ''; ?>
                         <?php foreach ($signups as $signups) : ?>
                         <tr>
-                        <?php if ($previous2 == $signups->show->DisplayName) {
-                            echo '<td>&nbsp;</td>';
-                        } else { ?> 
+                        
                             <td>
                                 <?= h($signups->show->dropdown['name']) ?>
                             </td>
-                            <?php 
-                        } ?>
-          <?php if ($previous2 == $signups->show->DisplayName) {
-                echo '<td>&nbsp;</td>';
-            } else { ?> 
+    
                             <td>
                             <?= h($signups->show->DisplayName) ?>
-                            </td>
-                            <?php 
-                        } ?>                                
+                            </td>                             
                             <td>
                                 <?= h($signups->user->fullName) ?>
                             </td>
