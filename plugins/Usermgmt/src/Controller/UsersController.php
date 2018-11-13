@@ -199,7 +199,7 @@ class UsersController extends UsermgmtAppController
 	 */
 	public function index()
 	{
-		$this->paginate = ['limit' => 10, 'order' => ['Users.id' => 'DESC']];
+		$this->paginate = ['limit' => 15, 'order' => ['Users.id' => 'DESC']];
 		$this->Search->applySearch();
 		$users = $this->paginate($this->Users)->toArray();
 		$this->loadModel('Usermgmt.UserGroups');
@@ -221,7 +221,7 @@ class UsersController extends UsermgmtAppController
 	public function members()
 	{
 		$this->viewBuilder()->layout('default3'); // New in 3.1
-		$this->paginate = ['limit' => 10, 'order' => ['Users.id' => 'DESC']];
+		$this->paginate = ['limit' => 15, 'order' => ['Users.id' => 'DESC']];
 		$this->Search->applySearch();
 		$users = $this->paginate($this->Users)->toArray();
 		$this->loadModel('Usermgmt.UserGroups');
