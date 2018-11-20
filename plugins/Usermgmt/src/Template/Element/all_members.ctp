@@ -44,7 +44,7 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
                     <?php echo $this->Paginator->sort('Users.last_login', __('Last Login')); ?>
                 </th>
 				<th>
-				<?php echo __('Last Login'); ?>
+				<?php echo __('Status'); ?>
 				</th>
                 <th style="width:100px;">
                     <?php echo __('Action'); ?>
