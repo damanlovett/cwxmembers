@@ -25,7 +25,7 @@
             <?= $this->Html->link(__('  My Activities'), ['controller' => 'users', 'action' => 'me', 'plugin' => false], ['class' => 'fas fa-user menuIcon', 'title' => 'My Activities']); ?>
         </li>
         <!-- Beginning of System Manager -->
-        <?php if ($this->UserAuth->HP('Shows', 'manager', 'Usermgmt')) {
+        <?php if ($this->UserAuth->HP('Shows', 'manager', false)) {
             ?>
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
