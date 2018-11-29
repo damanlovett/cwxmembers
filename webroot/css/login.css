@@ -40,9 +40,9 @@ body {
     margin: 0;
 }
 
-.container {
-    position: relative;
-}
+/*.container {
+   /* position: relative;
+}*/
 
 .background {
     background: #eb3349;
@@ -207,6 +207,7 @@ button:hover {
         -webkit-transform: rotate(0deg);
         transform: rotate(0deg);
     }
+
     100% {
         -webkit-transform: rotate(360deg);
         transform: rotate(360deg);
@@ -218,6 +219,7 @@ button:hover {
         -webkit-transform: rotate(0deg);
         transform: rotate(0deg);
     }
+
     100% {
         -webkit-transform: rotate(360deg);
         transform: rotate(360deg);
@@ -229,6 +231,7 @@ button:hover {
         -webkit-transform: rotate(-90deg);
         transform: rotate(-90deg);
     }
+
     100% {
         -webkit-transform: rotate(270deg);
         transform: rotate(270deg);
@@ -240,6 +243,7 @@ button:hover {
         -webkit-transform: rotate(-90deg);
         transform: rotate(-90deg);
     }
+
     100% {
         -webkit-transform: rotate(270deg);
         transform: rotate(270deg);
