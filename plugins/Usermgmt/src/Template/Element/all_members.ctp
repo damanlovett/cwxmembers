@@ -25,7 +25,7 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
 <div id="updateUsersIndex">
     <?php echo $this->Search->searchForm('Users', ['legend' => false, 'updateDivId' => 'updateUsersIndex']); ?>
     <?php echo $this->element('Usermgmt.paginator', ['updateDivId' => 'updateUsersIndex']); ?>
-    <table class="table table-striped" cellpadding="0" cellspacing="0">
+    <table class="table table-striped rep allMembers" cellpadding="0" cellspacing="0">
         <thead>
             <tr>
                 <th style="width:40px;">
@@ -58,7 +58,7 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
 												$i = ($page - 1) * $limit;
 												foreach ($users as $row) {
 													$i++;
-													echo "<tr>";
+													echo "<tr class='allMembers'>";
 													echo "<td>" . $i . "</td>";
 													echo "<td>" . h($row['last_name']) . ', ' . h($row['first_name']) . "</td>";
 													echo "<td>" . h($row['username']) . "</td>";

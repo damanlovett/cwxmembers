@@ -39,7 +39,7 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
         <?php 
         $i = 0;
 // Establish the output variable
-        echo '<table class="table table-striped table-bordered" cellpadding="0" cellspacing="0">'; ?>
+        echo '<table class="table table-striped table-bordered rep" cellpadding="0" cellspacing="0">'; ?>
 
 
         <?php foreach ($users as $row) {

@@ -61,7 +61,7 @@
                 <div class="tab-pane active" id="tab1">
 
                     <?php if (!empty($month->shows)) : ?>
-                    <table class="table table-bordered table-hover" cellpadding="0" cellspacing="0">
+                    <table class="table table-bordered table-hover rep" cellpadding="0" cellspacing="0">
                         <thead>
                             <th class="iconBox">
                                 <?= __('') ?>
@@ -120,7 +120,7 @@
                             </td>
 
                             <td>
-                                <?= h($shows->Dropdowns['name']) ?>
+                                <?= h($shows->Dropdowns['name'] . " - " . $shows->DisplayDay) ?>
                             </td>
     
                             <td>
@@ -176,7 +176,7 @@
                 <div class="tab-pane" id="tab2">
 
                     <?php if (!empty($signups)) : ?>
-                    <table class="table table-striped table-bordered" cellpadding="0" cellspacing="0">
+                    <table class="table table-striped table-bordered rep" cellpadding="0" cellspacing="0">
                         <thead>
                             <th scope="col">
                                 <i class="fas fa-cog fa-l fa-fw"></i>&nbsp;
@@ -229,7 +229,7 @@
                 <div class="tab-pane" id="tab3">
 
                     <?php if (!empty($month->practices)) : ?>
-                    <table class="table table-striped table-bordered" cellpadding="0" cellspacing="0">
+                    <table class="table table-striped table-bordered rep" cellpadding="0" cellspacing="0">
                         <thead>
                             <th style="width:30px;">
                                 <?= __('') ?>
