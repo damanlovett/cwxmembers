@@ -215,7 +215,7 @@ class MonthsController extends AppController
         $this->set('userId', $userId);
 
         $month = $this->Months->get($id, [
-            'contain' => ['Practices', 'Shows.dropdowns', 'Shows.months', 'Shows.signups', 'Signups', 'Signups.users', 'Signups.shows']
+            'contain' => ['Practices', 'Shows' => ['sort' => ['Shows.schedule' => 'asc']], 'Shows.dropdowns', 'Shows.months', 'Shows.signups', 'Signups', 'Signups.users', 'Signups.shows']
         ]);
 
         $this->set('month', $month);
@@ -273,7 +273,8 @@ class MonthsController extends AppController
             'created'
         ]);
 
-        $this->set('signups', $this->paginate($signups));
+        //$this->set('signups', $this->paginate($signups));
+        $this->set('signups', $signups);
 
         $this->loadModel('StaticPages');
         $information = $this->StaticPages->find('all', [
