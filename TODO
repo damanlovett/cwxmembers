@@ -4,6 +4,7 @@ Site Information:
 Todo:
   ✔ Fix all Icons @IconInformation @done(18-09-14 15:04)
   ✔  change  text on first day of the month input box when adding a month @done(11-02-18 13:16)
+  ☐ Make long list responsive ( see users/members as an example )
  
 Cary Updates:
   ☐ Make player drop down have only players that signed up of the show
@@ -11,10 +12,13 @@ Cary Updates:
   ☐ Make assinments unique
   ☐ Fix Club Member standing on my profile ( it's not showing correctly O
       You are able to assign someone to multiple show roles (may be done accidentally).
+  ✔ Fix Status Title @done(11-19-18 22:12)
   ✔ Remove the extra toggle @done(11-03-18 01:20)
   ☐ Add Mettlesome and Alumnit to the show dropdown
   ✔ Take off date time from the edit show form @done(11-03-18 01:20)
   ✔ Add Date edit (back) @done(11-13-18 09:54)
+  ☐ Add My signups tabs to the month signup list
+  ✔ Make dates sortable on month/view @done(12-07-18 17:02) [ used contains sort array ]
 
 Project:
 
