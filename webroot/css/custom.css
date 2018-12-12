@@ -1230,4 +1230,19 @@ div.gallery {
         content: "Status:  ";
     }
 
+
+    /* LABELS for show page */
+
+    table.rep .shows2 td:nth-of-type(1):before {
+        content: "view   ";
+    }
+
+    table.rep .shows2 td:nth-of-type(2) {
+        display: none;
+    }
+
+    table.rep .shows2 td:nth-of-type(3):before {
+        display: none;
+    }
+
 }

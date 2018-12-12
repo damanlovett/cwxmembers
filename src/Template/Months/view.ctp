@@ -218,7 +218,7 @@
                         endforeach; ?>
                         <tfoot>
                             <td colspan="4">
-                                <? php // echo $this->element('Usermgmt.pagination', ['paginationText' => __('Number of Shows')]); ?>
+                                <?php // echo $this->element('Usermgmt.pagination', ['paginationText' => __('Number of Shows')]); ?>
                             </td>
                         </tfoot>
                     </table>

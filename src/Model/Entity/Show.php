@@ -1,5 +1,6 @@
 <?php
 namespace App\Model\Entity;
+
 use Cake\ORM\Entity;
 use Cake\I18n\Date;
 
@@ -56,13 +57,22 @@ class Show extends Entity
         return $date->format('M j, Y - g:i a');
     }
 
+    
+    // Day of Week virtual field
+    protected function _getDisplayDay()
+    {
+        $date = new Date($this->_properties['schedule']);
+
+        return $date->format('D');
+    }
+
     // full_name with Name virtual field
     protected function _getFullName()
     {
         $date = new Date($this->_properties['schedule']);
         $name = $this->_properties['dropdown']['name'];
 
-        return $name." :: ".$date->format('M j, Y - g:i a');
+        return $name . " :: " . $date->format('M j, Y - g:i a');
     }
 
     // Signup Count
