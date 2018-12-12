@@ -120,7 +120,7 @@
                             </td>
 
                             <td>
-                                <?= h($shows->Dropdowns['name'] . " - " . $shows->DisplayDay) ?>
+                                <?= $shows->Dropdowns['name'] . "&nbsp;<strong><span class='myBlue small'>(&nbsp;" . $shows->DisplayDay . "</span></strong>&nbsp;)" ?>
                             </td>
     
                             <td>
@@ -200,7 +200,7 @@
                         <tr>
                         
                             <td>
-                                <?= h($signups->show->dropdown['name']) ?>
+                                <?= $signups->show->dropdown['name'] . "&nbsp;<strong><span class='myBlue small'>(&nbsp;" . $shows->DisplayDay . "</span></strong>&nbsp;)" ?>
                             </td>
     
                             <td>
