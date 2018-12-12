@@ -58,8 +58,9 @@
                 <?= __('Club Standing') ?>
             </td>
             <td>
-                <?= $var['club_standing']['title'] ?>
-                <?= $user->has('club_standing') ? $user->club_standing->title : "<span class='text-muted'>Not Assigned</span>" ?>
+                <?php  //$user->has('club_standing') ? $user->club_standing->title : "<span class='text-muted'>Not Assigned</span>"; */ ?>
+                <?= __('Waiting to be Assigned'); ?> 
+                <!-- TODO fix the club standing -->
             </td>
         </tr>
         <tr>
