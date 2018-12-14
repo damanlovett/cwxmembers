@@ -50,12 +50,12 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
 
 
 
-                echo '<tr><td class="galleryHeader" style="padding:15px"><img alt="' . $row['first_name'] . ' ' . $row['last_name'] . '" src="' . $this->Image->resize('library/' . IMG_DIR, $row['photo'], 100, null, true) . '" ><h4>' . $row['first_name'] . '&nbsp;&nbsp;' . $row['last_name'] . '</h4><br /><span>Nickname</span>' . $row['user_detail']['nickname'] . '<br/><span>Jersey</span> ' . $row['jersey'] . '<br/><span>E-mail</span> ' . $row['email'] . '<br/><span>Phone</span>' . $row['cellphone'] . '</div><br/><br/></td>';
+                echo '<tr><td class="galleryHeader" style="padding:15px"><img alt="' . $row['first_name'] . ' ' . $row['last_name'] . '" src="' . $this->Image->resize('library/' . IMG_DIR, $row['photo'], 100, null, true) . '" ><h4>' . $row['first_name'] . '&nbsp;&nbsp;' . $row['last_name'] . '</h4><br /><span>Nickname</span>' . $row['user_detail']['nickname'] . '<br/><span>Jersey</span> ' . $row['jersey'] . '<br/><span>E-mail</span><a href="mailto:' . $row['email'] . '">' . $row['email'] . '</a><br/><span>Phone</span>' . $row['cellphone'] . '</div><br/><br/></td>';
                 echo '';
 
 
             } else {
-                echo '<td class="galleryHeader" style="padding:15px"> <img alt="' . $row['first_name'] . ' ' . $row['last_name'] . '" src="' . $this->Image->resize('library/' . IMG_DIR, $row['photo'], 100, null, true) . '" ><h4>' . $row['first_name'] . '&nbsp;&nbsp;' . $row['last_name'] . '</h4><br /><span>Nickname</span>' . $row['user_detail']['nickname'] . '<br/><span>Jersey</span> ' . $row['jersey'] . '<br/><span>E-mail</span> ' . $row['email'] . '<br/><span>Phone</span>' . $row['cellphone'] . '</div><br/><br/></td>';
+                echo '<td class="galleryHeader" style="padding:15px"> <img alt="' . $row['first_name'] . ' ' . $row['last_name'] . '" src="' . $this->Image->resize('library/' . IMG_DIR, $row['photo'], 100, null, true) . '" ><h4>' . $row['first_name'] . '&nbsp;&nbsp;' . $row['last_name'] . '</h4><br /><span>Nickname</span>' . $row['user_detail']['nickname'] . '<br/><span>Jersey</span> ' . $row['jersey'] . '<br/><span>E-mail</span><a href="mailto:' . $row['email'] . '">' . $row['email'] . '</a><br/><span>Phone</span>' . $row['cellphone'] . '</div><br/><br/></td>';
             }
             $i++;
         }
