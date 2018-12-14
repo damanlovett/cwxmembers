@@ -11,7 +11,8 @@
 		<?= __('Show Sign Up') ?>
 
 		<div class="btn-toolbar pull-right" role="toolbar" aria-label="...">
-			<?= $this->Html->link(__($show->schedule->format('F')." Shows"), ['controller' => 'Months', 'action' => 'view', $show->month_id], ['class' => 'btn btn-sm', 'title' => 'Back to Month']) ?>
+		<?= $this->Html->link(__("Available Shows"), ['controller' => 'Shows', 'action' => 'dashboard'], ['class' => 'btn btn-sm', 'title' => 'Back to Sign Ups']) ?>
+		<?= $this->Html->link(__($show->schedule->format('F') . " Shows"), ['controller' => 'Months', 'action' => 'view', $show->month_id], ['class' => 'btn btn-sm', 'title' => 'Back to Month']) ?>
 
 		</div>
 	</h3>

@@ -1147,6 +1147,10 @@ div.gallery {
     margin-top: 0;
 }
 
+img.resize {
+    width: 18px;
+    height: auto;
+}
 
 /* RESPONSIVE TABLE */
 /*

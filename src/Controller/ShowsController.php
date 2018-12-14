@@ -67,6 +67,47 @@ class ShowsController extends AppController
         }
     }
 
+    /**
+     * Dashboard method
+     *
+     * @return \Cake\Http\Response|void
+     */
+    public function dashboard()
+    {
+        $userId = $this->UserAuth->getUserId();
+        $this->set('userId', $userId);
+        $this->paginate = [
+            'limit' => 5,
+            'order' => ['Show.schedule' => 'asc']
+        ];
+
+        $shows = $this->Shows->find('all')
+            ->contain(['Months', 'Dropdowns', 'Signups'])
+            ->where(['visible' => 1, 'signups_open' => 1]);
+
+        $this->set('shows', $this->paginate($shows));
+
+        $this->loadModel('StaticPages');
+        $information = $this->StaticPages->find('all', [
+            'conditions' => ['id' => 2]
+        ]);
+
+        $this->set(compact('information'));
+
+
+        $this->loadModel('Signups');
+        $qsignup = $this->Signups->newEntity();
+        if ($this->request->is('post')) {
+            $qsignup = $this->Signups->patchEntity($qsignup, $this->request->getData());
+            if ($this->Signups->save($qsignup)) {
+                $this->Flash->success(__('Your signup has been saved.'));
+
+                return $this->redirect($this->referer());
+            }
+            $this->Flash->error(__('You have already signed up for this show.'));
+        }
+    }
+
 
     /**
      * Manager method

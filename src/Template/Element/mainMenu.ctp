@@ -11,7 +11,7 @@
             <?= $this->Html->link(__('  My Profile'), ['controller' => 'users', 'action' => 'mview', 'plugin' => false], ['class' => 'fas fa-user menuIcon', 'title' => 'my Profile']); ?>
         </li>
         <li>
-            <?= $this->Html->link(__('  Sign Ups'), ['controller' => 'months', 'action' => 'index', 'plugin' => false], ['class' => 'fas fa-pen-alt menuIcon', 'title' => 'View Shows']); ?>
+            <?= $this->Html->link(__('  Sign Ups'), ['controller' => 'shows', 'action' => 'dashboard', 'plugin' => false], ['class' => 'fas fa-pen-alt menuIcon', 'title' => 'View Shows']); ?>
         </li>
 
 

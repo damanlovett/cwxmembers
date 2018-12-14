@@ -13,7 +13,7 @@
         <?= __('Sign Ups') ?>&nbsp;&nbsp;
         <small style="color:white;margin-right:20px;">[ by month ]</small>
         <div class="btn-toolbar pull-right" role="toolbar" aria-label="...">
-        <div style="display:none;"> <?= $this->Html->link(__('All Shows'), ['controller' => 'shows', 'action' => 'index'], ['class' => 'btn btn-default btn-sm', 'title' => 'All Shows']) ?></div>
+        <?= $this->Html->link(__('Available Shows'), ['controller' => 'shows', 'action' => 'dashboard'], ['class' => 'btn btn-default btn-sm', 'title' => 'All Shows']) ?>
             <?= $this->Html->link(__('Practices'), ['controller' => 'practices', 'action' => 'index'], ['class' => 'btn btn-default btn-sm', 'title' => 'Practices']) ?>
         </div>
     </h3>

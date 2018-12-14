@@ -139,11 +139,11 @@
                                 <?php endif; ?>
                             </td>
                             <td style="text-align: center;">
-                                <?= $shows->ref_needed ? '   ' . $this->Html->image('ref.png', ['title' => 'need a ref']) . '  ' : $this->Html->image('need.png') . '  ' ?>
+                                <?= $shows->ref_needed ? '   ' . $this->Html->image('ref.png', ['class' => 'resize', 'title' => 'need a ref or Host']) . '  ' : $this->Html->image('need.png', ['class' => 'resize']) . '  ' ?>
                                 <?php if ($shows->voice_needed || $shows->host_needed == 1) {
-                                    echo $this->Html->image('voice.png', ['title' => 'need a voice or DJ']);
+                                    echo $this->Html->image('voice.png', ['class' => 'resize', 'title' => 'need a voice or DJ']);
                                 } else {
-                                    echo $this->Html->image('need.png');
+                                    echo $this->Html->image('need.png', ['class' => 'resize']);
 
                                 } ?>
                             </td>
