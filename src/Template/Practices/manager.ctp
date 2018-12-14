@@ -38,6 +38,9 @@
                 <th class="iconBox">
                     <?= __('') ?>
                 </th>
+                <th class="iconBox">
+                    <?= __('') ?>
+                </th>
                 <th scope="col">
                     <i class="fas fa-chalkboard  fa-l fa-fw myRed"></i>
                     <?= $this->Paginator->sort('title', 'Practice') ?>
@@ -68,6 +71,9 @@
                     <?= $this->Html->link(__(''), ['action' => 'edit', $practice->id], ['class' => 'fas fa-edit fa-l  fa-fw text-success', 'title' => 'Edit Show']) ?>
                 </td>
                 <td>
+                    <?= $this->Html->link(__(''), ['action' => 'practiceReport', $practice->id, $practice->schedule->format('M_j_Y')], ['class' => 'fas far fas fa-download fa-l  fa-fw text-success', 'title' => 'Download Attendance']) ?>
+                </td>
+                <td>
                     <?= h($practice->title) ?>
                 </td>
                 <td>
@@ -86,7 +92,7 @@
             <?php endforeach; ?>
         </tbody>
         <tfoot>
-            <td colspan="7">&nbsp;</td>
+            <td colspan="8">&nbsp;</td>
         </tfoot>
     </table>
     <?php if (!empty($practices)) {

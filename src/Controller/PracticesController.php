@@ -72,7 +72,6 @@ class PracticesController extends AppController
 
         $this->set(compact('information'));
 
-
     }
     /**
      * grid method
@@ -205,11 +204,28 @@ class PracticesController extends AppController
 
         $this->set(compact('checkins'));
 
-        $users = $this->Checkins->Users->find('list', ['limit' => 200, 'order' => ['Users.last_name' => 'asc']]);
+        $users = $this->Checkins->Users->find('list', ['limit' => 200, 'conditions' => ['Users.active' => 1], 'order' => ['Users.last_name' => 'asc']]);
         $this->set(compact('checkin', 'checkins', 'users'));
 
 
 
+    }
+
+    public function practiceReport($id = null, $id2)
+    {
+        $this->loadModel('Checkins');
+        $this->response->download("{$id2}_practiceAttendance.csv");
+
+        $datas = $this->Checkins->find('all')->contain(['Users', 'Practices'])->where(['practice_id' => $id])->order(['Users.last_name' => 'asc'])->toArray();
+
+        $_serialize = 'datas';
+        $_header = ['Last Name', 'First Name', 'Practice', 'Checked In'];
+        $_extract = [
+            'user.last_name', 'user.first_name', 'practice.title', 'created'
+        ];
+        $this->viewBuilder()->className('CsvView.Csv');
+        $this->set(compact('datas', '_serialize', '_header', '_extract'));
+        return;
     }
 
     /**

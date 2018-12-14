@@ -25,12 +25,12 @@
     <hr />
     <?php if ($practice->open == 1) {
 
-        echo "<div class='alert alert-danger' role='alert'> Check-in is enabled</div>";
+        echo "<div class='alert alert-danger' role='alert'> Players are able to check into practice</div>";
 
     } else {
 
 
-        echo "<div class='alert alert-danger' role='alert'> Check-in for practice has been disabled.</div>";
+        echo "<div class='alert alert-danger' role='alert'> Check-in for practice has been closed.</div>";
 
     };
     ?>
