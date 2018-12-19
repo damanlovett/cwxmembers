@@ -8,8 +8,13 @@
 <div class="practices index large-12 medium-11 columns content">
     <h3><i class="fas fa-chalkboard fa-1 fa-fw"></i>&nbsp;&nbsp;
         <?= __('Edit Practice') ?>
-        <?= $this->Html->link(__('Back'), ['action' => 'manager'], ['class' => 'btn btn-default btn sm pull-right', ' title' => 'back to Manager']) ?>
-    </h3>
+
+    <div class="btn-toolbar pull-right" role="toolbar" aria-label="...">
+        <?= $this->Html->link(__('Back'), ['action' => 'manager'], ['class' => 'btn btn-default btn sm', ' title' => 'back to Manager']) ?>
+        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $practice->id], ['confirm' => __('Are you sure you want to delete this practice? This action can not be undone.', $practice->id), 'class' => 'btn btn-default btn sm']) ?>
+        </div>
+        </h3>
+
     <div class="row">
 
         <?= $this->Form->create($practice) ?>
