@@ -75,6 +75,11 @@ class CheckinsTable extends Table
     {
         $rules->add($rules->existsIn(['practice_id'], 'Practices'));
         $rules->add($rules->existsIn(['user_id'], 'Users'));
+        $rules->add($rules->isUnique(
+            ['user_id', 'practice_id'],
+            'You have already checked into practice.'
+        ));
+
 
         return $rules;
     }
