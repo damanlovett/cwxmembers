@@ -91,7 +91,7 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
 													}
 													echo "<li role='separator' class='divider'></li>";
 													echo "<li>" . $this->Html->link("<i class='fas fa-download fa-fw'></i> Practices", [
-														'plugin' => false, 'controller' => 'users', 'action' => 'practiceReport', $row['id']
+														'plugin' => false, 'controller' => 'users', 'action' => 'practiceCheckins', $row['id']
 													], ['escape' => false, 'title' => 'Download Practices']) . "</li>";
 													echo "<li>" . $this->Html->link("<i class='fas fa-download fa-fw'></i> Sign Ups", [
 

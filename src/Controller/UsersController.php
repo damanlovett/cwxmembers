@@ -162,6 +162,30 @@ class UsersController extends AppController
         return;
     }
 
+    public function practiceCheckins($id = null)
+    {
+        $this->response->download("member_practice_checkins.csv");
+
+        //$datas = $this->Memberships->find('all')->contain('Users')->where(['Memberships.processed' => $id])->toArray();
+        $this->loadModel('Checkins');
+        $datas = $this->Checkins->find('all')->contain(['Users', 'Practices'])->order(['Practices.schedule' => 'asc'])->where(['user_id' => $id])->toArray();
+
+        $_serialize = 'datas';
+        $_header = ['Practice', 'Date', 'Checked In On', 'Practice Leader'];
+        $_extract = [
+            'practice.title',
+            function ($row) {
+                $results = date_format($row['practice']['schedule'], "M j, Y - g:i a");
+                return ($results);
+            },
+            'created', 'practice.leader'
+        ];
+        $this->viewBuilder()->className('CsvView.Csv');
+        $this->set(compact('datas', '_serialize', '_header', '_extract'));
+        return;
+    }
+
+
 
     public function phoneBook()
     {
