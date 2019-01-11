@@ -11,7 +11,7 @@
             <?= $this->Html->link(__('  My Profile'), ['controller' => 'users', 'action' => 'mview', 'plugin' => false], ['class' => 'fas fa-user menuIcon', 'title' => 'my Profile']); ?>
         </li>
         <li>
-            <?= $this->Html->link(__('  Sign Ups'), ['controller' => 'shows', 'action' => 'dashboard', 'plugin' => false], ['class' => 'fas fa-pen-alt menuIcon', 'title' => 'View Shows']); ?>
+            <?= $this->Html->link(__('  Sign Ups'), ['controller' => 'months', 'action' => 'index', 'plugin' => false], ['class' => 'fas fa-pen-alt menuIcon', 'title' => 'View Shows']); ?>
         </li>
 
 
@@ -41,7 +41,7 @@
                 </li>
                 <li role="separator" class="divider"></li>
                 <li>
-                    <?= $this->Html->link(__('Shows'), ['controller' => 'shows', 'action' => 'manager', 'plugin' => false]); ?>
+                    <?= $this->Html->link(__('Shows'), ['controller' => 'months', 'action' => 'manager', 'plugin' => false]); ?>
                 </li>
                 <li>
                     <?= $this->Html->link(__('Practice'), ['controller' => 'practices', 'action' => 'manager', 'plugin' => false]); ?>
@@ -55,16 +55,17 @@
                 <li class="disabled">
                     <?= $this->Html->link(__('Membership'), ['controller' => 'UserDetails', 'action' => 'index', 'plugin' => false]); ?>
                 </li>
-               <?php if ($this->UserAuth->HP('Users', 'online', 'Usermgmt')) {
+                <?php if ($this->UserAuth->HP('Users', 'online', 'Usermgmt')) {
                     echo "<li>" . $this->Html->link(__('System Admin'), ['controller' => 'Users', 'action' => 'index', 'plugin' => 'Usermgmt']) . "</li>";
                 } ?>
 
-            <?php 
-        }; ?> <!-- End of System Manager -->
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+                <?php 
+            }; ?>
+                <!-- End of System Manager -->
+            </ul>
+        </li>
+    </ul>
+</div>
 <!-- /.navbar-collapse -->
 </div>
 <!-- /.container-fluid -->
