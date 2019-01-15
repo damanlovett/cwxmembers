@@ -37,6 +37,28 @@ class SignupsController extends AppController
     }
 
 
+    /**
+     * My method
+     *
+     * @return \Cake\Http\Response|void
+     */
+    public function mine($id = null)
+    {
+        //$this->paginate = [
+       //     'contain' => ['Shows', 'Users']
+       // ];
+
+        $id = $this->UserAuth->getUserId();
+        $signups = $this->Signups->findAllByUser_id($id)
+            ->contain(['Users', 'Shows', 'Shows.dropdowns']);
+
+        $signups = $this->paginate($this->Signups);
+
+        $this->set(compact('signups'));
+
+    }
+
+
     public function signupReport($id = null)
     {
 
@@ -90,10 +112,18 @@ class SignupsController extends AppController
             }
             $this->Flash->error(__('The signup could not be saved. Please, try again.'));
         }
-        $shows = $this->Signups->Shows->find('list', ['limit' => 200]);
-        $users = $this->Signups->Users->find('list', ['limit' => 200]);
-        $months = $this->Signups->Months->find('list', ['limit' => 200]);
+        $shows = $this->Signups->Shows->find('list', ['limit' => 200, 'order' => ['schedule' => 'ASC'], 'where' => ['visible' => 1]]);
+        $users = $this->Signups->Users->find('list', ['limit' => 200, 'order' => ['last_name' => 'ASC'], 'where' => ['active' => 1]]);
+        $months = $this->Signups->Months->find('list', ['limit' => 200, 'order' => ['first_friday' => 'DESC'], 'where' => ['visible' => 1]]);
         $this->set(compact('signup', 'shows', 'users', 'months'));
+
+
+        $this->paginate = [
+            'contain' => ['Shows', 'Users', 'Shows.dropdowns'], 'order' => ['created' => 'DESC'], 'limit' => 10
+        ];
+        $signups = $this->paginate($this->Signups);
+
+        $this->set(compact('signups'));
     }
 
     /**

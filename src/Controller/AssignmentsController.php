@@ -36,6 +36,21 @@ class AssignmentsController extends AppController
     }
 
     /**
+     * Mine method
+     *
+     * @return \Cake\Http\Response|void
+     */
+    public function mine()
+    {
+        $userId = $this->UserAuth->getUserId();
+        $assignments = $this->Assignments->find('all')
+            ->contain(['Users', 'Roles', 'Roles2', 'Shows', 'Shows.dropdowns'])
+            ->where(['user_id' => $userId]);
+
+        $this->set('assignments', $this->paginate($assignments));
+    }
+
+    /**
      * View method
      *
      * @param string|null $id Assignment id.

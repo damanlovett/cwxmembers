@@ -1,37 +1,66 @@
 <?php
+
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Signup $signup
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Signups'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Shows'), ['controller' => 'Shows', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Show'), ['controller' => 'Shows', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Assignments'), ['controller' => 'Assignments', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Assignment'), ['controller' => 'Assignments', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="signups form large-9 medium-8 columns content">
+<div class="shows add large-12 medium-11 columns content">
     <?= $this->Form->create($signup) ?>
     <fieldset>
-        <legend><?= __('Add Signup') ?></legend>
-        <?php
-            echo $this->Form->control('show_id', ['options' => $shows, 'empty' => true]);
-            echo $this->Form->control('user_id', ['options' => $users, 'empty' => true]);
-            echo $this->Form->control('month_id', ['options' => $months, 'empty' => true]);
-         if(strtoupper(DEFAULT_HTML_EDITOR) == 'TINYMCE') {
-                    echo $this->Tinymce->textarea('notes', ['type'=>'textarea', 'label'=>false, 'div'=>false, 'style'=>'height:400px', 'class'=>'form-control'], ['language'=>'en'], 'umcode');
-                } else if(strtoupper(DEFAULT_HTML_EDITOR) == 'CKEDITOR') {
-                    echo $this->Ckeditor->textarea('notes', ['type'=>'textarea', 'label'=>false, 'div'=>false, 'style'=>'height:400px', 'class'=>'form-control'], ['language'=>'en', 'uiColor'=>'#14B8C4'], 'full');
-                }
-
-        ?>
+        <legend><?= __('Signup Player') ?></legend>
+		<div class="um-form-row form-group ">
+        <div class="col-sm-4">
+        <?= $this->Form->control('user_id', ['label' => 'Player', 'options' => $users, 'empty' => true]); ?>
+        </div>
+        <hr/>
+        </div>
+        <div class="um-form-row form-group ">
+        <div class="col-sm-4">
+        <?= $this->Form->control('show_id', ['options' => $shows, 'empty' => true]); ?>
+        </div>
+        </div>
+        <div class="um-form-row form-group ">
+        <div class="col-sm-4">
+        <?= $this->Form->control('month_id', ['options' => $months, 'empty' => true]); ?>
+        </div>
+        <div class="col-sm-4"></div>
+        </div>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('Add Player')) ?>
     <?= $this->Form->end() ?>
+
+    <table cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+            <th scope="col"><?= h('Show') ?></th>
+                <th scope="col"><?= h('Player') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
+                <th scope="col" class="actions"><?= __('Actions') ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($signups as $signup) : ?>
+            <tr>
+            <td><?= $signup->has('show') ? $signup->show->schedule->format('M. j, Y g:i a') . "&nbsp;(<strong>" . $signup->show->schedule->format('D') . "</strong>)" : '' ?></td>
+                <td><?= $signup->has('user') ? $signup->user->last_name . "," . $signup->user->first_name : '' ?></td>
+                <td><?= h($signup->created) ?></td> 
+                <td class="actions">
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $signup->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $signup->id], ['confirm' => __('Are you sure you want to delete this sign up?', $signup->id)]) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+    <div class="paginator">
+        <ul class="pagination">
+            <?= $this->Paginator->first('<< ' . __('first')) ?>
+            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->numbers() ?>
+            <?= $this->Paginator->next(__('next') . ' >') ?>
+            <?= $this->Paginator->last(__('last') . ' >>') ?>
+        </ul>
+        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+    </div>
 </div>

@@ -95,7 +95,7 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
 													], ['escape' => false, 'title' => 'Download Practices']) . "</li>";
 													echo "<li>" . $this->Html->link("<i class='fas fa-download fa-fw'></i> Sign Ups", [
 
-														'plugin' => false, 'controller' => 'users', 'action' => 'signupReport', $row['id']
+														'plugin' => false, 'controller' => 'users', 'action' => 'signupDownload', $row['id']
 													], ['escape' => false, 'title' => 'Download Sign Ups']) . "</li>";
 													echo "<li>" . $this->Html->link("<i class='fas fa-download fa-fw'></i> Assignments", [
 														'plugin' => false, 'controller' => 'users', 'action' => 'assignmentReport', $row['id']

@@ -114,10 +114,31 @@ class UsersController extends AppController
         return;
     }
 
+    public function signupDownload($id = null)
+    {
+        $this->response->download("member_signups.csv");
+
+        //$datas = $this->Memberships->find('all')->contain('Users')->where(['Memberships.processed' => $id])->toArray();
+        $this->loadModel('Signups');
+        $datas = $this->Signups->find('all')->contain(['Users', 'Shows', 'Shows.dropdowns', 'Months'])->order(['Shows.schedule' => 'asc'])->where(['Signups.user_id' => $id])->toArray();
+
+        $_serialize = 'datas';
+        $_header = ['Show', 'Date', 'Signed Up On'];
+        $_extract = [
+            'Dropdowns.name',
+            function ($row) {
+                $results = date_format($row['show']['schedule'], "M j, Y - g:i a");
+                return ($results);
+            }, 'created'
+        ];
+        $this->viewBuilder()->className('CsvView.Csv');
+        $this->set(compact('datas', '_serialize', '_header', '_extract'));
+        return;
+    }
+
     public function assignmentReport()
     {
-        //$id = $this->UserAuth->getUserId();
-        $id = 2;
+        $id = $this->UserAuth->getUserId();
         $this->response->download("my_show_assignments.csv");
 
         //$datas = $this->Memberships->find('all')->contain('Users')->where(['Memberships.processed' => $id])->toArray();

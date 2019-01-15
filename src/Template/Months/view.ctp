@@ -25,15 +25,20 @@
 
     <?php endforeach; ?>
 
-            <hr />
-            <ul class="nav nav-pills">
-            <li role="presentation"  class="disabled"><a href="#"><strong>Icon Legend:</strong></a> &nbsp;&nbsp;</li>
-            <li role="presentation"  class="disabled"><a href="#"><i class="fas fa-eye fa-l  fa-fw text-success"></i> View and signup for show</a></li>
-            <li role="presentation"  class="disabled"><a href="#"><i class="fas fa-pen-alt fa-l fa-fw text-success"></i> One click show sign up</a></li>
-            <li role="presentation"  class="disabled"><a href="#"><?= $this->Html->image('ref.png', ['title' => 'need a ref or host']) ?> Need ref / host </a></li>
-            <li role="presentation"  class="disabled"><a href="#"><?= $this->Html->image('voice.png', ['title' => 'need a voice or DJ', 'class' => 'text-sucesss']) ?> Need voice / DJ</a></li>
-            </ul>
-            <div style="clear: both;"></div>
+    <hr />
+    <ul class="nav nav-pills">
+        <li role="presentation" class="disabled"><a href="#"><strong>Icon Legend:</strong></a> &nbsp;&nbsp;</li>
+        <li role="presentation" class="disabled"><a href="#"><i class="fas fa-eye fa-l  fa-fw text-success"></i> View
+                and signup for show</a></li>
+        <li role="presentation" class="disabled"><a href="#"><i class="fas fa-pen-alt fa-l fa-fw text-success"></i> One
+                click show sign up</a></li>
+        <li role="presentation" class="disabled"><a href="#">
+                <?= $this->Html->image('ref.png', ['title' => 'need a ref or host']) ?> Need ref / host </a></li>
+        <li role="presentation" class="disabled"><a href="#">
+                <?= $this->Html->image('voice.png', ['title' => 'need a voice or DJ', 'class' => 'text-sucesss']) ?>
+                Need voice / DJ</a></li>
+    </ul>
+    <div style="clear: both;"></div>
 
     <div class="panel panel-primary">
         <div class="panel-heading">
@@ -122,7 +127,7 @@
                             <td>
                                 <?= $shows->Dropdowns['name'] . "&nbsp;<strong><span class='myBlue small'>(&nbsp;" . $shows->DisplayDay . "&nbsp;)</span></strong>" ?>
                             </td>
-    
+
                             <td>
                                 <?= h($shows->DisplayName) ?>
                             </td>
@@ -198,14 +203,14 @@
                         <?php $previous2 = ''; ?>
                         <?php foreach ($signups as $signups) : ?>
                         <tr>
-                        
+
                             <td>
-                                <?= $signups->show->dropdown['name'] . "&nbsp;<strong><span class='myBlue small'>(&nbsp;" . $shows->DisplayDay . "&nbsp;)</span></strong>" ?>
+                                <?= $signups->show->dropdown['name'] . "&nbsp;<strong><span class='myBlue small'>(&nbsp;" . date_format($signups->show->schedule, "D") . "&nbsp;)</span></strong>" ?>
                             </td>
-    
+
                             <td>
-                            <?= h($signups->show->DisplayName) ?>
-                            </td>                             
+                                <?= h($signups->show->DisplayName) ?>
+                            </td>
                             <td>
                                 <?= h($signups->user->fullName) ?>
                             </td>
