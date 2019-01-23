@@ -24,8 +24,8 @@
         <div class="panel panel-default" style="padding: .25rem">
             <div class="panel-heading" role="tab" id="headingOne">
                 <h2 class="panel-title">
-                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true"
-                        aria-controls="collapseOne">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                        aria-expanded="true" aria-controls="collapseOne">
                         <span class="glyphicon glyphicon-triangle-bottom" style="padding-right: 10px"></span>Practice
                         Description
                     </a>
@@ -76,15 +76,19 @@
                 </th>
             </thead>
             <?php foreach ($checkins as $checkins) : ?>
+
+            <?php if (!empty($checkins->user->DisplayName)) : ?>
             <?php $i++ ?>
             <tr>
                 <td>
-                    <?= h($i . ". " . $checkins->user->DisplayName); ?>
+                    <?= $i . ")&nbsp;&nbsp;" . $checkins->user->DisplayName; ?>
+
                 </td>
                 <td>
                     <?= h($checkins->created) ?>
                 </td>
             </tr>
+            <?php endif; ?>
             <?php endforeach; ?>
             <tfoot>
                 <td colspan="2">&nbsp;</td>
