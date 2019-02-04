@@ -61,165 +61,163 @@
                 <td>
                     <?= h($userDetails->nickname) ?>
                 </td>
-                <tr>
-                    <td class="cellHeader" scope="col">
-                        <?= __('Jersey') ?>
-                    </td>
-                    <td>
-                        <?= h($userDetails->jersey) ?>
-                    </td>
-                    <tr>
-                        <td class="cellHeader" scope="col">
-                            <?= __('Starting Year') ?>
-                        </td>
-                        <td>
-                            <?= $userDetails->has('starting_year') ? $userDetails->starting_year->format('Y') : '' ?>
-                        </td>
-                        <tr>
-                            <td class="cellHeader" scope="col">
-                                <?= __('Referee') ?>
-                            </td>
-                            <td>
-                                <?= $userDetails->referee ? "<span class='text-success'><i class='fas fa-check-circle fa-fw'></i></span>" : "No" ?>
-                            </td>
-                            <tr>
-                                <td class="cellHeader" scope="col">
-                                    <?= __('Host') ?>
-                                </td>
-                                <td>
-                                    <?= $userDetails->host ? "<span class='text-success'><i class='fas fa-check-circle fa-fw'></i></span>" : "No" ?>
-                                </td>
-                                <tr>
-                                    <td class="cellHeader" scope="col">
-                                        <?= __('Voice') ?>
-                                    </td>
-                                    <td>
-                                        <?= $userDetails->voice ? "<span class='text-success'><i class='fas fa-check-circle fa-fw'></i></span>" : "No" ?>
-                                    </td>
-                                    <tr>
-                                        <td class="cellHeader" scope="col">
-                                            <?= __('Member Standing') ?>
-                                        </td>
-                                        <td>
-                                            <?= $userDetails->member_standing['title'] ?>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="cellHeader" scope="col">
-                                            <?= __('Club Standing') ?>
-                                        </td>
-                                        <td>
-                                            <?= $standing ?>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="cellHeader" scope="col">
+            <tr>
+                <td class="cellHeader" scope="col">
+                    <?= __('Jersey') ?>
+                </td>
+                <td>
+                    <?= h($userDetails->jersey) ?>
+                </td>
+            <tr>
+                <td class="cellHeader" scope="col">
+                    <?= __('Starting Year') ?>
+                </td>
+                <td>
+                    <?= $userDetails->has('starting_year') ? $userDetails->starting_year->format('Y') : '' ?>
+                </td>
+            <tr>
+                <td class="cellHeader" scope="col">
+                    <?= __('Referee') ?>
+                </td>
+                <td>
+                    <?= $userDetails->referee ? "<span class='text-success'><i class='fas fa-check-circle fa-fw'></i></span>" : "No" ?>
+                </td>
+            <tr>
+                <td class="cellHeader" scope="col">
+                    <?= __('Host') ?>
+                </td>
+                <td>
+                    <?= $userDetails->host ? "<span class='text-success'><i class='fas fa-check-circle fa-fw'></i></span>" : "No" ?>
+                </td>
+            <tr>
+                <td class="cellHeader" scope="col">
+                    <?= __('Voice') ?>
+                </td>
+                <td>
+                    <?= $userDetails->voice ? "<span class='text-success'><i class='fas fa-check-circle fa-fw'></i></span>" : "No" ?>
+                </td>
+            <tr>
+                <td class="cellHeader" scope="col">
+                    <?= __('Member Standing') ?>
+                </td>
+                <td>
+                    <?= $userDetails->member_standing['title'] ?>
+                </td>
+            </tr>
+            <tr>
+                <td class="cellHeader" scope="col">
+                    <?= __('Club Standing') ?>
+                </td>
+                <td>
+                    <?= $standing ?>
+                </td>
+            </tr>
+            <tr>
+                <td class="cellHeader" scope="col">
 
-                                            <!-- ABC Training modal -->
-                                            <?php echo $this->Html->link('', '/#', ['data-toggle' => 'modal', 'data-target' => ".bs-abc-modal-lg", 'class' => 'fas fa-info-circle fa-l  fa-fw text-success', 'title' => 'ABC Information']); ?>
+                    <!-- ABC Training modal -->
+                    <?php echo $this->Html->link('', '/#', ['data-toggle' => 'modal', 'data-target' => ".bs-abc-modal-lg", 'class' => 'fas fa-info-circle fa-l  fa-fw text-success', 'title' => 'ABC Information']); ?>
 
-                                            <div class="modal fade bs-abc-modal-lg" tabindex="-1" role="dialog"
-                                                aria-labelledby="mySmallModalLabel">
-                                                <div class="modal-dialog modal-lg" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="row">
-                                                            <div class="col-md-12" style="padding:30px;">
-                                                                <h3>ABC CERTIFICATION:</h3>
-                                                                <p>As you all know by now, we had a visit from the ALE
-                                                                    (awww) a few weeks ago and we need to make sure
-                                                                    that
-                                                                    anyone who works selling alcohol at our concession
-                                                                    has their ABC Certification. If you have not yet
-                                                                    been
-                                                                    certified, here is what you need to do:</p>
-                                                                <ul>
-                                                                    <li>Go to the ABC Website</li>
-                                                                    <li>Click on “Register for Seller/Server Training
-                                                                        Program”</li>
-                                                                    <li>Click on the “Search for a business that I
-                                                                        represent that currently holds permits OR has
-                                                                        applied for permits”
-                                                                        radio button</li>
-                                                                    <li>Type “Worx Comedy Theatre” in the “Trade Name”
-                                                                        field and click on the “Search” button.</li>
-                                                                    <li>Select the club, register on the site and take
-                                                                        the test</li>
-                                                                    <li>When you are done, you’ll be able to download a
-                                                                        PDF copy of the ABC Certificate. Please e-mail
-                                                                        your certification
-                                                                        to myself, Ashley and Michael Teague.</li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                        </div>
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- End ABC Training modal -->
-                                            <?= __('ABC Training') ?>
-                                        </td>
-                                        <td>
-                                            <?= $userDetails->abc ? "<span class='text-success'><i class='fas fa-check-circle fa-fw'></i>Completed: " . $this->Switches->date($userDetails->abc) . "</span> " : "<span class='text-muted'>Not Completed</span>" ?>
+                    <div class="modal fade bs-abc-modal-lg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="row">
+                                    <div class="col-md-12" style="padding:30px;">
+                                        <h3>ABC CERTIFICATION:</h3>
+                                        <p>As you all know by now, we had a visit from the ALE
+                                            (awww) a few weeks ago and we need to make sure
+                                            that
+                                            anyone who works selling alcohol at our concession
+                                            has their ABC Certification. If you have not yet
+                                            been
+                                            certified, here is what you need to do:</p>
+                                        <ul>
+                                            <li>Go to the ABC Website</li>
+                                            <li>Click on “Register for Seller/Server Training
+                                                Program”</li>
+                                            <li>Click on the “Search for a business that I
+                                                represent that currently holds permits OR has
+                                                applied for permits”
+                                                radio button</li>
+                                            <li>Type “Worx Comedy Theatre” in the “Trade Name”
+                                                field and click on the “Search” button.</li>
+                                            <li>Select the club, register on the site and take
+                                                the test</li>
+                                            <li>When you are done, you’ll be able to download a
+                                                PDF copy of the ABC Certificate. Please e-mail
+                                                your certification
+                                                to myself, Ashley and Michael Teague.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
 
 
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="cellHeader" scope="col">
-                                            <!-- Harrassment modal -->
-                                            <?php echo $this->Html->link('', '/#', ['data-toggle' => 'modal', 'data-target' => ".bs-harassment-modal-lg", 'class' => 'fas fa-info-circle fa-l  fa-fw text-success', 'title' => 'Shortform Guide And Harassment Policy']); ?>
-
-                                            <div class="modal fade bs-harassment-modal-lg" tabindex="-1" role="dialog"
-                                                aria-labelledby="mySmallModalLabel">
-                                                <div class="modal-dialog modal-lg" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="row">
-                                                            <div class="col-md-12" style="padding:30px;">
-                                                                <h3>SHORTFORM GUIDE & HARASSEMENT POLICY SIGNOFFS</h3>
-                                                                <p>In order to be eligible to practice, play or support
-                                                                    any of our shows you will need to have signed off
-                                                                    on
-                                                                    the ComedyWorx Shortform Guide Attestation Form. It
-                                                                    requires that you have read and agree to the
-                                                                    policies
-                                                                    in Shortform Guide and Harassment Policy. </p>
-                                                                <div class="list-group">
-                                                                    <span class="list-group-item active">
-                                                                        Important Documents
-                                                                    </span>
-                                                                    <span class="list-group-item">Shortform Attestation
-                                                                        Form - [
-                                                                        <a href="https://goo.gl/ZMLffs" target="_blank">https://goo.gl/ZMLffs</a>
-                                                                        ]</span>
-                                                                    <span class="list-group-item">Shortform Guide: [
-                                                                        <a href="https://goo.gl/WAH1E6" target="_blank">https://goo.gl/WAH1E6</a>
-                                                                        ]</span>
-                                                                    <span class="list-group-item">Harassment Policy: [
-                                                                        <a href="https://goo.gl/Lt1VeW" target="_blank">https://goo.gl/Lt1VeW</a>
-                                                                        ]</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                        </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End ABC Training modal -->
+                    <?= __('ABC Training') ?>
+                </td>
+                <td>
+                    <?= $userDetails->abc ? "<span class='text-success'><i class='fas fa-check-circle fa-fw'></i>Completed: " . $this->Switches->date($userDetails->abc) . "</span> " : "<span class='text-muted'>Not Completed</span>" ?>
 
 
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- End Harrassment modal -->
-                                            <?= __('Harassment Policy') ?>
-                                        </td>
-                                        <td>
-                                            <?= $userDetails->harassment ? "<span class='text-success'><i class='fas fa-check-circle fa-fw'></i>Completed: " . $this->Switches->date($userDetails->harassment) . "</span> " : "<span class='text-muted'>Not Completed</span>" ?>
 
-                                        </td>
+                </td>
+            </tr>
+            <tr>
+                <td class="cellHeader" scope="col">
+                    <!-- Harrassment modal -->
+                    <?php echo $this->Html->link('', '/#', ['data-toggle' => 'modal', 'data-target' => ".bs-harassment-modal-lg", 'class' => 'fas fa-info-circle fa-l  fa-fw text-success', 'title' => 'Shortform Guide And Harassment Policy']); ?>
+
+                    <div class="modal fade bs-harassment-modal-lg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="row">
+                                    <div class="col-md-12" style="padding:30px;">
+                                        <h3>SHORTFORM GUIDE & HARASSEMENT POLICY SIGNOFFS</h3>
+                                        <p>In order to be eligible to practice, play or support
+                                            any of our shows you will need to have signed off
+                                            on
+                                            the ComedyWorx Shortform Guide Attestation Form. It
+                                            requires that you have read and agree to the
+                                            policies
+                                            in Shortform Guide and Harassment Policy. </p>
+                                        <div class="list-group">
+                                            <span class="list-group-item active">
+                                                Important Documents
+                                            </span>
+                                            <span class="list-group-item">Shortform Attestation
+                                                Form - [
+                                                <a href="https://goo.gl/ZMLffs" target="_blank">https://goo.gl/ZMLffs</a>
+                                                ]</span>
+                                            <span class="list-group-item">Shortform Guide: [
+                                                <a href="https://goo.gl/WAH1E6" target="_blank">https://goo.gl/WAH1E6</a>
+                                                ]</span>
+                                            <span class="list-group-item">Harassment Policy: [
+                                                <a href="https://goo.gl/Lt1VeW" target="_blank">https://goo.gl/Lt1VeW</a>
+                                                ]</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Harrassment modal -->
+                    <?= __('Harassment Policy') ?>
+                </td>
+                <td>
+                    <?= $userDetails->harassment ? "<span class='text-success'><i class='fas fa-check-circle fa-fw'></i>Completed: " . $this->Switches->date($userDetails->harassment) . "</span> " : "<span class='text-muted'>Not Completed</span>" ?>
+
+                </td>
         </table>
         <?php endforeach; ?>
         <?php endif; ?>
@@ -408,7 +406,7 @@
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
-                        <div class="paginator">
+                        <div class="paginator" style="display:none;">
                             <ul class="pagination">
                                 <?= $this->Paginator->first('<< ' . __('first'), ['model' => 'Signups']) ?>
                                 <?= $this->Paginator->prev('< ' . __('previous'), ['model' => 'Signups']) ?>

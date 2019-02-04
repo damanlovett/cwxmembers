@@ -38,24 +38,20 @@ class SignupsController extends AppController
 
 
     /**
-     * My method
+     * Mine method
      *
      * @return \Cake\Http\Response|void
      */
     public function mine($id = null)
     {
-        //$this->paginate = [
-       //     'contain' => ['Shows', 'Users']
-       // ];
-
-        $id = $this->UserAuth->getUserId();
-        $signups = $this->Signups->findAllByUser_id($id)
-            ->contain(['Users', 'Shows', 'Shows.dropdowns']);
-
+        $this->paginate = [
+            'contain' => ['Shows', 'Users']
+        ];
+        $id = 1;
+        $signups = $this->Signups->find('all')->where(['Signups.user_id' => $id]);
         $signups = $this->paginate($this->Signups);
 
         $this->set(compact('signups'));
-
     }
 
 

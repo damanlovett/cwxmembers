@@ -47,6 +47,59 @@ class PracticesController extends AppController
 
     }
 
+    /**
+     * mine method
+     *
+     * @return \Cake\Http\Response|void
+     */
+    public function mine($id = null)
+    {
+        $this->viewBuilder()->setLayout('guest');
+        $practice = $this->Practices->get($id, [
+            'contain' => ['Months', 'Checkins']
+        ]);
+
+        $this->set('practice', $practice);
+
+
+
+        $this->loadModel('Checkins');
+        $checkin = $this->Checkins->newEntity();
+        if ($this->request->is('post')) {
+            $checkin = $this->Checkins->patchEntity($checkin, $this->request->getData());
+            if ($this->Checkins->save($checkin)) {
+                $this->Flash->success(__('The checkin has been saved.'));
+
+                return $this->redirect($this->referer());
+            }
+            $this->Flash->error(__('The checkin could not be saved. Please, try again.'));
+        }
+
+        $this->paginate = [
+            'contain' => ['Practices', 'Users']
+        ];
+        //$checkins = $this->paginate($this->Checkins);
+        $checkins = $this->Checkins->find('all', [
+            'contain' => ['Users'],
+            'conditions' => ['practice_id' => $id]
+        ]);
+
+// In a controller or table method.
+//    'conditions' => ['Articles.created >' => new DateTime('-10 days')],
+//    'contain' => ['Authors', 'Comments'],
+ //   'limit' => 10
+//]);
+
+
+        $this->set(compact('checkins'));
+
+        $users = $this->Checkins->Users->find('list', ['limit' => 200, 'conditions' => ['Users.active' => 1], 'order' => ['Users.last_name' => 'asc']]);
+        $this->set(compact('checkin', 'checkins', 'users'));
+
+
+
+    }
+
 
     /**
      * dashboard method

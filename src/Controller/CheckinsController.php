@@ -13,11 +13,11 @@ use Cake\Event\Event;
 class CheckinsController extends AppController
 {
 
-        public function beforeFilter(Event $event)
-            {
-                parent::beforeFilter($event);
-                $this->viewBuilder()->layout('default2'); // New in 3.1
-            }
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        $this->viewBuilder()->layout('default2'); // New in 3.1
+    }
 
             //Don't forget to add use Cake\Event\Event;
 
@@ -44,6 +44,22 @@ class CheckinsController extends AppController
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
+    {
+        $checkin = $this->Checkins->get($id, [
+            'contain' => ['Practices', 'Users']
+        ]);
+
+        $this->set('checkin', $checkin);
+    }
+
+    /**
+     * Mine method
+     *
+     * @param string|null $id Checkin id.
+     * @return \Cake\Http\Response|void
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function mine($id = null)
     {
         $checkin = $this->Checkins->get($id, [
             'contain' => ['Practices', 'Users']
