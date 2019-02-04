@@ -85,9 +85,10 @@ class UsersController extends AppController
 
         $this->loadModel('Signups');
         $signups = $this->Signups->findAllByUser_id($id)
-            ->contain(['Shows', 'Shows.dropdowns']);
+            ->contain(['Shows', 'Shows.dropdowns'])
+            ->order(['schedule' => 'DESC']);
 
-        $this->set('signups', $this->paginate($signups));
+        $this->set('signups', $signups);
 
     }
 
