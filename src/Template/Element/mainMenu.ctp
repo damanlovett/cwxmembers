@@ -10,11 +10,22 @@
         <li>
             <?= $this->Html->link(__('  My Profile'), ['controller' => 'users', 'action' => 'mview', 'plugin' => false], ['class' => 'fas fa-user menuIcon', 'title' => 'my Profile']); ?>
         </li>
-        <li>
-            <?= $this->Html->link(__('  Sign Ups'), ['controller' => 'months', 'action' => 'index', 'plugin' => false], ['class' => 'fas fa-pen-alt menuIcon', 'title' => 'View Shows']); ?>
+
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle fas fa-pen-alt menuIcon" data-toggle="dropdown" role="button"
+                aria-haspopup="true" aria-expanded="false" style="font-weight:600"> Sign Ups
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+
+                <li>
+                    <?= $this->Html->link(__('  Sign Up For Shows'), ['controller' => 'months', 'action' => 'index', 'plugin' => false], ['title' => 'Sign up For Shows']); ?>
+
+                    <?= $this->Html->link(__('  Available Shows'), ['controller' => 'shows', 'action' => 'dashboard', 'plugin' => false], ['title' => 'Available Shows']); ?>
+
+                </li>
+            </ul>
         </li>
-
-
         <li>
             <?= $this->Html->link(__('  Practices'), ['controller' => 'practices', 'action' => 'index', 'plugin' => false], ['class' => 'fas fa-chalkboard menuIcon', 'title' => 'View Practices']); ?>
         </li>
@@ -28,8 +39,8 @@
         <?php if ($this->UserAuth->HP('Shows', 'manager', false)) {
             ?>
         <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
-                style="font-weight:600">System Manager
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                aria-expanded="false" style="font-weight:600">System Manager
                 <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">

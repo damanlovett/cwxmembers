@@ -57,6 +57,14 @@ class Show extends Entity
         return $date->format('M j, Y - g:i a');
     }
 
+    // Short_name virtual field
+    protected function _getShortName()
+    {
+        $date = new Date($this->_properties['schedule']);
+
+        return $date->format('m/d/y');
+    }
+
     
     // Day of Week virtual field
     protected function _getDisplayDay()

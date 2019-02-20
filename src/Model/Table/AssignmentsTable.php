@@ -46,7 +46,7 @@ class AssignmentsTable extends Table
             'foreignKey' => 'show_id'
         ]);
         $this->belongsTo('Users', [
-            'foreignKey' => 'user_id'
+            'foreignKey' => 'user_id',
         ]);
         $this->belongsTo('Signups', [
             'foreignKey' => 'signup_id'

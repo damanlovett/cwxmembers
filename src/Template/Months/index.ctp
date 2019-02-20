@@ -11,9 +11,8 @@
     <h3>
         <i class="fas fa-pen-alt fa-l fa-fw"></i>&nbsp;&nbsp;
         <?= __('Sign Ups') ?>&nbsp;&nbsp;
-        <small style="color:white;margin-right:20px;">[ by month ]</small>
         <div class="btn-toolbar pull-right" role="toolbar" aria-label="...">
-        <?= $this->Html->link(__('Available Shows'), ['controller' => 'shows', 'action' => 'dashboard'], ['class' => 'btn btn-default btn-sm', 'title' => 'All Shows']) ?>
+            <?= $this->Html->link(__('Available Shows'), ['controller' => 'shows', 'action' => 'dashboard'], ['class' => 'btn btn-default btn-sm', 'title' => 'All Shows']) ?>
             <?= $this->Html->link(__('Practices'), ['controller' => 'practices', 'action' => 'index'], ['class' => 'btn btn-default btn-sm', 'title' => 'Practices']) ?>
         </div>
     </h3>
@@ -29,9 +28,6 @@
     <table class="table table-striped table-bordered" cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th class="iconBox">
-                    <?= __('') ?>
-                </th>
                 <th style="width:30px;">
                     <?= __('') ?>
                 </th>
@@ -56,9 +52,7 @@
             <?php foreach ($months as $month) : ?>
             <tr>
                 <td>
-                    <?= $this->Html->link(__(''), ['action' => 'view', $month->id], ['class' => 'fas fa-eye fa-l fa-fw text-success', 'title' => 'View Month']) ?>
-                </td>
-                <td>
+                    <?= $this->Html->link(__(''), ['action' => 'mobile', $month->id], ['class' => 'fas fas fa-pencil-alt fa-l fa-fw text-success', 'title' => 'Mobile View']) ?>
                 </td>
                 <td>
                     <?= h($month->title . " " . $month->year) ?>
@@ -76,7 +70,7 @@
             <?php endforeach; ?>
         </tbody>
         <tfoot>
-            <td colspan="6">
+            <td colspan="5">
 
                 <!-- <div class="paginator">
                     <ul class="pagination">

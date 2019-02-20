@@ -296,6 +296,105 @@ class MonthsController extends AppController
         }
     }
 
+
+    /**
+     * Mobile method
+     *
+     * @param string|null $id Month id.
+     * @return \Cake\Http\Response|void
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+
+
+    public function mobile($id = null)
+    {
+        $userId = $this->UserAuth->getUserId();
+        $this->set('userId', $userId);
+
+        $month = $this->Months->get($id, [
+            'contain' => ['Practices', 'Shows' => ['sort' => ['Shows.schedule' => 'asc']], 'Shows.dropdowns', 'Shows.months', 'Shows.signups', 'Signups', 'Signups.users', 'Signups.shows']
+        ]);
+
+        $this->set('month', $month);
+
+
+        $this->loadModel('Checkins');
+
+        $checkin = $this->Checkins->findByMonth_id($id)->contain([
+            'Users' => function ($q) {
+                return $q
+                    ->select(['first_name', 'last_name']);
+            }
+        ]);
+        $checkin->select([
+            'id',
+            'user_id',
+            'count' => $checkin->func()->count('*')
+        ])
+            ->group('user_id');
+
+        $this->set('checkin', $checkin);
+
+        $this->loadModel('Signups');
+
+        $signlist = $this->Signups->findByMonth_id($id)->contain([
+            'Users' => function ($q) {
+                return $q
+                    ->select(['first_name', 'last_name']);
+            }
+        ]);
+        $signlist->select([
+            'id',
+            'user_id',
+            'count' => $signlist->func()->count('*')
+        ])
+            ->group('user_id');
+
+        $this->set('signlist', $signlist);
+
+        $signups = $this->Signups->findByUser_idAndMonth_id($userId, $id)->contain([
+            'Users' => function ($q) {
+                return $q
+                    ->select(['first_name', 'last_name']);
+            },
+            'Shows' => function ($q) {
+                return $q
+                    ->contain(['Dropdowns'])
+                    ->select(['schedule', 'dropdown_id', 'Dropdowns.name']);
+            }
+        ]);
+        $signups->select([
+            'id',
+            'user_id',
+            'month_id',
+            'created'
+        ]);
+
+        $this->set('signups', $this->paginate($signups));
+        //$this->set('signups', $signups);
+
+        $this->loadModel('StaticPages');
+        $information = $this->StaticPages->find('all', [
+            'conditions' => ['id' => 2]
+        ]);
+
+        $this->set(compact('information'));
+
+        $this->loadModel('Signups');
+        $qsignup = $this->Signups->newEntity();
+        if ($this->request->is('post')) {
+            $qsignup = $this->Signups->patchEntity($qsignup, $this->request->getData());
+            if ($this->Signups->save($qsignup)) {
+                $this->Flash->success(__('Your signup has been saved.'));
+
+                return $this->redirect($this->referer());
+            }
+            $this->Flash->error(__('You have already signed up for this show.'));
+        }
+    }
+
+
+
     /**
      * Mview method
      *

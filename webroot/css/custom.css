@@ -1049,7 +1049,7 @@ a.homeTitle:hover {
 }
 
 .navbar-inverse .navbar-nav>li>a:hover {
-    background-color: white;
+    background-color: white !important;
     color: #0000b3 !important;
 }
 

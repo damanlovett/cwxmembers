@@ -45,13 +45,16 @@ class ShowsTable extends Table
             'foreignKey' => 'month_id'
         ]);
         $this->belongsTo('Dropdowns', [
-            'foreignKey' => 'dropdown_id'
+            'foreignKey' => 'dropdown_id',
+            'dependent' => true
         ]);
         $this->hasMany('Assignments', [
-            'foreignKey' => 'show_id'
+            'foreignKey' => 'show_id',
+            'dependent' => true
         ]);
         $this->hasMany('Signups', [
-            'foreignKey' => 'show_id'
+            'foreignKey' => 'show_id',
+            'dependent' => true
         ]);
     }
 
