@@ -62,7 +62,7 @@ class Show extends Entity
     {
         $date = new Date($this->_properties['schedule']);
 
-        return $date->format('m/d/y');
+        return $date->format('m/d');
     }
 
     

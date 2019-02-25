@@ -15,7 +15,7 @@
         </div>
     </h3>
 
-    <?php foreach ($information as $information) : ?>
+    <?php foreach ($information as $information): ?>
 
     <div class="alert alert-success" role="alert">
         <i class="fas fa-info-circle fa-3x fa-fw fa-pull-left"></i>
@@ -49,9 +49,9 @@
         </div>
         <div class="panel-body">
 
-            <div class="col-xs-6 col-md-6">
+            <div class="col-xs-7 col-md-7">
 
-                <?php if (!empty($month->shows)) : ?>
+                <?php if (!empty($month->shows)): ?>
                 <table class="table table-hover table-striped table-bordered" cellpadding="0" cellspacing="0">
                     <thead>
                         <th class="iconBox">
@@ -64,10 +64,10 @@
 
                     </thead>
                     <?php $previous = ''; ?>
-                    <?php foreach ($month->shows as $shows) : ?>
+                    <?php foreach ($month->shows as $shows): ?>
                     <tr>
                         <td>
-                            <?php if ($shows->signups_open == 1 && $shows->visible == 1) : ?>
+                            <?php if ($shows->signups_open == 1 && $shows->visible == 1): ?>
                             <?= $this->Form->create(null, [
                                 'url' => ['controller' => 'Months', 'action' => 'view', $month->id], ['class' => 'form-horizontal']
                             ]); ?>
@@ -83,17 +83,18 @@
                             <?php endif; ?>
                         </td>
                         <td>
-                            <?= $shows->Dropdowns['name'] . "<br/>&nbsp;<strong><span class='myBlue small'>(&nbsp;" . $shows->DisplayDay . "&nbsp;)</span></strong>" ?>
+                            <?= $shows->Dropdowns['name'] . "<br/>&nbsp;<strong><span class='myBlue small'>&nbsp;" . $shows->DisplayDay . "&nbsp;</span></strong>" ?>
 
                             <?= h($shows->ShortName) ?>
+                            &nbsp;<?= $this->Html->link(__(''), ['controller'=>'shows', 'action' => 'signup', $shows->id], ['class' => 'fas far fa-eye fa-l fa-fw text-success', 'title' => 'View']) ?>
                         </td>
 
                     </tr>
                     <?php $previous = $shows->Dropdowns['name'];
-                    endforeach; ?>
+                endforeach; ?>
                     <tfoot>
                         <td colspan="2">
-                            <?php // echo $this->element('Usermgmt.pagination', ['paginationText' => __('Number of Shows')]); ?>
+                            <?php  ?>
                         </td>
                     </tfoot>
                 </table>
@@ -106,14 +107,11 @@
 
 
             </div>
-            <div class="col-xs-6 col-md-6">
+            <div class="col-xs-5 col-md-5">
 
-                <?php if (!empty($signups)) : ?>
+                <?php if (!empty($signups)): ?>
                 <table class="table table-hover table-striped table-bordered" cellpadding="0" cellspacing="0">
                     <thead>
-                        <th class="iconBox">
-                            <?= __('') ?>
-                        </th>
                         <th scope="col">
                             <i class="fas fas fa-pen-alt fa-l fa-fw"></i>&nbsp;
                             <?= __('My Sign Ups') ?>
@@ -121,28 +119,24 @@
 
                     </thead>
                     <?php $previous2 = ''; ?>
-                    <?php foreach ($signups as $signups) : ?>
+                    <?php foreach ($signups as $signups): ?>
                     <tr>
 
-
-
-                        <td><?php if ($signups->show->signups_open == 0) : ?>
+                        <td>
+                            <?php if ($signups->show->signups_open = 1): ?>
+                            <?= $signups->show->dropdown['name'] . "<br/>&nbsp;<strong><span class='myBlue small'>&nbsp;" . date_format($signups->show->schedule, "D") . "&nbsp;</span></strong>&nbsp;-&nbsp;" . $signups->show->ShortName ?>&nbsp;
                             <?= $this->Form->postLink(__(''), ['controller' => 'signups', 'action' => 'remove', $signups->id], ['class' => 'fas fa-minus-square fa-l fa-fw text-dander', 'title' => 'Delete Signup']) ?>&nbsp;&nbsp;
                             <?php endif; ?>
-                        </td>
+                            &nbsp;
 
-
-
-                        <td>
-                            <?= $signups->show->dropdown['name'] . "<br/>&nbsp;<strong><span class='myBlue small'>&nbsp;" . date_format($signups->show->schedule, "D") . "&nbsp;</span></strong>&nbsp;-&nbsp;" . $signups->show->ShortName ?>&nbsp;
                         </td>
                     </tr>
                     <?php 
                     $previous2 = $signups->show->DisplayName;
-                    endforeach; ?>
+                endforeach; ?>
                     <tfoot>
-                        <td colspan="2">
-                            <?php // echo $this->element('Usermgmt.pagination', ['paginationText' => __('Number of Shows')]); ?>
+                        <td colspan="1">
+                            <?php  ?>
                         </td>
                     </tfoot>
                 </table>

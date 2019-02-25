@@ -349,7 +349,8 @@ class MonthsController extends AppController
 
         $this->set('signlist', $signlist);
 
-        $signups = $this->Signups->findByUser_idAndMonth_id($userId, $id)->contain([
+        $signups = $this->Signups->findByUser_idAndMonth_id($userId, $id)->order(['schedule' => 'asc'])
+        ->contain([
             'Users' => function ($q) {
                 return $q
                     ->select(['first_name', 'last_name']);
@@ -387,7 +388,10 @@ class MonthsController extends AppController
                 return $this->redirect($this->referer());
             }
             $this->Flash->error(__('You have already signed up for this show.'));
+            return $this->redirect($this->referer());
+
         }
+        
     }
 
 
