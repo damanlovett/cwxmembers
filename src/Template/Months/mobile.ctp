@@ -111,6 +111,9 @@
                 <?php if (!empty($signups)) : ?>
                 <table class="table table-hover table-striped table-bordered" cellpadding="0" cellspacing="0">
                     <thead>
+                        <th class="iconBox">
+                            <?= __('') ?>
+                        </th>
                         <th scope="col">
                             <i class="fas fas fa-pen-alt fa-l fa-fw"></i>&nbsp;
                             <?= __('My Sign Ups') ?>
@@ -121,15 +124,24 @@
                     <?php foreach ($signups as $signups) : ?>
                     <tr>
 
+
+
+                        <td><?php if ($signups->show->signups_open == 0) : ?>
+                            <?= $this->Form->postLink(__(''), ['controller' => 'signups', 'action' => 'remove', $signups->id], ['class' => 'fas fa-minus-square fa-l fa-fw text-dander', 'title' => 'Delete Signup']) ?>&nbsp;&nbsp;
+                            <?php endif; ?>
+                        </td>
+
+
+
                         <td>
-                            <?= $signups->show->dropdown['name'] . "<br/>&nbsp;<strong><span class='myBlue small'>&nbsp;" . date_format($signups->show->schedule, "D") . "&nbsp;</span></strong>&nbsp;-&nbsp;" . $signups->show->ShortName ?>
+                            <?= $signups->show->dropdown['name'] . "<br/>&nbsp;<strong><span class='myBlue small'>&nbsp;" . date_format($signups->show->schedule, "D") . "&nbsp;</span></strong>&nbsp;-&nbsp;" . $signups->show->ShortName ?>&nbsp;
                         </td>
                     </tr>
                     <?php 
                     $previous2 = $signups->show->DisplayName;
                     endforeach; ?>
                     <tfoot>
-                        <td>
+                        <td colspan="2">
                             <?php // echo $this->element('Usermgmt.pagination', ['paginationText' => __('Number of Shows')]); ?>
                         </td>
                     </tfoot>

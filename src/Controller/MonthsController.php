@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+
 /**
  * Months Controller
  *
@@ -16,7 +17,6 @@ class MonthsController extends AppController
     {
         parent::beforeFilter($event);
         $this->viewBuilder()->layout('default2'); // New in 3.1
-
     }
 
 
@@ -59,7 +59,6 @@ class MonthsController extends AppController
         ]);
 
         $this->set(compact('information'));
-
     }
 
     /**
@@ -86,8 +85,6 @@ class MonthsController extends AppController
         ]);
 
         $this->set(compact('information'));
-
-
     }
 
     public function signupReport($id = null, $id2 = null)
@@ -194,7 +191,6 @@ class MonthsController extends AppController
         $this->loadModel('Shows');
         $datas = $this->Shows->find('all')->contain(['Dropdowns', 'Months'])->order(['Shows.schedule' => 'asc'])->where(['Shows.month_id' => $id])->toArray();
         $this->set(compact('datas'));
-
     }
 
 
@@ -293,6 +289,7 @@ class MonthsController extends AppController
                 return $this->redirect($this->referer());
             }
             $this->Flash->error(__('You have already signed up for this show.'));
+            return $this->redirect($this->referer());
         }
     }
 
@@ -450,7 +447,6 @@ class MonthsController extends AppController
                 $this->Flash->success(__('The show has been saved.'));
 
                 return $this->redirect(['action' => 'mview', $id]);
-
             }
             $this->Flash->error(__('The show could not be saved. Please, try again.'));
         }
@@ -488,8 +484,6 @@ class MonthsController extends AppController
             ->where(['Signups.month_id' => $id]);
 
         $this->set('signups', $this->paginate($signups));
-
-
     }
 
     /**
