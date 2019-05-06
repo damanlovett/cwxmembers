@@ -1035,11 +1035,14 @@ class UsersTable extends UsermgmtAppTable {
 		$emailObj->emailFormat('both');
 		$fromConfig = EMAIL_FROM_ADDRESS;
 		$fromNameConfig = EMAIL_FROM_NAME;
+		$fromManagerNameConfig = __('CWX Admin');
+		$fromManagerConfig = EMAIL_TO_MANAGER;
 		$emailObj->from([$fromConfig=>$fromNameConfig]);
 		$emailObj->sender([$fromConfig=>$fromNameConfig]);
+		$emailObj->cc([$fromManagerConfig=>$fromManagerNameConfig]);
 		$emailObj->to($userEntity['email']);
-		$emailObj->subject(SITE_NAME.': '.__('Registration is Complete'));
-		$body = __('Welcome {0},<br/><br/>Thank you for your registration on {1}.<br/><br/>Thanks,<br/>{2}',[$userEntity['first_name'], SITE_URL, SITE_NAME]);
+		$emailObj->subject(SITE_NAME.': '.__('Registration is Almost Complete'));
+		$body = __('Welcome {0},<br/><br/>Thank you for submitting your request for an account on the ComedyWorx Portal! We are really excited for you to become part of our Improv troupe.  The Portal Administrators are going to review your request to make sure everything is ready so you can start signing up for shows.  Once you are set up, we will send you an e-mail with instructions on what to do next.<br /><br />Looking forward to seeing you at the club!<br /><br />- ComedyWorx Management<br />{1}',[$userEntity['first_name'], SITE_URL, SITE_NAME]);
 		try{
 			$emailObj->send($body);
 		} catch (Exception $ex) {
