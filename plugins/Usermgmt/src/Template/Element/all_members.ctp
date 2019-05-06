@@ -43,9 +43,9 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
                 <th scope="col">
                     <?php echo $this->Paginator->sort('Users.last_login', __('Last Login')); ?>
                 </th>
-				<th>
-				<?php echo __('Status'); ?>
-				</th>
+                <th>
+                    <?php echo __('Status'); ?>
+                </th>
                 <th style="width:100px;">
                     <?php echo __('Action'); ?>
                 </th>
@@ -88,6 +88,8 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
 														if (!$row['email_verified']) {
 															echo "<li>" . $this->Form->postLink(__('Verify Email'), ['action' => 'verifyEmail', $row['id'], 'page' => $page], ['escape' => false, 'confirm' => __('Are you sure you want to verify email of this user?')]) . "</li>";
 														}
+														echo "<li>".$this->Form->postLink(__('Delete User'), ['controller'=>'Users', 'action'=>'deleteUser', $row['id'], 'page'=>$page], ['escape'=>false, 'confirm'=>__('Are you sure you want to delete this user?')])."</li>";
+
 													}
 													echo "<li role='separator' class='divider'></li>";
 													echo "<li>" . $this->Html->link("<i class='fas fa-download fa-fw'></i> Practices", [

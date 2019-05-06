@@ -39,6 +39,19 @@ class DropdownsController extends AppController
      */
     public function manager()
     {
+
+        
+        $dropdown = $this->Dropdowns->newEntity();
+        if ($this->request->is('post')) {
+            $dropdown = $this->Dropdowns->patchEntity($dropdown, $this->request->getData());
+            if ($this->Dropdowns->save($dropdown)) {
+                $this->Flash->success(__('The dropdown has been saved.'));
+
+                return $this->redirect($this->referer());
+            }
+            $this->Flash->error(__('The dropdown could not be saved. Please, try again.'));
+        }
+        $this->set(compact('dropdown'));
         $dropdowns = $this->paginate($this->Dropdowns);
         $this->set(compact('dropdowns'));
 
@@ -103,7 +116,7 @@ class DropdownsController extends AppController
             if ($this->Dropdowns->save($dropdown)) {
                 $this->Flash->success(__('The dropdown has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect($this->referer());
             }
             $this->Flash->error(__('The dropdown could not be saved. Please, try again.'));
         }
