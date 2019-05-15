@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+
 /**
  * Practices Controller
  *
@@ -19,7 +20,7 @@ class PracticesController extends AppController
         $this->viewBuilder()->layout('default2'); // New in 3.1
     }
 
-        //Don't forget to add use Cake\Event\Event;
+    //Don't forget to add use Cake\Event\Event;
 
     /**
      * Index method
@@ -43,8 +44,6 @@ class PracticesController extends AppController
         ]);
 
         $this->set(compact('information'));
-
-
     }
 
     /**
@@ -84,20 +83,17 @@ class PracticesController extends AppController
             'conditions' => ['practice_id' => $id]
         ]);
 
-// In a controller or table method.
-//    'conditions' => ['Articles.created >' => new DateTime('-10 days')],
-//    'contain' => ['Authors', 'Comments'],
- //   'limit' => 10
-//]);
+        // In a controller or table method.
+        //    'conditions' => ['Articles.created >' => new DateTime('-10 days')],
+        //    'contain' => ['Authors', 'Comments'],
+        //   'limit' => 10
+        //]);
 
 
         $this->set(compact('checkins'));
 
         $users = $this->Checkins->Users->find('list', ['limit' => 200, 'conditions' => ['Users.active' => 1], 'order' => ['Users.last_name' => 'asc']]);
         $this->set(compact('checkin', 'checkins', 'users'));
-
-
-
     }
 
 
@@ -124,10 +120,9 @@ class PracticesController extends AppController
         ]);
 
         $this->set(compact('information'));
-
     }
     /**
-     * grid method
+     * Grid Photo method
      *
      * @return \Cake\Http\Response|void
      */
@@ -148,13 +143,11 @@ class PracticesController extends AppController
         ]);
 
         $this->set(compact('information'));
-
-
     }
 
     /**
      * Manager method
-     *
+     * 
      * @return \Cake\Http\Response|void
      */
     public function manager()
@@ -174,7 +167,6 @@ class PracticesController extends AppController
         ]);
 
         $this->set(compact('information'));
-
     }
 
     /**
@@ -194,7 +186,7 @@ class PracticesController extends AppController
     }
 
     /**
-     * Mview method
+     * Manager View method
      *
      * @param string|null $id Practice id.
      * @return \Cake\Http\Response|void
@@ -248,22 +240,25 @@ class PracticesController extends AppController
             'conditions' => ['practice_id' => $id]
         ]);
 
-// In a controller or table method.
-//    'conditions' => ['Articles.created >' => new DateTime('-10 days')],
-//    'contain' => ['Authors', 'Comments'],
- //   'limit' => 10
-//]);
+        // In a controller or table method.
+        //    'conditions' => ['Articles.created >' => new DateTime('-10 days')],
+        //    'contain' => ['Authors', 'Comments'],
+        //   'limit' => 10
+        //]);
 
 
         $this->set(compact('checkins'));
 
         $users = $this->Checkins->Users->find('list', ['limit' => 200, 'conditions' => ['Users.active' => 1], 'order' => ['Users.last_name' => 'asc']]);
         $this->set(compact('checkin', 'checkins', 'users'));
-
-
-
     }
 
+    /**
+     * Excel Report method
+     * 
+     * @param string|null $id Practice id.
+     * @return \Cake\Http\Response|void
+     */
     public function practiceReport($id = null, $id2)
     {
         $this->loadModel('Checkins');
@@ -303,7 +298,7 @@ class PracticesController extends AppController
     }
 
     /**
-     * Madd method
+     * Manager Add method
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
