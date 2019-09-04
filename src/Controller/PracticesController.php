@@ -199,6 +199,13 @@ class PracticesController extends AppController
         ]);
 
         $this->set('practice', $practice);
+
+        $this->loadModel('Checkins');
+        $checkins = $this->Checkins->find('all', [
+            'contain' => ['Users'],
+            'conditions' => ['practice_id' => $id]
+        ]);
+        $this->set(compact('checkins'));
     }
 
     /**
