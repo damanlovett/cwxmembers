@@ -24,7 +24,7 @@ class ShowsController extends AppController
         $this->viewBuilder()->layout('default2'); // New in 3.1
     }
 
-         //Don't forget to add use Cake\Event\Event;
+    //Don't forget to add use Cake\Event\Event;
 
     /**
      * Index method
@@ -132,8 +132,6 @@ class ShowsController extends AppController
         ]);
 
         $this->set(compact('information'));
-
-
     }
 
     /**
@@ -253,7 +251,6 @@ class ShowsController extends AppController
             ->group('user_id');
 
         $this->set('signlist', $signlist);
-
     }
 
     /**
@@ -274,7 +271,6 @@ class ShowsController extends AppController
             $this->Flash->success(__('Sign ups for the month are open'));
         }
         return $this->redirect($this->referer());
-
     }
 
     /**
@@ -295,7 +291,6 @@ class ShowsController extends AppController
             $this->Flash->success(__('Shows for the month are not visible'));
         }
         return $this->redirect($this->referer());
-
     }
 
 
@@ -321,7 +316,6 @@ class ShowsController extends AppController
         $this->viewBuilder()->className('CsvView.Csv');
 
         $this->set('signups', $signups);
-
     }
 
     /**
@@ -406,7 +400,6 @@ class ShowsController extends AppController
                 $this->Flash->success(__('The show has been saved.'));
 
                 return $this->redirect($this->referer());
-
             }
             $this->Flash->error(__('The show could not be saved. Please, try again.'));
         }
@@ -437,7 +430,33 @@ class ShowsController extends AppController
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function edit($id = null)
+    public function edit($id = null, $id2 = null)
+    {
+        $show = $this->Shows->get($id, [
+            'contain' => []
+        ]);
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $show = $this->Shows->patchEntity($show, $this->request->getData());
+            if ($this->Shows->save($show)) {
+                $this->Flash->success(__('The show has been saved.'));
+
+                return $this->redirect(['controller' => 'Months', 'action' => 'mview', $id2]);
+            }
+            $this->Flash->error(__('The show could not be saved. Please, try again.'));
+        }
+        $months = $this->Shows->Months->find('list', ['limit' => 200]);
+        $dropdowns = $this->Shows->Dropdowns->find('list', ['conditions' => ['type' => 'show'], 'order' => ['name' => 'ASC']]);
+        $this->set(compact('show', 'months', 'dropdowns'));
+    }
+
+    /**
+     * Post method
+     *
+     * @param string|null $id Show id.
+     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
+     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     */
+    public function post($id = null)
     {
         $show = $this->Shows->get($id, [
             'contain' => []
@@ -455,6 +474,7 @@ class ShowsController extends AppController
         $dropdowns = $this->Shows->Dropdowns->find('list', ['conditions' => ['type' => 'show'], 'order' => ['name' => 'ASC']]);
         $this->set(compact('show', 'months', 'dropdowns'));
     }
+
 
     /**
      * Remove method
@@ -512,8 +532,5 @@ class ShowsController extends AppController
         $this->viewBuilder()->className('CsvView.Csv');
         $this->set(compact('datas', '_serialize', '_header', '_extract'));
         return;
-
     }
-
-
 }
