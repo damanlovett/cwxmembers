@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -44,7 +45,7 @@ class MonthsController extends AppController
     {
 
         $this->paginate = [
-            'contain' => ['Signups', 'Shows'],
+            'contain' => ['Signups', 'Shows', 'Practices'],
             'limit' => 10,
             'order' => ['Months.first_friday' => 'DESC'],
         ];
@@ -104,6 +105,89 @@ class MonthsController extends AppController
                 $results = date_format($row['show']['schedule'], "M j, Y - g:i a");
                 return ($results);
             }, 'user.first_name', 'user.last_name', 'user.email', 'created'
+        ];
+        $this->viewBuilder()->className('CsvView.Csv');
+        $this->set(compact('datas', '_serialize', '_header', '_extract'));
+        return;
+    }
+
+
+    public function mySignups($id = null, $id2 = null, $id3 = null)
+    {
+
+        $this->response->download("{$id2}_show_signups.csv");
+        // $id=month_id, $id2 = Name of person or file, $id3 = userID
+        //$datas = $this->Memberships->find('all')->contain('Users')->where(['Memberships.processed' => $id])->toArray();
+        $this->loadModel('Signups');
+        $datas = $this->Signups->findByUserId($id3)->contain(['Users', 'Shows', 'Shows.dropdowns', 'Months'])->order(['Shows.schedule' => 'asc'])->where(['Signups.month_id' => $id])->toArray();
+
+        $_serialize = 'datas';
+        $_header = ['Subject', 'Start Date', 'Start Time', 'End Date', 'End Time', 'Description'];
+        $_extract = [
+            'Dropdowns.name',
+            function ($row) {
+                $results = date_format($row['show']['schedule'], "m/j/y");
+                return ($results);
+            },
+            function ($row) {
+                $results = date_format($row['show']['schedule'], "g:i a");
+                return ($results);
+            },
+            function ($row) {
+                $results = date_format($row['show']['schedule'], "m/j/y");
+                return ($results);
+            },
+            function ($row) {
+                $endTime = $row['show']['schedule'];
+                $endTime = $endTime->modify('+2 hours');
+                $results = $endTime->format('g:i a');
+                return ($results);
+            },
+            function ($row) {
+                $results = $row['show']['notes'];
+                return ($results);
+            }
+        ];
+        $this->viewBuilder()->className('CsvView.Csv');
+        $this->set(compact('datas', '_serialize', '_header', '_extract'));
+        return;
+    }
+
+    public function dlSignups($id = null, $id2 = null)
+    {
+
+        $this->response->download("{$id2}_show_signups.csv");
+        // $id=month_id, $id2 = month
+        //$datas = $this->Memberships->find('all')->contain('Users')->where(['Memberships.processed' => $id])->toArray();
+        $this->loadModel('Shows');
+        $datas = $this->Shows->find('all')->contain(['Dropdowns', 'Months'])->order(['schedule' => 'asc'])->where(['month_id' => $id])->toArray();
+
+        $_serialize = 'datas';
+        $_header = ['Subject', 'Start Date', 'Start Time', 'End Date', 'End Time', 'Description'];
+        $_extract = [
+            'dropdown.name',
+            function ($row) {
+                $results = date_format($row['schedule'], "m/j/y");
+                return ($results);
+            },
+            function ($row) {
+                $results = date_format($row['schedule'], "g:i a");
+                return ($results);
+            },
+            function ($row) {
+                $results = date_format($row['schedule'], "m/j/y");
+                return ($results);
+            },
+            function ($row) {
+                $endTime = $row['schedule'];
+                $endTime = $endTime->modify('+2 hours');
+                $results = $endTime->format('g:i a');
+                return ($results);
+            },
+            function ($row) {
+                $results = $row['notes'];
+                return ($results);
+            }
         ];
         $this->viewBuilder()->className('CsvView.Csv');
         $this->set(compact('datas', '_serialize', '_header', '_extract'));
@@ -350,17 +434,17 @@ class MonthsController extends AppController
         $this->set('signlist', $signlist);
 
         $signups = $this->Signups->findByUser_idAndMonth_id($userId, $id)->order(['schedule' => 'asc'])
-        ->contain([
-            'Users' => function ($q) {
-                return $q
-                    ->select(['first_name', 'last_name']);
-            },
-            'Shows' => function ($q) {
-                return $q
-                    ->contain(['Dropdowns'])
-                    ->select(['schedule', 'dropdown_id', 'Dropdowns.name']);
-            }
-        ]);
+            ->contain([
+                'Users' => function ($q) {
+                    return $q
+                        ->select(['first_name', 'last_name']);
+                },
+                'Shows' => function ($q) {
+                    return $q
+                        ->contain(['Dropdowns'])
+                        ->select(['schedule', 'dropdown_id', 'Dropdowns.name']);
+                }
+            ]);
         $signups->select([
             'id',
             'user_id',
@@ -389,9 +473,7 @@ class MonthsController extends AppController
             }
             $this->Flash->error(__('You have already signed up for this show.'));
             return $this->redirect($this->referer());
-
         }
-        
     }
 
 
@@ -408,7 +490,7 @@ class MonthsController extends AppController
     public function mview($id = null)
     {
         $month = $this->Months->get($id, [
-            'contain' => ['Practices', 'Shows', 'Shows.dropdowns', 'Shows.months', 'Signups']
+            'contain' => ['Practices', 'Shows', 'Shows.dropdowns', 'Shows.months', 'Shows.signups', 'Signups']
         ]);
 
         $months = $this->paginate($this->Months);
@@ -434,6 +516,7 @@ class MonthsController extends AppController
         $this->loadModel('Shows');
         $dropdowns = $this->Shows->Dropdowns->find('list', ['conditions' => ['type' => 'show'], 'order' => ['name' => 'ASC']]);
         $this->set(compact('dropdowns'));
+
 
         $this->loadModel('StaticPages');
         $information = $this->StaticPages->find('all', [
@@ -551,6 +634,6 @@ class MonthsController extends AppController
             $this->Flash->error(__('The month could not be deleted. Please, try again.'));
         }
 
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect($this->referer());
     }
 }

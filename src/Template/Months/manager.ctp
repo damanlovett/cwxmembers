@@ -35,17 +35,25 @@
 
     <?php endforeach; ?>
     <hr />
-            <ul class="nav nav-pills">
-            <li role="presentation"  class="disabled"><a href="#"><strong>Icon Legend:</strong></a> &nbsp;&nbsp;</li>
-            <li role="presentation"  class="disabled"><a href="#"><i class="fas fa-eye fa-l  fa-fw text-success"></i> View month</a></li>
-            <li role="presentation"  class="disabled"><a href="#"><i class="fas fa-pen-alt fa-l fa-fw text-success"></i> Download show signups</a></li>
-            <li role="presentation"  class="disabled"><a href="#"><i class="fas fa-chalkboard fa-l fa-fw text-success"></i> View practices</a></li>
-            </ul>
-            <div style="clear: both;"></div>
+    <ul class="nav nav-pills">
+        <li role="presentation" class="disabled"><a href="#"><strong>Icon Legend:</strong></a> &nbsp;&nbsp;</li>
+        <li role="presentation" class="disabled"><a href="#"><i class="fas fa-eye fa-l  fa-fw text-success"></i> View
+                month</a></li>
+        <li role="presentation" class="disabled"><a href="#"><i class="fas fa-pen-alt fa-l fa-fw text-success"></i>
+                Download show signups</a></li>
+        <li role="presentation" class="disabled"><a href="#"><i class="fas fa-chalkboard fa-l fa-fw text-success"></i>
+                View practices</a></li>
+        <li role="presentation" class="disabled"><a href="#"><i class="fas fa-download fa-l fa-fw text-success"></i>
+                Download Show Calendar</a></li>
+    </ul>
+    <div style="clear: both;"></div>
 
     <table class="table table-striped table-bordered" cellpadding="0" cellspacing="0">
         <thead>
             <tr>
+                <th class="iconBox">
+                    <?= __('') ?>
+                </th>
                 <th class="iconBox">
                     <?= __('') ?>
                 </th>
@@ -86,6 +94,9 @@
                     <?= $this->Html->link(__(''), ['controller' => 'months', 'action' => 'practiceReport', $month->id, $month->title], ['class' => 'fas fa-chalkboard fa-l fa-fw text-success', 'escape' => false, 'title' => 'Download Practice Check Ins']) ?>
                 </td>
                 <td>
+                    <?= $this->Html->link(__(''), ['controller' => 'months', 'action' => 'dlSignups', $month->id, $month->title], ['class' => 'fas fa-download fa-fw text-success', 'escape' => false, 'title' => 'Download Show Calendar']) ?>
+                </td>
+                <td>
                     <?= h($month->title . " " . $month->year) ?>
                 </td>
                 <td style="text-align:center;">
@@ -101,7 +112,7 @@
             <?php endforeach; ?>
         </tbody>
         <tfoot>
-            <td colspan="7">
+            <td colspan="8">
 
                 <div class="paginator">
                     <ul class="pagination">

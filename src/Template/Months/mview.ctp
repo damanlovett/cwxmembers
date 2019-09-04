@@ -14,8 +14,8 @@
             <?= $this->Html->link(__('All Shows'), ['controller' => 'shows', 'action' => 'manager'], ['class' => 'btn btn-sm', 'title' => 'View All Shows']) ?>
             <?= $this->Html->link('By Month', ['controller' => 'months', 'action' => 'manager'], ['class' => 'btn btn-sm', 'title' => 'View By Month']) ?>
             <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
                     Reports <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
@@ -64,19 +64,27 @@
         </div>
 
     </div>
-    
-    
-    
 
-<ul class="nav nav-pills">
-            <li role="presentation"  class="disabled"><a href="#"><strong>Sign Ups:</strong></a> &nbsp;&nbsp;</li>
-            <li role="presentation"><?= $this->Html->link(__('Close'), ['controller' => 'shows', 'action' => 'close_signup', 0, $month->id], ['class' => 'btn btn-default btn-sm']) ?></li>
-            <li role="presentation"><?= $this->Html->link(__('Open'), ['controller' => 'shows', 'action' => 'close_signup', 1, $month->id], ['class' => 'btn btn-default btn-sm']) ?></li>
-            <li role="presentation"  class="disabled"><a href="#"><strong>Visibility:</strong></a> &nbsp;&nbsp;</li>
-            <li role="presentation"><?= $this->Html->link(__('Turn On'), ['controller' => 'shows', 'action' => 'toggle_visibility', 1, $month->id], ['class' => 'btn btn-default btn-sm']) ?></li>
-            <li role="presentation"><?= $this->Html->link(__('Turn Off'), ['controller' => 'shows', 'action' => 'toggle_visibility', 0, $month->id], ['class' => 'btn btn-default btn-sm']) ?></li>
-            </ul>
-            <div style="clear: both;"></div>
+
+
+
+    <ul class="nav nav-pills">
+        <li role="presentation" class="disabled"><a href="#"><strong>Sign Ups:</strong></a> &nbsp;&nbsp;</li>
+        <li role="presentation">
+            <?= $this->Html->link(__('Close'), ['controller' => 'shows', 'action' => 'close_signup', 0, $month->id], ['class' => 'btn btn-default btn-sm']) ?>
+        </li>
+        <li role="presentation">
+            <?= $this->Html->link(__('Open'), ['controller' => 'shows', 'action' => 'close_signup', 1, $month->id], ['class' => 'btn btn-default btn-sm']) ?>
+        </li>
+        <li role="presentation" class="disabled"><a href="#"><strong>Visibility:</strong></a> &nbsp;&nbsp;</li>
+        <li role="presentation">
+            <?= $this->Html->link(__('Turn On'), ['controller' => 'shows', 'action' => 'toggle_visibility', 1, $month->id], ['class' => 'btn btn-default btn-sm']) ?>
+        </li>
+        <li role="presentation">
+            <?= $this->Html->link(__('Turn Off'), ['controller' => 'shows', 'action' => 'toggle_visibility', 0, $month->id], ['class' => 'btn btn-default btn-sm']) ?>
+        </li>
+    </ul>
+    <div style="clear: both;"></div>
     <div class="row collapse" id="collapseAddSection">
         <div class="col-md-6 ">
 
@@ -86,14 +94,14 @@
                 <legend>Add Show</legend>
 
                 <?= $this->Form->create(null, [
-                    'url' => ['controller' => 'Months', 'action' => 'mview', $month->id], ['class' => 'form-inline']
-                ]); ?>
+                        'url' => ['controller' => 'Months', 'action' => 'mview', $month->id], ['class' => 'form-inline']
+                    ]); ?>
                 <div class="um-form-row form-group ">
                     <div class="col-md-6 ">
                         <?php
-                        echo $this->Form->hidden('month_id', ['value' => $month->id]);
-                        echo $this->Form->control('dropdown_id', ['label' => 'Type of Show', 'options' => $dropdowns, 'empty' => true]);
-                        ?>
+                            echo $this->Form->hidden('month_id', ['value' => $month->id]);
+                            echo $this->Form->control('dropdown_id', ['label' => 'Type of Show', 'options' => $dropdowns, 'empty' => true]);
+                            ?>
                     </div>
                     <div class="col-md-6 ">
                         <?php echo $this->Form->control('schedule', ['type' => 'text', 'label' => 'Date of Show', 'div' => false, 'size' => 3, 'class' => 'form-control datetimepicker']); ?>
@@ -150,8 +158,8 @@
                 <legend>Add Practice</legend>
 
                 <?= $this->Form->create(null, [
-                    'url' => ['controller' => 'Practices', 'action' => 'madd', $month->id], ['class' => 'form-inline']
-                ]); ?>
+                        'url' => ['controller' => 'Practices', 'action' => 'madd', $month->id], ['class' => 'form-inline']
+                    ]); ?>
                 <?= $this->Form->hidden('month_id', ['value' => $month->id]); ?>
 
                 <div class="um-form-row form-group ">
@@ -278,7 +286,7 @@
                                 <?= $this->Html->link(__(''), ['controller' => 'Shows', 'action' => 'view', $shows->id], ['class' => 'fas fa-eye fa-l  fa-fw text-success', 'title' => 'View Show']) ?>
                             </td>
                             <td>
-                                <?= $this->Html->link(__(''), ['controller' => 'Shows', 'action' => 'edit', $shows->id], ['class' => 'fas fa-edit fa-l  fa-fw text-success', 'title' => 'Edit Show']) ?>
+                                <?= $this->Html->link(__(''), ['controller' => 'Shows', 'action' => 'edit', $shows->id, $shows->month_id], ['class' => 'fas fa-edit fa-l  fa-fw text-success', 'title' => 'Edit Show']) ?>
                             </td>
                             <td>
                                 <?= $this->Form->postLink(__(''), ['controller' => 'Shows', 'action' => 'remove', $shows->id], ['confirm' => __('Are you sure you want to delete this show?', $shows->id), 'class' => 'fas fa-trash-alt fa-l  fa-fw text-danger', 'title' => 'Delete Show']) ?>
@@ -290,7 +298,7 @@
                                 <?= h($this->Switches->datetime($shows->schedule)) ?>
                             </td>
                             <td style="text-align: center ">
-                                <?= $show->numberOfSignups() ?>
+                                <?php echo $shows->numberOfSignups(); ?>
 
                                 <?php if (!empty($show->players_needed)) : ?>
 
@@ -302,8 +310,8 @@
                                 <?php endif; ?>
                             </td>
                             <td style="text-align: center ">
-                                <?= $shows->visible ? "<i class='fas fa-check-circle fa-l fa-fw text-success'
-	 text-success '></i>" : ' ' ?>
+                                <?php if ($shows->visible = 1) echo "<i class='fas fa-check-circle fa-l fa-fw text-success'
+	 text-success '></i>"; ?>
                             </td>
                             <td style="text-align: center">
                                 <?= $shows->signups_open ? "<i class='fas fa-check-circle
