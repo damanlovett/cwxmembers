@@ -647,7 +647,7 @@ class UsersController extends UsermgmtAppController
 			$this->Flash->error(__('Missing User Id'));
 		}
 		//$this->redirect(['action'=>'index', 'page'=>$page]);
-		$this->redirect(['action' => 'members', 'page' => $page]);
+		return $this->redirect($this->referer());
 	}
 	/**
 	 * It is used to activate user
