@@ -1,10 +1,13 @@
 <?php
+
 namespace App\Model\Table;
 
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\ORM\Behavior\CounterCacheBehavior;
+
 
 /**
  * Signups Model
@@ -41,6 +44,10 @@ class SignupsTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('CounterCache', [
+            'Shows' => ['signup_count']
+        ]);
+
 
         $this->belongsTo('Shows', [
             'foreignKey' => 'show_id'
@@ -97,5 +104,12 @@ class SignupsTable extends Table
         ));
 
         return $rules;
+    }
+
+    public function getSignupCount($id = null)
+    {
+
+        $total = $this->Signups->find()->where(['show_id' => $id])->count();
+        return $total;
     }
 }

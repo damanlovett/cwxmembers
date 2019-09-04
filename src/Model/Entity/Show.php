@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
@@ -65,7 +66,7 @@ class Show extends Entity
         return $date->format('m/d');
     }
 
-    
+
     // Day of Week virtual field
     protected function _getDisplayDay()
     {
@@ -88,5 +89,4 @@ class Show extends Entity
     {
         return count($this->signups);
     }
-
 }
