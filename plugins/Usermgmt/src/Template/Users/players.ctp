@@ -24,78 +24,33 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
 <?php $this->assign('title', "Member"); ?>
 <div class="users view large-12 medium-11 columns content">
     <h3 class="pageTitle"><i class="fas fa-user fa-lx fa-fw"></i>&nbsp;&nbsp;
-        <?= h("All CWX Members") ?>
+        <?= h("ComedyWorx Members") ?>
+
+        <div class="btn-toolbar pull-right" style="display:none;" role="toolbar" aria-label="...">
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Member Reports <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <?= $this->Html->link("<i class='fas fa-download fa-fw'></i>&nbsp;&nbsp;Active Members", [
+                            'plugin' => false,
+                            'controller' => 'users', 'action' => 'members', 1
+                        ], ['escape' => false, 'title' => 'Download Active Members']) ?>
+                    </li>
+                    <li>
+                        <?= $this->Html->link("<i class='fas fa-download fa-fw'></i>&nbsp;&nbsp;All Members", [
+                            'plugin' => false,
+                            'controller' => 'users', 'action' => 'members', 0
+                        ], ['escape' => false, 'title' => 'Download All Members']) ?>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </h3>
 
+    <?php echo $this->element('Usermgmt.all_players'); ?>
 
-
-
-
-
-    <div id="updateUsersIndex">
-
-
-
-        <?php
-        $i = 0;
-        // Establish the output variable
-        echo '<table class="table table-striped table-bordered rep" cellpadding="0" cellspacing="0">'; ?>
-
-
-        <?php foreach ($users as $row) {
-
-
-            if ($i % 2 == 0) { // if $i is divisible by our target number (in this case "3")
-
-
-
-
-                echo '<tr><td class="galleryHeader" style="padding:15px"><img style="height:125px" alt="' . $row['first_name'] . ' ' . $row['last_name'] . '" src="' . $this->Image->resize('library/' . IMG_DIR, $row['photo'], 100, null, true) . '" ><h4>' . $row['first_name'] . '&nbsp;&nbsp;' . $row['last_name'] . '</h4><br /><div>Nickname</div>' . $row['user_detail']['nickname'] . '<br/><div>Jersey</div> ' . $row['user_detail']['jersey'] . '<br/><div>E-mail</div><a href="mailto:' . $row['email'] . '">' . $row['email'] . '</a><br/><div>Phone</div>' . $row['user_detail']['cellphone'] . '</div><br/><br/></td>';
-                echo '';
-            } else {
-                echo '<td class="galleryHeader" style="padding:15px"> <img style="height:125px" alt="' . $row['first_name'] . ' ' . $row['last_name'] . '" src="' . $this->Image->resize('library/' . IMG_DIR, $row['photo'], 100, null, true) . '" ><h4>' . $row['first_name'] . '&nbsp;&nbsp;' . $row['last_name'] . '</h4><br /><div>Nickname</div>' . $row['user_detail']['nickname'] . '<br/><div>Jersey</div> ' . $row['user_detail']['jersey'] . '<br/><div>E-mail</div><a href="mailto:' . $row['email'] . '">' . $row['email'] . '</a><br/><div>Phone</div>' . $row['user_detail']['cellphone'] . '</div><br/><br/></td>';
-            }
-            $i++;
-        }
-        echo '</tr></table>';
-        ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <?php if (!empty($users)) {
-            echo $this->element('Usermgmt.pagination', ['paginationText' => __('Number of Users')]);
-        } ?>
-    </div>
 
 </div>

@@ -761,6 +761,7 @@ td.cellHeader {
     color: #0000b3;
 }
 
+
 td.galleryHeader h4 {
     margin-bottom: 0;
     color: #be140b;
@@ -769,7 +770,7 @@ td.galleryHeader h4 {
     border-bottom: none;
 }
 
-td.galleryHeader span {
+td.galleryHeader div {
     display: inline-block;
     width: 100px;
     font-weight: bold;
