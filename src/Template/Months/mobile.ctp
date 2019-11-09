@@ -67,14 +67,14 @@
                         <td>
                             <?php if ($shows->signups_open == 1 && $shows->visible == 1) : ?>
                             <?= $this->Form->create(null, [
-                                            'url' => ['controller' => 'Months', 'action' => 'view', $month->id], ['class' => 'form-horizontal']
-                                        ]); ?>
+                                                        'url' => ['controller' => 'Months', 'action' => 'view', $month->id], ['class' => 'form-horizontal']
+                                                    ]); ?>
 
                             <?php
-                                        echo $this->Form->hidden('show_id', ['value' => $shows->id]);
-                                        echo $this->Form->hidden('user_id', ['value' => $userId]);
-                                        echo $this->Form->hidden('month_id', ['value' => $shows->month_id]);
-                                        ?>
+                                                    echo $this->Form->hidden('show_id', ['value' => $shows->id]);
+                                                    echo $this->Form->hidden('user_id', ['value' => $userId]);
+                                                    echo $this->Form->hidden('month_id', ['value' => $shows->month_id]);
+                                                    ?>
                             <a href="#" onclick="this.parentNode.submit();" title="Sign Up"><i
                                     class="fas fa-pen-alt fa-1x fa-fw text-success"></i></a>
                             <?= $this->Form->end() ?>
@@ -89,7 +89,7 @@
 
                     </tr>
                     <?php $previous = $shows->Dropdowns['name'];
-                        endforeach; ?>
+                            endforeach; ?>
                     <tfoot>
                         <td colspan="2">
                             <?php  ?>
@@ -118,10 +118,10 @@
                     </thead>
                     <tr>
                         <td>
-                            <div style="display:none;">
-                                <?= $this->Html->link("<i class='fas fa-download fa-fw'></i>", [
-                                                                'controller' => 'months', 'action' => 'mySignups', $month->id, $month->title, $userId
-                                                            ], ['escape' => false, 'class' => 'pull-right text-success', 'title' => 'Download Sign Ups']) ?>
+                            <div>
+                                <?= $this->Html->link("<i class='fas fas fa-calendar-check fa-fw'></i>Export Signups", [
+                                            'controller' => 'months', 'action' => 'mySignups', $month->id, $month->title, $userId
+                                        ], ['escape' => false, 'class' => 'pull-right text-success', 'title' => 'Download Sign Ups']) ?>
                             </div>
                         </td>
                     </tr>
@@ -139,8 +139,8 @@
                         </td>
                     </tr>
                     <?php
-                            $previous2 = $signups->show->DisplayName;
-                        endforeach; ?>
+                                $previous2 = $signups->show->DisplayName;
+                            endforeach; ?>
                     <tfoot>
                         <td colspan="1">
                             <?php  ?>
