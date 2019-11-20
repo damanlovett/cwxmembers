@@ -21,42 +21,36 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE PRODUCT OR THE USE OR OTHER DEALINGS IN THE PRODUCT. */
 ?>
+<?php $this->assign('title', "Member"); ?>
+<div class="users view large-12 medium-11 columns content">
+    <h3 class="pageTitle"><i class="fas fa-user fa-lx fa-fw"></i>&nbsp;&nbsp;
+        <?= h("ComedyWorx Members Email List") ?>
 
-<div id="updateUsersIndex">
-    <?php echo $this->Search->searchForm('Users', ['legend' => false, 'updateDivId' => 'updateUsersIndex']); ?>
-    <?php echo $this->element('Usermgmt.paginator', ['updateDivId' => 'updateUsersIndex']); ?>
-    <table class="table table-striped rep allMembers" cellpadding="0" cellspacing="0">
-        <thead>
-            <tr class="hidden-xs hidden-sm">
-                <th style="width:40px;">
-                    <?php echo __('#'); ?>
-                </th>
-                <th scope="col" style="width:15%">
-                    <?php echo $this->Paginator->sort('Users.first_name', __('Name')); ?>
-                </th>
-                <th scope="col" style="width:15%">
-                    <?php echo "Phone"; ?>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php if (!empty($users)) {
-                $page = $this->request->params['paging']['Users']['page'];
-                $limit = $this->request->params['paging']['Users']['perPage'];
-                $i = ($page - 1) * $limit;
-                foreach ($users as $row) {
-                    $i++;
-                    echo "<tr>";
-                    echo "<td class='hidden-xs hidden-sm'>" . $i . "</td>";
-                    echo "<td>" . h($row['first_name']) . "&nbsp;" . h($row['last_name']) .  "</td><td>" . $row['user_detail']['cellphone'] . "</td>";
-                    echo "</tr>";
-                }
-            } else {
-                echo "<tr><td colspan=10><br/><br/>" . __('No Records Available') . "</td></tr>";
-            } ?>
-        </tbody>
-    </table>
-    <?php if (!empty($users)) {
-        echo $this->element('Usermgmt.pagination', ['paginationText' => __('Number of Users')]);
-    } ?>
+        <div class="btn-toolbar pull-right" style="display:none;" role="toolbar" aria-label="...">
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Member Reports <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <?= $this->Html->link("<i class='fas fa-download fa-fw'></i>&nbsp;&nbsp;Active Members", [
+                            'plugin' => false,
+                            'controller' => 'users', 'action' => 'members', 1
+                        ], ['escape' => false, 'title' => 'Download Active Members']) ?>
+                    </li>
+                    <li>
+                        <?= $this->Html->link("<i class='fas fa-download fa-fw'></i>&nbsp;&nbsp;All Members", [
+                            'plugin' => false,
+                            'controller' => 'users', 'action' => 'members', 0
+                        ], ['escape' => false, 'title' => 'Download All Members']) ?>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </h3>
+
+    <?php echo $this->element('Usermgmt.all_playerse'); ?>
+
+
 </div>

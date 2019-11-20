@@ -43,6 +43,9 @@
                 <li>
                     <?= $this->Html->link(__('  Player Phone List'), ['controller' => 'users', 'action' => 'players', 'plugin' => 'Usermgmt'], ['title' => 'CWX Phone List']); ?>
                 </li>
+                <!-- <li class="hideDiv">
+                    <?= $this->Html->link(__('  Player Email List'), ['controller' => 'users', 'action' => 'playerse', 'plugin' => 'Usermgmt'], ['title' => 'CWX Phone List']); ?>
+                </li> -->
             </ul>
         </li>
         </li>

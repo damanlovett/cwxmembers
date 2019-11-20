@@ -170,6 +170,24 @@ class UsersController extends UsermgmtAppController
 					'options' => ['' => 'Select', '1' => 'Active', '0' => 'Inactive']
 				]
 			]
+		],
+		'playerse' => [
+			'Usermgmt.Users' => [
+				'Users' => [
+					'type' => 'text',
+					'label' => 'Search',
+					'tagline' => 'Search by name, username, email',
+					'condition' => 'multiple',
+					'searchFields' => ['Users.first_name', 'Users.last_name', 'Users.username', 'Users.email'],
+					'searchFunc' => ['plugin' => 'Usermgmt', 'controller' => 'Users', 'function' => 'indexSearch'],
+					'inputOptions' => ['style' => 'width:200px;']
+				],
+				'Users.active' => [
+					'type' => 'select',
+					'label' => 'Status',
+					'options' => ['' => 'Select', '1' => 'Active', '0' => 'Inactive']
+				]
+			]
 		], 'online' => [
 			'Usermgmt.UserActivities' => [
 				'UserActivities' => [
@@ -260,6 +278,30 @@ class UsersController extends UsermgmtAppController
 	 * @return void
 	 */
 	public function players()
+	{
+		$this->viewBuilder()->layout('default3'); // New in 3.1
+		$this->paginate = ['limit' => 20, 'contain' => 'UserDetails', 'order' => ['Users.last_name' => 'ASC'], 'conditions' => ['Users.last_name !=' => 'Adminstrator']];
+		$this->Search->applySearch();
+		$users = $this->paginate($this->Users)->toArray();
+		$this->loadModel('Usermgmt.UserGroups');
+		foreach ($users as $key => $user) {
+			$users[$key]['user_group_name'] = $this->UserGroups->getGroupsByIds($user['user_group_id']);
+		}
+
+
+		$this->set(compact('users'));
+		if ($this->request->is('ajax')) {
+			$this->viewBuilder()->layout('ajax');
+			$this->render('/Element/all_players');
+		}
+	}
+	/**
+	 * It displays all members for email list
+	 *
+	 * @access public
+	 * @return void
+	 */
+	public function playerse()
 	{
 		$this->viewBuilder()->layout('default3'); // New in 3.1
 		$this->paginate = ['limit' => 20, 'contain' => 'UserDetails', 'order' => ['Users.last_name' => 'ASC'], 'conditions' => ['Users.last_name !=' => 'Adminstrator']];

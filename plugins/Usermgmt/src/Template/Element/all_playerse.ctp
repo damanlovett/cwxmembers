@@ -32,10 +32,12 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
                     <?php echo __('#'); ?>
                 </th>
                 <th scope="col" style="width:15%">
-                    <?php echo $this->Paginator->sort('Users.first_name', __('Name')); ?>
+                    <?php echo $this->Paginator->sort('Users.first_name', __('First Name')); ?>
                 </th>
                 <th scope="col" style="width:15%">
-                    <?php echo "Phone"; ?>
+                    <?php echo $this->Paginator->sort('Users.last_name', __('Last Name')); ?>
+                <th scope="col">
+                    <?php echo $this->Paginator->sort('Users.email', __('email')); ?>
                 </th>
             </tr>
         </thead>
@@ -48,11 +50,13 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
                     $i++;
                     echo "<tr>";
                     echo "<td class='hidden-xs hidden-sm'>" . $i . "</td>";
-                    echo "<td>" . h($row['first_name']) . "&nbsp;" . h($row['last_name']) .  "</td><td>" . $row['user_detail']['cellphone'] . "</td>";
+                    echo "<td>" . h($row['first_name']) . "</td>";
+                    echo "<td>" . h($row['last_name']) .  "</td>";
+                    echo "<td>" . $row['email'] . "</td>";
                     echo "</tr>";
                 }
             } else {
-                echo "<tr><td colspan=10><br/><br/>" . __('No Records Available') . "</td></tr>";
+                echo "<tr><td colspan=8><br/><br/>" . __('No Records Available') . "</td></tr>";
             } ?>
         </tbody>
     </table>

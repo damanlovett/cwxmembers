@@ -24,7 +24,7 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
 <?php $this->assign('title', "Member"); ?>
 <div class="users view large-12 medium-11 columns content">
     <h3 class="pageTitle"><i class="fas fa-user fa-lx fa-fw"></i>&nbsp;&nbsp;
-        <?= h("ComedyWorx Members") ?>
+        <?= h("ComedyWorx Members Phone list") ?>
 
         <div class="btn-toolbar pull-right" style="display:none;" role="toolbar" aria-label="...">
             <div class="btn-group">
