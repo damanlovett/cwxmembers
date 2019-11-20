@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
@@ -38,11 +39,11 @@ class Signup extends Entity
         'modified' => true,
         'show' => true,
         'user' => true,
+        'support' => true,
         'assignments' => true
     ];
     public function numberOfSignups()
     {
         return count($this->signups);
     }
-
 }

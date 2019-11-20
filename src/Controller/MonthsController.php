@@ -98,13 +98,19 @@ class MonthsController extends AppController
         $datas = $this->Signups->find('all')->contain(['Users', 'Shows', 'Shows.dropdowns', 'Months'])->order(['Shows.schedule' => 'asc'])->where(['Signups.month_id' => $id])->toArray();
 
         $_serialize = 'datas';
-        $_header = ['Show', 'Date', 'First Name', 'Last Name', 'Email', 'Signed Up On'];
+        $_header = ['Show', 'Date', 'First Name', 'Last Name', 'Email', 'Support', 'Signed Up On'];
         $_extract = [
             'Dropdowns.name',
             function ($row) {
                 $results = date_format($row['show']['schedule'], "M j, Y - g:i a");
                 return ($results);
-            }, 'user.first_name', 'user.last_name', 'user.email', 'created'
+            }, 'user.first_name', 'user.last_name', 'user.email',
+            function ($row) {
+                if ($row['support'] == 1) $results = 'yes';
+                else $results = 'no';
+                return ($results);
+            },
+            'created'
         ];
         $this->viewBuilder()->className('CsvView.Csv');
         $this->set(compact('datas', '_serialize', '_header', '_extract'));
@@ -449,6 +455,7 @@ class MonthsController extends AppController
             'id',
             'user_id',
             'month_id',
+            'support',
             'created'
         ]);
 

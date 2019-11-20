@@ -32,11 +32,9 @@
                 and signup for show</a></li>
         <li role="presentation" class="disabled"><a href="#"><i class="fas fa-pen-alt fa-l fa-fw text-success"></i> One
                 click show sign up</a></li>
-        <li role="presentation" class="disabled"><a href="#">
-                <?= $this->Html->image('ref.png', ['title' => 'need a ref or host']) ?> Need ref / host </a></li>
-        <li role="presentation" class="disabled"><a href="#">
-                <?= $this->Html->image('voice.png', ['title' => 'need a voice or DJ', 'class' => 'text-sucesss']) ?>
-                Need voice / DJ</a></li>
+        <li role="presentation" class="disabled"><a href="#"><i
+                    class="fas fas fa-hands-helping fa-l fa-fw text-success"></i> One
+                click show sign up</a></li>
     </ul>
     <div style="clear: both;"></div>
 
@@ -54,6 +52,9 @@
                 <?php if (!empty($month->shows)) : ?>
                 <table class="table table-hover table-striped table-bordered" cellpadding="0" cellspacing="0">
                     <thead>
+                        <th class="iconBox">
+                            <?= __('') ?>
+                        </th>
                         <th class="iconBox">
                             <?= __('') ?>
                         </th>
@@ -78,6 +79,25 @@
                             <a href="#" onclick="this.parentNode.submit();" title="Sign Up"><i
                                     class="fas fa-pen-alt fa-1x fa-fw text-success"></i></a>
                             <?= $this->Form->end() ?>
+
+                            <?php endif; ?>
+                        </td>
+                        <td>
+                            <?php if ($shows->signups_open == 1 && $shows->visible == 1) : ?>
+                            <?= $this->Form->create(null, [
+                                                        'url' => ['controller' => 'Months', 'action' => 'view', $month->id], ['class' => 'form-horizontal']
+                                                    ]); ?>
+
+                            <?php
+                                                    echo $this->Form->hidden('show_id', ['value' => $shows->id]);
+                                                    echo $this->Form->hidden('user_id', ['value' => $userId]);
+                                                    echo $this->Form->hidden('month_id', ['value' => $shows->month_id]);
+                                                    echo $this->Form->hidden('support', ['value' => 1]);
+                                                    ?>
+                            <a href="#" onclick="this.parentNode.submit();" title="Request Support"><i
+                                    class="fas fas fa-hands-helping fa-1x fa-fw text-success"></i></a>
+                            <?= $this->Form->end() ?>
+
                             <?php endif; ?>
                         </td>
                         <td>
@@ -132,7 +152,9 @@
                         <td>
                             <?php if ($signups->show->signups_open = 1) : ?>
                             <?= $signups->show->dropdown['name'] . "<br/>&nbsp;<strong><span class='myBlue small'>&nbsp;" . date_format($signups->show->schedule, "D") . "&nbsp;</span></strong>&nbsp;-&nbsp;" . $signups->show->ShortName ?>&nbsp;
-                            <?= $this->Form->postLink(__(''), ['controller' => 'signups', 'action' => 'remove', $signups->id], ['class' => 'fas fa-minus-square fa-l fa-fw text-dander', 'title' => 'Delete Signup']) ?>&nbsp;&nbsp;
+                            <?= $this->Form->postLink(__(''), ['controller' => 'signups', 'action' => 'remove', $signups->id], ['class' => 'fas fa-minus-square fa-l fa-fw text-dander', 'title' => 'Delete Signup']) ?>&nbsp;&nbsp;<?= $signups->show->suporrt; ?>
+                            <?= ($signups->support == 1) ? 'Requested Support' : ''; ?>
+
                             <?php endif; ?>
                             &nbsp;
 
