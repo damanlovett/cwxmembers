@@ -801,10 +801,23 @@ td.cellHeader .modal {
 fieldset.miniForm {
     border: 1px solid #ccc;
     background-color: #dff0d8;
-    height: 500px;
+    height: 650px;
 }
 
 fieldset.miniForm legend {
+    border: 1px solid #dff0d8;
+    width: auto;
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+fieldset.miniFormLong {
+    border: 1px solid #ccc;
+    background-color: #dff0d8;
+    height: 600px;
+}
+
+fieldset.miniFormLong legend {
     border: 1px solid #dff0d8;
     width: auto;
     padding-right: 30px;

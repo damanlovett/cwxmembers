@@ -94,14 +94,14 @@
                 <legend>Add Show</legend>
 
                 <?= $this->Form->create(null, [
-                        'url' => ['controller' => 'Months', 'action' => 'mview', $month->id], ['class' => 'form-inline']
-                    ]); ?>
+                            'url' => ['controller' => 'Months', 'action' => 'mview', $month->id], ['class' => 'form-inline']
+                        ]); ?>
                 <div class="um-form-row form-group ">
                     <div class="col-md-6 ">
                         <?php
-                            echo $this->Form->hidden('month_id', ['value' => $month->id]);
-                            echo $this->Form->control('dropdown_id', ['label' => 'Type of Show', 'options' => $dropdowns, 'empty' => true]);
-                            ?>
+                                echo $this->Form->hidden('month_id', ['value' => $month->id]);
+                                echo $this->Form->control('dropdown_id', ['label' => 'Type of Show', 'options' => $dropdowns, 'empty' => true]);
+                                ?>
                     </div>
                     <div class="col-md-6 ">
                         <?php echo $this->Form->control('schedule', ['type' => 'text', 'label' => 'Date of Show', 'div' => false, 'size' => 3, 'class' => 'form-control datetimepicker']); ?>
@@ -138,6 +138,7 @@
                     <div class="col-md-12 ">
                         <?= $this->Form->button(__('Add Show'), ['class' => 'btn btn-success']) ?>
                         <?= $this->Form->end() ?>
+                        <div style="clear: both;"></div>
             </fieldset>
 
             <!-- End of Form 1 -->
@@ -158,8 +159,8 @@
                 <legend>Add Practice</legend>
 
                 <?= $this->Form->create(null, [
-                        'url' => ['controller' => 'Practices', 'action' => 'madd', $month->id], ['class' => 'form-inline']
-                    ]); ?>
+                            'url' => ['controller' => 'Practices', 'action' => 'madd', $month->id], ['class' => 'form-inline']
+                        ]); ?>
                 <?= $this->Form->hidden('month_id', ['value' => $month->id]); ?>
 
                 <div class="um-form-row form-group ">
@@ -187,9 +188,6 @@
                         <?= $this->Form->control('open', ['label' => 'Open', 'type' => 'checkbox', 'class' => 'form-control my_checkbox']); ?>
                     </div>
                 </div>
-                <div class="um-form-row form-group " style="margin-left:20px ">
-                    <div class="row " style="height: 330px ">&nbsp;</div>
-                </div>
                 <hr />
                 <div class="um-form-row form-group ">
                     <div class="col-md-12 ">
@@ -198,7 +196,9 @@
                     </div>
                 </div>
 
+                <div style="clear: both;"></div>
             </fieldset>
+
 
             <!-- End Form 2 -->
 
@@ -213,6 +213,8 @@
     <?php endforeach; ?>
 
 
+
+    <div style="clear: both;"></div>
 
 
 
