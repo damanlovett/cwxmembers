@@ -22,9 +22,9 @@ The above copyright notice and this permission notice shall be included in all c
 THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE PRODUCT OR THE USE OR OTHER DEALINGS IN THE PRODUCT. */
 ?>
 
-<div id="updateUsersIndex">
-    <?php echo $this->Search->searchForm('Users', ['legend' => false, 'updateDivId' => 'updateUsersIndex']); ?>
-    <?php echo $this->element('Usermgmt.paginator', ['updateDivId' => 'updateUsersIndex']); ?>
+<div id="updateUsersPlayerse">
+    <?php echo $this->Search->searchForm('Users', ['legend' => false, 'updateDivId' => 'updateUsersPlayerse']); ?>
+    <?php echo $this->element('Usermgmt.paginator', ['useAjax' => true, 'updateDivId' => 'updateUsersPlayerse']); ?>
     <table class="table table-striped rep allMembers" cellpadding="0" cellspacing="0">
         <thead>
             <tr class="hidden-xs hidden-sm">

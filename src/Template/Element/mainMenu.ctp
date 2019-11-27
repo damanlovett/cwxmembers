@@ -1,10 +1,10 @@
 <!-- Collect the nav links, forms, and other content for toggling -->
 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    <ul class="nav navbar-nav navbar-center fa-ul" style="margin-left:20px">
+    <ul class="nav navbar-nav navbar-center fa-ul" style="margin-left:20px; background-color:#d11717;">
         <p class="navbar-text pull-right">
             <span class="hidden-xs hidden-sm"> <?= $var['first_name']; ?>, welcome to your CWX portal</span>
             <span style="margin-left:15px">
-                <?= $this->Html->link(__('Sign Out'), ['controller' => 'Users', 'action' => 'logout', 'plugin' => 'Usermgmt'], ['class' => 'btn btn-sm btn-default']); ?>
+                <?= $this->Html->link(__('Sign Out'), ['controller' => 'Users', 'action' => 'logout', 'plugin' => 'Usermgmt'], ['class' => 'btn btn-sm btn-default hidden-xs hidden-sm']); ?>
             </span>
         </p>
         <li>
@@ -52,6 +52,7 @@
         <li>
             <?= $this->Html->link(__('  My Activities'), ['controller' => 'users', 'action' => 'me', 'plugin' => false], ['class' => 'fas fa-user menuIcon', 'title' => 'My Activities']); ?>
         </li>
+
         <!-- Beginning of System Manager -->
         <?php if ($this->UserAuth->HP('Shows', 'manager', false)) {
             ?>
@@ -92,6 +93,10 @@
                 <!-- End of System Manager -->
             </ul>
         </li>
+        <li class="hidden-lg">
+            <?= $this->Html->link(__('Sign Out'), ['controller' => 'Users', 'action' => 'logout', 'plugin' => 'Usermgmt']); ?>
+        </li>
+
     </ul>
 </div>
 <!-- /.navbar-collapse -->

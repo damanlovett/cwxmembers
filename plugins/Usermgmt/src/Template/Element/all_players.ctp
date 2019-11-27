@@ -32,10 +32,7 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
                     <?php echo __('#'); ?>
                 </th>
                 <th scope="col" style="width:15%">
-                    <?php echo $this->Paginator->sort('Users.first_name', __('Name')); ?>
-                </th>
-                <th scope="col" style="width:15%">
-                    <?php echo "Phone"; ?>
+                    <?php echo $this->Paginator->sort('Users.first_name', __('Player')); ?>
                 </th>
             </tr>
         </thead>
@@ -48,7 +45,7 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
                     $i++;
                     echo "<tr>";
                     echo "<td class='hidden-xs hidden-sm'>" . $i . "</td>";
-                    echo "<td>" . h($row['first_name']) . "&nbsp;" . h($row['last_name']) .  "</td><td>" . $row['user_detail']['cellphone'] . "</td>";
+                    echo "<td>" . h($row['first_name']) . "&nbsp;" . h($row['last_name']) .  "&nbsp; - &nbsp" . $row['user_detail']['cellphone'] . "</td>";
                     echo "</tr>";
                 }
             } else {
