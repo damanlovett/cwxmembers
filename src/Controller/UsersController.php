@@ -1,8 +1,10 @@
 <?php
+
 namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+
 /**
  * Users Controller
  *
@@ -19,7 +21,7 @@ class UsersController extends AppController
         $this->viewBuilder()->layout('default2'); // New in 3.1
     }
 
-        //Don't forget to add use Cake\Event\Event;
+    //Don't forget to add use Cake\Event\Event;
 
     /**
      * Index method
@@ -89,7 +91,38 @@ class UsersController extends AppController
             ->order(['schedule' => 'DESC']);
 
         $this->set('signups', $signups);
+    }
+    /**
+     * mesignup method
+     *
+     * @param string|null $id User id.
+     * @return \Cake\Http\Response|void
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function mesignup()
+    {
 
+        $id = $this->UserAuth->getUserId();
+        $user = $this->Users->get($id, [
+            'contain' => ['UserGroups', 'UserDetails.MemberStandings', 'Assignments', 'Checkins', 'LoginTokens', 'ScheduledEmailRecipients', 'Signups', 'UserActivities', 'UserContacts', 'UserDetails', 'UserEmailRecipients', 'UserEmailSignatures', 'UserEmailTemplates', 'UserSocials']
+        ]);
+
+        $this->set('user', $user);
+
+
+        $this->loadModel('Checkins');
+        $checkins = $this->Checkins->findAllByUser_id($id)
+            ->contain(['Practices']);
+
+        $this->set('checkins', $this->paginate($checkins));
+
+        $this->loadModel('Signups');
+
+        $signups = $this->Signups->findAllByUser_id($id)
+            ->contain(['Shows', 'Shows.dropdowns'])
+            ->order(['schedule' => 'DESC']);
+
+        $this->set('signups', $signups);
     }
 
     public function signupReport()
@@ -378,10 +411,6 @@ class UsersController extends AppController
 
 
         $this->set('membership', $membership);
-
-
-
-
     }
     /**
      * View method
@@ -397,7 +426,6 @@ class UsersController extends AppController
         ]);
 
         $this->set('user', $user);
-
     }
 
     /**

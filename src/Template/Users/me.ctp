@@ -12,8 +12,8 @@
         <?= $user->first_name . "'s  Activities" ?>
         <div class="btn-toolbar pull-right" role="toolbar" aria-label="...">
             <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
                     My Activity Reports <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
@@ -118,7 +118,8 @@
                     <!-- ABC Training modal -->
                     <?php echo $this->Html->link('', '/#', ['data-toggle' => 'modal', 'data-target' => ".bs-abc-modal-lg", 'class' => 'fas fa-info-circle fa-l  fa-fw text-success', 'title' => 'ABC Information']); ?>
 
-                    <div class="modal fade bs-abc-modal-lg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                    <div class="modal fade bs-abc-modal-lg" tabindex="-1" role="dialog"
+                        aria-labelledby="mySmallModalLabel">
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="row">
@@ -173,7 +174,8 @@
                     <!-- Harrassment modal -->
                     <?php echo $this->Html->link('', '/#', ['data-toggle' => 'modal', 'data-target' => ".bs-harassment-modal-lg", 'class' => 'fas fa-info-circle fa-l  fa-fw text-success', 'title' => 'Shortform Guide And Harassment Policy']); ?>
 
-                    <div class="modal fade bs-harassment-modal-lg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                    <div class="modal fade bs-harassment-modal-lg" tabindex="-1" role="dialog"
+                        aria-labelledby="mySmallModalLabel">
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="row">
@@ -192,13 +194,16 @@
                                             </span>
                                             <span class="list-group-item">Shortform Attestation
                                                 Form - [
-                                                <a href="https://goo.gl/ZMLffs" target="_blank">https://goo.gl/ZMLffs</a>
+                                                <a href="https://goo.gl/ZMLffs"
+                                                    target="_blank">https://goo.gl/ZMLffs</a>
                                                 ]</span>
                                             <span class="list-group-item">Shortform Guide: [
-                                                <a href="https://goo.gl/WAH1E6" target="_blank">https://goo.gl/WAH1E6</a>
+                                                <a href="https://goo.gl/WAH1E6"
+                                                    target="_blank">https://goo.gl/WAH1E6</a>
                                                 ]</span>
                                             <span class="list-group-item">Harassment Policy: [
-                                                <a href="https://goo.gl/Lt1VeW" target="_blank">https://goo.gl/Lt1VeW</a>
+                                                <a href="https://goo.gl/Lt1VeW"
+                                                    target="_blank">https://goo.gl/Lt1VeW</a>
                                                 ]</span>
                                         </div>
                                     </div>
@@ -280,13 +285,13 @@
                                 <tr>
                                     <td>
                                         <?php if (!empty($assignment->Dropdowns['name'])) {
-                                            echo $assignment->Dropdowns['name'];
-                                        } ?>
+                                                    echo $assignment->Dropdowns['name'];
+                                                } ?>
                                     </td>
                                     <td>
                                         <?php if (!empty($assignment->show->schedule)) {
-                                            echo $this->Switches->dateTime($assignment->show->schedule);
-                                        } ?>
+                                                    echo $this->Switches->dateTime($assignment->show->schedule);
+                                                } ?>
                                     </td>
                                     <td>
                                         <?= $assignment->has('role') ? $assignment->role->name : '' ?>
@@ -340,18 +345,18 @@
                                 <tr>
                                     <td>
                                         <?php if (!empty($checkin->practice->title)) {
-                                            echo $checkin->practice->title;
-                                        } ?>
+                                                    echo $checkin->practice->title;
+                                                } ?>
                                     </td>
                                     <td>
                                         <?php if (!empty($checkin->practice->schedule)) {
-                                            echo $this->Switches->dateTime($checkin->practice->schedule);
-                                        } ?>
+                                                    echo $this->Switches->dateTime($checkin->practice->schedule);
+                                                } ?>
                                     </td>
                                     <td>
                                         <?php if (!empty($checkin->practice->leader)) {
-                                            echo $checkin->practice->leader;
-                                        } ?>
+                                                    echo $checkin->practice->leader;
+                                                } ?>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
@@ -394,13 +399,13 @@
                                 <tr>
                                     <td>
                                         <?php if (!empty($signup->Dropdowns['name'])) {
-                                            echo $signup->Dropdowns['name'];
-                                        } ?>
+                                                    echo $signup->Dropdowns['name'];
+                                                } ?>
                                     </td>
                                     <td>
                                         <?php if (!empty($signup->show->schedule)) {
-                                            echo $this->Switches->dateTime($signup->show->schedule);
-                                        } ?>
+                                                    echo $this->Switches->dateTime($signup->show->schedule);
+                                                } ?>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
