@@ -28,11 +28,14 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
     <table class="table table-striped rep allMembers" cellpadding="0" cellspacing="0">
         <thead>
             <tr class="hidden-xs hidden-sm">
-                <th style="width:40px;">
+                <th style="width:5px;">
                     <?php echo __('#'); ?>
                 </th>
                 <th scope="col" style="width:15%">
                     <?php echo $this->Paginator->sort('Users.first_name', __('Player')); ?>
+                </th>
+                <th scope="col" style="width:15%">
+                    <?php echo $this->Paginator->sort('Users.email', __('Email')); ?>
                 </th>
             </tr>
         </thead>
@@ -45,7 +48,8 @@ THE PRODUCT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIE
                     $i++;
                     echo "<tr>";
                     echo "<td class='hidden-xs hidden-sm'>" . $i . "</td>";
-                    echo "<td>" . h($row['first_name']) . "&nbsp;" . h($row['last_name']) .  "&nbsp; - &nbsp" . $row['user_detail']['cellphone'] . "</td>";
+                    echo "<td><span  class='visible-xs'>&#8226;</span>" . h($row['first_name']) . "&nbsp;" . h($row['last_name']) .  "&nbsp; - &nbsp" . $row['user_detail']['cellphone'] . "</td>";
+                    echo "<td>&nbsp;&nbsp&nbsp;&nbsp" . h($row['email']) .  "</td>";
                     echo "</tr>";
                 }
             } else {
